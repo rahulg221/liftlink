@@ -1,4 +1,5 @@
 import 'package:fitness_app/providers/theme_provider.dart';
+import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,9 +11,19 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _emailController = new TextEditingController();
+  final TextEditingController _passwordController = new TextEditingController();
+
+  @override
+  void dispose() {
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final _textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       appBar: AppBar(
@@ -31,20 +42,18 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Welcome', style: textTheme.bodyLarge),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Username',
-                border: OutlineInputBorder(),
-              ),
+            Text('Welcome', style: _textTheme.bodyLarge),
+            TextFieldInput(
+              hintText: 'Email',
+              textInputType: TextInputType.emailAddress,
+              textEditingController: _emailController,
             ),
             SizedBox(height: 10),
-            TextField(
-              decoration: InputDecoration(
-                labelText: 'Password',
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
+            TextFieldInput(
+              hintText: 'Password',
+              textInputType: TextInputType.visiblePassword,
+              textEditingController: _passwordController,
+              isPassword: true,
             ),
             SizedBox(height: 20),
             ElevatedButton(

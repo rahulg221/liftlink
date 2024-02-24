@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 class ColorPalette {
   // Background colors
-  static const darkBackgroundColor = Color.fromARGB(255, 18, 18, 18);
-  static const lightBackgroundColor = Color.fromARGB(255, 240, 240, 240);
+  static Color darkBackgroundColor = Color.fromARGB(255, 18, 18, 18);
+  static Color lightBackgroundColor = Color.fromARGB(255, 240, 240, 240);
+  // App bar colors
+  static Color lightAppBarColor = Colors.black.withOpacity(0.12);
+  static Color darkAppBarColor = Colors.white.withOpacity(0.12);
   // Surface colors - widgets
-
+  static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
+  static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
   // Primary colors - on surface buttons, graphs, etc
-  static Color lightPrimaryColor = Colors.blue;
   static Color darkPrimaryColor = Colors.cyan;
+  static Color lightPrimaryColor = Colors.blue;
   // Secondary colors - above surface buttons
   static Color floatingActionButtonColor = Colors.deepOrange;
   // On background text

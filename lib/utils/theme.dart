@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:fitness_app/utils/color_palette.dart';
 
 final ThemeData lightTheme = ThemeData(
+  brightness: Brightness.light,
   scaffoldBackgroundColor: ColorPalette.lightBackgroundColor,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: ColorPalette.floatingActionButtonColor,
   ),
   appBarTheme: AppBarTheme(
-    color: ColorPalette.lightBackgroundColor,
+    color: ColorPalette.lightAppBarColor,
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
@@ -43,12 +44,13 @@ final ThemeData lightTheme = ThemeData(
 );
 
 final ThemeData darkTheme = ThemeData(
+  brightness: Brightness.dark,
   scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: const Color.fromARGB(255, 255, 122, 81),
   ),
   appBarTheme: AppBarTheme(
-    color: ColorPalette.darkBackgroundColor,
+    color: ColorPalette.darkAppBarColor,
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
