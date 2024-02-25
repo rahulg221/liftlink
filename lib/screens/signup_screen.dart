@@ -1,31 +1,33 @@
 import 'package:fitness_app/providers/theme_provider.dart';
-import 'package:fitness_app/screens/signup_screen.dart';
+import 'package:fitness_app/screens/login_screen.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
-import 'package:fitness_app/widgets/signup_options.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = new TextEditingController();
-  final TextEditingController _passwordController = new TextEditingController();
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
+  final TextEditingController _usernameController = TextEditingController();
 
   bool _isLoading = false;
+  bool _agreedToTerms = false;
 
-  void loginUser() {
-    // Empty function
-  }
-
-  void forgotPassword() {
-    // Empty function
+  void signInUser() {
+    Navigator.push(
+      context,
+      CupertinoPageRoute(builder: (context) => const LoginScreen()),
+    );
   }
 
   @override
@@ -33,6 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
+    _usernameController.dispose();
+    _confirmPasswordController.dispose();
   }
 
   @override
@@ -60,16 +64,18 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Expanded(child: Container()),
             Text(
-              'Welcome',
+              'Create Account',
               style: theme.textTheme.headlineLarge,
               textAlign: TextAlign.left,
             ),
-            const SizedBox(height: 10),
-            Text(
-              'Please sign in to continue.',
-              style: theme.textTheme.bodySmall,
-            ),
             const SizedBox(height: 40),
+            TextFieldInput(
+              hintText: 'Username',
+              textInputType: TextInputType.visiblePassword,
+              textEditingController: _passwordController,
+              isPassword: true,
+            ),
+            const SizedBox(height: 15),
             TextFieldInput(
               hintText: 'Email',
               textInputType: TextInputType.emailAddress,
@@ -82,44 +88,35 @@ class _LoginScreenState extends State<LoginScreen> {
               textEditingController: _passwordController,
               isPassword: true,
             ),
-            const SizedBox(height: 10),
-            GestureDetector(
-              onTap: forgotPassword,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: Text(
-                  'Forgot password?',
-                  style: theme.textTheme.bodySmall,
-                  textAlign: TextAlign.right,
-                ),
-              ),
+            const SizedBox(height: 15),
+            TextFieldInput(
+              hintText: 'Confirm Password',
+              textInputType: TextInputType.visiblePassword,
+              textEditingController: _confirmPasswordController,
+              isPassword: true,
             ),
+            const SizedBox(height: 10),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: loginUser,
+              onTap: signInUser,
               isLoading: _isLoading,
-              text: 'Login',
+              text: 'Register',
             ),
-            const SizedBox(height: 30),
-            Text('Or sign in with', style: theme.textTheme.bodySmall),
-            const SizedBox(height: 30),
-            // Other sign in options
-            const SignInOptions(),
             Expanded(child: Container()),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Don't have an account? ",
+                Text('Already have an account? ',
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       CupertinoPageRoute(
-                          builder: (context) => const SignUpScreen()),
+                          builder: (context) => const LoginScreen()),
                     );
                   },
-                  child: Text('Sign in.',
+                  child: Text('Login.',
                       style: theme.textTheme.bodySmall!
                           .copyWith(fontWeight: FontWeight.bold)),
                 ),

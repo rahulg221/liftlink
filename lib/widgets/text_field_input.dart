@@ -20,20 +20,37 @@ class TextFieldInput extends StatelessWidget {
     final theme = Theme.of(context);
     final bool isDark = theme.brightness == Brightness.dark;
 
+    Icon? prefixIcon() {
+      if (hintText.contains('Email')) {
+        return Icon(Icons.email,
+            color: isDark ? Colors.white54 : Colors.black54);
+      } else if (hintText.contains('Username')) {
+        return Icon(Icons.person,
+            color: isDark ? Colors.white54 : Colors.black54);
+      } else if (isPassword) {
+        return Icon(Icons.lock,
+            color: isDark ? Colors.white54 : Colors.black54);
+      }
+
+      return null;
+    }
+
     return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: theme.textTheme.bodySmall,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(18.0),
-            borderSide: BorderSide.none,
-          ),
-          contentPadding: const EdgeInsets.all(16),
-          filled: true,
-          fillColor: isDark
-              ? ColorPalette.darkSurfaceColor
-              : ColorPalette.lightSurfaceColor),
+        hintText: hintText,
+        hintStyle: theme.textTheme.bodySmall,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18.0),
+          borderSide: BorderSide.none,
+        ),
+        contentPadding: const EdgeInsets.all(16),
+        filled: true,
+        fillColor: isDark
+            ? ColorPalette.darkSurfaceColor
+            : ColorPalette.lightSurfaceColor,
+        prefixIcon: prefixIcon(),
+      ),
       keyboardType: textInputType,
       obscureText: isPassword,
       style: theme.textTheme.bodySmall,
