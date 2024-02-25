@@ -52,7 +52,6 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         children: const [
           FeedScreen(),
           FriendsScreen(),
-          PostScreen(),
           WorkoutsScreen(),
           ProfileScreen(),
         ],

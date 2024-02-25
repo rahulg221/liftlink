@@ -1,6 +1,5 @@
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
-import 'package:fitness_app/screens/signup_screen.dart';
 import 'package:fitness_app/utils/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

@@ -1,5 +1,8 @@
+import 'package:fitness_app/screens/post_screen.dart';
+import 'package:fitness_app/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:fitness_app/utils/color_palette.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 class PostButton extends StatelessWidget {
   const PostButton({super.key});
@@ -7,15 +10,20 @@ class PostButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 60,
-      height: 60,
+      width: 65,
+      height: 65,
       child: FloatingActionButton(
-        heroTag: 'post',
-        onPressed: () {},
+        onPressed: () async {
+          XFile? imageFile = await pickImage();
+
+          if (imageFile != null) {
+            showPostScreenModal(context, imageFile);
+          }
+        },
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(50)),
         ),
-        child: const Icon(Icons.add),
+        child: const Icon(FontAwesomeIcons.cameraRetro, size: 25),
       ),
     );
   }

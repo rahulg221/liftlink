@@ -1,6 +1,5 @@
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/add_post_button.dart';
 import 'package:flutter/material.dart';
 
 class WorkoutsScreen extends StatefulWidget {
@@ -11,8 +10,6 @@ class WorkoutsScreen extends StatefulWidget {
 }
 
 class _WorkoutsScreenState extends State<WorkoutsScreen> {
-  bool _isLoading = false;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -26,13 +23,13 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              navigateTo(SettingsScreen(), context);
+              navigateTo(const SettingsScreen(), context);
             },
           ),
         ],
         automaticallyImplyLeading: false,
       ),
-      body: Center(child: Text('Workouts screen')),
+      body: const Center(child: Text('Workouts screen')),
     );
   }
 }
