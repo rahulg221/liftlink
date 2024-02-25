@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:fitness_app/firebase/auth_methods.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
-import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
@@ -12,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -193,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             PrimaryButton(
               onTap: signUpUser,
               isLoading: _isLoading,
-              text: 'Register',
+              text: 'Sign up',
             ),
             const SizedBox(height: 75),
             Row(

@@ -15,7 +15,7 @@ class AuthMethods {
     required String password,
     required Uint8List profilePicture,
   }) async {
-    String res = 'error';
+    String res = 'There was an error signing up.';
 
     // Check if any field is empty
     if (email.isEmpty || password.isEmpty || username.isEmpty) {
@@ -53,6 +53,37 @@ class AuthMethods {
       } else if (err.code == 'weak-password') {
         res = 'Password should be at least 6 characters long.';
       }
+    }
+
+    return res;
+  }
+
+  // Sign in user
+  Future<String> signInUser({
+    required String email,
+    required String password,
+  }) async {
+    String res = 'Email or password is incorrect.';
+
+    // Check if any field is empty
+    if (email.isEmpty || password.isEmpty) {
+      res = 'Email or password is missing.';
+      return res;
+    }
+
+    try {
+      // Sign in user
+      await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+      res = 'success';
+    } on FirebaseAuthException catch (err) {
+      if (err.code == 'user-not-found') {
+        res = 'User not found.';
+      } else if (err.code == 'wrong-password') {
+        res = 'Wrong password.';
+      }
+    } catch (err) {
+      res = err.toString();
     }
 
     return res;

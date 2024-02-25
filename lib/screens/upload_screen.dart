@@ -1,9 +1,7 @@
-import 'dart:io';
 import 'dart:typed_data';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 
 class UploadScreen extends StatelessWidget {
   final Uint8List image;
