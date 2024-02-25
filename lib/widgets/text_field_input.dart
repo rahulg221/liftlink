@@ -1,5 +1,3 @@
-import 'package:fitness_app/utils/color_palette.dart';
-import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldInput extends StatelessWidget {

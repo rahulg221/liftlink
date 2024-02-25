@@ -1,4 +1,3 @@
-import 'package:fitness_app/utils/color_palette.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,25 +31,25 @@ class BottomNavBar extends StatelessWidget {
           SalomonBottomBarItem(
               icon: const Icon(FontAwesomeIcons.house, size: iconSize),
               title: Text('Home',
-                  style: theme.textTheme.bodyMedium!
+                  style: theme.textTheme.bodySmall!
                       .copyWith(color: theme.colorScheme.primary)),
               selectedColor: theme.colorScheme.primary),
           SalomonBottomBarItem(
               icon: const Icon(FontAwesomeIcons.userGroup, size: iconSize),
               title: Text('Friends',
-                  style: theme.textTheme.bodyMedium!
+                  style: theme.textTheme.bodySmall!
                       .copyWith(color: theme.colorScheme.primary)),
               selectedColor: theme.colorScheme.primary),
           SalomonBottomBarItem(
-              icon: const Icon(FontAwesomeIcons.dumbbell, size: iconSize),
-              title: Text('Log',
-                  style: theme.textTheme.bodyMedium!
+              icon: const Icon(FontAwesomeIcons.solidMessage, size: iconSize),
+              title: Text('Messages',
+                  style: theme.textTheme.bodySmall!
                       .copyWith(color: theme.colorScheme.primary)),
               selectedColor: theme.colorScheme.primary),
           SalomonBottomBarItem(
               icon: const Icon(FontAwesomeIcons.solidUser, size: iconSize),
               title: Text('Profile',
-                  style: theme.textTheme.bodyMedium!
+                  style: theme.textTheme.bodySmall!
                       .copyWith(color: theme.colorScheme.primary)),
               selectedColor: theme.colorScheme.primary),
         ],

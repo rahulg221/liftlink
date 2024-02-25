@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fitness_app/utils/color_palette.dart';
 
 class PrimaryButton extends StatelessWidget {
   final bool isLoading;

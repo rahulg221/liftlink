@@ -1,7 +1,6 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
-import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';

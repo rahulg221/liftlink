@@ -1,17 +1,16 @@
 import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class WorkoutsScreen extends StatefulWidget {
-  const WorkoutsScreen({Key? key}) : super(key: key);
+class MessagesScreen extends StatefulWidget {
+  const MessagesScreen({Key? key}) : super(key: key);
 
   @override
-  _WorkoutsScreenState createState() => _WorkoutsScreenState();
+  _MessagesScreenState createState() => _MessagesScreenState();
 }
 
-class _WorkoutsScreenState extends State<WorkoutsScreen> {
+class _MessagesScreenState extends State<MessagesScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -21,17 +20,10 @@ class _WorkoutsScreenState extends State<WorkoutsScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Workout Log", style: theme.textTheme.bodyLarge),
+        title: Text("Messages", style: theme.textTheme.bodyLarge),
         actions: [
           IconButton(
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
-                size: theme.iconTheme.size, color: theme.iconTheme.color),
-            onPressed: () {
-              navigateTo(SettingsScreen(), context);
-            },
-          ),
-          IconButton(
-            icon: Icon(FontAwesomeIcons.gear,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               navigateTo(SettingsScreen(), context);
