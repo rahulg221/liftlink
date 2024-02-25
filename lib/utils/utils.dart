@@ -1,4 +1,4 @@
-import 'package:fitness_app/screens/post_screen.dart';
+import 'package:fitness_app/screens/upload_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -27,19 +27,4 @@ pickImage() async {
   }
 
   return null;
-}
-
-void showPostScreenModal(BuildContext context, XFile imageFile) {
-  showModalBottomSheet<void>(
-    context: context,
-    isScrollControlled: true,
-    builder: (BuildContext context) {
-      final height = MediaQuery.of(context).size.height;
-
-      return Container(
-        height: height * 0.66,
-        child: PostScreen(imageFile: imageFile),
-      );
-    },
-  );
 }

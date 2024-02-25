@@ -7,13 +7,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
-class PostScreen extends StatelessWidget {
+class UploadScreen extends StatelessWidget {
   final XFile imageFile;
   final TextEditingController _captionController = TextEditingController();
 
   final bool _isLoading = false;
 
-  PostScreen({super.key, required this.imageFile});
+  UploadScreen({super.key, required this.imageFile});
 
   void uploadPost() {
     // Empty function

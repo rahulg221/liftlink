@@ -1,6 +1,6 @@
 import 'package:fitness_app/screens/feed_screen.dart';
 import 'package:fitness_app/screens/friends_screen.dart';
-import 'package:fitness_app/screens/post_screen.dart';
+import 'package:fitness_app/screens/upload_screen.dart';
 import 'package:fitness_app/screens/profile_screen.dart';
 import 'package:fitness_app/screens/workouts_screen.dart';
 import 'package:fitness_app/widgets/bottom_nav_bar.dart';

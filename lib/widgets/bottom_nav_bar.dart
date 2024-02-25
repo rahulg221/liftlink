@@ -29,15 +29,17 @@ class BottomNavBar extends StatelessWidget {
                 child: GNav(
                     rippleColor: Colors.grey[700]!,
                     gap: 8,
-                    activeColor: isDark ? Colors.white : Colors.black,
-                    iconSize: 20,
+                    activeColor: isDark
+                        ? ColorPalette.darkPrimaryColor
+                        : ColorPalette.lightPrimaryColor,
+                    iconSize: 22,
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 12),
                     duration: const Duration(milliseconds: 400),
                     tabBackgroundColor: isDark
                         ? ColorPalette.darkNavBarColor
                         : ColorPalette.lightNavBarColor,
-                    color: isDark ? Colors.white : Colors.black,
+                    color: ColorPalette.iconColor,
                     selectedIndex: page,
                     onTabChange: (index) {
                       pageController.jumpToPage(index);
