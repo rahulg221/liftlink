@@ -1,16 +1,17 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadScreen extends StatelessWidget {
-  final XFile imageFile;
+  final Uint8List image;
   final TextEditingController _captionController = TextEditingController();
 
   final bool _isLoading = false;
 
-  UploadScreen({super.key, required this.imageFile});
+  UploadScreen({super.key, required this.image});
 
   void uploadPost() {
     // Empty function
@@ -45,7 +46,7 @@ class UploadScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.35,
               width: double.infinity,
-              child: Image.file(File(imageFile.path), fit: BoxFit.cover),
+              child: Image.memory(image, fit: BoxFit.cover),
             ),
             const SizedBox(height: 20),
             Padding(

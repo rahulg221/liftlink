@@ -4,7 +4,7 @@ import 'package:image_picker/image_picker.dart';
 
 showSnackBar(String content, BuildContext context) {
   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(content),
+    content: Text(content, style: Theme.of(context).textTheme.bodySmall),
     duration: Duration(seconds: 3),
   ));
 }
@@ -16,14 +16,12 @@ navigateTo(Widget screenName, BuildContext context) {
   );
 }
 
-pickImage() async {
-  final ImagePicker imagePicker = ImagePicker();
+pickImage(ImageSource source) async {
+  final ImagePicker _imagePicker = ImagePicker();
 
-  final XFile? photo = await imagePicker.pickImage(source: ImageSource.camera);
+  XFile? _file = await _imagePicker.pickImage(source: source);
 
-  if (photo != null) {
-    return photo;
+  if (_file != null) {
+    return await _file.readAsBytes();
   }
-
-  return null;
 }

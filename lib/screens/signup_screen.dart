@@ -1,11 +1,17 @@
+import 'dart:typed_data';
+
+import 'package:fitness_app/firebase/auth_methods.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -24,8 +30,55 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool _isLoading = false;
 
-  void signInUser() {
-    // Empty function
+  Uint8List? _image;
+
+  // Sign up user function
+  void signUpUser() async {
+    // Begin loading animation
+    setState(() {
+      _isLoading = true;
+    });
+
+    if (_image == null) {
+      showSnackBar('Profile picture not found.', context);
+
+      setState(() {
+        _isLoading = false;
+      });
+    } else if (_passwordController.text != _confirmPasswordController.text) {
+      showSnackBar('Passwords do not match.', context);
+
+      setState(() {
+        _isLoading = false;
+      });
+    } else {
+      // Call Firebase sign up function
+      String res = await AuthMethods().signUpUser(
+          email: _emailController.text,
+          password: _passwordController.text,
+          username: _usernameController.text,
+          profilePicture: _image!);
+
+      // Finish loading animation
+      setState(() {
+        _isLoading = false;
+      });
+
+      if (res != 'success') {
+        showSnackBar(res, context);
+      } else {
+        navigateTo(const MobileScreenLayout(), context);
+      }
+    }
+  }
+
+  // Select profile picture for sign up function
+  void selectProfilePic() async {
+    Uint8List image = await pickImage(ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
   }
 
   @override
@@ -43,18 +96,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.brightness_6,
-                size: theme.iconTheme.size, color: theme.iconTheme.color),
-            onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-            },
-          ),
-        ],
-      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
         child: Column(
@@ -63,8 +104,63 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Expanded(child: Container()),
             Text(
               'Create Account',
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.headlineLarge!
+                  .copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
+            ),
+            const SizedBox(height: 30),
+            Stack(
+              alignment: Alignment.center,
+              children: [
+                _image == null
+                    ? const CircleAvatar(
+                        radius: 56,
+                        backgroundImage: NetworkImage(dummyImage),
+                      )
+                    : CircleAvatar(
+                        radius: 56,
+                        backgroundImage: MemoryImage(_image!),
+                      ),
+                Positioned(
+                  bottom: -5, // Position at the bottom of the profile picture
+                  right: -5, // Position to the right of the profile picture
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          color: theme.scaffoldBackgroundColor,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Container(
+                        width: 25,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.secondary,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          FontAwesomeIcons.plus,
+                          color: Colors.black,
+                          size: 15,
+                        ),
+                        onPressed: () {
+                          selectProfilePic();
+                        },
+                        padding: EdgeInsets
+                            .zero, // Removes default padding around the icon button
+                        constraints:
+                            const BoxConstraints(), // Removes default size constraints
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 40),
             TextFieldInput(
@@ -93,16 +189,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               textEditingController: _confirmPasswordController,
               isPassword: true,
             ),
-            const SizedBox(height: 10),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: () {
-                navigateTo(MobileScreenLayout(), context);
-              },
+              onTap: signUpUser,
               isLoading: _isLoading,
               text: 'Register',
             ),
-            Expanded(child: Container()),
+            const SizedBox(height: 75),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -110,7 +203,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
-                    navigateTo(LoginScreen(), context);
+                    navigateTo(const LoginScreen(), context);
                   },
                   child: Text('Login.',
                       style: theme.textTheme.bodySmall!

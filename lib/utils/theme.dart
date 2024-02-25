@@ -26,7 +26,7 @@ final ThemeData lightTheme = ThemeData(
     color: ColorPalette.lightAppBarColor,
   ),
   snackBarTheme: SnackBarThemeData(
-    backgroundColor: ColorPalette.lightSurfaceColor,
+    backgroundColor: ColorPalette.lightSnackBar,
   ),
   iconTheme: IconThemeData(
     color: ColorPalette.lightIconColor,
@@ -34,21 +34,18 @@ final ThemeData lightTheme = ThemeData(
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
-      fontSize: 35,
+      fontSize: 33,
       color: ColorPalette.lightBackgroundHeaderColor,
-      fontWeight: FontWeight.bold,
       fontFamily: customFont,
     ),
     headlineMedium: TextStyle(
-      fontSize: 27,
+      fontSize: 25,
       color: ColorPalette.lightBackgroundHeaderColor,
-      fontWeight: FontWeight.bold,
       fontFamily: customFont,
     ),
     headlineSmall: TextStyle(
-      fontSize: 24,
+      fontSize: 22,
       color: ColorPalette.lightBackgroundHeaderColor,
-      fontWeight: FontWeight.bold,
       fontFamily: customFont,
     ),
     bodyLarge: TextStyle(
@@ -93,7 +90,7 @@ final ThemeData darkTheme = ThemeData(
     color: ColorPalette.darkAppBarColor,
   ),
   snackBarTheme: SnackBarThemeData(
-    backgroundColor: ColorPalette.darkSurfaceColor,
+    backgroundColor: ColorPalette.darkSnackBar,
   ),
   iconTheme: IconThemeData(
     color: ColorPalette.darkIconColor,
@@ -101,21 +98,18 @@ final ThemeData darkTheme = ThemeData(
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
-      fontSize: 35,
+      fontSize: 33,
       color: ColorPalette.darkBackgroundHeaderColor,
-      fontWeight: FontWeight.bold,
       fontFamily: customFont,
     ),
     headlineMedium: TextStyle(
-      fontSize: 27,
+      fontSize: 25,
       color: ColorPalette.darkBackgroundHeaderColor,
-      fontWeight: FontWeight.bold,
       fontFamily: customFont,
     ),
     headlineSmall: TextStyle(
-      fontSize: 24,
+      fontSize: 21,
       color: ColorPalette.darkBackgroundHeaderColor,
-      fontWeight: FontWeight.bold,
       fontFamily: customFont,
     ),
     bodyLarge: TextStyle(

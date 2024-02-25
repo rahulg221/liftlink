@@ -20,15 +20,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Profile', style: theme.textTheme.bodyLarge),
+        title: Text('Profile', style: theme.textTheme.headlineSmall),
         actions: [
-          IconButton(
-            icon: Icon(FontAwesomeIcons.magnifyingGlass,
-                size: theme.iconTheme.size, color: theme.iconTheme.color),
-            onPressed: () {
-              navigateTo(SettingsScreen(), context);
-            },
-          ),
           IconButton(
             icon: Icon(FontAwesomeIcons.gear,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),

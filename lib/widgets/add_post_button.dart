@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:fitness_app/screens/upload_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +9,7 @@ import 'package:image_picker/image_picker.dart';
 class PostButton extends StatelessWidget {
   const PostButton({super.key});
 
-  void showPostScreenModal(BuildContext context, XFile imageFile) {
+  void showPostScreenModal(BuildContext context, Uint8List image) {
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -16,7 +18,7 @@ class PostButton extends StatelessWidget {
 
         return Container(
           height: height * 0.66,
-          child: UploadScreen(imageFile: imageFile),
+          child: UploadScreen(image: image),
         );
       },
     );
@@ -29,10 +31,10 @@ class PostButton extends StatelessWidget {
       height: 65,
       child: FloatingActionButton(
         onPressed: () async {
-          XFile? imageFile = await pickImage();
+          Uint8List? image = await pickImage(ImageSource.camera);
 
-          if (imageFile != null) {
-            showPostScreenModal(context, imageFile);
+          if (image != null) {
+            showPostScreenModal(context, image);
           }
         },
         shape: const RoundedRectangleBorder(

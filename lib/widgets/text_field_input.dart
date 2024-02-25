@@ -46,7 +46,7 @@ class TextFieldInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(22.0),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.all(12),
+        contentPadding: const EdgeInsets.all(16),
         filled: true,
         fillColor: theme.colorScheme.surface,
         prefixIcon: prefixIcon(),
@@ -63,7 +63,8 @@ class TextFieldInput extends StatelessWidget {
       ),
       keyboardType: textInputType,
       obscureText: isPassword,
-      //style: theme.textTheme.bodySmall,
+      style: theme.textTheme.bodySmall!
+          .copyWith(color: theme.colorScheme.onSurface),
     );
   }
 }

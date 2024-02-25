@@ -60,4 +60,8 @@ class ColorPalette {
   // Default icon color
   static Color darkIconColor = Color.fromARGB(255, 245, 245, 245);
   static Color lightIconColor = Color.fromARGB(255, 18, 18, 18);
+
+  // Snack bar colors
+  static Color darkSnackBar = Color.fromARGB(255, 40, 40, 40);
+  static Color lightSnackBar = Color.fromARGB(255, 174, 174, 174);
 }

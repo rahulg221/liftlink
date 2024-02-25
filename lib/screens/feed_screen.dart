@@ -11,8 +11,6 @@ class FeedScreen extends StatefulWidget {
 }
 
 class _FeedScreenState extends State<FeedScreen> {
-  String currentFeed = 'Following';
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -23,7 +21,7 @@ class _FeedScreenState extends State<FeedScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Home', style: theme.textTheme.bodyLarge),
+          title: Text('Feed', style: theme.textTheme.headlineSmall),
           bottom: TabBar(
             labelStyle: theme.textTheme.bodyMedium,
             tabs: [

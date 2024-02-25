@@ -41,18 +41,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.brightness_6,
-                size: theme.iconTheme.size, color: theme.iconTheme.color),
-            onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-            },
-          ),
-        ],
-      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
         child: Column(
@@ -61,7 +49,8 @@ class _LoginScreenState extends State<LoginScreen> {
             Expanded(child: Container()),
             Text(
               'Welcome',
-              style: theme.textTheme.headlineLarge,
+              style: theme.textTheme.headlineLarge!
+                  .copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 10),
@@ -105,7 +94,7 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 30),
             // Other sign in options
             const SignInOptions(),
-            Expanded(child: Container()),
+            const SizedBox(height: 75),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -113,9 +102,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
-                    navigateTo(SignUpScreen(), context);
+                    navigateTo(const SignUpScreen(), context);
                   },
-                  child: Text('Sign in.',
+                  child: Text('Sign up.',
                       style: theme.textTheme.bodySmall!
                           .copyWith(fontWeight: FontWeight.bold)),
                 ),

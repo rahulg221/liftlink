@@ -115,7 +115,7 @@ class _PostCardState extends State<PostCard> {
                   IconButton(
                     onPressed: () {},
                     icon: Icon(
-                      FontAwesomeIcons.share,
+                      Icons.send,
                     ),
                   ),
                   Expanded(

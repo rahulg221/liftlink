@@ -24,7 +24,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Navigator.of(context).pop();
             },
           ),
-          title: Text('Settings', style: theme.textTheme.bodyLarge),
+          title: Text('Settings', style: theme.textTheme.headlineSmall),
           actions: [
             IconButton(
               icon: Icon(Icons.brightness_6,

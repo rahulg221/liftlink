@@ -20,7 +20,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Messages", style: theme.textTheme.bodyLarge),
+        title: Text("Messages", style: theme.textTheme.headlineSmall),
         actions: [
           IconButton(
             icon: Icon(FontAwesomeIcons.magnifyingGlass,

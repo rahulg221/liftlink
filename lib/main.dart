@@ -1,3 +1,4 @@
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
 import 'package:fitness_app/utils/theme.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
-          ChangeNotifierProvider(create: (_) => ThemeProvider(lightTheme)),
+          ChangeNotifierProvider(create: (_) => ThemeProvider(darkTheme)),
         ],
         child: Consumer<ThemeProvider>(builder: (_, ThemeProvider, __) {
           return MaterialApp(

@@ -23,7 +23,8 @@ class PrimaryButton extends StatelessWidget {
         height: 50,
         child: isLoading
             ? Center(
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(
+                    color: theme.colorScheme.onPrimary),
               )
             : Text(text,
                 style: theme.textTheme.bodySmall!.copyWith(
