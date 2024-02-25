@@ -1,4 +1,5 @@
 import 'package:fitness_app/utils/color_palette.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldInput extends StatelessWidget {
@@ -18,15 +19,20 @@ class TextFieldInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bool isDark = theme.brightness == Brightness.dark;
 
     Icon? prefixIcon() {
       if (hintText.contains('Email')) {
-        return Icon(Icons.email, size: 20);
+        return Icon(Icons.email,
+            size: theme.iconTheme.size,
+            color: theme.iconTheme.color!.withOpacity(0.5));
       } else if (hintText.contains('Username')) {
-        return Icon(Icons.person, size: 20);
+        return Icon(Icons.person,
+            size: theme.iconTheme.size,
+            color: theme.iconTheme.color!.withOpacity(0.5));
       } else if (isPassword) {
-        return Icon(Icons.lock, size: 20);
+        return Icon(Icons.lock,
+            size: theme.iconTheme.size,
+            color: theme.iconTheme.color!.withOpacity(0.5));
       }
 
       return null;
@@ -36,20 +42,21 @@ class TextFieldInput extends StatelessWidget {
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: theme.textTheme.bodySmall,
+        hintStyle: theme.textTheme.bodySmall!
+            .copyWith(color: theme.colorScheme.onSurface),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(22.0),
           borderSide: BorderSide.none,
         ),
         contentPadding: const EdgeInsets.all(12),
         filled: true,
-        fillColor: isDark
-            ? ColorPalette.darkSurfaceColor
-            : ColorPalette.lightSurfaceColor,
+        fillColor: theme.colorScheme.surface,
         prefixIcon: prefixIcon(),
         suffixIcon: isPassword
             ? IconButton(
-                icon: Icon(Icons.visibility, size: 20),
+                icon: Icon(Icons.visibility,
+                    size: theme.iconTheme.size,
+                    color: theme.iconTheme.color!.withOpacity(0.5)),
                 onPressed: () {
                   // Implement visibility toggle functionality here later
                 },

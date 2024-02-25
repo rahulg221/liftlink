@@ -1,3 +1,4 @@
+import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/utils/color_palette.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,9 +23,9 @@ class SignInOptions extends StatelessWidget {
           foregroundColor: isDark
               ? ColorPalette.darkAppleTextColor
               : ColorPalette.lightAppleTextColor,
-          child: Icon(FontAwesomeIcons.apple,
-              color: isDark ? Colors.black : Colors.white, size: 25),
           tooltip: 'Sign in with Apple',
+          child: Icon(FontAwesomeIcons.apple,
+              color: isDark ? Colors.black : Colors.white, size: iconSize),
         ),
         const SizedBox(width: 16),
         FloatingActionButton(
@@ -36,8 +37,8 @@ class SignInOptions extends StatelessWidget {
           foregroundColor: isDark
               ? ColorPalette.darkFacebookTextColor
               : ColorPalette.lightFacebookTextColor,
-          child: const Icon(FontAwesomeIcons.facebook, size: 25),
           tooltip: 'Sign in with Facebook',
+          child: const Icon(FontAwesomeIcons.facebook, size: iconSize),
         ),
         const SizedBox(width: 16),
         FloatingActionButton(
@@ -49,8 +50,8 @@ class SignInOptions extends StatelessWidget {
           foregroundColor: isDark
               ? ColorPalette.darkGoogleTextColor
               : ColorPalette.lightGoogleTextColor,
-          child: const Icon(FontAwesomeIcons.google, size: 25),
           tooltip: 'Sign in with Google',
+          child: const Icon(FontAwesomeIcons.google, size: iconSize),
         ),
       ],
     );

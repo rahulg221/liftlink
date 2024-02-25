@@ -24,13 +24,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
         title: Text('Profile', style: theme.textTheme.bodyLarge),
         actions: [
           IconButton(
-            icon: const Icon(FontAwesomeIcons.magnifyingGlass, size: iconSize),
+            icon: Icon(FontAwesomeIcons.magnifyingGlass,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               navigateTo(SettingsScreen(), context);
             },
           ),
           IconButton(
-            icon: const Icon(FontAwesomeIcons.gear, size: iconSize),
+            icon: Icon(FontAwesomeIcons.gear,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               navigateTo(SettingsScreen(), context);
             },

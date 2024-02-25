@@ -5,6 +5,19 @@ import 'package:fitness_app/utils/color_palette.dart';
 final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: ColorPalette.lightBackgroundColor,
+  colorScheme: ColorScheme(
+    brightness: Brightness.light,
+    primary: ColorPalette.lightPrimaryColor,
+    onPrimary: ColorPalette.lightPrimaryTextColor,
+    secondary: ColorPalette.lightSecondaryColor,
+    onSecondary: ColorPalette.lightPrimaryTextColor,
+    background: ColorPalette.lightBackgroundColor,
+    onBackground: ColorPalette.lightBackgroundTextColor,
+    surface: ColorPalette.lightSurfaceColor,
+    onSurface: ColorPalette.lightSurfaceTextColor,
+    error: Colors.red,
+    onError: Colors.black,
+  ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: ColorPalette.lightSecondaryColor,
     foregroundColor: ColorPalette.lightSecondaryTextColor,
@@ -14,6 +27,10 @@ final ThemeData lightTheme = ThemeData(
   ),
   snackBarTheme: SnackBarThemeData(
     backgroundColor: ColorPalette.lightSurfaceColor,
+  ),
+  iconTheme: IconThemeData(
+    color: ColorPalette.lightIconColor,
+    size: iconSize,
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
@@ -55,6 +72,19 @@ final ThemeData lightTheme = ThemeData(
 final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
+  colorScheme: ColorScheme(
+    brightness: Brightness.dark,
+    primary: ColorPalette.darkPrimaryColor,
+    onPrimary: ColorPalette.darkPrimaryTextColor,
+    secondary: ColorPalette.darkSecondaryColor,
+    onSecondary: ColorPalette.darkPrimaryTextColor,
+    background: ColorPalette.darkBackgroundColor,
+    onBackground: ColorPalette.darkBackgroundTextColor,
+    surface: ColorPalette.darkSurfaceColor,
+    onSurface: ColorPalette.darkSurfaceTextColor,
+    error: Colors.red,
+    onError: Colors.black,
+  ),
   floatingActionButtonTheme: FloatingActionButtonThemeData(
     backgroundColor: ColorPalette.darkSecondaryColor,
     foregroundColor: ColorPalette.darkSecondaryTextColor,
@@ -64,6 +94,10 @@ final ThemeData darkTheme = ThemeData(
   ),
   snackBarTheme: SnackBarThemeData(
     backgroundColor: ColorPalette.darkSurfaceColor,
+  ),
+  iconTheme: IconThemeData(
+    color: ColorPalette.darkIconColor,
+    size: iconSize,
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(

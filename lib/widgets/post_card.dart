@@ -1,4 +1,5 @@
 import 'package:fitness_app/utils/color_palette.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -30,8 +31,7 @@ class _PostCardState extends State<PostCard> {
                   children: [
                     CircleAvatar(
                       radius: 16,
-                      backgroundImage: NetworkImage(
-                          'https://yt3.ggpht.com/a/AATXAJys4iWQrsJfwRh04ebNI0eRn7Ghh4pamA57t45B=s900-c-k-c0xffffffff-no-rj-mo'),
+                      backgroundImage: NetworkImage(dummyImage),
                     ),
                     Expanded(
                       child: Padding(
@@ -76,8 +76,9 @@ class _PostCardState extends State<PostCard> {
                           },
                         );
                       },
-                      icon: Icon(FontAwesomeIcons.ellipsisVertical,
-                          color: ColorPalette.iconColor),
+                      icon: Icon(
+                        FontAwesomeIcons.ellipsisVertical,
+                      ),
                     )
                   ],
                 ),
@@ -90,9 +91,7 @@ class _PostCardState extends State<PostCard> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.35,
                       width: double.infinity,
-                      child: Image.network(
-                          'https://yt3.ggpht.com/a/AATXAJys4iWQrsJfwRh04ebNI0eRn7Ghh4pamA57t45B=s900-c-k-c0xffffffff-no-rj-mo',
-                          fit: BoxFit.cover),
+                      child: Image.network(dummyImage, fit: BoxFit.cover),
                     ),
                   ],
                 ),
@@ -102,23 +101,26 @@ class _PostCardState extends State<PostCard> {
                   IconButton(
                       onPressed: () async {},
                       icon: Icon(FontAwesomeIcons.solidHeart,
-                          color: ColorPalette.darkPrimaryColor)),
+                          color: theme.colorScheme.secondary)),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.comment,
-                        color: ColorPalette.iconColor),
+                    icon: Icon(
+                      FontAwesomeIcons.comment,
+                    ),
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(FontAwesomeIcons.share,
-                        color: ColorPalette.iconColor),
+                    icon: Icon(
+                      FontAwesomeIcons.share,
+                    ),
                   ),
                   Expanded(
                     child: Align(
                       alignment: Alignment.bottomRight,
                       child: IconButton(
-                        icon: Icon(FontAwesomeIcons.bookmark,
-                            color: ColorPalette.iconColor),
+                        icon: Icon(
+                          FontAwesomeIcons.bookmark,
+                        ),
                         onPressed: () {},
                       ),
                     ),
@@ -147,8 +149,9 @@ class _PostCardState extends State<PostCard> {
                                 text: 'davidlaid123',
                                 style: theme.textTheme.bodySmall!.copyWith(
                                     fontWeight: FontWeight.bold,
-                                    color:
-                                        isDark ? Colors.white : Colors.black)),
+                                    color: isDark
+                                        ? Colors.white.withOpacity(0.9)
+                                        : Colors.black.withOpacity(0.9))),
                             TextSpan(
                                 text: ' Sick chest day today',
                                 style: theme.textTheme.bodySmall),

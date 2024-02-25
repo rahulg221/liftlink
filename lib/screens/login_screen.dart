@@ -1,3 +1,4 @@
+import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
@@ -5,6 +6,7 @@ import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/signup_options.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -44,9 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.settings),
+            icon: Icon(Icons.brightness_6,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              navigateTo(SettingsScreen(), context);
+              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
             },
           ),
         ],

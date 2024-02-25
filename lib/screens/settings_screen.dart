@@ -17,10 +17,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios_new_sharp,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
           title: Text('Settings', style: theme.textTheme.bodyLarge),
           actions: [
             IconButton(
-              icon: const Icon(Icons.brightness_6),
+              icon: Icon(Icons.brightness_6,
+                  size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
                 Provider.of<ThemeProvider>(context, listen: false)
                     .toggleTheme();

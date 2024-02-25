@@ -1,10 +1,7 @@
 import 'dart:io';
-import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
 class UploadScreen extends StatelessWidget {
@@ -22,7 +19,6 @@ class UploadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
         extendBodyBehindAppBar: true,

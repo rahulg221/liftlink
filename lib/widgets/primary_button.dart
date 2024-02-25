@@ -16,7 +16,6 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bool isDark = theme.brightness == Brightness.dark;
 
     return GestureDetector(
       onTap: onTap,
@@ -25,38 +24,31 @@ class PrimaryButton extends StatelessWidget {
         height: 50,
         child: isLoading
             ? Center(
-                child: CircularProgressIndicator(
-                  color: isDark
-                      ? ColorPalette.darkPrimaryTextColor
-                      : ColorPalette.lightPrimaryTextColor,
-                ),
+                child: CircularProgressIndicator(),
               )
             : Text(text,
                 style: theme.textTheme.bodySmall!.copyWith(
-                  color: isDark
-                      ? ColorPalette.darkPrimaryTextColor
-                      : ColorPalette.lightPrimaryTextColor,
                   fontWeight: FontWeight.w600,
+                  color: theme.colorScheme.onPrimary,
                 )),
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 6),
         decoration: ShapeDecoration(
-            shadows: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.25),
-                spreadRadius: 0,
-                blurRadius: 4,
-                offset: Offset(0, 4),
-              ),
-            ],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(26),
-              ),
+          color: theme.colorScheme.primary,
+          shadows: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: Offset(0, 4),
             ),
-            color: isDark
-                ? ColorPalette.darkPrimaryColor
-                : ColorPalette.lightPrimaryColor),
+          ],
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(26),
+            ),
+          ),
+        ),
       ),
     );
   }

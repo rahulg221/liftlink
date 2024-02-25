@@ -1,7 +1,8 @@
 import 'package:fitness_app/utils/color_palette.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavBar extends StatelessWidget {
   final PageController pageController;
@@ -16,51 +17,44 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final bool isDark = theme.brightness == Brightness.dark;
 
     return Container(
-        decoration: BoxDecoration(
-          color: theme.scaffoldBackgroundColor,
-        ),
-        child: SafeArea(
-            child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                child: GNav(
-                    rippleColor: Colors.grey[700]!,
-                    gap: 8,
-                    activeColor: isDark
-                        ? ColorPalette.darkPrimaryColor
-                        : ColorPalette.lightPrimaryColor,
-                    iconSize: 22,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 12),
-                    duration: const Duration(milliseconds: 400),
-                    tabBackgroundColor: isDark
-                        ? ColorPalette.darkNavBarColor
-                        : ColorPalette.lightNavBarColor,
-                    color: ColorPalette.iconColor,
-                    selectedIndex: page,
-                    onTabChange: (index) {
-                      pageController.jumpToPage(index);
-                    },
-                    tabs: [
-                      const GButton(
-                        icon: FontAwesomeIcons.house,
-                        text: 'Feed',
-                      ),
-                      const GButton(
-                        icon: FontAwesomeIcons.userGroup,
-                        text: 'Friends',
-                      ),
-                      const GButton(
-                        icon: FontAwesomeIcons.dumbbell,
-                        text: 'Log',
-                      ),
-                      const GButton(
-                        icon: FontAwesomeIcons.solidUser,
-                        text: 'Profile',
-                      )
-                    ]))));
+      /*
+      decoration: BoxDecoration(
+        color: theme.scaffoldBackgroundColor,
+      ),*/
+      child: SalomonBottomBar(
+        currentIndex: page,
+        onTap: (index) {
+          pageController.jumpToPage(index);
+        },
+        items: [
+          SalomonBottomBarItem(
+              icon: const Icon(FontAwesomeIcons.house, size: iconSize),
+              title: Text('Home',
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(color: theme.colorScheme.primary)),
+              selectedColor: theme.colorScheme.primary),
+          SalomonBottomBarItem(
+              icon: const Icon(FontAwesomeIcons.userGroup, size: iconSize),
+              title: Text('Friends',
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(color: theme.colorScheme.primary)),
+              selectedColor: theme.colorScheme.primary),
+          SalomonBottomBarItem(
+              icon: const Icon(FontAwesomeIcons.dumbbell, size: iconSize),
+              title: Text('Log',
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(color: theme.colorScheme.primary)),
+              selectedColor: theme.colorScheme.primary),
+          SalomonBottomBarItem(
+              icon: const Icon(FontAwesomeIcons.solidUser, size: iconSize),
+              title: Text('Profile',
+                  style: theme.textTheme.bodyMedium!
+                      .copyWith(color: theme.colorScheme.primary)),
+              selectedColor: theme.colorScheme.primary),
+        ],
+      ),
+    );
   }
 }
