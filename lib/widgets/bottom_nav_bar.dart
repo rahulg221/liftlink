@@ -1,7 +1,7 @@
 import 'package:fitness_app/utils/constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class BottomNavBar extends StatelessWidget {
   final PageController pageController;
@@ -17,12 +17,38 @@ class BottomNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Container(
-      /*
-      decoration: BoxDecoration(
-        color: theme.scaffoldBackgroundColor,
-      ),*/
-      child: SalomonBottomBar(
+    return CupertinoTabBar(
+      backgroundColor: theme.scaffoldBackgroundColor,
+      activeColor: theme.colorScheme.primary,
+      inactiveColor: Colors.grey,
+      currentIndex: page,
+      onTap: (index) {
+        pageController.jumpToPage(index);
+      },
+      items: [
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.house, size: iconSize),
+          label: null,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.userGroup, size: iconSize),
+          label: null,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.solidMessage, size: iconSize),
+          label: null,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.solidUser, size: iconSize),
+          label: null,
+        ),
+      ],
+    );
+  }
+}
+
+/* SALOMON BAR
+SalomonBottomBar(
         currentIndex: page,
         onTap: (index) {
           pageController.jumpToPage(index);
@@ -53,7 +79,4 @@ class BottomNavBar extends StatelessWidget {
                       .copyWith(color: theme.colorScheme.primary)),
               selectedColor: theme.colorScheme.primary),
         ],
-      ),
-    );
-  }
-}
+      ), */

@@ -1,8 +1,5 @@
 import 'package:fitness_app/screens/following_screen.dart';
 import 'package:fitness_app/screens/my_gym_screen.dart';
-import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -21,7 +18,7 @@ class _FeedScreenState extends State<FeedScreen> {
     final theme = Theme.of(context);
 
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
@@ -34,15 +31,14 @@ class _FeedScreenState extends State<FeedScreen> {
                 text: 'Following',
               ),
               Tab(text: 'My Gym'),
+              Tab(text: 'Explore'),
             ],
           ),
           actions: [
             IconButton(
               icon: Icon(FontAwesomeIcons.magnifyingGlass,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
-              onPressed: () {
-                // navigateTo(SettingsScreen(), context); // Your navigation function
-              },
+              onPressed: () {},
             ),
           ],
           automaticallyImplyLeading: false,
@@ -50,6 +46,7 @@ class _FeedScreenState extends State<FeedScreen> {
         body: TabBarView(
           children: [
             FollowingScreen(),
+            MyGymScreen(),
             MyGymScreen(),
           ],
         ),

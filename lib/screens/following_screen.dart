@@ -1,9 +1,5 @@
-import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/post_card.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class FollowingScreen extends StatefulWidget {
   const FollowingScreen({Key? key}) : super(key: key);
