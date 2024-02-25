@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 showSnackBar(String content, BuildContext context) {
@@ -5,4 +6,11 @@ showSnackBar(String content, BuildContext context) {
     content: Text(content),
     duration: Duration(seconds: 3),
   ));
+}
+
+navigateTo(Widget screenName, BuildContext context) {
+  Navigator.push(
+    context,
+    CupertinoPageRoute(builder: (context) => screenName),
+  );
 }

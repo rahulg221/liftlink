@@ -22,14 +22,11 @@ class TextFieldInput extends StatelessWidget {
 
     Icon? prefixIcon() {
       if (hintText.contains('Email')) {
-        return Icon(Icons.email,
-            color: isDark ? Colors.white54 : Colors.black54);
+        return Icon(Icons.email, size: 20);
       } else if (hintText.contains('Username')) {
-        return Icon(Icons.person,
-            color: isDark ? Colors.white54 : Colors.black54);
+        return Icon(Icons.person, size: 20);
       } else if (isPassword) {
-        return Icon(Icons.lock,
-            color: isDark ? Colors.white54 : Colors.black54);
+        return Icon(Icons.lock, size: 20);
       }
 
       return null;
@@ -41,19 +38,27 @@ class TextFieldInput extends StatelessWidget {
         hintText: hintText,
         hintStyle: theme.textTheme.bodySmall,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18.0),
+          borderRadius: BorderRadius.circular(22.0),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: const EdgeInsets.all(12),
         filled: true,
         fillColor: isDark
             ? ColorPalette.darkSurfaceColor
             : ColorPalette.lightSurfaceColor,
         prefixIcon: prefixIcon(),
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(Icons.visibility, size: 20),
+                onPressed: () {
+                  // Implement visibility toggle functionality here later
+                },
+              )
+            : null,
       ),
       keyboardType: textInputType,
       obscureText: isPassword,
-      style: theme.textTheme.bodySmall,
+      //style: theme.textTheme.bodySmall,
     );
   }
 }

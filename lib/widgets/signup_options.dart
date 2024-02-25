@@ -14,6 +14,7 @@ class SignInOptions extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         FloatingActionButton(
+          heroTag: 'apple',
           onPressed: () {},
           backgroundColor: isDark
               ? ColorPalette.darkAppleButtonColor
@@ -27,6 +28,7 @@ class SignInOptions extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         FloatingActionButton(
+          heroTag: 'facebook',
           onPressed: () {},
           backgroundColor: isDark
               ? ColorPalette.darkFacebookButtonColor
@@ -39,6 +41,7 @@ class SignInOptions extends StatelessWidget {
         ),
         const SizedBox(width: 16),
         FloatingActionButton(
+          heroTag: 'google',
           onPressed: () {},
           backgroundColor: isDark
               ? ColorPalette.darkGoogleButtonColor

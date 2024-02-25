@@ -5,15 +5,18 @@ class ColorPalette {
   static Color darkBackgroundColor = Color.fromARGB(255, 18, 18, 18);
   static Color lightBackgroundColor = Color.fromARGB(255, 245, 245, 245);
   // App bar colors
-  static Color lightAppBarColor = Colors.black.withOpacity(0.12);
-  static Color darkAppBarColor = Colors.white.withOpacity(0.12);
+  static Color darkAppBarColor = Color.fromARGB(255, 18, 18, 18);
+  static Color lightAppBarColor = Color.fromARGB(255, 245, 245, 245);
+  // Nav bar colors
+  static Color lightNavBarColor = Colors.black.withOpacity(0.12);
+  static Color darkNavBarColor = Colors.white.withOpacity(0.12);
   // Surface colors - widgets
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
-  // Primary colors - on surface buttons, graphs, etc
+  // Primary colors - on normal buttons, graphs, etc
   static Color darkPrimaryColor = Color.fromARGB(255, 173, 127, 254);
   static Color lightPrimaryColor = Color.fromARGB(255, 159, 107, 255);
-  // Secondary colors - above surface buttons
+  // Secondary colors - on floating action buttons
   static Color darkSecondaryColor = Color(0xFFE98DF5);
   static Color lightSecondaryColor = Color.fromARGB(255, 226, 96, 243);
   // On background headers

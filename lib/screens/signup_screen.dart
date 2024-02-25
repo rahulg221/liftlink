@@ -1,5 +1,8 @@
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
+import 'package:fitness_app/screens/settings_screen.dart';
+import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/cupertino.dart';
@@ -21,13 +24,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _usernameController = TextEditingController();
 
   bool _isLoading = false;
-  bool _agreedToTerms = false;
 
   void signInUser() {
-    Navigator.push(
-      context,
-      CupertinoPageRoute(builder: (context) => const LoginScreen()),
-    );
+    // Empty function
   }
 
   @override
@@ -46,16 +45,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: theme.scaffoldBackgroundColor,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.brightness_6),
+            icon: const Icon(Icons.settings),
             onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              navigateTo(SettingsScreen(), context);
             },
           ),
         ],
-        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
@@ -71,9 +69,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 40),
             TextFieldInput(
               hintText: 'Username',
-              textInputType: TextInputType.visiblePassword,
-              textEditingController: _passwordController,
-              isPassword: true,
+              textInputType: TextInputType.text,
+              textEditingController: _usernameController,
+              isPassword: false,
             ),
             const SizedBox(height: 15),
             TextFieldInput(
@@ -98,7 +96,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(height: 10),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: signInUser,
+              onTap: () {
+                navigateTo(MobileScreenLayout(), context);
+              },
               isLoading: _isLoading,
               text: 'Register',
             ),
@@ -110,11 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => const LoginScreen()),
-                    );
+                    navigateTo(LoginScreen(), context);
                   },
                   child: Text('Login.',
                       style: theme.textTheme.bodySmall!

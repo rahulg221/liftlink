@@ -1,9 +1,9 @@
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
+import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/signup_options.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -42,16 +42,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        backgroundColor: theme.scaffoldBackgroundColor,
+        automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: const Icon(Icons.brightness_6),
+            icon: const Icon(Icons.settings),
             onPressed: () {
-              Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+              navigateTo(SettingsScreen(), context);
             },
           ),
         ],
-        automaticallyImplyLeading: false,
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
@@ -113,11 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      CupertinoPageRoute(
-                          builder: (context) => const SignUpScreen()),
-                    );
+                    navigateTo(SignUpScreen(), context);
                   },
                   child: Text('Sign in.',
                       style: theme.textTheme.bodySmall!
