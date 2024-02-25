@@ -11,10 +11,11 @@ class ColorPalette {
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
   // Primary colors - on surface buttons, graphs, etc
-  static Color darkPrimaryColor = Colors.cyan;
-  static Color lightPrimaryColor = Colors.blue;
+  static Color darkPrimaryColor = Color.fromARGB(255, 140, 68, 203);
+  static Color lightPrimaryColor = Color.fromARGB(255, 155, 41, 255);
   // Secondary colors - above surface buttons
-  static Color floatingActionButtonColor = Colors.deepOrange;
+  static Color darkSecondaryColor = Color.fromARGB(255, 230, 86, 255);
+  static Color lightSecondaryColor = Color.fromARGB(255, 224, 46, 255);
   // On background text
   static Color darkBackgroundTextColor = Colors.white.withOpacity(0.7);
   static Color lightBackgroundTextColor = Colors.black;

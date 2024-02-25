@@ -5,24 +5,24 @@ final ThemeData lightTheme = ThemeData(
   brightness: Brightness.light,
   scaffoldBackgroundColor: ColorPalette.lightBackgroundColor,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: ColorPalette.floatingActionButtonColor,
+    backgroundColor: ColorPalette.lightSecondaryColor,
   ),
   appBarTheme: AppBarTheme(
     color: ColorPalette.lightAppBarColor,
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
-      fontSize: 26,
-      color: ColorPalette.lightBackgroundTextColor,
-    ),
+        fontSize: 30,
+        color: ColorPalette.lightBackgroundTextColor,
+        fontWeight: FontWeight.bold),
     headlineMedium: TextStyle(
-      fontSize: 24,
-      color: ColorPalette.lightBackgroundTextColor,
-    ),
+        fontSize: 28,
+        color: ColorPalette.lightBackgroundTextColor,
+        fontWeight: FontWeight.bold),
     headlineSmall: TextStyle(
-      fontSize: 22,
-      color: ColorPalette.lightBackgroundTextColor,
-    ),
+        fontSize: 26,
+        color: ColorPalette.lightBackgroundTextColor,
+        fontWeight: FontWeight.bold),
     bodyLarge: TextStyle(
       fontSize: 22,
       color: ColorPalette.lightBackgroundTextColor,
@@ -35,11 +35,6 @@ final ThemeData lightTheme = ThemeData(
       fontSize: 18,
       color: ColorPalette.lightBackgroundTextColor,
     ),
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: ColorPalette.lightBackgroundColor,
-    selectedItemColor: ColorPalette.lightPrimaryColor,
-    unselectedItemColor: Colors.grey,
   ),
 );
 
@@ -47,24 +42,24 @@ final ThemeData darkTheme = ThemeData(
   brightness: Brightness.dark,
   scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
   floatingActionButtonTheme: FloatingActionButtonThemeData(
-    backgroundColor: const Color.fromARGB(255, 255, 122, 81),
+    backgroundColor: ColorPalette.darkSecondaryColor,
   ),
   appBarTheme: AppBarTheme(
     color: ColorPalette.darkAppBarColor,
   ),
   textTheme: TextTheme(
     headlineLarge: TextStyle(
-      fontSize: 26,
-      color: ColorPalette.darkBackgroundTextColor,
-    ),
+        fontSize: 30,
+        color: ColorPalette.darkBackgroundTextColor,
+        fontWeight: FontWeight.bold),
     headlineMedium: TextStyle(
-      fontSize: 24,
-      color: ColorPalette.darkBackgroundTextColor,
-    ),
+        fontSize: 28,
+        color: ColorPalette.darkBackgroundTextColor,
+        fontWeight: FontWeight.bold),
     headlineSmall: TextStyle(
-      fontSize: 22,
-      color: ColorPalette.darkBackgroundTextColor,
-    ),
+        fontSize: 26,
+        color: ColorPalette.darkBackgroundTextColor,
+        fontWeight: FontWeight.bold),
     bodyLarge: TextStyle(
       fontSize: 22,
       color: ColorPalette.darkBackgroundTextColor,
@@ -77,10 +72,5 @@ final ThemeData darkTheme = ThemeData(
       fontSize: 18,
       color: ColorPalette.darkBackgroundTextColor,
     ),
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    backgroundColor: ColorPalette.darkBackgroundColor,
-    selectedItemColor: ColorPalette.darkPrimaryColor,
-    unselectedItemColor: Colors.grey.shade800,
   ),
 );

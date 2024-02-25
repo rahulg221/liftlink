@@ -1,4 +1,5 @@
 import 'package:fitness_app/providers/theme_provider.dart';
+import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,12 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
 
+  bool _isLoading = false;
+
+  void loginUser() {
+    // Empty function
+  }
+
   @override
   void dispose() {
     super.dispose();
@@ -23,7 +30,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _textTheme = Theme.of(context).textTheme;
+    final theme = Theme.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -38,11 +45,12 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Welcome', style: _textTheme.bodyLarge),
+            Text('Welcome', style: theme.textTheme.headlineLarge),
+            const SizedBox(height: 20),
             TextFieldInput(
               hintText: 'Email',
               textInputType: TextInputType.emailAddress,
@@ -56,11 +64,10 @@ class _LoginScreenState extends State<LoginScreen> {
               isPassword: true,
             ),
             SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Handle login logic here
-              },
-              child: Text('Login'),
+            PrimaryButton(
+              onTap: loginUser,
+              isLoading: _isLoading,
+              text: 'Login',
             ),
           ],
         ),

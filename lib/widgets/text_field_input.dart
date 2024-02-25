@@ -17,28 +17,26 @@ class TextFieldInput extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = Theme.of(context);
-
-    Color _fillColor = _theme.brightness == Brightness.dark
-        ? ColorPalette.darkSurfaceColor
-        : ColorPalette.lightSurfaceColor;
+    final theme = Theme.of(context);
+    final bool isDark = theme.brightness == Brightness.dark;
 
     return TextField(
       controller: textEditingController,
       decoration: InputDecoration(
-        hintText: hintText,
-        hintStyle: Theme.of(context).textTheme.bodySmall,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(18.0),
-          borderSide: BorderSide.none,
-        ),
-        contentPadding: EdgeInsets.all(16),
-        filled: true,
-        fillColor: _fillColor,
-      ),
+          hintText: hintText,
+          hintStyle: theme.textTheme.bodySmall,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(18.0),
+            borderSide: BorderSide.none,
+          ),
+          contentPadding: const EdgeInsets.all(16),
+          filled: true,
+          fillColor: isDark
+              ? ColorPalette.darkSurfaceColor
+              : ColorPalette.lightSurfaceColor),
       keyboardType: textInputType,
       obscureText: isPassword,
-      style: _theme.textTheme.bodySmall,
+      style: theme.textTheme.bodySmall,
     );
   }
 }
