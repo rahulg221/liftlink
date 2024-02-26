@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
 
+/* static Color darkPrimaryColor = const Color.fromARGB(255, 173, 127, 254);
+  static Color lightPrimaryColor = const Color.fromARGB(255, 159, 107, 255);
+  // Secondary colors - on floating action buttons - const Color(0xFFE98DF5);
+  static Color darkSecondaryColor = const Color(0xFFE98DF5);
+  static Color lightSecondaryColor = const Color.fromARGB(255, 226, 96, 243);*/
+
 class ColorPalette {
   // Background colors
   static Color darkBackgroundColor = const Color.fromARGB(255, 18, 18, 18);
@@ -10,15 +16,15 @@ class ColorPalette {
   // Nav bar colors
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
-  // Surface colors - widgets
+  // Surface colors - elevated widgets
   static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
-  // Primary colors - on normal buttons, graphs, etc
+  // Primary colors
   static Color darkPrimaryColor = const Color.fromARGB(255, 173, 127, 254);
-  static Color lightPrimaryColor = const Color.fromARGB(255, 159, 107, 255);
-  // Secondary colors - on floating action buttons - const Color(0xFFE98DF5);
-  static Color darkSecondaryColor = const Color(0xFFE98DF5);
-  static Color lightSecondaryColor = const Color.fromARGB(255, 226, 96, 243);
+  static Color lightPrimaryColor = Color.fromARGB(255, 148, 104, 224);
+  // Secondary colors
+  static Color darkSecondaryColor = const Color.fromARGB(255, 173, 127, 254);
+  static Color lightSecondaryColor = Color.fromARGB(255, 148, 104, 224);
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
   static Color lightBackgroundHeaderColor = Colors.black;
@@ -32,8 +38,8 @@ class ColorPalette {
   static Color darkPrimaryTextColor = Colors.black;
   static Color lightPrimaryTextColor = Colors.black;
   // On secondary text
-  static Color darkSecondaryTextColor = Colors.black;
-  static Color lightSecondaryTextColor = Colors.black;
+  static Color darkSecondaryTextColor = Colors.white.withOpacity(0.9);
+  static Color lightSecondaryTextColor = Colors.white.withOpacity(0.9);
 
   // Other sign in button colors
   // Google button colors

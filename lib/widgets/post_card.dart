@@ -104,8 +104,8 @@ class _PostCardState extends State<PostCard> {
                 children: [
                   IconButton(
                       onPressed: () async {},
-                      icon: Icon(FontAwesomeIcons.solidHeart,
-                          color: theme.colorScheme.secondary)),
+                      icon:
+                          Icon(FontAwesomeIcons.solidHeart, color: Colors.red)),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(

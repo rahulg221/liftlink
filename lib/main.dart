@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Fitness App',
             theme: ThemeProvider.getTheme(),
-            home: LoginScreen(),
+            home: MobileScreenLayout(),
           );
         }));
   }

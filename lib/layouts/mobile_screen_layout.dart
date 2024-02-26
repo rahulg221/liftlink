@@ -3,7 +3,7 @@ import 'package:fitness_app/screens/friends_screen.dart';
 import 'package:fitness_app/screens/profile_screen.dart';
 import 'package:fitness_app/screens/messages_screen.dart';
 import 'package:fitness_app/widgets/bottom_nav_bar.dart';
-import 'package:fitness_app/widgets/add_post_button.dart';
+import 'package:fitness_app/widgets/post_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

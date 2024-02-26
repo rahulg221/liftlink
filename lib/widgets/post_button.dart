@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:fitness_app/screens/upload_screen.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -26,10 +27,14 @@ class PostButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return SizedBox(
-      width: 65,
       height: 65,
+      width: 65,
       child: FloatingActionButton(
+        shape: const CircleBorder(),
+        backgroundColor: theme.colorScheme.secondary,
         onPressed: () async {
           Uint8List? image = await pickImage(ImageSource.camera);
 
@@ -37,10 +42,8 @@ class PostButton extends StatelessWidget {
             showPostScreenModal(context, image);
           }
         },
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(50)),
-        ),
-        child: const Icon(FontAwesomeIcons.cameraRetro, size: 25),
+        child: Icon(FontAwesomeIcons.cameraRetro,
+            size: 24, color: theme.colorScheme.onSecondary),
       ),
     );
   }
