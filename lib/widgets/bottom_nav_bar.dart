@@ -35,7 +35,11 @@ class BottomNavBar extends StatelessWidget {
           label: null,
         ),
         BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.solidMessage, size: iconSize),
+          icon: Icon(FontAwesomeIcons.plus, size: iconSize),
+          label: null,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.dumbbell, size: iconSize),
           label: null,
         ),
         BottomNavigationBarItem(
@@ -46,96 +50,3 @@ class BottomNavBar extends StatelessWidget {
     );
   }
 }
-
-/* NOTCH BAR
-BottomAppBar(
-        height: 60,
-        color: theme.scaffoldBackgroundColor,
-        shape: CircularNotchedRectangle(),
-        notchMargin: 8.0,
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            IconButton(
-                icon: Icon(FontAwesomeIcons.house,
-                    color: widget.page == 0
-                        ? theme.colorScheme.primary
-                        : theme.iconTheme.color!.withOpacity(0.5)),
-                onPressed: () {
-                  widget.pageController.jumpToPage(0);
-                  setState(() {
-                    widget.page = 0;
-                  });
-                }),
-            IconButton(
-                icon: Icon(FontAwesomeIcons.userGroup,
-                    color: widget.page == 1
-                        ? theme.colorScheme.primary
-                        : theme.iconTheme.color!.withOpacity(0.5)),
-                onPressed: () {
-                  widget.pageController.jumpToPage(1);
-                  setState(() {
-                    widget.page = 1;
-                  });
-                }),
-            SizedBox(width: 48), // The gap for the FloatingActionButton
-            IconButton(
-                icon: Icon(FontAwesomeIcons.solidMessage,
-                    color: widget.page == 2
-                        ? theme.colorScheme.primary
-                        : theme.iconTheme.color!.withOpacity(0.5)),
-                onPressed: () {
-                  widget.pageController.jumpToPage(2);
-                  setState(() {
-                    widget.page = 2;
-                  });
-                }),
-            IconButton(
-                icon: Icon(FontAwesomeIcons.solidUser,
-                    color: widget.page == 3
-                        ? theme.colorScheme.primary
-                        : theme.iconTheme.color!.withOpacity(0.5)),
-                onPressed: () {
-                  widget.pageController.jumpToPage(3);
-                  setState(() {
-                    widget.page = 3;
-                  });
-                }),
-          ],
-        ));*/
-
-
-/* SALOMON BAR
-SalomonBottomBar(
-        currentIndex: page,
-        onTap: (index) {
-          pageController.jumpToPage(index);
-        },
-        items: [
-          SalomonBottomBarItem(
-              icon: const Icon(FontAwesomeIcons.house, size: iconSize),
-              title: Text('Home',
-                  style: theme.textTheme.bodySmall!
-                      .copyWith(color: theme.colorScheme.primary)),
-              selectedColor: theme.colorScheme.primary),
-          SalomonBottomBarItem(
-              icon: const Icon(FontAwesomeIcons.userGroup, size: iconSize),
-              title: Text('Friends',
-                  style: theme.textTheme.bodySmall!
-                      .copyWith(color: theme.colorScheme.primary)),
-              selectedColor: theme.colorScheme.primary),
-          SalomonBottomBarItem(
-              icon: const Icon(FontAwesomeIcons.solidMessage, size: iconSize),
-              title: Text('Messages',
-                  style: theme.textTheme.bodySmall!
-                      .copyWith(color: theme.colorScheme.primary)),
-              selectedColor: theme.colorScheme.primary),
-          SalomonBottomBarItem(
-              icon: const Icon(FontAwesomeIcons.solidUser, size: iconSize),
-              title: Text('Profile',
-                  style: theme.textTheme.bodySmall!
-                      .copyWith(color: theme.colorScheme.primary)),
-              selectedColor: theme.colorScheme.primary),
-        ],
-      ), */

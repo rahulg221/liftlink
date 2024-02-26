@@ -21,22 +21,23 @@ class TextFieldInput extends StatelessWidget {
     Icon? prefixIcon() {
       if (hintText.contains('Email')) {
         return Icon(Icons.email,
-            size: theme.iconTheme.size,
             color: theme.iconTheme.color!.withOpacity(0.5));
       } else if (hintText.contains('Username')) {
         return Icon(Icons.person,
-            size: theme.iconTheme.size,
             color: theme.iconTheme.color!.withOpacity(0.5));
       } else if (isPassword) {
-        return Icon(Icons.lock,
-            size: theme.iconTheme.size,
-            color: theme.iconTheme.color!.withOpacity(0.5));
+        return Icon(Icons.lock, color: theme.iconTheme.color!.withOpacity(0.5));
       }
 
       return null;
     }
 
     return TextField(
+      textAlign: TextAlign.start,
+      textAlignVertical: textInputType == TextInputType.multiline
+          ? TextAlignVertical.top
+          : TextAlignVertical.center,
+      maxLines: textInputType == TextInputType.multiline ? null : 1,
       controller: textEditingController,
       decoration: InputDecoration(
         hintText: hintText,
@@ -46,7 +47,9 @@ class TextFieldInput extends StatelessWidget {
           borderRadius: BorderRadius.circular(22.0),
           borderSide: BorderSide.none,
         ),
-        contentPadding: const EdgeInsets.all(16),
+        contentPadding: textInputType == TextInputType.multiline
+            ? const EdgeInsets.only(left: 20, right: 8, top: 20, bottom: 80)
+            : const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
         filled: true,
         fillColor: theme.colorScheme.surface,
         prefixIcon: prefixIcon(),

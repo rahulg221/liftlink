@@ -1,10 +1,9 @@
 import 'package:fitness_app/screens/feed_screen.dart';
 import 'package:fitness_app/screens/friends_screen.dart';
 import 'package:fitness_app/screens/profile_screen.dart';
-import 'package:fitness_app/screens/messages_screen.dart';
+import 'package:fitness_app/screens/upload_screen.dart';
+import 'package:fitness_app/screens/workout_log_screen.dart';
 import 'package:fitness_app/widgets/bottom_nav_bar.dart';
-import 'package:fitness_app/widgets/post_button.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MobileScreenLayout extends StatefulWidget {
@@ -48,10 +47,11 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: const [
+        children: [
           FeedScreen(),
           FriendsScreen(),
-          MessagesScreen(),
+          UploadScreen(),
+          WorkoutLogScreen(),
           ProfileScreen(),
         ],
       ),
@@ -59,7 +59,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         page: _page,
         pageController: pageController,
       ),
-      floatingActionButton: const PostButton(),
+      //floatingActionButton: const PostButton(),
     );
   }
 }

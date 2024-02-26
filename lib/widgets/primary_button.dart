@@ -4,12 +4,14 @@ class PrimaryButton extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onTap;
   final String text;
+  final bool invert;
 
   const PrimaryButton({
     Key? key,
     required this.isLoading,
     required this.onTap,
     required this.text,
+    this.invert = false,
   }) : super(key: key);
 
   @override
@@ -29,12 +31,16 @@ class PrimaryButton extends StatelessWidget {
             : Text(text,
                 style: theme.textTheme.bodySmall!.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: theme.colorScheme.onPrimary,
+                  color: invert
+                      ? theme.colorScheme.primary
+                      : theme.colorScheme.onPrimary,
                 )),
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(vertical: 6),
         decoration: ShapeDecoration(
-          color: theme.colorScheme.primary,
+          color: invert
+              ? theme.scaffoldBackgroundColor
+              : theme.colorScheme.primary,
           shadows: [
             BoxShadow(
               color: Colors.black.withOpacity(0.25),
@@ -46,6 +52,10 @@ class PrimaryButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(26),
+            ),
+            side: BorderSide(
+              color: invert ? theme.colorScheme.primary : Colors.transparent,
+              width: 2.0,
             ),
           ),
         ),
