@@ -106,4 +106,13 @@ class AuthMethods {
 
     return res;
   }
+
+  // Sign out user
+  Future<void> signOut() async {
+    try {
+      await _auth.signOut();
+    } catch (err) {
+      print(err.toString);
+    }
+  }
 }

@@ -38,22 +38,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // User provider instance to set user details after logging in
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     // Begin loading animation
-    setState(() {
-      _isLoading = true;
-    });
+    beginLoading();
 
     if (_image == null) {
       showSnackBar('Profile picture not found.', context);
 
-      setState(() {
-        _isLoading = false;
-      });
+      stopLoading();
     } else if (_passwordController.text != _confirmPasswordController.text) {
       showSnackBar('Passwords do not match.', context);
-
-      setState(() {
-        _isLoading = false;
-      });
+      stopLoading();
     } else {
       // Call Firebase sign up function
       String res = await AuthMethods().signUpUser(
@@ -63,10 +56,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           profilePicture: _image!,
           bio: _bioController.text);
 
-      // Finish loading animation
-      setState(() {
-        _isLoading = false;
-      });
+      stopLoading();
 
       if (res != 'success') {
         showSnackBar(res, context);
@@ -74,8 +64,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
         // Upon successful login refresh user to save all user details to our User provider - helps minimize reading data everytime we need user info
         await userProvider.refreshUser();
 
-        navigateTo(const MobileScreenLayout(), context);
+        // Check if widget is still in the tree
+        if (mounted) {
+          navigateTo(const MobileScreenLayout(), context);
+        }
       }
+    }
+  }
+
+  void beginLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+  }
+
+  void stopLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 

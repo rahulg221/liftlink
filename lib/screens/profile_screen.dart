@@ -1,8 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/user_info_layout.dart';
+import 'package:fitness_app/widgets/user_info_display.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -15,13 +14,6 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  String username = 'davidlaid321';
-  String photoUrl = dummyImage;
-  int followerCount = 550;
-  int followingCount = 375;
-  int activeStreak = 45;
-  String bio = 'Elite powerlifter and bodybuilder';
-
   final ScrollController _scrollController = ScrollController();
 
   final List<String> imageUrls = [
@@ -58,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               icon: Icon(FontAwesomeIcons.gear,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
-                navigateTo(SettingsScreen(), context);
+                navigateTo(const SettingsScreen(), context);
               },
             ),
           ],
@@ -70,18 +62,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                UserInfoLayout(
+                UserInfoDisplay(
                     username: userProvider.getUser.username,
                     photoUrl: userProvider.getUser.photoUrl,
                     followerCount: userProvider.getUser.followerCount,
                     followingCount: userProvider.getUser.followingCount,
                     activeStreak: userProvider.getUser.streak,
                     bio: userProvider.getUser.bio),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Container(
                   width: double.infinity,
                   height: 50,
-                  child: Center(
+                  child: const Center(
                     child: Icon(
                       FontAwesomeIcons.cameraRetro,
                       color: Colors.grey,
@@ -89,9 +81,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 Container(
-                  height: (imageUrls.length * 0.5) * (width * 0.5),
+                  height: (imageUrls.length * 0.5) *
+                      (width *
+                          0.5), // Aspect ratio is one which means height of each image is approx. equal to width * 0.5
                   child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Number of columns
                       childAspectRatio: 1, // Aspect ratio of each item
                       crossAxisSpacing: 4, // Horizontal space between items

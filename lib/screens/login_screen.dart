@@ -26,9 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // User provider instance to set user details after logging in
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     // Begin loading animation
-    setState(() {
-      _isLoading = true;
-    });
+    beginLoading();
 
     // Call Firebase sign in function
     String res = await AuthMethods().signInUser(
@@ -36,11 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
       password: _passwordController.text,
     );
 
-    // Finish loading animation
-    setState(() {
-      _isLoading = false;
-    });
-
+    stopLoading();
     if (res != 'success') {
       showSnackBar(res, context);
     } else {
@@ -48,6 +42,22 @@ class _LoginScreenState extends State<LoginScreen> {
       await userProvider.refreshUser();
 
       navigateTo(const MobileScreenLayout(), context);
+    }
+  }
+
+  void beginLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+  }
+
+  void stopLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 

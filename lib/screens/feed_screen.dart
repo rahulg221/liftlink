@@ -1,3 +1,4 @@
+import 'package:fitness_app/screens/explore_screen.dart';
 import 'package:fitness_app/screens/following_screen.dart';
 import 'package:fitness_app/screens/my_gym_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,11 @@ class _FeedScreenState extends State<FeedScreen> {
           bottom: TabBar(
             labelStyle: theme.textTheme.bodyMedium,
             tabs: [
-              Tab(
+              const Tab(
                 text: 'Following',
               ),
-              Tab(text: 'My Gym'),
-              Tab(text: 'Explore'),
+              const Tab(text: 'My Gym'),
+              const Tab(text: 'Explore'),
             ],
           ),
           actions: [
@@ -41,11 +42,11 @@ class _FeedScreenState extends State<FeedScreen> {
           ],
           automaticallyImplyLeading: false,
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             FollowingScreen(),
             MyGymScreen(),
-            MyGymScreen(),
+            ExploreScreen(),
           ],
         ),
       ),

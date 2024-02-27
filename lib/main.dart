@@ -36,8 +36,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Fitness App',
             theme: ThemeProvider.getTheme(),
-            home:
-                LoginScreen(), /*StreamBuilder(
+            home: StreamBuilder(
                 stream: FirebaseAuth.instance.authStateChanges(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.active) {
@@ -48,7 +47,7 @@ class MyApp extends StatelessWidget {
 
                       // Upon successful login refresh user to save all user details to our User provider - helps minimize reading data everytime we need user info
                       userProvider.refreshUser();
-                      return MobileScreenLayout();
+                      return const MobileScreenLayout();
                     } else if (snapshot.hasError) {
                       return Center(child: Text('${snapshot.error}'));
                     }
@@ -60,7 +59,7 @@ class MyApp extends StatelessWidget {
                   }
 
                   return const LoginScreen();
-                }),*/
+                }),
           );
         }));
   }

@@ -1,9 +1,13 @@
 import 'dart:typed_data';
+import 'package:fitness_app/firebase/firestore_methods.dart';
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
 import 'package:fitness_app/widgets/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class UploadScreen extends StatefulWidget {
   UploadScreen({super.key});
@@ -15,19 +19,62 @@ class UploadScreen extends StatefulWidget {
 class _UploadScreenState extends State<UploadScreen> {
   final TextEditingController _captionController = TextEditingController();
   bool isSwitched = false;
-  Uint8List? image;
-  final bool _isLoading = false;
+  Uint8List? _image;
+  bool _isLoading = false;
 
   void takePhoto() async {
-    Uint8List? newImage = await pickImage(ImageSource.camera);
+    Uint8List? image = await pickImage(ImageSource.camera);
 
     setState(() {
-      image = newImage;
+      _image = image;
     });
   }
 
-  void uploadPost() {
-    // Empty function
+  void uploadPost(String username, String uid, String profilePic) async {
+    beginLoading();
+
+    try {
+      String res = await FirestoreMethods().uploadPost(
+          _captionController.text, _image!, uid, username, profilePic);
+
+      if (res == 'success') {
+        showSnackBar('Posted!', context);
+        clearImage();
+        stopLoading();
+
+        // Check if widget is still in the tree
+        if (mounted) {
+          navigateTo(const MobileScreenLayout(), context);
+        }
+      } else {
+        showSnackBar(res, context);
+        stopLoading();
+      }
+    } catch (err) {
+      showSnackBar(err.toString(), context);
+    }
+  }
+
+  void beginLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+  }
+
+  void stopLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
+
+  void clearImage() {
+    setState(() {
+      _image = null;
+    });
   }
 
   @override
@@ -40,6 +87,7 @@ class _UploadScreenState extends State<UploadScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -52,7 +100,7 @@ class _UploadScreenState extends State<UploadScreen> {
             style: theme.textTheme.bodyLarge,
           ),
         ),
-        body: image != null
+        body: _image != null
             ? SingleChildScrollView(
                 child: Column(
                   children: [
@@ -60,7 +108,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     SizedBox(
                       height: height * 0.35,
                       width: double.infinity,
-                      child: Image.memory(image!, fit: BoxFit.cover),
+                      child: Image.memory(_image!, fit: BoxFit.cover),
                     ),
                     SizedBox(height: 10),
                     Padding(
@@ -93,7 +141,12 @@ class _UploadScreenState extends State<UploadScreen> {
                           SizedBox(height: 20),
                           PrimaryButton(
                               isLoading: _isLoading,
-                              onTap: uploadPost,
+                              onTap: () {
+                                uploadPost(
+                                    userProvider.getUser.username,
+                                    userProvider.getUser.uid,
+                                    userProvider.getUser.photoUrl);
+                              },
                               text: 'Post'),
                         ],
                       ),

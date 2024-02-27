@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class UserInfoLayout extends StatefulWidget {
+class UserInfoDisplay extends StatefulWidget {
   final String username;
   final String photoUrl;
   final int followerCount;
@@ -9,7 +9,7 @@ class UserInfoLayout extends StatefulWidget {
   final int activeStreak;
   final String bio;
 
-  const UserInfoLayout(
+  const UserInfoDisplay(
       {Key? key,
       required this.username,
       required this.photoUrl,
@@ -20,10 +20,10 @@ class UserInfoLayout extends StatefulWidget {
       : super(key: key);
 
   @override
-  _UserInfoLayoutState createState() => _UserInfoLayoutState();
+  _UserInfoDisplayState createState() => _UserInfoDisplayState();
 }
 
-class _UserInfoLayoutState extends State<UserInfoLayout> {
+class _UserInfoDisplayState extends State<UserInfoDisplay> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -80,11 +80,11 @@ class _UserInfoLayoutState extends State<UserInfoLayout> {
               ),
             ],
           ),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           Text('@${widget.username}',
               style: theme.textTheme.bodyLarge!
                   .copyWith(fontWeight: FontWeight.bold)),
-          SizedBox(height: 15),
+          const SizedBox(height: 15),
           // Followers, Following, and Streak rows
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -118,7 +118,7 @@ class _UserInfoLayoutState extends State<UserInfoLayout> {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           // Edit Profile and Share Profile buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -127,7 +127,7 @@ class _UserInfoLayoutState extends State<UserInfoLayout> {
               _buildButton(theme, 'Share profile'),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(widget.bio, style: theme.textTheme.bodyMedium),
         ],
       ),

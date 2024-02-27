@@ -1,4 +1,7 @@
+import 'package:fitness_app/firebase/auth_methods.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
+import 'package:fitness_app/screens/login_screen.dart';
+import 'package:fitness_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +13,14 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  void signOut() async {
+    await AuthMethods().signOut();
+
+    if (mounted) {
+      navigateTo(LoginScreen(), context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -36,6 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ],
         ),
-        body: Center(child: Text('Settings screen')));
+        body: Center(
+            child: GestureDetector(onTap: signOut, child: Text('Sign out'))));
   }
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 
@@ -17,17 +18,9 @@ class _MyGymScreenState extends State<MyGymScreen> {
       length: 2,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              PostCard(),
-              PostCard(),
-              PostCard(),
-              PostCard(),
-              PostCard(),
-            ],
-          ),
-        ),
+        body: Padding(
+            padding: const EdgeInsets.only(bottom: 6.0),
+            child: Center(child: Text('my Gym screen'))),
       ),
     );
   }
