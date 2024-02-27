@@ -2,6 +2,7 @@ import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/widgets/profile_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -69,150 +70,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Padding(
-                  padding:
-                      const EdgeInsets.only(top: 75.0, left: 30, right: 30),
-                  child: Column(
-                    children: [
-                      Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          CircleAvatar(
-                            radius: 64,
-                            backgroundImage: NetworkImage(photoUrl),
-                          ),
-                          Positioned(
-                            bottom:
-                                -5, // Position at the bottom of the profile picture
-                            right:
-                                -5, // Position to the right of the profile picture
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  width: 34,
-                                  height: 34,
-                                  decoration: BoxDecoration(
-                                    color: theme.scaffoldBackgroundColor,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                                Container(
-                                  width: 25,
-                                  height: 25,
-                                  decoration: BoxDecoration(
-                                    color: theme.colorScheme.secondary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                ),
-                                IconButton(
-                                  icon: const Icon(
-                                    FontAwesomeIcons.plus,
-                                    color: Colors.black,
-                                    size: 15,
-                                  ),
-                                  onPressed: () {},
-                                  padding: EdgeInsets
-                                      .zero, // Removes default padding around the icon button
-                                  constraints:
-                                      const BoxConstraints(), // Removes default size constraints
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 15),
-                      Text('@$username',
-                          style: theme.textTheme.bodyLarge!
-                              .copyWith(fontWeight: FontWeight.bold)),
-                      SizedBox(height: 15),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                '$followerCount',
-                                style: theme.textTheme.bodyLarge!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              Text('followers',
-                                  style: theme.textTheme.bodyMedium),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                '$followingCount',
-                                style: theme.textTheme.bodyLarge!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              Text('following',
-                                  style: theme.textTheme.bodyMedium),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                '$activeStreak',
-                                style: theme.textTheme.bodyLarge!
-                                    .copyWith(fontWeight: FontWeight.bold),
-                              ),
-                              Text('streak', style: theme.textTheme.bodyMedium),
-                            ],
-                          )
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          Container(
-                            width: 150,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.surface,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Edit profile',
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                    color: theme.colorScheme.onSurface),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                          Container(
-                            width: 150,
-                            height: 50,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.surface,
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            child: Center(
-                              child: Text(
-                                'Share profile',
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                    color: theme.colorScheme.onSurface),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 20),
-                      Text(bio, style: theme.textTheme.bodyMedium),
-                    ],
-                  ),
-                ),
+                UserInfoLayout(
+                    username: username,
+                    photoUrl: photoUrl,
+                    followerCount: followerCount,
+                    followingCount: followingCount,
+                    activeStreak: activeStreak,
+                    bio: bio),
                 SizedBox(height: 30),
                 Container(
                   width: double.infinity,
                   height: 50,
                   child: Center(
-                    child: Icon(FontAwesomeIcons.cameraRetro),
+                    child: Icon(
+                      FontAwesomeIcons.cameraRetro,
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
                 Container(
@@ -224,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       crossAxisSpacing: 4, // Horizontal space between items
                       mainAxisSpacing: 4, // Vertical space between items
                     ),
-                    itemCount: imageUrls.length, // Total number of items
+                    itemCount: imageUrls.length,
                     itemBuilder: (BuildContext context, int index) {
                       return Image.network(imageUrls[index], fit: BoxFit.cover);
                     },
