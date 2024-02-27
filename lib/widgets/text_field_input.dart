@@ -25,6 +25,8 @@ class TextFieldInput extends StatelessWidget {
       } else if (hintText.contains('Username')) {
         return Icon(Icons.person,
             color: theme.iconTheme.color!.withOpacity(0.5));
+      } else if (hintText.contains('Bio')) {
+        return Icon(Icons.edit, color: theme.iconTheme.color!.withOpacity(0.5));
       } else if (isPassword) {
         return Icon(Icons.lock, color: theme.iconTheme.color!.withOpacity(0.5));
       }

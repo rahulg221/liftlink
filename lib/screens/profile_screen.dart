@@ -2,7 +2,7 @@ import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/profile_layout.dart';
+import 'package:fitness_app/widgets/user_info_layout.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -45,8 +45,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
     final width = MediaQuery.of(context).size.width;
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -71,12 +71,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
             child: Column(
               children: [
                 UserInfoLayout(
-                    username: username,
-                    photoUrl: photoUrl,
-                    followerCount: followerCount,
-                    followingCount: followingCount,
-                    activeStreak: activeStreak,
-                    bio: bio),
+                    username: userProvider.getUser.username,
+                    photoUrl: userProvider.getUser.photoUrl,
+                    followerCount: userProvider.getUser.followerCount,
+                    followingCount: userProvider.getUser.followingCount,
+                    activeStreak: userProvider.getUser.streak,
+                    bio: userProvider.getUser.bio),
                 SizedBox(height: 30),
                 Container(
                   width: double.infinity,

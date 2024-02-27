@@ -27,6 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _confirmPasswordController =
       TextEditingController();
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _bioController = TextEditingController();
 
   bool _isLoading = false;
 
@@ -59,7 +60,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           email: _emailController.text,
           password: _passwordController.text,
           username: _usernameController.text,
-          profilePicture: _image!);
+          profilePicture: _image!,
+          bio: _bioController.text);
 
       // Finish loading animation
       setState(() {
@@ -71,6 +73,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       } else {
         // Upon successful login refresh user to save all user details to our User provider - helps minimize reading data everytime we need user info
         await userProvider.refreshUser();
+
         navigateTo(const MobileScreenLayout(), context);
       }
     }
@@ -92,6 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordController.dispose();
     _usernameController.dispose();
     _confirmPasswordController.dispose();
+    _bioController.dispose();
   }
 
   @override
@@ -178,6 +182,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               hintText: 'Email',
               textInputType: TextInputType.emailAddress,
               textEditingController: _emailController,
+            ),
+            const SizedBox(height: 15),
+            TextFieldInput(
+              hintText: 'Bio',
+              textInputType: TextInputType.text,
+              textEditingController: _bioController,
+              isPassword: false,
             ),
             const SizedBox(height: 15),
             TextFieldInput(

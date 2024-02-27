@@ -35,8 +35,8 @@ class ColorPalette {
   static Color darkSurfaceTextColor = Colors.white.withOpacity(0.9);
   static Color lightSurfaceTextColor = Colors.black.withOpacity(0.9);
   // On primary text
-  static Color darkPrimaryTextColor = Colors.white.withOpacity(0.9);
-  static Color lightPrimaryTextColor = Colors.white.withOpacity(0.9);
+  static Color darkPrimaryTextColor = Colors.black;
+  static Color lightPrimaryTextColor = Colors.black;
   // On secondary text
   static Color darkSecondaryTextColor = Colors.white.withOpacity(0.9);
   static Color lightSecondaryTextColor = Colors.white.withOpacity(0.9);

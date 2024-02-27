@@ -25,11 +25,12 @@ class AuthMethods {
     required String username,
     required String password,
     required Uint8List profilePicture,
+    required String bio,
   }) async {
     String res = 'There was an error signing up.';
 
     // Check if any field is empty
-    if (email.isEmpty || password.isEmpty || username.isEmpty) {
+    if (email.isEmpty || password.isEmpty || username.isEmpty || bio.isEmpty) {
       res = 'Please fill in every field.';
       return res;
     }
@@ -49,6 +50,10 @@ class AuthMethods {
         uid: cred.user!.uid,
         email: email,
         photoUrl: photoUrl,
+        followerCount: 0,
+        followingCount: 0,
+        streak: 0,
+        bio: bio,
       );
 
       // Add user to database

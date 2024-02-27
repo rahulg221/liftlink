@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Fitness App',
             theme: ThemeProvider.getTheme(),
-            home: StreamBuilder(
+            home:
+                LoginScreen(), /*StreamBuilder(
                 stream: FirebaseAuth.instance.authStateChanges(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.active) {
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
                   }
 
                   return const LoginScreen();
-                }),
+                }),*/
           );
         }));
   }
