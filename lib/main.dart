@@ -1,6 +1,6 @@
-import 'package:camera/camera.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
 import 'package:fitness_app/utils/theme.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +26,14 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(create: (_) => ThemeProvider(darkTheme)),
+          ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
         child: Consumer<ThemeProvider>(builder: (_, ThemeProvider, __) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'Fitness App',
             theme: ThemeProvider.getTheme(),
-            home: MobileScreenLayout(),
+            home: LoginScreen(),
           );
         }));
   }

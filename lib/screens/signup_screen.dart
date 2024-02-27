@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 import 'package:fitness_app/firebase/auth_methods.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/login_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -32,6 +34,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   // Sign up user function
   void signUpUser() async {
+    // User provider instance to set user details after logging in
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
     // Begin loading animation
     setState(() {
       _isLoading = true;
@@ -65,6 +69,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       if (res != 'success') {
         showSnackBar(res, context);
       } else {
+        // Upon successful login refresh user to save all user details to our User provider - helps minimize reading data everytime we need user info
+        await userProvider.refreshUser();
         navigateTo(const MobileScreenLayout(), context);
       }
     }

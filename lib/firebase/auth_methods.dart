@@ -8,6 +8,17 @@ class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
+  Future<model.User> getUserDetails() async {
+    User currentUser = _auth.currentUser!;
+
+    // Gets snapshot of user info
+    DocumentSnapshot snapshot =
+        await _firestore.collection('users').doc(currentUser.uid).get();
+
+    // Returns user model from snapshot
+    return model.User.fromSnap(snapshot);
+  }
+
   // Sign up user
   Future<String> signUpUser({
     required String email,
@@ -48,6 +59,7 @@ class AuthMethods {
 
       res = 'success';
     } on FirebaseAuthException catch (err) {
+      // Error handling
       if (err.code == 'invalid-email') {
         res = 'Please enter a valid email address.';
       } else if (err.code == 'weak-password') {
@@ -77,6 +89,7 @@ class AuthMethods {
 
       res = 'success';
     } on FirebaseAuthException catch (err) {
+      // Error handling
       if (err.code == 'user-not-found') {
         res = 'User not found.';
       } else if (err.code == 'wrong-password') {
