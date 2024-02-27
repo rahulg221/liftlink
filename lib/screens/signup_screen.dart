@@ -118,11 +118,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               children: [
                 _image == null
                     ? const CircleAvatar(
-                        radius: 56,
+                        radius: 64,
                         backgroundImage: NetworkImage(dummyImage),
                       )
                     : CircleAvatar(
-                        radius: 56,
+                        radius: 64,
                         backgroundImage: MemoryImage(_image!),
                       ),
                 Positioned(

@@ -13,10 +13,10 @@ class PostButton extends StatelessWidget {
       width: 65,
       child: FloatingActionButton(
         shape: const CircleBorder(),
-        backgroundColor: theme.colorScheme.secondary,
+        backgroundColor: theme.colorScheme.primary,
         onPressed: () async {},
-        child: Icon(FontAwesomeIcons.pencil,
-            size: 24, color: theme.colorScheme.onSecondary),
+        child:
+            Icon(FontAwesomeIcons.pencil, color: theme.colorScheme.onPrimary),
       ),
     );
   }

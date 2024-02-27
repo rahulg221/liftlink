@@ -1,4 +1,5 @@
 import 'package:fitness_app/utils/constants.dart';
+import 'package:fitness_app/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -51,39 +52,17 @@ class _PostCardState extends State<PostCard> {
                     ),
                     IconButton(
                       onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Dialog(
-                              child: ListView(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 16),
-                                shrinkWrap: true,
-                                children: [
-                                  'Delete',
-                                ]
-                                    .map(
-                                      (e) => InkWell(
-                                        onTap: () {
-                                          // Define what happens when you tap this item
-                                        },
-                                        child: Container(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 12, horizontal: 16),
-                                          child: Text(e),
-                                        ),
-                                      ),
-                                    )
-                                    .toList(), // Convert the Iterable returned by map to a List
-                              ),
-                            );
-                          },
-                        );
+                        showSnackBar(
+                            'Your streak is how many days you have gone to the gym without missing more than one day in a row.',
+                            context);
                       },
                       icon: Icon(
-                        FontAwesomeIcons.ellipsisVertical,
+                        FontAwesomeIcons.bolt,
+                        color: theme.colorScheme.primary,
                       ),
-                    )
+                    ),
+                    Text('45', style: theme.textTheme.bodyMedium),
+                    SizedBox(width: 10),
                   ],
                 ),
               ),
@@ -107,28 +86,8 @@ class _PostCardState extends State<PostCard> {
                       icon:
                           Icon(FontAwesomeIcons.solidHeart, color: Colors.red)),
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      FontAwesomeIcons.comment,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.send,
-                    ),
-                  ),
-                  Expanded(
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: IconButton(
-                        icon: Icon(
-                          FontAwesomeIcons.bookmark,
-                        ),
-                        onPressed: () {},
-                      ),
-                    ),
-                  ),
+                      onPressed: () async {},
+                      icon: Icon(FontAwesomeIcons.comment)),
                 ],
               ),
               Container(

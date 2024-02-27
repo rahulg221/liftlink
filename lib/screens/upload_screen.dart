@@ -14,9 +14,8 @@ class UploadScreen extends StatefulWidget {
 
 class _UploadScreenState extends State<UploadScreen> {
   final TextEditingController _captionController = TextEditingController();
-
+  bool isSwitched = false;
   Uint8List? image;
-
   final bool _isLoading = false;
 
   void takePhoto() async {
@@ -63,11 +62,28 @@ class _UploadScreenState extends State<UploadScreen> {
                       width: double.infinity,
                       child: Image.memory(image!, fit: BoxFit.cover),
                     ),
-                    SizedBox(height: height * 0.1),
+                    SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         children: [
+                          Row(
+                            children: [
+                              Text('Save '),
+                              Switch(
+                                value: isSwitched,
+                                onChanged: (value) {
+                                  setState(() {
+                                    isSwitched = value;
+                                    // You can also perform any action on state change here
+                                  });
+                                },
+                                activeTrackColor: theme.colorScheme.primary,
+                                activeColor: theme.colorScheme.onPrimary,
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 20),
                           TextFieldInput(
                             textInputType: TextInputType.multiline,
                             textEditingController: _captionController,

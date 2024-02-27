@@ -21,9 +21,9 @@ class ColorPalette {
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   // Primary colors
   static Color darkPrimaryColor = const Color.fromARGB(255, 173, 127, 254);
-  static Color lightPrimaryColor = Color.fromARGB(255, 148, 104, 224);
+  static Color lightPrimaryColor = const Color.fromARGB(255, 173, 127, 254);
   // Secondary colors
-  static Color darkSecondaryColor = const Color.fromARGB(255, 173, 127, 254);
+  static Color darkSecondaryColor = Color.fromARGB(255, 148, 104, 224);
   static Color lightSecondaryColor = Color.fromARGB(255, 148, 104, 224);
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
@@ -32,11 +32,11 @@ class ColorPalette {
   static Color darkBackgroundTextColor = Colors.white;
   static Color lightBackgroundTextColor = Colors.black;
   // On surface text
-  static Color darkSurfaceTextColor = Colors.white.withOpacity(0.7);
-  static Color lightSurfaceTextColor = Colors.black.withOpacity(0.7);
+  static Color darkSurfaceTextColor = Colors.white.withOpacity(0.9);
+  static Color lightSurfaceTextColor = Colors.black.withOpacity(0.9);
   // On primary text
-  static Color darkPrimaryTextColor = Colors.black;
-  static Color lightPrimaryTextColor = Colors.black;
+  static Color darkPrimaryTextColor = Colors.white.withOpacity(0.9);
+  static Color lightPrimaryTextColor = Colors.white.withOpacity(0.9);
   // On secondary text
   static Color darkSecondaryTextColor = Colors.white.withOpacity(0.9);
   static Color lightSecondaryTextColor = Colors.white.withOpacity(0.9);
