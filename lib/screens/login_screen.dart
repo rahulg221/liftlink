@@ -1,6 +1,7 @@
 import 'package:fitness_app/firebase/auth_methods.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/forgot_password_screen.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
 import 'package:fitness_app/widgets/primary_button.dart';
@@ -61,10 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  void forgotPassword() {
-    // Empty function
-  }
-
   @override
   void dispose() {
     super.dispose();
@@ -110,7 +107,9 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 10),
             GestureDetector(
-              onTap: forgotPassword,
+              onTap: () {
+                showPartialScreen(ForgotPasswordScreen(), context, 0.33);
+              },
               child: Align(
                 alignment: Alignment.centerRight,
                 child: Text(

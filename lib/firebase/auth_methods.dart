@@ -115,4 +115,18 @@ class AuthMethods {
       print(err.toString);
     }
   }
+
+  // Reset password
+  Future<String> resetPassword(String email) async {
+    String res = 'There was an error resetting the password.';
+
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+
+    return res;
+  }
 }

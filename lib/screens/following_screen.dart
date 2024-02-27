@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fitness_app/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 
 class FollowingScreen extends StatefulWidget {
