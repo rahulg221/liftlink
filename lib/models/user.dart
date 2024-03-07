@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class User {
   final String email;
   final String uid;
@@ -33,6 +31,7 @@ class User {
       };
 
   // Uses snapshot to convert to a user model
+  /*
   factory User.fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
 
@@ -46,5 +45,5 @@ class User {
       streak: snapshot['streak'],
       bio: snapshot['bio'],
     );
-  }
+  }*/
 }

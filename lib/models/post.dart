@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 class Post {
   final String caption;
   final String uid;
@@ -34,6 +32,7 @@ class Post {
       };
 
   // Uses snapshot to convert to a post model
+  /*
   factory Post.fromSnap(DocumentSnapshot snap) {
     var snapshot = snap.data() as Map<String, dynamic>;
     return Post(
@@ -46,5 +45,5 @@ class Post {
       profilePic: snapshot['profilePic'],
       likes: snapshot['likes'],
     );
-  }
+  }*/
 }

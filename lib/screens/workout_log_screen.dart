@@ -1,6 +1,6 @@
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/post_button.dart';
+import 'package:fitness_app/components/log_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -27,14 +27,14 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              navigateTo(SettingsScreen(), context);
+              UtilMethods.navigateTo(SettingsScreen(), context);
             },
           ),
         ],
         automaticallyImplyLeading: false,
       ),
       body: const Center(child: Text('Workout log screen')),
-      floatingActionButton: const PostButton(),
+      floatingActionButton: const LogButton(),
     );
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class PostButton extends StatelessWidget {
-  const PostButton({super.key});
+class LogButton extends StatelessWidget {
+  const LogButton({super.key});
 
   @override
   Widget build(BuildContext context) {

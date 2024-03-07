@@ -1,46 +1,19 @@
-import 'package:fitness_app/firebase/auth_methods.dart';
-import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/primary_button.dart';
-import 'package:fitness_app/widgets/text_field_input.dart';
+import 'package:fitness_app/components/primary_button.dart';
+import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);
 
   @override
-  _ForgotPasswordScreenState createState() => _ForgotPasswordScreenState();
+  State<ForgotPasswordScreen> createState() => _ForgotPasswordScreenState();
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
   TextEditingController _resetEmailController = TextEditingController();
   bool _isLoading = false;
 
-  void resetPassword() async {
-    String res = '';
-
-    beginLoading();
-    if (_resetEmailController.text.isEmpty ||
-        !_resetEmailController.text.contains('@')) {
-      showSnackBar('Please enter your email.', context);
-      stopLoading();
-      return;
-    }
-
-    try {
-      res = await AuthMethods().resetPassword(_resetEmailController.text);
-      if (mounted) {
-        showSnackBar('Password reset link sent!', context);
-      }
-
-      stopLoading();
-      Navigator.of(context).pop();
-    } catch (err) {
-      if (mounted) {
-        stopLoading();
-        showSnackBar(res, context);
-      }
-    }
-  }
+  void resetPassword() async {}
 
   void beginLoading() {
     if (mounted) {

@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/widgets/comment_card.dart';
+import 'package:fitness_app/components/comment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -9,7 +8,7 @@ class CommentsScreen extends StatefulWidget {
   const CommentsScreen({Key? key, required this.snap}) : super(key: key);
 
   @override
-  _CommentsScreenState createState() => _CommentsScreenState();
+  State<CommentsScreen> createState() => _CommentsScreenState();
 }
 
 class _CommentsScreenState extends State<CommentsScreen> {
@@ -32,23 +31,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
             Text('Comments', style: Theme.of(context).textTheme.headlineSmall),
         centerTitle: false,
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance
-            .collection('posts')
-            .doc(widget.snap['postId'])
-            .collection('comments')
-            .snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          }
-
-          return ListView.builder(
-            itemCount: snapshot.data!.docs.length,
-            itemBuilder: (context, index) => CommentCard(),
-          );
-        },
-      ),
+      body: Center(),
       bottomNavigationBar: SafeArea(
         child: Container(
           height: kToolbarHeight,

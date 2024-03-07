@@ -4,7 +4,7 @@ class FollowingScreen extends StatefulWidget {
   const FollowingScreen({Key? key}) : super(key: key);
 
   @override
-  _FollowingScreenState createState() => _FollowingScreenState();
+  State<FollowingScreen> createState() => _FollowingScreenState();
 }
 
 class _FollowingScreenState extends State<FollowingScreen> {

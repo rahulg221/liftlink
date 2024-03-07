@@ -3,7 +3,7 @@ import 'package:fitness_app/screens/friends_screen.dart';
 import 'package:fitness_app/screens/profile_screen.dart';
 import 'package:fitness_app/screens/upload_screen.dart';
 import 'package:fitness_app/screens/workout_log_screen.dart';
-import 'package:fitness_app/widgets/bottom_nav_bar.dart';
+import 'package:fitness_app/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 
 class MobileScreenLayout extends StatefulWidget {

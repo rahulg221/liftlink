@@ -26,7 +26,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              navigateTo(SettingsScreen(), context);
+              UtilMethods.navigateTo(SettingsScreen(), context);
             },
           ),
         ],

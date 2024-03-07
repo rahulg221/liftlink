@@ -1,10 +1,8 @@
 import 'dart:typed_data';
-import 'package:fitness_app/firebase/firestore_methods.dart';
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/primary_button.dart';
-import 'package:fitness_app/widgets/text_field_input.dart';
+import 'package:fitness_app/components/primary_button.dart';
+import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
@@ -23,37 +21,14 @@ class _UploadScreenState extends State<UploadScreen> {
   bool _isLoading = false;
 
   void takePhoto() async {
-    Uint8List? image = await pickImage(ImageSource.camera);
+    Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
 
     setState(() {
       _image = image;
     });
   }
 
-  void uploadPost(String username, String uid, String profilePic) async {
-    beginLoading();
-
-    try {
-      String res = await FirestoreMethods().uploadPost(
-          _captionController.text, _image!, uid, username, profilePic);
-
-      if (res == 'success') {
-        showSnackBar('Posted!', context);
-        clearImage();
-        stopLoading();
-
-        // Check if widget is still in the tree
-        if (mounted) {
-          navigateTo(const MobileScreenLayout(), context);
-        }
-      } else {
-        showSnackBar(res, context);
-        stopLoading();
-      }
-    } catch (err) {
-      showSnackBar(err.toString(), context);
-    }
-  }
+  void uploadPost(String username, String uid, String profilePic) async {}
 
   void beginLoading() {
     if (mounted) {

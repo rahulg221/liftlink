@@ -1,50 +1,25 @@
-import 'package:fitness_app/firebase/auth_methods.dart';
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
-import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/forgot_password_screen.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/primary_button.dart';
-import 'package:fitness_app/widgets/signup_options.dart';
-import 'package:fitness_app/widgets/text_field_input.dart';
+import 'package:fitness_app/components/primary_button.dart';
+import 'package:fitness_app/components/signup_options.dart';
+import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<SignInScreen> createState() => _SignInScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignInScreenState extends State<SignInScreen> {
   final TextEditingController _emailController = new TextEditingController();
   final TextEditingController _passwordController = new TextEditingController();
 
   bool _isLoading = false;
 
-  void signInUser() async {
-    // User provider instance to set user details after logging in
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    // Begin loading animation
-    beginLoading();
-
-    // Call Firebase sign in function
-    String res = await AuthMethods().signInUser(
-      email: _emailController.text,
-      password: _passwordController.text,
-    );
-
-    stopLoading();
-    if (res != 'success') {
-      showSnackBar(res, context);
-    } else {
-      // Upon successful login refresh user to save all user details to our User provider - helps minimize reading data everytime we need user info
-      await userProvider.refreshUser();
-
-      navigateTo(const MobileScreenLayout(), context);
-    }
-  }
+  void signInUser() async {}
 
   void beginLoading() {
     if (mounted) {
@@ -108,7 +83,8 @@ class _LoginScreenState extends State<LoginScreen> {
             const SizedBox(height: 10),
             GestureDetector(
               onTap: () {
-                showPartialScreen(ForgotPasswordScreen(), context, 0.33);
+                UtilMethods.showPartialScreen(
+                    ForgotPasswordScreen(), context, 0.33);
               },
               child: Align(
                 alignment: Alignment.centerRight,
@@ -138,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
-                    navigateTo(const SignUpScreen(), context);
+                    UtilMethods.navigateTo(const SignUpScreen(), context);
                   },
                   child: Text('Sign up.',
                       style: theme.textTheme.bodySmall!

@@ -1,12 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fitness_app/widgets/post_card.dart';
 import 'package:flutter/material.dart';
 
 class MyGymScreen extends StatefulWidget {
   const MyGymScreen({Key? key}) : super(key: key);
 
   @override
-  _MyGymScreenState createState() => _MyGymScreenState();
+  State<MyGymScreen> createState() => _MyGymScreenState();
 }
 
 class _MyGymScreenState extends State<MyGymScreen> {
@@ -14,12 +12,12 @@ class _MyGymScreenState extends State<MyGymScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
+    return const DefaultTabController(
       length: 2,
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
-            padding: const EdgeInsets.only(bottom: 6.0),
+            padding: EdgeInsets.only(bottom: 6.0),
             child: Center(child: Text('my Gym screen'))),
       ),
     );

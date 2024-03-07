@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fitness_app/utils/theme.dart';
+import 'package:fitness_app/utils/theme_config.dart';
 
 class ThemeProvider extends ChangeNotifier {
   ThemeData _themeData;
@@ -14,12 +14,12 @@ class ThemeProvider extends ChangeNotifier {
   }
 
   void toggleTheme() {
-    if (_themeData == lightTheme) {
+    if (_themeData == ThemeConfig.lightTheme) {
       // If current theme is dark, switch to light.
-      _themeData = darkTheme;
+      _themeData = ThemeConfig.darkTheme;
     } else {
       // If current theme is light, switch to dark.
-      _themeData = lightTheme;
+      _themeData = ThemeConfig.lightTheme;
     }
     notifyListeners();
   }

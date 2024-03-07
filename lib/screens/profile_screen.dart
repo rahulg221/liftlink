@@ -1,7 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/user_info_display.dart';
+import 'package:fitness_app/components/user_info_display.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -10,7 +10,7 @@ class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
@@ -50,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               icon: Icon(FontAwesomeIcons.gear,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
-                navigateTo(const SettingsScreen(), context);
+                UtilMethods.navigateTo(const SettingsScreen(), context);
               },
             ),
           ],

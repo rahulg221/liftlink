@@ -1,24 +1,19 @@
 import 'dart:typed_data';
-
-import 'package:fitness_app/firebase/auth_methods.dart';
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
-import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/login_screen.dart';
+import 'package:fitness_app/screens/signin_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/utils.dart';
-import 'package:fitness_app/widgets/primary_button.dart';
-import 'package:fitness_app/widgets/text_field_input.dart';
+import 'package:fitness_app/components/primary_button.dart';
+import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
@@ -34,43 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Uint8List? _image;
 
   // Sign up user function
-  void signUpUser() async {
-    // User provider instance to set user details after logging in
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
-    // Begin loading animation
-    beginLoading();
-
-    if (_image == null) {
-      showSnackBar('Profile picture not found.', context);
-
-      stopLoading();
-    } else if (_passwordController.text != _confirmPasswordController.text) {
-      showSnackBar('Passwords do not match.', context);
-      stopLoading();
-    } else {
-      // Call Firebase sign up function
-      String res = await AuthMethods().signUpUser(
-          email: _emailController.text,
-          password: _passwordController.text,
-          username: _usernameController.text,
-          profilePicture: _image!,
-          bio: _bioController.text);
-
-      stopLoading();
-
-      if (res != 'success') {
-        showSnackBar(res, context);
-      } else {
-        // Upon successful login refresh user to save all user details to our User provider - helps minimize reading data everytime we need user info
-        await userProvider.refreshUser();
-
-        // Check if widget is still in the tree
-        if (mounted) {
-          navigateTo(const MobileScreenLayout(), context);
-        }
-      }
-    }
-  }
+  void signUpUser() async {}
 
   void beginLoading() {
     if (mounted) {
@@ -90,7 +49,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   // Select profile picture for sign up function
   void selectProfilePic() async {
-    Uint8List image = await pickImage(ImageSource.gallery);
+    Uint8List? image = await UtilMethods.pickImage(ImageSource.gallery);
 
     setState(() {
       _image = image;
@@ -227,7 +186,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     style: theme.textTheme.bodySmall),
                 GestureDetector(
                   onTap: () {
-                    navigateTo(const LoginScreen(), context);
+                    UtilMethods.navigateTo(const SignInScreen(), context);
                   },
                   child: Text('Login.',
                       style: theme.textTheme.bodySmall!
