@@ -1,5 +1,4 @@
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/components/comment_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
