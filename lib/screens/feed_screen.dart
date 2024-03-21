@@ -1,6 +1,8 @@
 import 'package:fitness_app/screens/explore_screen.dart';
 import 'package:fitness_app/screens/following_screen.dart';
 import 'package:fitness_app/screens/my_gym_screen.dart';
+import 'package:fitness_app/screens/settings_screen.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -38,6 +40,13 @@ class _FeedScreenState extends State<FeedScreen> {
               icon: Icon(FontAwesomeIcons.magnifyingGlass,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(FontAwesomeIcons.gear,
+                  size: theme.iconTheme.size, color: theme.iconTheme.color),
+              onPressed: () {
+                UtilMethods.navigateTo(const SettingsScreen(), context);
+              },
             ),
           ],
           automaticallyImplyLeading: false,

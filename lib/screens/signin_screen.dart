@@ -1,10 +1,16 @@
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/forgot_password_screen.dart';
+import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/supabase/auth_methods.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/primary_button.dart';
-import 'package:fitness_app/components/signup_options.dart';
+import 'package:fitness_app/components/signinoptions.dart';
 import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -19,7 +25,29 @@ class _SignInScreenState extends State<SignInScreen> {
 
   bool _isLoading = false;
 
-  void signInUser() async {}
+  void signInUser(String email, String password) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    // Validate the input fields
+    if (email.isEmpty || password.isEmpty || !email.contains('@')) {
+      // Show an error message if any of the fields are empty
+      UtilMethods.showSnackBar('Please fill in all fields', context);
+      return;
+    }
+
+    String res = await AuthMethods().signInEmailAndPassword(email, password);
+
+    if (res == 'Signed in successfully.') {
+      userProvider.refreshUser();
+
+      if (mounted) UtilMethods.navigateTo(const MobileScreenLayout(), context);
+    } else {
+      if (mounted) UtilMethods.showSnackBar(res, context);
+    }
+
+    // Clear the text fields
+    _emailController.clear();
+    _passwordController.clear();
+  }
 
   void beginLoading() {
     if (mounted) {
@@ -50,6 +78,19 @@ class _SignInScreenState extends State<SignInScreen> {
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(FontAwesomeIcons.gear,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
+            onPressed: () {
+              UtilMethods.navigateTo(const SettingsScreen(), context);
+            },
+          ),
+        ],
+        automaticallyImplyLeading: false,
+      ),
       body: Padding(
         padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
         child: Column(
@@ -84,7 +125,7 @@ class _SignInScreenState extends State<SignInScreen> {
             GestureDetector(
               onTap: () {
                 UtilMethods.showPartialScreen(
-                    ForgotPasswordScreen(), context, 0.33);
+                    const ForgotPasswordScreen(), context, 0.33);
               },
               child: Align(
                 alignment: Alignment.centerRight,
@@ -97,7 +138,9 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: signInUser,
+              onTap: () {
+                signInUser(_emailController.text, _passwordController.text);
+              },
               isLoading: _isLoading,
               text: 'Sign in',
             ),

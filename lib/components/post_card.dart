@@ -1,6 +1,6 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/like_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -55,7 +55,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                     IconButton(
                       onPressed: () {
-                        showSnackBar(
+                        UtilMethods.showSnackBar(
                             'Your streak is how many days you have gone to the gym without missing more than one day in a row.',
                             context);
                       },
@@ -66,7 +66,7 @@ class _PostCardState extends State<PostCard> {
                     ),
                     Text('${userProvider.getUser.streak}',
                         style: theme.textTheme.bodyMedium),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                   ],
                 ),
               ),
@@ -115,9 +115,10 @@ class _PostCardState extends State<PostCard> {
                   ),
                   IconButton(
                       onPressed: () {
-                        navigateTo(CommentsScreen(snap: widget.snap), context);
+                        UtilMethods.navigateTo(
+                            CommentsScreen(snap: widget.snap), context);
                       },
-                      icon: Icon(FontAwesomeIcons.comment)),
+                      icon: const Icon(FontAwesomeIcons.comment)),
                 ],
               ),
               Container(

@@ -1,4 +1,3 @@
-import 'package:fitness_app/components/post_card.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreen extends StatefulWidget {

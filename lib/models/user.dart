@@ -31,19 +31,16 @@ class User {
       };
 
   // Uses snapshot to convert to a user model
-  /*
-  factory User.fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
-
+  factory User.fromJson(Map<String, dynamic> data) {
     return User(
-      username: snapshot['username'],
-      uid: snapshot['uid'],
-      email: snapshot['email'],
-      photoUrl: snapshot['photoUrl'],
-      followerCount: snapshot['followerCount'],
-      followingCount: snapshot['followingCount'],
-      streak: snapshot['streak'],
-      bio: snapshot['bio'],
+      username: data['username'],
+      uid: data['id'],
+      email: data['email'],
+      photoUrl: data['photoUrl'],
+      followerCount: data['followercount'],
+      followingCount: data['followingcount'],
+      streak: data['streak'],
+      bio: data['bio'],
     );
-  }*/
+  }
 }

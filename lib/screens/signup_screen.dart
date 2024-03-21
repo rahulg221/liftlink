@@ -1,13 +1,18 @@
 import 'dart:typed_data';
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/signin_screen.dart';
+import 'package:fitness_app/supabase/auth_methods.dart';
+import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/constants.dart';
-import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/primary_button.dart';
 import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -26,10 +31,64 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   bool _isLoading = false;
 
-  Uint8List? _image;
+  Uint8List? profilePic;
 
   // Sign up user function
-  void signUpUser() async {}
+  void signUpUser(String email, String password, String confirmPassword,
+      String username, String bio, Uint8List profilePic) async {
+    print('1');
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    // Validate the input fields
+    if (email.isEmpty ||
+        password.isEmpty ||
+        confirmPassword.isEmpty ||
+        username.isEmpty ||
+        bio.isEmpty) {
+      UtilMethods.showSnackBar('Please fill in all fields', context);
+      return;
+    }
+
+    print('2');
+    if (password != confirmPassword) {
+      UtilMethods.showSnackBar('Passwords do not match', context);
+      return;
+    }
+
+    print('3');
+
+    beginLoading();
+    String res = await AuthMethods()
+        .signUpEmailAndPassword(email, password, username, bio, profilePic!);
+
+    print('4');
+    if (res == 'Signed up successfully.') {
+      print('5');
+
+      // Sign in the user with the new credentials
+      await AuthMethods().signInEmailAndPassword(email, password);
+
+      stopLoading();
+
+      // Refresh user provider with the authenticated user
+      userProvider.refreshUser();
+
+      // Clear the text fields
+      _emailController.clear();
+      _passwordController.clear();
+      _confirmPasswordController.clear();
+      _usernameController.clear();
+      _bioController.clear();
+
+      // Navigate to the home screen if (mounted)
+      UtilMethods.navigateTo(const MobileScreenLayout(), context);
+    } else {
+      stopLoading();
+      print('6');
+      if (mounted) UtilMethods.showSnackBar(res, context);
+      print(res);
+    }
+  }
 
   void beginLoading() {
     if (mounted) {
@@ -52,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     Uint8List? image = await UtilMethods.pickImage(ImageSource.gallery);
 
     setState(() {
-      _image = image;
+      profilePic = image;
     });
   }
 
@@ -88,14 +147,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Stack(
               alignment: Alignment.center,
               children: [
-                _image == null
+                profilePic == null
                     ? const CircleAvatar(
                         radius: 64,
                         backgroundImage: NetworkImage(dummyImage),
                       )
                     : CircleAvatar(
                         radius: 64,
-                        backgroundImage: MemoryImage(_image!),
+                        backgroundImage: MemoryImage(profilePic!),
                       ),
                 Positioned(
                   bottom: -5, // Position at the bottom of the profile picture
@@ -115,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         width: 25,
                         height: 25,
                         decoration: BoxDecoration(
-                          color: theme.colorScheme.secondary,
+                          color: theme.colorScheme.primary,
                           shape: BoxShape.circle,
                         ),
                       ),
@@ -174,9 +233,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: signUpUser,
+              onTap: () {
+                signUpUser(
+                    _emailController.text,
+                    _passwordController.text,
+                    _confirmPasswordController.text,
+                    _usernameController.text,
+                    _bioController.text,
+                    profilePic!);
+              },
               isLoading: _isLoading,
-              text: 'Sign up',
+              text: 'Create account',
             ),
             const SizedBox(height: 75),
             Row(

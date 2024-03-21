@@ -15,8 +15,8 @@ class ColorPalette {
   static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   // Primary colors
-  static Color darkPrimaryColor = const Color.fromARGB(255, 173, 127, 254);
-  static Color lightPrimaryColor = const Color.fromARGB(255, 173, 127, 254);
+  static Color darkPrimaryColor = Color.fromARGB(255, 247, 160, 237);
+  static Color lightPrimaryColor = Color.fromARGB(255, 255, 145, 242);
   // Secondary colors
   static Color darkSecondaryColor = Color.fromARGB(255, 148, 104, 224);
   static Color lightSecondaryColor = Color.fromARGB(255, 148, 104, 224);

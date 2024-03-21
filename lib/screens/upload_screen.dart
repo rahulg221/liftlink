@@ -1,6 +1,6 @@
 import 'dart:typed_data';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/primary_button.dart';
 import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';

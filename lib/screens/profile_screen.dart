@@ -1,6 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/utils/constants.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/user_info_display.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -32,12 +33,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    userProvider.refreshUser();
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final width = MediaQuery.of(context).size.width;
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Scaffold(
@@ -80,6 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                 ),
+                /*
                 Container(
                   height: (imageUrls.length * 0.5) *
                       (width *
@@ -97,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       return Image.network(imageUrls[index], fit: BoxFit.cover);
                     },
                   ),
-                ),
+                ),*/
               ],
             ),
           ),

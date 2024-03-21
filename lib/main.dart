@@ -1,6 +1,7 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/splash_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/theme_config.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Fitness App',
             theme: ThemeProvider.getTheme(),
-            home: const MobileScreenLayout(),
+            home: const SplashScreen(),
           );
         }));
   }

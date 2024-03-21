@@ -1,4 +1,7 @@
 import 'package:fitness_app/providers/theme_provider.dart';
+import 'package:fitness_app/screens/signin_screen.dart';
+import 'package:fitness_app/supabase/auth_methods.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +13,13 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  void signOut() async {}
+  void signOut() async {
+    await AuthMethods().signOut();
+
+    if (mounted) {
+      UtilMethods.navigateTo(const SignInScreen(), context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

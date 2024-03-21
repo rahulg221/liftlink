@@ -1,5 +1,5 @@
 import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/utils/utils.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/log_button.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
