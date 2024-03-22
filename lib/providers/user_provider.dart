@@ -1,4 +1,3 @@
-import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';

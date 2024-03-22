@@ -1,4 +1,3 @@
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/splash_screen.dart';

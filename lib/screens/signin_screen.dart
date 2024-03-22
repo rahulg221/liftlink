@@ -27,6 +27,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   void signInUser(String email, String password) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
+
     // Validate the input fields
     if (email.isEmpty || password.isEmpty || !email.contains('@')) {
       // Show an error message if any of the fields are empty
@@ -36,17 +37,30 @@ class _SignInScreenState extends State<SignInScreen> {
 
     String res = await AuthMethods().signInEmailAndPassword(email, password);
 
-    if (res == 'Signed in successfully.') {
+    if (res == 'success') {
+      // Refresh the user data
       userProvider.refreshUser();
 
-      if (mounted) UtilMethods.navigateTo(const MobileScreenLayout(), context);
-    } else {
-      if (mounted) UtilMethods.showSnackBar(res, context);
-    }
+      // Clear the text fields
+      _emailController.clear();
+      _passwordController.clear();
 
-    // Clear the text fields
-    _emailController.clear();
-    _passwordController.clear();
+      if (mounted) UtilMethods.navigateTo(const MobileScreenLayout(), context);
+    } else if (res == 'auth-exception') {
+      stopLoading();
+
+      // Show an error message if there was an error signing in
+      if (mounted) {
+        UtilMethods.showSnackBar('There was an error signing in.', context);
+      }
+    } else if (res == 'unexpected-error') {
+      stopLoading();
+
+      // Show an error message if there was an unexpected error
+      if (mounted) {
+        UtilMethods.showSnackBar('An unexpected error occurred.', context);
+      }
+    }
   }
 
   void beginLoading() {
