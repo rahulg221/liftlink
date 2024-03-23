@@ -1,5 +1,6 @@
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,8 +23,10 @@ class _PostCardState extends State<PostCard> {
   int streak = 0;
   String createdAt = '';
 
-  int likeCount = 1934;
-  int commentCount = 95;
+  // Placeholders
+  int likeCount = 16;
+  int commentCount = 3;
+  bool personalRecord = true;
 
   String getFormattedDate(DateTime parsedDate) {
     final DateTime now = DateTime.now();
@@ -70,18 +73,18 @@ class _PostCardState extends State<PostCard> {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 5),
           child: Column(
             children: [
               Container(
                 padding: const EdgeInsets.symmetric(
-                  vertical: 4,
+                  vertical: 5,
                   horizontal: 16,
-                ).copyWith(right: 0),
+                ),
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 16,
+                      radius: 17,
                       backgroundImage: NetworkImage(profilePic),
                     ),
                     Expanded(
@@ -92,83 +95,114 @@ class _PostCardState extends State<PostCard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(username, style: theme.textTheme.bodyMedium),
-                              Text(createdAt, style: theme.textTheme.bodySmall!)
+                              Text(createdAt,
+                                  style: theme.textTheme.bodySmall!.copyWith(
+                                      color: theme.colorScheme.onSurface
+                                          .withOpacity(0.7)))
                             ],
                           )),
                     ),
-                    IconButton(
-                      onPressed: () {
-                        UtilMethods.showSnackBar(
-                            'Your streak is how many days you have gone to the gym without missing more than one day in a row.',
-                            context);
-                      },
-                      icon: Icon(
-                        FontAwesomeIcons.bolt,
-                        color: theme.colorScheme.primary,
-                      ),
-                    ),
-                    Text('$streak', style: theme.textTheme.bodyMedium),
-                    const SizedBox(width: 10),
+                    personalRecord
+                        ? ElevatedButton.icon(
+                            onPressed: () {},
+                            icon: FaIcon(FontAwesomeIcons.medal,
+                                color: theme.colorScheme.primary, size: 18),
+                            label: Text('PR',
+                                style: theme.textTheme.bodyLarge!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.colorScheme.primary)),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: theme.colorScheme.surface,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(13),
+                              ),
+                              elevation: 0,
+                            ),
+                          )
+                        : Container(),
                   ],
                 ),
               ),
-              Stack(
-                children: [
-                  GestureDetector(
-                    onDoubleTap: () async {},
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        SizedBox(
-                          height: height * 0.5,
-                          width: width - width * 0.06,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(16),
-                            child: Image.network(postPic, fit: BoxFit.cover),
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            top: height * 0.45,
-                            left: width * 0.1,
-                            right: width * 0.05,
-                            bottom: height * 0.02,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              ElevatedButton.icon(
-                                onPressed: () {
-                                  // Handle sign in with Apple
-                                },
-                                icon: FaIcon(FontAwesomeIcons.heart,
-                                    color: theme.colorScheme.primary, size: 20),
-                                label: Text('$likeCount',
-                                    style: theme.textTheme.bodySmall!.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                        color: theme.colorScheme.primary)),
-                              ),
-                              const SizedBox(width: 5),
-                              ElevatedButton.icon(
-                                onPressed: () {
-                                  UtilMethods.navigateTo(
-                                      CommentsScreen(snap: widget.data),
-                                      context);
-                                },
-                                icon: FaIcon(FontAwesomeIcons.comment,
-                                    color: theme.colorScheme.primary, size: 20),
-                                label: Text('$commentCount',
-                                    style: theme.textTheme.bodySmall!.copyWith(
-                                        fontWeight: FontWeight.w600,
-                                        color: theme.colorScheme.primary)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+              GestureDetector(
+                onDoubleTap: () async {},
+                child: SizedBox(
+                  height: height * 0.5,
+                  width: width - 32,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(14),
+                    child: Image.network(dummyImage, fit: BoxFit.cover),
                   ),
-                ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 5,
+                  bottom: 5,
+                  left: 16,
+                  right: 16,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {},
+                      icon: FaIcon(FontAwesomeIcons.solidHeart,
+                          color: theme.colorScheme.primary, size: 20),
+                      label: Text('$likeCount',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: theme.colorScheme.primary)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.surface,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13),
+                        ),
+                        elevation: 0,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        UtilMethods.navigateTo(
+                            CommentsScreen(snap: widget.data), context);
+                      },
+                      icon: FaIcon(FontAwesomeIcons.solidComment,
+                          color: theme.colorScheme.primary, size: 20),
+                      label: Text('$commentCount',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: theme.colorScheme.primary)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.surface,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13),
+                        ),
+                        elevation: 0,
+                      ),
+                    ),
+                    const Expanded(child: SizedBox()),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        UtilMethods.showSnackBar(
+                            '$username has a consistency score of $streak!',
+                            context);
+                      },
+                      icon: FaIcon(FontAwesomeIcons.boltLightning,
+                          color: theme.colorScheme.primary, size: 20),
+                      label: Text('$streak',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: theme.colorScheme.primary)),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: theme.colorScheme.surface,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(13),
+                        ),
+                        elevation: 0,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(
@@ -178,9 +212,8 @@ class _PostCardState extends State<PostCard> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
+                    SizedBox(
                       width: double.infinity,
-                      padding: const EdgeInsets.only(top: 8),
                       child: RichText(
                         text: TextSpan(
                           children: [

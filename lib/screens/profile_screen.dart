@@ -56,7 +56,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Profile', style: theme.textTheme.headlineSmall),
+          title: Text('Profile', style: theme.textTheme.headlineMedium),
           actions: [
             IconButton(
               icon: Icon(FontAwesomeIcons.gear,

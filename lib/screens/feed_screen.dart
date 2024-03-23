@@ -24,7 +24,7 @@ class _FeedScreenState extends State<FeedScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Feed', style: theme.textTheme.headlineSmall),
+          title: Text('Lift Link', style: theme.textTheme.headlineMedium),
           bottom: TabBar(
             labelStyle: theme.textTheme.bodyMedium,
             tabs: [

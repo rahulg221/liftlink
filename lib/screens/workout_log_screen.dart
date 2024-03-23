@@ -21,7 +21,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Log", style: theme.textTheme.headlineSmall),
+        title: Text('Log', style: theme.textTheme.headlineMedium),
         actions: [
           IconButton(
             icon: Icon(FontAwesomeIcons.magnifyingGlass,

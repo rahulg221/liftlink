@@ -26,9 +26,8 @@ class _CommentsScreenState extends State<CommentsScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Comments', style: Theme.of(context).textTheme.headlineSmall),
-        centerTitle: false,
+        centerTitle: true,
+        title: Text('Comments', style: theme.textTheme.headlineMedium),
       ),
       body: Center(),
       bottomNavigationBar: SafeArea(

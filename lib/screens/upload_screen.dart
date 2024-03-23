@@ -109,10 +109,7 @@ class _UploadScreenState extends State<UploadScreen> {
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title: Text(
-            'Upload Post',
-            style: theme.textTheme.bodyLarge,
-          ),
+          title: Text('Upload', style: theme.textTheme.headlineMedium),
         ),
         body: postPic != null
             ? SingleChildScrollView(

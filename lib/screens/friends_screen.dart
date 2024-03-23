@@ -20,7 +20,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Friends', style: theme.textTheme.headlineSmall),
+        title: Text('Friends', style: theme.textTheme.headlineMedium),
         actions: [
           IconButton(
             icon: Icon(FontAwesomeIcons.magnifyingGlass,

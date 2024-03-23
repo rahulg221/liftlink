@@ -67,11 +67,6 @@ class ThemeConfig {
     appBarTheme: AppBarTheme(
       color: ColorPalette.lightAppBarColor,
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        elevation: MaterialStateProperty.all<double>(4),
-      ),
-    ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: ColorPalette.lightSnackBar,
     ),
@@ -84,16 +79,19 @@ class ThemeConfig {
         fontSize: 33,
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
+        fontWeight: FontWeight.bold,
       ),
       headlineMedium: TextStyle(
-        fontSize: 25,
+        fontSize: 24,
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
+        fontWeight: FontWeight.bold,
       ),
       headlineSmall: TextStyle(
         fontSize: 22,
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
+        fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(
         fontSize: 18,
@@ -136,13 +134,6 @@ class ThemeConfig {
     appBarTheme: AppBarTheme(
       color: ColorPalette.darkAppBarColor,
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all<Color>(ColorPalette.darkPrimaryColor),
-        elevation: MaterialStateProperty.all<double>(0),
-      ),
-    ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: ColorPalette.darkSnackBar,
     ),
@@ -155,16 +146,19 @@ class ThemeConfig {
         fontSize: 33,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
+        fontWeight: FontWeight.bold,
       ),
       headlineMedium: TextStyle(
-        fontSize: 25,
+        fontSize: 24,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
+        fontWeight: FontWeight.bold,
       ),
       headlineSmall: TextStyle(
         fontSize: 21,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
+        fontWeight: FontWeight.bold,
       ),
       bodyLarge: TextStyle(
         fontSize: 18,
