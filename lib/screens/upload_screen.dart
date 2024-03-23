@@ -102,6 +102,7 @@ class _UploadScreenState extends State<UploadScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -112,54 +113,44 @@ class _UploadScreenState extends State<UploadScreen> {
           title: Text('Upload', style: theme.textTheme.headlineMedium),
         ),
         body: postPic != null
-            ? SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: height * 0.2),
-                    SizedBox(
-                      height: height * 0.35,
-                      width: double.infinity,
-                      child: Image.memory(postPic!, fit: BoxFit.cover),
-                    ),
-                    const SizedBox(height: 10),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: Column(
-                        children: [
-                          Row(
+            ? Column(
+                children: [
+                  const Expanded(child: SizedBox()),
+                  SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: height * 0.5,
+                          width: width - 32,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(14),
+                            child: Image.memory(postPic!, fit: BoxFit.cover),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
                             children: [
-                              const Text('Save '),
-                              Switch(
-                                value: isSwitched,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isSwitched = value;
-                                    // You can also perform any action on state change here
-                                  });
-                                },
-                                activeTrackColor: theme.colorScheme.primary,
-                                activeColor: theme.colorScheme.onPrimary,
+                              const SizedBox(height: 20),
+                              TextFieldInput(
+                                textInputType: TextInputType.multiline,
+                                textEditingController: _captionController,
+                                hintText: 'Write a caption',
+                                isPassword: false,
                               ),
+                              const SizedBox(height: 10),
                             ],
                           ),
-                          const SizedBox(height: 20),
-                          TextFieldInput(
-                            textInputType: TextInputType.multiline,
-                            textEditingController: _captionController,
-                            hintText: 'Write a caption',
-                            isPassword: false,
-                          ),
-                          const SizedBox(height: 20),
-                          PrimaryButton(
-                              isLoading: _isLoading,
-                              onTap: uploadPost,
-                              text: 'Post'),
-                        ],
-                      ),
+                        ),
+                        const SizedBox(height: 10),
+                      ],
                     ),
-                    const SizedBox(height: 20),
-                  ],
-                ),
+                  ),
+                  PrimaryButton(
+                      isLoading: _isLoading, onTap: uploadPost, text: 'Post'),
+                  const SizedBox(height: 16),
+                ],
               )
             : Text('Error', style: theme.textTheme.bodySmall));
   }

@@ -18,8 +18,8 @@ class ColorPalette {
   static Color darkPrimaryColor = Color.fromARGB(255, 242, 68, 65);
   static Color lightPrimaryColor = Color.fromARGB(255, 255, 60, 57);
   // Secondary colors
-  static Color darkSecondaryColor = Color.fromARGB(255, 148, 104, 224);
-  static Color lightSecondaryColor = Color.fromARGB(255, 148, 104, 224);
+  static Color darkSecondaryColor = Color.fromARGB(255, 242, 68, 65);
+  static Color lightSecondaryColor = Color.fromARGB(255, 255, 60, 57);
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
   static Color lightBackgroundHeaderColor = Colors.black;

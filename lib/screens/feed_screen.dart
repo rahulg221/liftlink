@@ -26,7 +26,7 @@ class _FeedScreenState extends State<FeedScreen> {
           centerTitle: true,
           title: Text('Lift Link', style: theme.textTheme.headlineMedium),
           bottom: TabBar(
-            labelStyle: theme.textTheme.bodyMedium,
+            labelStyle: theme.textTheme.bodyLarge,
             tabs: [
               const Tab(
                 text: 'Following',

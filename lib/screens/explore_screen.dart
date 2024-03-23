@@ -12,11 +12,14 @@ class ExploreScreen extends StatefulWidget {
 
 class _ExploreScreenState extends State<ExploreScreen> {
   String currentFeed = 'Explore';
-  List<Post> _posts = [];
+  final List<Post> _posts = [];
   int postLimit = 10;
   int fetchedPostCount = 0;
 
+  bool _isLoading = false;
+
   void getPosts() async {
+    beginLoading();
     // Get the posts from the database
     List<Post> newPosts =
         await DbMethods().getExplorePosts(postLimit, fetchedPostCount);
@@ -25,29 +28,50 @@ class _ExploreScreenState extends State<ExploreScreen> {
       _posts.addAll(newPosts);
       fetchedPostCount = _posts.length;
     });
+
+    stopLoading();
+  }
+
+  void beginLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+  }
+
+  void stopLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
   void initState() {
     super.initState();
+
     getPosts();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: _posts.length,
-              itemBuilder: (context, index) {
-                return PostCard(data: _posts[index]);
-              },
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _posts.length,
+                    itemBuilder: (context, index) {
+                      return PostCard(data: _posts[index]);
+                    },
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 }

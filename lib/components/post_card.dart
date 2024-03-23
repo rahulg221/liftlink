@@ -130,7 +130,7 @@ class _PostCardState extends State<PostCard> {
                   width: width - 32,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(14),
-                    child: Image.network(dummyImage, fit: BoxFit.cover),
+                    child: Image.network(postPic, fit: BoxFit.cover),
                   ),
                 ),
               ),
@@ -228,7 +228,7 @@ class _PostCardState extends State<PostCard> {
                                 text: ' $caption',
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                     color: theme.colorScheme.onSurface
-                                        .withOpacity(0.7))),
+                                        .withOpacity(0.8))),
                           ],
                         ),
                       ),
