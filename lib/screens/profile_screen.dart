@@ -23,12 +23,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int activeStreak = 0;
   String bio = '';
 
-  void getUserInfo() {
+  void getInfo() {
     // Get the user provider
     final userProvider = Provider.of<UserProvider>(context, listen: false);
-
-    // Refresh the user data
-    userProvider.refreshUser();
 
     // Set the user data
     username = userProvider.getUser.username;
@@ -48,7 +45,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    getUserInfo();
+    getInfo();
   }
 
   @override

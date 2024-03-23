@@ -1,16 +1,14 @@
-import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
-import 'package:fitness_app/components/like_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class PostCard extends StatefulWidget {
-  final snap;
+  final Post data;
 
-  const PostCard({super.key, required this.snap});
+  const PostCard({super.key, required this.data});
 
   @override
   State<PostCard> createState() => _PostCardState();
@@ -18,11 +16,35 @@ class PostCard extends StatefulWidget {
 
 class _PostCardState extends State<PostCard> {
   bool isLikeAnimating = false;
+  String username = '';
+  String profilePic = '';
+  String postPic = '';
+  String caption = '';
+  int streak = 0;
+  String createdAt = '';
+
+  void getInfo() {
+    username = widget.data.username;
+    profilePic = widget.data.profilePic;
+    postPic = widget.data.postPic;
+    caption = widget.data.caption;
+
+    final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
+    final String formattedDate = DateFormat('MM/dd/yy').format(parsedDate);
+
+    createdAt = formattedDate;
+    streak = widget.data.streak;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Column(
       children: [
@@ -39,7 +61,7 @@ class _PostCardState extends State<PostCard> {
                   children: [
                     CircleAvatar(
                       radius: 16,
-                      backgroundImage: NetworkImage(widget.snap['profilePic']),
+                      backgroundImage: NetworkImage(profilePic),
                     ),
                     Expanded(
                       child: Padding(
@@ -48,8 +70,7 @@ class _PostCardState extends State<PostCard> {
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(widget.snap['username'],
-                                  style: theme.textTheme.bodyMedium),
+                              Text(username, style: theme.textTheme.bodyMedium),
                             ],
                           )),
                     ),
@@ -64,8 +85,7 @@ class _PostCardState extends State<PostCard> {
                         color: theme.colorScheme.primary,
                       ),
                     ),
-                    Text('${userProvider.getUser.streak}',
-                        style: theme.textTheme.bodyMedium),
+                    Text('$streak', style: theme.textTheme.bodyMedium),
                     const SizedBox(width: 10),
                   ],
                 ),
@@ -78,45 +98,17 @@ class _PostCardState extends State<PostCard> {
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.35,
                       width: double.infinity,
-                      child: Image.network(widget.snap['photoUrl'],
-                          fit: BoxFit.cover),
+                      child: Image.network(postPic, fit: BoxFit.cover),
                     ),
-                    AnimatedOpacity(
-                      duration: const Duration(milliseconds: 200),
-                      opacity: isLikeAnimating ? 1.0 : 0.0,
-                      child: LikeAnimation(
-                        child: const Icon(Icons.favorite,
-                            color: Colors.white, size: 120),
-                        isAnimating: isLikeAnimating,
-                        duration: const Duration(milliseconds: 400),
-                        onEnd: () {
-                          setState(() {
-                            isLikeAnimating = false;
-                          });
-                        },
-                      ),
-                    )
                   ],
                 ),
               ),
               Row(
                 children: [
-                  LikeAnimation(
-                    isAnimating:
-                        widget.snap['likes'].contains(userProvider.getUser.uid),
-                    smallLike: true,
-                    child: IconButton(
-                      onPressed: () async {},
-                      icon: widget.snap['likes']
-                              .contains(userProvider.getUser.uid)
-                          ? const Icon(Icons.favorite, color: Colors.red)
-                          : const Icon(Icons.favorite_border),
-                    ),
-                  ),
                   IconButton(
                       onPressed: () {
                         UtilMethods.navigateTo(
-                            CommentsScreen(snap: widget.snap), context);
+                            CommentsScreen(snap: widget.data), context);
                       },
                       icon: const Icon(FontAwesomeIcons.comment)),
                 ],
@@ -130,7 +122,7 @@ class _PostCardState extends State<PostCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      '${widget.snap['likes'].length} likes',
+                      '5 likes',
                       style: theme.textTheme.bodyMedium,
                     ),
                     Container(
@@ -140,12 +132,12 @@ class _PostCardState extends State<PostCard> {
                         text: TextSpan(
                           children: [
                             TextSpan(
-                                text: widget.snap['username'],
+                                text: username,
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                   fontWeight: FontWeight.bold,
                                 )),
                             TextSpan(
-                                text: ' ${widget.snap['caption']}',
+                                text: ' $caption',
                                 style: theme.textTheme.bodyMedium),
                           ],
                         ),
@@ -162,8 +154,7 @@ class _PostCardState extends State<PostCard> {
                     Container(
                         padding: const EdgeInsets.symmetric(vertical: 4),
                         child: Text(
-                          DateFormat.yMMMd()
-                              .format(widget.snap['datePublished'].toDate()),
+                          createdAt,
                           style: theme.textTheme.bodyMedium,
                         )),
                   ],

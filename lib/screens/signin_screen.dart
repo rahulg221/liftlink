@@ -1,5 +1,4 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
-import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/forgot_password_screen.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
@@ -10,7 +9,6 @@ import 'package:fitness_app/components/signinoptions.dart';
 import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);

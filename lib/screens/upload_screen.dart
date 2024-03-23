@@ -30,9 +30,6 @@ class _UploadScreenState extends State<UploadScreen> {
     // Get the user provider
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
-    // Refresh the user data
-    userProvider.refreshUser();
-
     // Set the user data
     username = userProvider.getUser.username;
     profilePic = userProvider.getUser.profilePic;

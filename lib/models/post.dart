@@ -1,11 +1,12 @@
 class Post {
   final String caption;
   final String uid;
-  final String postId;
+  final int postId;
   final String username;
-  final DateTime createdAt;
+  final String createdAt;
   final String postPic;
   final String profilePic;
+  final int streak;
 
   const Post({
     required this.caption,
@@ -15,6 +16,7 @@ class Post {
     required this.createdAt,
     required this.postPic,
     required this.profilePic,
+    required this.streak,
   });
 
   // Converts from JSON
@@ -27,6 +29,7 @@ class Post {
       createdAt: data['created_at'],
       postPic: data['post_pic'],
       profilePic: data['profile_pic'],
+      streak: data['streak'],
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/models/user.dart' as model;
 import 'package:fitness_app/supabase/storage_methods.dart';
 import 'package:flutter/foundation.dart';
@@ -24,7 +25,7 @@ class DbMethods {
     }
   }
 
-  Future<String> uploadPost(Uint8List postPic, String username, String uid,
+  Future<void> uploadPost(Uint8List postPic, String username, String uid,
       String profilePicUrl, int streak, String caption) async {
     try {
       // Upload the post picture to the storage bucket
@@ -41,15 +42,33 @@ class DbMethods {
           'caption': caption,
         }
       ]);
-
-      return 'success';
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {
         print(e.toString());
       }
 
-      return 'postgrest-exception';
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
+
+  Future<List<Post>> getExplorePosts(int count, int startIndex) async {
+    try {
+      List<Map<String, dynamic>> posts = await _supabase
+          .from('posts')
+          .select()
+          .order('created_at', ascending: false)
+          .range(startIndex, startIndex + count - 1)
+          .limit(count);
+
+      return posts.map((post) => Post.fromJson(post)).toList();
+    } catch (e) {
+      // Print errors to console when in debug mode
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
     }
   }
 }
