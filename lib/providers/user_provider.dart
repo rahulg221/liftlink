@@ -1,5 +1,6 @@
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/constants.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fitness_app/models/user.dart' as model;
 
@@ -12,25 +13,19 @@ class UserProvider with ChangeNotifier {
   // Function to refresh user
   Future<void> refreshUser() async {
     try {
-      if (supabase.auth.currentUser != null) {
-        print('user logged in');
-      } else {
-        print('user not logged in');
-      }
-
+      // Get the user data
       final data =
           await DbMethods().getUserDetails(supabase.auth.currentUser!.id);
 
-      print(data);
       model.User user = model.User.fromJson(data);
 
       _user = user;
 
-      print(user.username);
-
-      notifyListeners(); // Notify all listeners to this provider that the data has changed
+      notifyListeners();
     } catch (e) {
-      print('Error refreshing user: $e');
+      if (kDebugMode) {
+        e.toString();
+      }
     }
   }
 }

@@ -23,7 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   int activeStreak = 0;
   String bio = '';
 
-  void getProfileInfo() {
+  void getUserInfo() {
     // Get the user provider
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
@@ -32,7 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     // Set the user data
     username = userProvider.getUser.username;
-    photoUrl = userProvider.getUser.photoUrl;
+    photoUrl = userProvider.getUser.profilePic;
     followerCount = userProvider.getUser.followerCount;
     followingCount = userProvider.getUser.followingCount;
     activeStreak = userProvider.getUser.streak;
@@ -48,7 +48,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    getProfileInfo();
+    getUserInfo();
   }
 
   @override

@@ -1,7 +1,7 @@
 class User {
   final String email;
   final String uid;
-  final String photoUrl;
+  final String profilePic;
   final String username;
   final int followerCount;
   final int followingCount;
@@ -11,7 +11,7 @@ class User {
   const User({
     required this.email,
     required this.uid,
-    required this.photoUrl,
+    required this.profilePic,
     required this.username,
     required this.followerCount,
     required this.followingCount,
@@ -19,24 +19,25 @@ class User {
     required this.bio,
   });
 
+  // Converts to JSON
   Map<String, dynamic> toJson() => {
         "username": username,
         "uid": uid,
         "email": email,
-        "photoUrl": photoUrl,
+        "profilePic": profilePic,
         "followerCount": followerCount,
         "followingCount": followingCount,
         "streak": streak,
         "bio": bio,
       };
 
-  // Uses snapshot to convert to a user model
+  // Converts from JSON
   factory User.fromJson(Map<String, dynamic> data) {
     return User(
       username: data['username'],
       uid: data['id'],
       email: data['email'],
-      photoUrl: data['photoUrl'],
+      profilePic: data['profilePic'],
       followerCount: data['followercount'],
       followingCount: data['followingcount'],
       streak: data['streak'],

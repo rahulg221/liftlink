@@ -41,7 +41,8 @@ class _CommentsScreenState extends State<CommentsScreen> {
           child: Row(
             children: [
               CircleAvatar(
-                  backgroundImage: NetworkImage(userProvider.getUser.photoUrl),
+                  backgroundImage:
+                      NetworkImage(userProvider.getUser.profilePic),
                   radius: 18),
               Expanded(
                 child: Padding(

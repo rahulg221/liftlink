@@ -1,49 +1,43 @@
 class Post {
   final String caption;
-  final String uid;
+  final String userId;
   final String postId;
   final String username;
-  final datePublished;
-  final String photoUrl;
+  final DateTime createdAt;
+  final String postPic;
   final String profilePic;
-  final likes;
 
   const Post({
     required this.caption,
-    required this.uid,
+    required this.userId,
     required this.postId,
     required this.username,
-    required this.datePublished,
-    required this.photoUrl,
+    required this.createdAt,
+    required this.postPic,
     required this.profilePic,
-    required this.likes,
   });
 
   // Converts to JSON
   Map<String, dynamic> toJson() => {
         "caption": caption,
-        "uid": uid,
+        "uid": userId,
         "postId": postId,
         "username": username,
-        "datePublished": datePublished,
-        "photoUrl": photoUrl,
+        "createdAt": createdAt,
+        "postImage": postPic,
         "profilePic": profilePic,
-        "likes": likes,
       };
 
-  // Uses snapshot to convert to a post model
-  /*
-  factory Post.fromSnap(DocumentSnapshot snap) {
-    var snapshot = snap.data() as Map<String, dynamic>;
+  // Converts from JSON
+  factory Post.fromJson(Map<String, dynamic> data) {
     return Post(
-      caption: snapshot['caption'],
-      uid: snapshot['uid'],
-      postId: snapshot['postId'],
-      username: snapshot['username'],
-      datePublished: snapshot['datePublished'],
-      photoUrl: snapshot['postUrl'],
-      profilePic: snapshot['profilePic'],
-      likes: snapshot['likes'],
+      caption: data['caption'],
+      userId: data['userId'],
+      postId: data['postId'],
+      username: data['username'],
+      createdAt: data['createdAt'],
+      postPic: data['postPic'],
+      profilePic: data['profilePic'],
     );
-  }*/
+  }
 }

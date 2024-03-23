@@ -20,6 +20,23 @@ class _UploadScreenState extends State<UploadScreen> {
   Uint8List? _image;
   bool _isLoading = false;
 
+  String username = '';
+  String profilePic = '';
+  String uid = '';
+
+  void getUserInfo() {
+    // Get the user provider
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    // Refresh the user data
+    userProvider.refreshUser();
+
+    // Set the user data
+    username = userProvider.getUser.username;
+    profilePic = userProvider.getUser.profilePic;
+    uid = userProvider.getUser.uid;
+  }
+
   void takePhoto() async {
     Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
 
@@ -55,6 +72,7 @@ class _UploadScreenState extends State<UploadScreen> {
   @override
   void initState() {
     super.initState();
+    getUserInfo();
     takePhoto();
   }
 
@@ -62,7 +80,6 @@ class _UploadScreenState extends State<UploadScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Scaffold(
         extendBodyBehindAppBar: true,
@@ -85,14 +102,14 @@ class _UploadScreenState extends State<UploadScreen> {
                       width: double.infinity,
                       child: Image.memory(_image!, fit: BoxFit.cover),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16),
                       child: Column(
                         children: [
                           Row(
                             children: [
-                              Text('Save '),
+                              const Text('Save '),
                               Switch(
                                 value: isSwitched,
                                 onChanged: (value) {
@@ -106,21 +123,18 @@ class _UploadScreenState extends State<UploadScreen> {
                               ),
                             ],
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           TextFieldInput(
                             textInputType: TextInputType.multiline,
                             textEditingController: _captionController,
                             hintText: 'Write a caption',
                             isPassword: false,
                           ),
-                          SizedBox(height: 20),
+                          const SizedBox(height: 20),
                           PrimaryButton(
                               isLoading: _isLoading,
                               onTap: () {
-                                uploadPost(
-                                    userProvider.getUser.username,
-                                    userProvider.getUser.uid,
-                                    userProvider.getUser.photoUrl);
+                                uploadPost(username, uid, profilePic);
                               },
                               text: 'Post'),
                         ],
