@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/primary_button.dart';
 import 'package:fitness_app/components/text_field_input.dart';
@@ -17,14 +18,15 @@ class UploadScreen extends StatefulWidget {
 class _UploadScreenState extends State<UploadScreen> {
   final TextEditingController _captionController = TextEditingController();
   bool isSwitched = false;
-  Uint8List? _image;
+  Uint8List? postPic;
   bool _isLoading = false;
 
   String username = '';
   String profilePic = '';
   String uid = '';
+  int streak = 0;
 
-  void getUserInfo() {
+  void getInfo() {
     // Get the user provider
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
@@ -35,17 +37,40 @@ class _UploadScreenState extends State<UploadScreen> {
     username = userProvider.getUser.username;
     profilePic = userProvider.getUser.profilePic;
     uid = userProvider.getUser.uid;
+    streak = userProvider.getUser.streak;
+  }
+
+  Future<void> uploadPost() async {
+    beginLoading();
+
+    // Validate the input fields
+    if (_captionController.text.isEmpty) {
+      // Show an error message if the caption field is empty
+      UtilMethods.showSnackBar('Please fill in the caption', context);
+      stopLoading();
+      return;
+    }
+
+    // Upload the post
+    await DbMethods().uploadPost(
+        postPic!, username, uid, profilePic, streak, _captionController.text);
+
+    // Clear the caption field
+    _captionController.clear();
+
+    // Clear the image
+    clearImage();
+
+    stopLoading();
   }
 
   void takePhoto() async {
     Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
 
     setState(() {
-      _image = image;
+      postPic = image;
     });
   }
-
-  void uploadPost(String username, String uid, String profilePic) async {}
 
   void beginLoading() {
     if (mounted) {
@@ -65,14 +90,14 @@ class _UploadScreenState extends State<UploadScreen> {
 
   void clearImage() {
     setState(() {
-      _image = null;
+      postPic = null;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    getUserInfo();
+    getInfo();
     takePhoto();
   }
 
@@ -92,7 +117,7 @@ class _UploadScreenState extends State<UploadScreen> {
             style: theme.textTheme.bodyLarge,
           ),
         ),
-        body: _image != null
+        body: postPic != null
             ? SingleChildScrollView(
                 child: Column(
                   children: [
@@ -100,7 +125,7 @@ class _UploadScreenState extends State<UploadScreen> {
                     SizedBox(
                       height: height * 0.35,
                       width: double.infinity,
-                      child: Image.memory(_image!, fit: BoxFit.cover),
+                      child: Image.memory(postPic!, fit: BoxFit.cover),
                     ),
                     const SizedBox(height: 10),
                     Padding(
@@ -133,9 +158,7 @@ class _UploadScreenState extends State<UploadScreen> {
                           const SizedBox(height: 20),
                           PrimaryButton(
                               isLoading: _isLoading,
-                              onTap: () {
-                                uploadPost(username, uid, profilePic);
-                              },
+                              onTap: uploadPost,
                               text: 'Post'),
                         ],
                       ),

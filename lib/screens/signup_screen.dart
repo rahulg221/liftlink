@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
-import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/signin_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/utils/constants.dart';
@@ -10,7 +9,6 @@ import 'package:fitness_app/components/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -32,9 +30,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Uint8List? profilePic;
 
   // Sign up user function
-  void signUpUser(String email, String password, String confirmPassword,
-      String username, String bio, Uint8List profilePic) async {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
+  Future<void> signUpUser() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
+    String username = _usernameController.text;
+    String bio = _bioController.text;
+    String confirmPassword = _confirmPasswordController.text;
 
     // Validate the input fields
     if (email.isEmpty ||
@@ -56,16 +57,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     beginLoading();
 
     String res = await AuthMethods()
-        .signUpEmailAndPassword(email, password, username, bio, profilePic);
+        .signUpEmailAndPassword(email, password, username, bio, profilePic!);
 
     if (res == 'success') {
       // Sign in the user with the new credentials
       await AuthMethods().signInEmailAndPassword(email, password);
 
       stopLoading();
-
-      // Refresh user provider with the authenticated user
-      userProvider.refreshUser();
 
       // Clear the text fields
       _emailController.clear();
@@ -236,15 +234,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: () {
-                signUpUser(
-                    _emailController.text,
-                    _passwordController.text,
-                    _confirmPasswordController.text,
-                    _usernameController.text,
-                    _bioController.text,
-                    profilePic!);
-              },
+              onTap: signUpUser,
               isLoading: _isLoading,
               text: 'Create account',
             ),

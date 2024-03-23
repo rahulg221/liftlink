@@ -1,4 +1,4 @@
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/supabase/storage_methods.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -35,7 +35,8 @@ class AuthMethods {
       final res = await _supabase.auth.signUp(email: email, password: password);
 
       // Upload the profile picture to the storage bucket
-      final photoUrl = await DbMethods().uploadProfilePic(profilePic);
+      final profilePicUrl =
+          await StorageMethods().uploadProfilePic(profilePic, res.user!.id);
 
       // Proceed to insert user details into the 'users' table
       await _supabase.from('users').upsert([
@@ -47,7 +48,7 @@ class AuthMethods {
           'followingcount': 0,
           'followercount': 0,
           'streak': 0,
-          'photoUrl': photoUrl,
+          'profile_pic': profilePicUrl,
         }
       ]);
 

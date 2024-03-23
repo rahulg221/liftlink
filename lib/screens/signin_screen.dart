@@ -25,8 +25,9 @@ class _SignInScreenState extends State<SignInScreen> {
 
   bool _isLoading = false;
 
-  void signInUser(String email, String password) async {
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
+  Future<void> signInUser() async {
+    String email = _emailController.text;
+    String password = _passwordController.text;
 
     // Validate the input fields
     if (email.isEmpty || password.isEmpty || !email.contains('@')) {
@@ -38,9 +39,6 @@ class _SignInScreenState extends State<SignInScreen> {
     String res = await AuthMethods().signInEmailAndPassword(email, password);
 
     if (res == 'success') {
-      // Refresh the user data
-      userProvider.refreshUser();
-
       // Clear the text fields
       _emailController.clear();
       _passwordController.clear();
@@ -152,9 +150,7 @@ class _SignInScreenState extends State<SignInScreen> {
             ),
             const SizedBox(height: 30),
             PrimaryButton(
-              onTap: () {
-                signInUser(_emailController.text, _passwordController.text);
-              },
+              onTap: signInUser,
               isLoading: _isLoading,
               text: 'Sign in',
             ),

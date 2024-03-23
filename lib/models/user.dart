@@ -19,25 +19,13 @@ class User {
     required this.bio,
   });
 
-  // Converts to JSON
-  Map<String, dynamic> toJson() => {
-        "username": username,
-        "uid": uid,
-        "email": email,
-        "profilePic": profilePic,
-        "followerCount": followerCount,
-        "followingCount": followingCount,
-        "streak": streak,
-        "bio": bio,
-      };
-
   // Converts from JSON
   factory User.fromJson(Map<String, dynamic> data) {
     return User(
       username: data['username'],
       uid: data['id'],
       email: data['email'],
-      profilePic: data['profilePic'],
+      profilePic: data['profile_pic'],
       followerCount: data['followercount'],
       followingCount: data['followingcount'],
       streak: data['streak'],

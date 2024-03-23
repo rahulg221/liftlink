@@ -1,6 +1,6 @@
 class Post {
   final String caption;
-  final String userId;
+  final String uid;
   final String postId;
   final String username;
   final DateTime createdAt;
@@ -9,7 +9,7 @@ class Post {
 
   const Post({
     required this.caption,
-    required this.userId,
+    required this.uid,
     required this.postId,
     required this.username,
     required this.createdAt,
@@ -17,27 +17,16 @@ class Post {
     required this.profilePic,
   });
 
-  // Converts to JSON
-  Map<String, dynamic> toJson() => {
-        "caption": caption,
-        "uid": userId,
-        "postId": postId,
-        "username": username,
-        "createdAt": createdAt,
-        "postImage": postPic,
-        "profilePic": profilePic,
-      };
-
   // Converts from JSON
   factory Post.fromJson(Map<String, dynamic> data) {
     return Post(
       caption: data['caption'],
-      userId: data['userId'],
-      postId: data['postId'],
+      uid: data['uid'],
+      postId: data['id'],
       username: data['username'],
-      createdAt: data['createdAt'],
-      postPic: data['postPic'],
-      profilePic: data['profilePic'],
+      createdAt: data['created_at'],
+      postPic: data['post_pic'],
+      profilePic: data['profile_pic'],
     );
   }
 }

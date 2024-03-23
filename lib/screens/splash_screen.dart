@@ -1,7 +1,9 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/signin_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -28,15 +30,22 @@ class _SplashPageState extends State<SplashScreen> {
     final session = supabase.auth.currentSession;
 
     if (session != null) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const MobileScreenLayout()),
-      );
+      final userProvider = Provider.of<UserProvider>(context, listen: false);
+      await userProvider.refreshUser();
+
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const MobileScreenLayout()),
+        );
+      }
     } else {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const SignInScreen()),
-      );
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const SignInScreen()),
+        );
+      }
     }
   }
 

@@ -1,19 +1,19 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:fitness_app/utils/util_methods.dart';
+import 'package:fitness_app/models/user.dart' as model;
+import 'package:fitness_app/supabase/storage_methods.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class DbMethods {
   final _supabase = Supabase.instance.client;
 
-  Future<Map<String, dynamic>> getUserDetails(String userId) async {
+  Future<model.User> getUserDetails(String uid) async {
     try {
       // Retrieve user details from the 'users' table
       final data =
-          await _supabase.from('users').select().eq('id', userId).single();
+          await _supabase.from('users').select().eq('id', uid).single();
 
-      return data;
+      return model.User.fromJson(data);
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {
@@ -24,45 +24,32 @@ class DbMethods {
     }
   }
 
-  Future<String?> uploadProfilePic(Uint8List profilePic) async {
-    final curUser = _supabase.auth.currentUser!;
-    final fileName = '${curUser.id}.jpg';
-
+  Future<String> uploadPost(Uint8List postPic, String username, String uid,
+      String profilePicUrl, int streak, String caption) async {
     try {
-      // Convert the Uint8List to a File
-      File pfpAsFile =
-          await UtilMethods.createFileFromBytes(profilePic, fileName);
+      // Upload the post picture to the storage bucket
+      final postPicUrl = await StorageMethods().uploadPostPic(postPic, uid);
 
-      // Upload the file to the storage bucket
-      await _supabase.storage.from('images').upload(
-            'profilepics/$fileName',
-            pfpAsFile,
-            fileOptions: const FileOptions(
-              cacheControl: '3600', // 1 hour cache
-              upsert: true,
-            ),
-          );
+      // Insert the post details into the 'posts' table
+      await _supabase.from('posts').insert([
+        {
+          'uid': uid,
+          'username': username,
+          'streak': 0,
+          'profile_pic': profilePicUrl,
+          'post_pic': postPicUrl,
+          'caption': caption,
+        }
+      ]);
 
-      // Retrieve the photo URL
-      final photoUrl = _supabase.storage
-          .from('images')
-          .getPublicUrl('profilepics/$fileName');
-
-      return photoUrl;
+      return 'success';
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {
         print(e.toString());
       }
 
-      throw Exception('An unexpected error occurred: $e');
-    } catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
+      return 'postgrest-exception';
     }
   }
 }

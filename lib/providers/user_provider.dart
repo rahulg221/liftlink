@@ -14,10 +14,8 @@ class UserProvider with ChangeNotifier {
   Future<void> refreshUser() async {
     try {
       // Get the user data
-      final data =
+      model.User user =
           await DbMethods().getUserDetails(supabase.auth.currentUser!.id);
-
-      model.User user = model.User.fromJson(data);
 
       _user = user;
 

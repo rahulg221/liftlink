@@ -1,3 +1,4 @@
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/feed_screen.dart';
 import 'package:fitness_app/screens/friends_screen.dart';
 import 'package:fitness_app/screens/profile_screen.dart';
@@ -5,6 +6,7 @@ import 'package:fitness_app/screens/upload_screen.dart';
 import 'package:fitness_app/screens/workout_log_screen.dart';
 import 'package:fitness_app/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MobileScreenLayout extends StatefulWidget {
   const MobileScreenLayout({
@@ -23,6 +25,10 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   void initState() {
     super.initState();
     pageController = PageController();
+
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    // Refresh user provider with the authenticated user
+    userProvider.refreshUser();
   }
 
   @override
