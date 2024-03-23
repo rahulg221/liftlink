@@ -24,12 +24,8 @@ class PrimaryButton extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: theme.colorScheme.primary,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(28),
-            side: BorderSide(
-                color: theme.colorScheme.onBackground.withOpacity(0.1),
-                width: 2),
+            borderRadius: BorderRadius.circular(13),
           ),
-          elevation: 4,
         ),
         child: isLoading
             ? CircularProgressIndicator(
@@ -38,7 +34,7 @@ class PrimaryButton extends StatelessWidget {
             : Text(text,
                 style: theme.textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: Colors.black.withOpacity(0.7))),
+                    color: Colors.white.withOpacity(0.9))),
       ),
     );
   }

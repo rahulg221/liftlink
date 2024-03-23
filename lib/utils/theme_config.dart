@@ -2,11 +2,11 @@ import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ColorPalette {
-  // Background colors
-  static Color darkBackgroundColor = const Color.fromARGB(255, 18, 18, 18);
+  // Background colors prev. 18 18 18
+  static Color darkBackgroundColor = Colors.black;
   static Color lightBackgroundColor = const Color.fromARGB(255, 245, 245, 245);
   // App bar colors
-  static Color darkAppBarColor = const Color.fromARGB(255, 18, 18, 18);
+  static Color darkAppBarColor = Colors.black;
   static Color lightAppBarColor = const Color.fromARGB(255, 245, 245, 245);
   // Nav bar colors
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
@@ -15,8 +15,8 @@ class ColorPalette {
   static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   // Primary colors
-  static Color darkPrimaryColor = Color.fromARGB(255, 247, 160, 237);
-  static Color lightPrimaryColor = Color.fromARGB(255, 255, 145, 242);
+  static Color darkPrimaryColor = Color.fromARGB(255, 242, 68, 65);
+  static Color lightPrimaryColor = Color.fromARGB(255, 255, 60, 57);
   // Secondary colors
   static Color darkSecondaryColor = Color.fromARGB(255, 148, 104, 224);
   static Color lightSecondaryColor = Color.fromARGB(255, 148, 104, 224);
@@ -66,6 +66,11 @@ class ThemeConfig {
     ),
     appBarTheme: AppBarTheme(
       color: ColorPalette.lightAppBarColor,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        elevation: MaterialStateProperty.all<double>(4),
+      ),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: ColorPalette.lightSnackBar,
@@ -130,6 +135,13 @@ class ThemeConfig {
     ),
     appBarTheme: AppBarTheme(
       color: ColorPalette.darkAppBarColor,
+    ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all<Color>(ColorPalette.darkPrimaryColor),
+        elevation: MaterialStateProperty.all<double>(0),
+      ),
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: ColorPalette.darkSnackBar,

@@ -46,7 +46,7 @@ class TextFieldInput extends StatelessWidget {
         hintStyle: theme.textTheme.bodySmall!
             .copyWith(color: theme.colorScheme.onSurface),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(22.0),
+          borderRadius: BorderRadius.circular(11.0),
           borderSide: BorderSide.none,
         ),
         contentPadding: textInputType == TextInputType.multiline

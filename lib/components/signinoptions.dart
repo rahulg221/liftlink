@@ -25,7 +25,7 @@ class SignInOptions extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(13),
                 side: BorderSide(
                     color: theme.colorScheme.onBackground.withOpacity(0.1),
                     width: 2),
@@ -34,7 +34,7 @@ class SignInOptions extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
         SizedBox(
           width: 225,
           height: 45,
@@ -50,7 +50,7 @@ class SignInOptions extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(28),
+                borderRadius: BorderRadius.circular(13),
                 side: BorderSide(
                     color: theme.colorScheme.onBackground.withOpacity(0.1),
                     width: 2),

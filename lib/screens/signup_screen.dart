@@ -139,7 +139,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           children: [
             Expanded(child: Container()),
             Text(
-              'Create Account',
+              'Sign up',
               style: theme.textTheme.headlineLarge!
                   .copyWith(fontWeight: FontWeight.bold),
               textAlign: TextAlign.left,
@@ -236,7 +236,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             PrimaryButton(
               onTap: signUpUser,
               isLoading: _isLoading,
-              text: 'Create account',
+              text: 'Sign up',
             ),
             const SizedBox(height: 75),
             Row(
@@ -248,7 +248,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   onTap: () {
                     UtilMethods.navigateTo(const SignInScreen(), context);
                   },
-                  child: Text('Login.',
+                  child: Text('Sign in.',
                       style: theme.textTheme.bodySmall!
                           .copyWith(fontWeight: FontWeight.bold)),
                 ),
