@@ -91,4 +91,102 @@ class DbMethods {
       throw Exception('An unexpected error occurred: $e');
     }
   }
+
+  Future<void> followUser(String followedId, String uid) async {
+    try {
+      // Insert the follower details into the 'followers' table
+      await _supabase.from('followers').insert([
+        {
+          'follower_id': uid,
+          'followed_id': followedId,
+        }
+      ]);
+
+      // Get the current following count
+      var res = await _supabase.from('users').select().eq('id', uid).single();
+
+      // Increment the following count
+      int followingCount = res['followingcount'];
+      followingCount++;
+
+      // Update the current user info with the new follower count
+      await _supabase
+          .from('users')
+          .update({'followingcount': followingCount}).eq('id', uid);
+
+      res =
+          await _supabase.from('users').select().eq('id', followedId).single();
+
+      // Get the current follower count
+      int followerCount = res['followercount'];
+      followerCount++;
+
+      // Update the followed user info with the new follower count
+      await _supabase
+          .from('users')
+          .update({'followercount': followerCount}).eq('id', followedId);
+    } on PostgrestException catch (e) {
+      // Print errors to console when in debug mode
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
+
+  Future<void> unfollowUser(String followedId, String uid) async {
+    try {
+      // Delete the follower details from the 'followers' table
+      await _supabase
+          .from('followers')
+          .delete()
+          .match({'follower_id': uid, 'followed_id': followedId});
+
+      // Decrement the following count for the follower
+      var res = await _supabase
+          .from('users')
+          .select('followingcount')
+          .eq('id', uid)
+          .single();
+
+      if (res['followingcount'] != null) {
+        int followingCount = res['followingcount'];
+        if (followingCount > 0) {
+          // Ensure the count doesn't go negative
+          followingCount--;
+
+          await _supabase
+              .from('users')
+              .update({'followingcount': followingCount}).eq('id', uid);
+        }
+      }
+
+      // Decrement the follower count for the user being unfollowed
+      res = await _supabase
+          .from('users')
+          .select('followercount')
+          .eq('id', followedId)
+          .single();
+
+      if (res['followercount'] != null) {
+        int followerCount = res['followercount'];
+        if (followerCount > 0) {
+          // Ensure the count doesn't go negative
+          followerCount--;
+
+          await _supabase
+              .from('users')
+              .update({'followercount': followerCount}).eq('id', followedId);
+        }
+      }
+    } on PostgrestException catch (e) {
+      // Handle exceptions or errors
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
 }

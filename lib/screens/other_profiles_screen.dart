@@ -1,6 +1,5 @@
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
-import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/user_info_display.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +24,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
   String bio = '';
 
   bool _isLoading = true;
+  String followingId = '';
 
   void getInfo() async {
     beginLoading();
@@ -32,13 +32,22 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
     final user = await DbMethods().getUserDetails(widget.uid);
 
     // Set the user data
+    followingId = user.uid;
     username = user.username;
     photoUrl = user.profilePic;
-    print(photoUrl);
     followerCount = user.followerCount;
     followingCount = user.followingCount;
     activeStreak = user.streak;
     bio = user.bio;
+
+    stopLoading();
+  }
+
+  void followerUser() async {
+    beginLoading();
+
+    // Follow the user
+    await DbMethods().followUser(followingId, widget.uid);
 
     stopLoading();
   }

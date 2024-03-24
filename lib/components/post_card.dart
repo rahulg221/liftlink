@@ -1,6 +1,5 @@
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
-import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
