@@ -1,9 +1,6 @@
-import 'package:fitness_app/screens/settings_screen.dart';
+import 'package:fitness_app/components/other_profile_info_display.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
-import 'package:fitness_app/utils/util_methods.dart';
-import 'package:fitness_app/components/user_info_display.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OtherProfileScreen extends StatefulWidget {
   final String uid;
@@ -52,6 +49,16 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
     stopLoading();
   }
 
+  // Not implemented
+  void unfollowUser() async {
+    beginLoading();
+
+    // Unfollow the user
+    await DbMethods().unfollowUser(followingId, widget.uid);
+
+    stopLoading();
+  }
+
   void beginLoading() {
     setState(() {
       _isLoading = true;
@@ -85,15 +92,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text(username, style: theme.textTheme.headlineMedium),
-          actions: [
-            IconButton(
-              icon: Icon(FontAwesomeIcons.gear,
-                  size: theme.iconTheme.size, color: theme.iconTheme.color),
-              onPressed: () {
-                UtilMethods.navigateTo(const SettingsScreen(), context);
-              },
-            ),
-          ],
         ),
         body: Align(
           alignment: Alignment.center,
@@ -104,14 +102,13 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
-                      UserInfoDisplay(
+                      OtherProfileInfoDisplay(
                         username: username,
                         photoUrl: photoUrl,
                         followerCount: followerCount,
                         followingCount: followingCount,
                         activeStreak: activeStreak,
                         bio: bio,
-                        isCurrentUser: false,
                       ),
                       const SizedBox(height: 30),
                     ],

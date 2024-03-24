@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class UserInfoDisplay extends StatefulWidget {
+class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
   final String photoUrl;
   final int followerCount;
   final int followingCount;
   final int activeStreak;
   final String bio;
-  final bool isCurrentUser;
 
-  const UserInfoDisplay({
+  const OtherProfileInfoDisplay({
     Key? key,
     required this.username,
     required this.photoUrl,
@@ -18,14 +16,14 @@ class UserInfoDisplay extends StatefulWidget {
     required this.followingCount,
     required this.activeStreak,
     required this.bio,
-    required this.isCurrentUser,
   }) : super(key: key);
 
   @override
-  _UserInfoDisplayState createState() => _UserInfoDisplayState();
+  _OtherProfileInfoDisplayState createState() =>
+      _OtherProfileInfoDisplayState();
 }
 
-class _UserInfoDisplayState extends State<UserInfoDisplay> {
+class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -35,7 +33,7 @@ class _UserInfoDisplayState extends State<UserInfoDisplay> {
       padding: const EdgeInsets.only(top: 15.0, left: 32, right: 32),
       child: Column(
         children: [
-          _profilePicDisplay(widget.photoUrl, widget.isCurrentUser, theme),
+          _profilePicDisplay(widget.photoUrl, theme),
           const SizedBox(height: 12),
           Text('@${widget.username}',
               style: theme.textTheme.headlineSmall!
@@ -55,14 +53,14 @@ class _UserInfoDisplayState extends State<UserInfoDisplay> {
             children: [
               _button(
                 theme,
-                widget.isCurrentUser ? 'Edit profile' : 'Follow',
+                'Follow',
                 width,
-                widget.isCurrentUser ? false : true,
+                true,
               ),
               const SizedBox(width: 8),
               _button(
                 theme,
-                widget.isCurrentUser ? 'Share profile' : 'Message',
+                'Message',
                 width,
                 false,
               ),
@@ -109,29 +107,31 @@ class _UserInfoDisplayState extends State<UserInfoDisplay> {
     double width,
     bool isPrimary,
   ) {
-    return Container(
-      width: (width - 100) * 0.5,
-      height: 45,
-      decoration: BoxDecoration(
-        color:
-            isPrimary ? theme.colorScheme.primary : theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: Center(
-        child: Text(
-          text,
-          style: theme.textTheme.bodyMedium!.copyWith(
-              color: isPrimary ? Colors.white : theme.colorScheme.onSurface,
-              fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
+    return GestureDetector(
+      onTap: () {},
+      child: Container(
+        width: (width - 100) * 0.5,
+        height: 45,
+        decoration: BoxDecoration(
+          color:
+              isPrimary ? theme.colorScheme.primary : theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Center(
+          child: Text(
+            text,
+            style: theme.textTheme.bodyMedium!.copyWith(
+                color: isPrimary ? Colors.white : theme.colorScheme.onSurface,
+                fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
         ),
       ),
     );
   }
 }
 
-Widget _profilePicDisplay(
-    String photoUrl, bool isCurrentUser, ThemeData theme) {
+Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
   return Stack(
     alignment: Alignment.center,
     children: [
@@ -139,43 +139,6 @@ Widget _profilePicDisplay(
         radius: 64,
         backgroundImage: NetworkImage(photoUrl),
       ),
-      isCurrentUser
-          ? Positioned(
-              bottom: -5, // Position at the bottom of the profile picture
-              right: -5, // Position to the right of the profile picture
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  Container(
-                    width: 34,
-                    height: 34,
-                    decoration: BoxDecoration(
-                      color: theme.scaffoldBackgroundColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  Container(
-                    width: 25,
-                    height: 25,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.secondary,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      FontAwesomeIcons.plus,
-                      color: Colors.black,
-                      size: 15,
-                    ),
-                    onPressed: () {},
-                    padding: EdgeInsets.zero,
-                    constraints: const BoxConstraints(),
-                  ),
-                ],
-              ),
-            )
-          : Container(),
     ],
   );
 }

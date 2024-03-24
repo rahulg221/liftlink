@@ -2,7 +2,6 @@ import 'package:fitness_app/screens/explore_screen.dart';
 import 'package:fitness_app/screens/following_screen.dart';
 import 'package:fitness_app/screens/my_gym_screen.dart';
 import 'package:fitness_app/screens/search_screen.dart';
-import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

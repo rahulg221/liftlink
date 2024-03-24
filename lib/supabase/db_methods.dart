@@ -32,16 +32,14 @@ class DbMethods {
       final postPicUrl = await StorageMethods().uploadPostPic(postPic, uid);
 
       // Insert the post details into the 'posts' table
-      await _supabase.from('posts').insert([
-        {
-          'uid': uid,
-          'username': username,
-          'streak': 0,
-          'profile_pic': profilePicUrl,
-          'post_pic': postPicUrl,
-          'caption': caption,
-        }
-      ]);
+      await _supabase.rpc('upload_post', params: {
+        'username': username,
+        'uid': uid,
+        'profile_pic': profilePicUrl,
+        'streak': streak,
+        'post_pic': postPicUrl,
+        'caption': caption
+      });
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {
@@ -53,6 +51,23 @@ class DbMethods {
   }
 
   Future<List<Post>> getExplorePosts(int count, int startIndex) async {
+    try {
+      List<Map<String, dynamic>> posts = await _supabase.rpc(
+          'get_explore_posts',
+          params: {'post_count': count, 'start_index': startIndex});
+
+      return posts.map((post) => Post.fromJson(post)).toList();
+    } catch (e) {
+      // Print errors to console when in debug mode
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
+
+  Future<List<Post>> getFollowingPosts(int count, int startIndex) async {
     try {
       List<Map<String, dynamic>> posts = await _supabase
           .from('posts')
