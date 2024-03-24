@@ -1,5 +1,6 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class CommentsScreen extends StatefulWidget {
@@ -36,42 +37,30 @@ class _CommentsScreenState extends State<CommentsScreen> {
           margin: EdgeInsets.only(
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
-          padding: const EdgeInsets.only(left: 16, right: 8),
+          padding: const EdgeInsets.only(left: 16, right: 16, bottom: 16),
           child: Row(
             children: [
               CircleAvatar(
                   backgroundImage:
                       NetworkImage(userProvider.getUser.profilePic),
-                  radius: 18),
+                  radius: 20),
+              SizedBox(width: 5),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 8.0),
-                  child: TextField(
-                    controller: _commentController,
-                    decoration: InputDecoration(
-                      hintText: 'Comment as ${userProvider.getUser.username}',
-                      hintStyle: Theme.of(context).textTheme.bodySmall,
-                      border: InputBorder.none,
+                child: TextField(
+                  controller: _commentController,
+                  style: theme.textTheme.bodySmall,
+                  decoration: InputDecoration(
+                    hintText: 'Write comment...',
+                    filled: true,
+                    fillColor: Theme.of(context).colorScheme.surface,
+                    hintStyle: theme.textTheme.bodySmall,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      borderSide: BorderSide.none,
                     ),
+                    contentPadding: const EdgeInsets.symmetric(
+                        vertical: 0.0, horizontal: 15.0),
                   ),
-                ),
-              ),
-              InkWell(
-                onTap: () async {
-                  /*
-                  await FirestoreMethods().postComment(
-                      widget.snap['postId'],
-                      _commentController.text,
-                      user.uid,
-                      user.username,
-                      user.photoUrl);*/
-                },
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: 8,
-                    horizontal: 8,
-                  ),
-                  child: Text('Post', style: theme.textTheme.bodyMedium),
                 ),
               ),
             ],

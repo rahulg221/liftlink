@@ -82,16 +82,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     activeStreak: activeStreak,
                     bio: bio),
                 const SizedBox(height: 30),
-                Container(
-                  width: double.infinity,
-                  height: 50,
-                  child: const Center(
-                    child: Icon(
-                      FontAwesomeIcons.cameraRetro,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ),
               ],
             ),
           ),

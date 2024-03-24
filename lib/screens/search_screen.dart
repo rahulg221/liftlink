@@ -1,4 +1,7 @@
+import 'package:fitness_app/models/user.dart';
+import 'package:fitness_app/screens/other_profiles_screen.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -108,9 +111,17 @@ class _SearchScreenState extends State<SearchScreen> {
                     itemCount: _searchResults.length,
                     itemBuilder: (context, index) {
                       final user = _searchResults[index];
-                      return ListTile(
-                        title: Text(user['username'],
-                            style: theme.textTheme.bodyMedium),
+                      return GestureDetector(
+                        onTap: () {
+                          UtilMethods.navigateTo(
+                            OtherProfileScreen(uid: user['id']),
+                            context,
+                          );
+                        },
+                        child: ListTile(
+                          title: Text(user['username'],
+                              style: theme.textTheme.bodyMedium),
+                        ),
                       );
                     },
                   ),

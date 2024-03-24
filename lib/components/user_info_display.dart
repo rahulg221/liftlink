@@ -9,15 +9,15 @@ class UserInfoDisplay extends StatefulWidget {
   final int activeStreak;
   final String bio;
 
-  const UserInfoDisplay(
-      {Key? key,
-      required this.username,
-      required this.photoUrl,
-      required this.followerCount,
-      required this.followingCount,
-      required this.activeStreak,
-      required this.bio})
-      : super(key: key);
+  const UserInfoDisplay({
+    Key? key,
+    required this.username,
+    required this.photoUrl,
+    required this.followerCount,
+    required this.followingCount,
+    required this.activeStreak,
+    required this.bio,
+  }) : super(key: key);
 
   @override
   _UserInfoDisplayState createState() => _UserInfoDisplayState();
@@ -116,15 +116,6 @@ class _UserInfoDisplayState extends State<UserInfoDisplay> {
                   Text('streak', style: theme.textTheme.bodyMedium),
                 ],
               ),
-            ],
-          ),
-          const SizedBox(height: 10),
-          // Edit Profile and Share Profile buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _buildButton(theme, 'Edit profile'),
-              _buildButton(theme, 'Share profile'),
             ],
           ),
           const SizedBox(height: 20),
