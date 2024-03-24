@@ -86,7 +86,8 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
             ),
           ],
         ),
-        body: Center(
+        body: Align(
+          alignment: Alignment.center,
           child: _isLoading
               ? const CircularProgressIndicator()
               : SingleChildScrollView(
@@ -95,12 +96,14 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                   child: Column(
                     children: [
                       UserInfoDisplay(
-                          username: username,
-                          photoUrl: photoUrl,
-                          followerCount: followerCount,
-                          followingCount: followingCount,
-                          activeStreak: activeStreak,
-                          bio: bio),
+                        username: username,
+                        photoUrl: photoUrl,
+                        followerCount: followerCount,
+                        followingCount: followingCount,
+                        activeStreak: activeStreak,
+                        bio: bio,
+                        isCurrentUser: false,
+                      ),
                       const SizedBox(height: 30),
                     ],
                   ),

@@ -68,19 +68,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ],
           automaticallyImplyLeading: false,
         ),
-        body: Center(
+        body: Align(
+          alignment: Alignment.center,
           child: SingleChildScrollView(
             controller: _scrollController,
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
                 UserInfoDisplay(
-                    username: username,
-                    photoUrl: photoUrl,
-                    followerCount: followerCount,
-                    followingCount: followingCount,
-                    activeStreak: activeStreak,
-                    bio: bio),
+                  username: username,
+                  photoUrl: photoUrl,
+                  followerCount: followerCount,
+                  followingCount: followingCount,
+                  activeStreak: activeStreak,
+                  bio: bio,
+                  isCurrentUser: true,
+                ),
                 const SizedBox(height: 30),
               ],
             ),
