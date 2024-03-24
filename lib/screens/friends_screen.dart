@@ -1,3 +1,4 @@
+import 'package:fitness_app/screens/search_screen.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              UtilMethods.navigateTo(SettingsScreen(), context);
+              UtilMethods.navigateTo(const SearchScreen(), context);
             },
           ),
         ],

@@ -18,14 +18,16 @@ class ChatTextFieldInput extends StatefulWidget {
 }
 
 class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
+  void refresh() {
+    setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
 
     // Add a listener to the textEditingController to update send button visibility
-    widget.textEditingController.addListener(() {
-      setState(() {});
-    });
+    widget.textEditingController.addListener(refresh);
   }
 
   @override
@@ -33,11 +35,7 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
     super.dispose();
 
     // Remove the listener when the widget is disposed
-    widget.textEditingController.removeListener(() {
-      setState(() {});
-    });
-
-    widget.textEditingController.dispose();
+    widget.textEditingController.removeListener(refresh);
   }
 
   @override

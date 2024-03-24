@@ -44,13 +44,6 @@ class _FeedScreenState extends State<FeedScreen> {
                 UtilMethods.navigateTo(const SearchScreen(), context);
               },
             ),
-            IconButton(
-              icon: Icon(FontAwesomeIcons.gear,
-                  size: theme.iconTheme.size, color: theme.iconTheme.color),
-              onPressed: () {
-                UtilMethods.navigateTo(const SettingsScreen(), context);
-              },
-            ),
           ],
           automaticallyImplyLeading: false,
         ),

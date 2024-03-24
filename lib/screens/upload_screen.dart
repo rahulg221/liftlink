@@ -105,19 +105,18 @@ class _UploadScreenState extends State<UploadScreen> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-        extendBodyBehindAppBar: true,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           automaticallyImplyLeading: false,
           centerTitle: true,
           title: Text('Upload', style: theme.textTheme.headlineMedium),
         ),
         body: postPic != null
-            ? Column(
-                children: [
-                  const Expanded(child: SizedBox()),
-                  SingleChildScrollView(
-                    child: Column(
+            ? SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: height * 0.05),
+                    Column(
                       children: [
                         SizedBox(
                           height: height * 0.5,
@@ -146,12 +145,12 @@ class _UploadScreenState extends State<UploadScreen> {
                         const SizedBox(height: 10),
                       ],
                     ),
-                  ),
-                  PrimaryButton(
-                      isLoading: _isLoading, onTap: uploadPost, text: 'Post'),
-                  const SizedBox(height: 16),
-                ],
+                    PrimaryButton(
+                        isLoading: _isLoading, onTap: uploadPost, text: 'Post'),
+                    const SizedBox(height: 16),
+                  ],
+                ),
               )
-            : Text('Error', style: theme.textTheme.bodySmall));
+            : const Center(child: CircularProgressIndicator()));
   }
 }

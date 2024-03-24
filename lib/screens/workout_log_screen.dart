@@ -1,3 +1,4 @@
+import 'package:fitness_app/screens/search_screen.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/log_button.dart';
@@ -27,7 +28,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              UtilMethods.navigateTo(SettingsScreen(), context);
+              UtilMethods.navigateTo(const SearchScreen(), context);
             },
           ),
         ],
