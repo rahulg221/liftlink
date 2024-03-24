@@ -1,6 +1,7 @@
 import 'package:fitness_app/screens/explore_screen.dart';
 import 'package:fitness_app/screens/following_screen.dart';
 import 'package:fitness_app/screens/my_gym_screen.dart';
+import 'package:fitness_app/screens/search_screen.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +40,9 @@ class _FeedScreenState extends State<FeedScreen> {
             IconButton(
               icon: Icon(FontAwesomeIcons.magnifyingGlass,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
-              onPressed: () {},
+              onPressed: () {
+                UtilMethods.navigateTo(const SearchScreen(), context);
+              },
             ),
             IconButton(
               icon: Icon(FontAwesomeIcons.gear,

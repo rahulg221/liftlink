@@ -71,4 +71,24 @@ class DbMethods {
       throw Exception('An unexpected error occurred: $e');
     }
   }
+
+  Future<List<dynamic>> searchUsers(String username) async {
+    try {
+      // Search for users with usernames that match the query
+      final data = await _supabase
+          .from('users')
+          .select()
+          .ilike('username', '%$username%')
+          .limit(10);
+
+      return data;
+    } on PostgrestException catch (e) {
+      // Print errors to console when in debug mode
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
 }
