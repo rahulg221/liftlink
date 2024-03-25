@@ -92,10 +92,7 @@ class DbMethods {
     try {
       // Search for users with usernames that match the query
       final data = await _supabase
-          .from('users')
-          .select()
-          .ilike('username', '%$username%')
-          .limit(10);
+          .rpc('search_users', params: {'username_pattern': username});
 
       return data;
     } on PostgrestException catch (e) {
