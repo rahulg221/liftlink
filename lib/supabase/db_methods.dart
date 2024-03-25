@@ -67,14 +67,15 @@ class DbMethods {
     }
   }
 
-  Future<List<Post>> getFollowingPosts(int count, int startIndex) async {
+  Future<List<Post>> getFollowingPosts(
+      int count, int startIndex, String uid) async {
     try {
       List<Map<String, dynamic>> posts = await _supabase
-          .from('posts')
-          .select()
-          .order('created_at', ascending: false)
-          .range(startIndex, startIndex + count - 1)
-          .limit(count);
+          .rpc('get_following_posts', params: {
+        'post_count': count,
+        'start_index': startIndex,
+        'current_user_id': uid
+      });
 
       return posts.map((post) => Post.fromJson(post)).toList();
     } catch (e) {
@@ -107,10 +108,31 @@ class DbMethods {
     }
   }
 
+  // Check if the current user follows the user, returns true if so
+  Future<bool> doesFollowUser(String uid, String followedId) async {
+    try {
+      // Check if the current user follows the user
+      final res = await _supabase
+          .from('follows')
+          .select()
+          .eq('follower_id', uid)
+          .eq('followed_id', followedId);
+
+      return res.isNotEmpty;
+    } on PostgrestException catch (e) {
+      // Print errors to console when in debug mode
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
+
   Future<void> followUser(String followedId, String uid) async {
     try {
       // Insert the follower details into the 'followers' table
-      await _supabase.from('followers').insert([
+      await _supabase.from('follows').insert([
         {
           'follower_id': uid,
           'followed_id': followedId,
@@ -154,7 +176,7 @@ class DbMethods {
     try {
       // Delete the follower details from the 'followers' table
       await _supabase
-          .from('followers')
+          .from('follows')
           .delete()
           .match({'follower_id': uid, 'followed_id': followedId});
 

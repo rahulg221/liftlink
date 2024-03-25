@@ -1,3 +1,4 @@
+import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:flutter/material.dart';
 
 class OtherProfileInfoDisplay extends StatefulWidget {
@@ -7,6 +8,8 @@ class OtherProfileInfoDisplay extends StatefulWidget {
   final int followingCount;
   final int activeStreak;
   final String bio;
+  final String followedId;
+  final String curId;
 
   const OtherProfileInfoDisplay({
     Key? key,
@@ -16,6 +19,8 @@ class OtherProfileInfoDisplay extends StatefulWidget {
     required this.followingCount,
     required this.activeStreak,
     required this.bio,
+    required this.followedId,
+    required this.curId,
   }) : super(key: key);
 
   @override
@@ -24,6 +29,44 @@ class OtherProfileInfoDisplay extends StatefulWidget {
 }
 
 class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
+  bool _followed = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Check if the user is already followed
+    doesFollow();
+  }
+
+  void doesFollow() async {
+    bool res =
+        await DbMethods().doesFollowUser(widget.curId, widget.followedId);
+
+    setState(() {
+      _followed = res;
+    });
+  }
+
+  void followUser() async {
+    // Follow the user
+    await DbMethods().followUser(widget.followedId, widget.curId);
+
+    setState(() {
+      _followed = true;
+    });
+  }
+
+  // Not implemented
+  void unfollowUser() async {
+    // Unfollow the user
+    await DbMethods().unfollowUser(widget.followedId, widget.curId);
+
+    setState(() {
+      _followed = false;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
@@ -53,7 +96,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
             children: [
               _button(
                 theme,
-                'Follow',
+                _followed ? 'Unfollow' : 'Follow',
                 width,
                 true,
               ),
@@ -108,13 +151,22 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
     bool isPrimary,
   ) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        if (text == 'Follow') {
+          followUser();
+        } else if (text == 'Unfollow') {
+          unfollowUser();
+        }
+      },
       child: Container(
         width: (width - 100) * 0.5,
         height: 45,
         decoration: BoxDecoration(
-          color:
-              isPrimary ? theme.colorScheme.primary : theme.colorScheme.surface,
+          color: isPrimary
+              ? _followed
+                  ? theme.colorScheme.surface
+                  : theme.colorScheme.primary
+              : theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(

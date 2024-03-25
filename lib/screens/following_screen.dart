@@ -1,7 +1,9 @@
 import 'package:fitness_app/components/post_card.dart';
 import 'package:fitness_app/models/post.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class FollowingScreen extends StatefulWidget {
   const FollowingScreen({Key? key}) : super(key: key);
@@ -20,10 +22,16 @@ class _FollowingScreenState extends State<FollowingScreen> {
 
   void getPosts() async {
     beginLoading();
+
+    // Get current user id from Provider
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    final String uid = userProvider.getUser.uid;
+
     // Get the posts from the database
     List<Post> newPosts =
-        await DbMethods().getExplorePosts(postLimit, fetchedPostCount);
+        await DbMethods().getFollowingPosts(postLimit, fetchedPostCount, uid);
 
+    // Add all new posts to current list of posts
     setState(() {
       _posts.addAll(newPosts);
       fetchedPostCount = _posts.length;

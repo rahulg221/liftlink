@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/feed_screen.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
@@ -60,7 +61,7 @@ class _UploadScreenState extends State<UploadScreen> {
     clearImage();
 
     stopLoading();
-    if (mounted) UtilMethods.navigateTo(const FeedScreen(), context);
+    if (mounted) UtilMethods.navigateTo(const MobileScreenLayout(), context);
   }
 
   void takePhoto() async {
