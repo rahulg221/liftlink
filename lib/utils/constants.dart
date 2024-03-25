@@ -5,7 +5,7 @@ const customFont = 'Poppins';
 const double iconSize = 22.0;
 
 const String dummyImage =
-    'https://th.bing.com/th/id/R.da77fab58ab6d84d939414e63c00a8e5?rik=ymxiXmqouWX1pA&pid=ImgRaw&r=0';
+    'https://i.pinimg.com/originals/8e/6c/41/8e6c415ce319ca467b93c529bc1f3724.jpg';
 
 const String supabaseUrl = 'https://bmjgtviajuoydiinfonq.supabase.co';
 

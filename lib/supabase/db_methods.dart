@@ -12,7 +12,7 @@ class DbMethods {
     try {
       // Retrieve user details from the 'users' table
       final data =
-          await _supabase.from('users').select().eq('id', uid).single();
+          await _supabase.rpc('get_user_details', params: {'uid': uid});
 
       return model.User.fromJson(data);
     } on PostgrestException catch (e) {
