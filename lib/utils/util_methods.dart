@@ -23,6 +23,23 @@ class UtilMethods {
     );
   }
 
+  static String getFormattedDate(DateTime parsedDate) {
+    final DateTime now = DateTime.now();
+    final int differenceInMinutes = now.difference(parsedDate).inMinutes;
+
+    if (differenceInMinutes < 1) {
+      return 'Just now';
+    } else if (differenceInMinutes < 60) {
+      return '$differenceInMinutes mins ago';
+    } else if (differenceInMinutes < 1440) {
+      final int hours = differenceInMinutes ~/ 60;
+      return '$hours hrs ago';
+    } else {
+      final int days = differenceInMinutes ~/ 1440;
+      return '$days days ago';
+    }
+  }
+
   // Pick image from gallery or camera
   static Future<Uint8List?> pickImage(ImageSource source) async {
     final ImagePicker _imagePicker = ImagePicker();

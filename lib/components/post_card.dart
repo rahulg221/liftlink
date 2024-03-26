@@ -1,9 +1,12 @@
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/models/post.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
 import 'package:fitness_app/screens/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 class PostCard extends StatefulWidget {
   final Post data;
@@ -15,7 +18,6 @@ class PostCard extends StatefulWidget {
 }
 
 class _PostCardState extends State<PostCard> {
-  bool isLikeAnimating = false;
   String username = '';
   String profilePic = '';
   String postPic = '';
@@ -29,23 +31,6 @@ class _PostCardState extends State<PostCard> {
   int commentCount = 3;
   bool personalRecord = true;
 
-  String getFormattedDate(DateTime parsedDate) {
-    final DateTime now = DateTime.now();
-    final int differenceInMinutes = now.difference(parsedDate).inMinutes;
-
-    if (differenceInMinutes < 1) {
-      return 'Just now';
-    } else if (differenceInMinutes < 60) {
-      return '$differenceInMinutes mins ago';
-    } else if (differenceInMinutes < 1440) {
-      final int hours = differenceInMinutes ~/ 60;
-      return '$hours hrs ago';
-    } else {
-      final int days = differenceInMinutes ~/ 1440;
-      return '$days days ago';
-    }
-  }
-
   void getInfo() {
     username = widget.data.username;
     profilePic = widget.data.profilePic;
@@ -54,7 +39,7 @@ class _PostCardState extends State<PostCard> {
     uid = widget.data.uid;
 
     final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
-    final String formattedDate = getFormattedDate(parsedDate);
+    final String formattedDate = UtilMethods.getFormattedDate(parsedDate);
 
     createdAt = formattedDate;
     streak = widget.data.streak;
@@ -71,6 +56,7 @@ class _PostCardState extends State<PostCard> {
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Column(
       children: [
@@ -88,7 +74,9 @@ class _PostCardState extends State<PostCard> {
                     GestureDetector(
                       onTap: () {
                         UtilMethods.navigateTo(
-                          OtherProfileScreen(uid: uid),
+                          uid == userProvider.getUser.uid
+                              ? const MobileScreenLayout()
+                              : OtherProfileScreen(uid: uid),
                           context,
                         );
                       },
@@ -174,7 +162,7 @@ class _PostCardState extends State<PostCard> {
                     ElevatedButton.icon(
                       onPressed: () {
                         UtilMethods.navigateTo(
-                            CommentsScreen(snap: widget.data), context);
+                            CommentsScreen(data: widget.data), context);
                       },
                       icon: FaIcon(FontAwesomeIcons.solidComment,
                           color: theme.colorScheme.primary, size: 20),

@@ -1,7 +1,11 @@
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
+import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/other_profiles_screen.dart';
+import 'package:fitness_app/screens/profile_screen.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -67,6 +71,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Scaffold(
       appBar: AppBar(
@@ -112,7 +117,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       return GestureDetector(
                         onTap: () {
                           UtilMethods.navigateTo(
-                            OtherProfileScreen(uid: user['id']),
+                            user['id'] == userProvider.getUser.uid
+                                ? const MobileScreenLayout()
+                                : OtherProfileScreen(uid: user['id']),
                             context,
                           );
                         },

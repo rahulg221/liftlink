@@ -6,11 +6,13 @@ import 'package:provider/provider.dart';
 class ChatTextFieldInput extends StatefulWidget {
   final TextEditingController textEditingController;
   final String hintText;
+  final Future<void> Function() onSend;
 
   const ChatTextFieldInput({
     Key? key,
     required this.textEditingController,
     required this.hintText,
+    required this.onSend,
   }) : super(key: key);
 
   @override
@@ -53,7 +55,7 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
               CircleAvatar(
                   backgroundImage:
                       NetworkImage(userProvider.getUser.profilePic),
-                  radius: 20),
+                  radius: 23),
               const SizedBox(width: 5),
               Expanded(
                 child: TextField(
@@ -76,22 +78,15 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
             ],
           ),
           widget.textEditingController.text.isNotEmpty
-              ? GestureDetector(
-                  onTap: () {
-                    // Send comment
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: Icon(FontAwesomeIcons.arrowUp,
-                          color: theme.iconTheme.color, size: 18),
-                      onPressed: () {
-                        // Your send button action here
-                      },
-                    ),
+              ? Container(
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    icon: Icon(FontAwesomeIcons.arrowUp,
+                        color: theme.iconTheme.color, size: 18),
+                    onPressed: widget.onSend,
                   ),
                 )
               : Container(),

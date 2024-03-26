@@ -1,14 +1,41 @@
-import 'package:fitness_app/utils/constants.dart';
+import 'package:fitness_app/models/comments.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 
 class CommentCard extends StatefulWidget {
-  const CommentCard({Key? key});
+  final Comment data;
+
+  const CommentCard({Key? key, required this.data}) : super(key: key);
 
   @override
   State<CommentCard> createState() => _CommentCardState();
 }
 
 class _CommentCardState extends State<CommentCard> {
+  String username = '';
+  String profilePic = '';
+  String comment = '';
+  String createdAt = '';
+  String uid = '';
+
+  void getInfo() {
+    username = widget.data.username;
+    profilePic = widget.data.profilePic;
+    comment = widget.data.comment;
+    uid = widget.data.uid;
+
+    final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
+    final String formattedDate = UtilMethods.getFormattedDate(parsedDate);
+
+    createdAt = formattedDate;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getInfo();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,7 +43,7 @@ class _CommentCardState extends State<CommentCard> {
         child: Row(
           children: [
             CircleAvatar(
-              backgroundImage: NetworkImage(dummyImage),
+              backgroundImage: NetworkImage(profilePic),
               radius: 18,
             ),
             Expanded(
@@ -30,14 +57,14 @@ class _CommentCardState extends State<CommentCard> {
                       text: TextSpan(
                         children: [
                           TextSpan(
-                            text: 'peterpan15',
+                            text: '$username',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall!
                                 .copyWith(fontWeight: FontWeight.bold),
                           ),
                           TextSpan(
-                            text: ' Looking big man!',
+                            text: ' $comment',
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
@@ -45,11 +72,11 @@ class _CommentCardState extends State<CommentCard> {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(top: 4),
-                      child: Text('February 22, 2024',
+                      child: Text(createdAt,
                           style: Theme.of(context)
                               .textTheme
                               .bodySmall!
-                              .copyWith(fontSize: 15)),
+                              .copyWith(fontSize: 13)),
                     ),
                   ],
                 ),

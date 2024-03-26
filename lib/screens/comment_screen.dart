@@ -1,9 +1,15 @@
 import 'package:fitness_app/components/chat_text_field_input.dart';
+import 'package:fitness_app/components/comment_card.dart';
+import 'package:fitness_app/models/comments.dart';
+import 'package:fitness_app/models/post.dart';
+import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CommentsScreen extends StatefulWidget {
-  final snap;
-  const CommentsScreen({Key? key, required this.snap}) : super(key: key);
+  final Post data;
+  const CommentsScreen({Key? key, required this.data}) : super(key: key);
 
   @override
   State<CommentsScreen> createState() => _CommentsScreenState();
@@ -11,12 +17,89 @@ class CommentsScreen extends StatefulWidget {
 
 class _CommentsScreenState extends State<CommentsScreen> {
   final TextEditingController _commentController = TextEditingController();
+  final List<Comment> _comments = [];
+  int commentLimit = 10;
+  int fetchedCommentCount = 0;
+
+  String username = '';
+  String uid = '';
   String profilePic = '';
+  String comment = '';
+  int postId = 0;
+
+  bool _isLoading = false;
+
+  void getComments() async {
+    beginLoading();
+    // Get the posts from the database
+    List<Comment> newComments = await DbMethods()
+        .getComments(commentLimit, fetchedCommentCount, postId);
+
+    setState(() {
+      _comments.addAll(newComments);
+      fetchedCommentCount = _comments.length;
+    });
+
+    stopLoading();
+  }
+
+  Future<void> uploadComment() async {
+    beginLoading();
+
+    // Validate the input fields
+    if (_commentController.text.isEmpty) {
+      stopLoading();
+      return;
+    }
+
+    // Upload the post
+    await DbMethods().uploadComment(
+        username, uid, _commentController.text, profilePic, postId);
+
+    // Clear the comment field
+    _commentController.clear();
+
+    stopLoading();
+  }
+
+  void getInfo() {
+    // Get the user provider
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
+    // Set the user data
+    username = userProvider.getUser.username;
+    profilePic = userProvider.getUser.profilePic;
+    uid = userProvider.getUser.uid;
+    postId = widget.data.postId;
+  }
+
+  void beginLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = true;
+      });
+    }
+  }
+
+  void stopLoading() {
+    if (mounted) {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   void dispose() {
     super.dispose();
     _commentController.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getInfo();
+    getComments();
   }
 
   @override
@@ -29,20 +112,25 @@ class _CommentsScreenState extends State<CommentsScreen> {
         centerTitle: true,
         title: Text('Comments', style: theme.textTheme.headlineMedium),
       ),
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: Container(),
-          ),
-          Expanded(
-            child: SizedBox(),
-          ),
-          ChatTextFieldInput(
-            hintText: 'Write comment...',
-            textEditingController: _commentController,
-          ),
-        ],
-      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _comments.length,
+                    itemBuilder: (context, index) {
+                      return CommentCard(data: _comments[index]);
+                    },
+                  ),
+                ),
+                ChatTextFieldInput(
+                  textEditingController: _commentController,
+                  hintText: 'Add a comment...',
+                  onSend: uploadComment,
+                ),
+              ],
+            ),
     );
   }
 }

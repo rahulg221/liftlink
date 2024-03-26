@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:fitness_app/models/comments.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/models/user.dart' as model;
 import 'package:fitness_app/supabase/storage_methods.dart';
@@ -213,6 +214,49 @@ class DbMethods {
       }
     } on PostgrestException catch (e) {
       // Handle exceptions or errors
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
+
+  Future<List<Comment>> getComments(
+      int count, int startIndex, int postId) async {
+    try {
+      List<Map<String, dynamic>> comments = await _supabase.rpc('get_comments',
+          params: {
+            'comment_count': count,
+            'start_index': startIndex,
+            'pid': postId
+          });
+
+      return comments.map((comment) => Comment.fromJson(comment)).toList();
+    } catch (e) {
+      // Print errors to console when in debug mode
+      if (kDebugMode) {
+        print(e.toString());
+      }
+
+      throw Exception('An unexpected error occurred: $e');
+    }
+  }
+
+  Future<void> uploadComment(String username, String uid, String comment,
+      String profilePicUrl, int postId) async {
+    try {
+      print(uid);
+      // Insert the post details into the 'posts' table
+      await _supabase.rpc('upload_comment', params: {
+        'username': username,
+        'uid': uid,
+        'profile_pic': profilePicUrl,
+        'comment': comment,
+        'post_id': postId,
+      });
+    } on PostgrestException catch (e) {
+      // Print errors to console when in debug mode
       if (kDebugMode) {
         print(e.toString());
       }
