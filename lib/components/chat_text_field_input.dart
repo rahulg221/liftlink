@@ -79,6 +79,7 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
           ),
           widget.textEditingController.text.isNotEmpty
               ? Container(
+                  width: 45,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primary,
                     shape: BoxShape.circle,

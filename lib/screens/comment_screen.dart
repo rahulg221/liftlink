@@ -60,6 +60,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
     _commentController.clear();
 
     stopLoading();
+
+    getComments();
+    setState(() {});
   }
 
   void getInfo() {
@@ -110,7 +113,16 @@ class _CommentsScreenState extends State<CommentsScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Comments', style: theme.textTheme.headlineMedium),
+        title: Text('Comments', style: theme.textTheme.headlineSmall),
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(Icons.close),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+        automaticallyImplyLeading: false,
       ),
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())

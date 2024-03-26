@@ -1,4 +1,3 @@
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
@@ -73,12 +72,12 @@ class _PostCardState extends State<PostCard> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        UtilMethods.navigateTo(
-                          uid == userProvider.getUser.uid
-                              ? const MobileScreenLayout()
-                              : OtherProfileScreen(uid: uid),
-                          context,
-                        );
+                        if (uid != userProvider.getUser.uid) {
+                          UtilMethods.navigateTo(
+                            OtherProfileScreen(uid: uid),
+                            context,
+                          );
+                        }
                       },
                       child: CircleAvatar(
                         radius: 17,
@@ -161,8 +160,8 @@ class _PostCardState extends State<PostCard> {
                     const SizedBox(width: 5),
                     ElevatedButton.icon(
                       onPressed: () {
-                        UtilMethods.navigateTo(
-                            CommentsScreen(data: widget.data), context);
+                        UtilMethods.showPartialScreen(
+                            CommentsScreen(data: widget.data), context, 0.75);
                       },
                       icon: FaIcon(FontAwesomeIcons.solidComment,
                           color: theme.colorScheme.primary, size: 20),
