@@ -27,12 +27,12 @@ class _FeedScreenState extends State<FeedScreen> {
           title: Text('Lift Link', style: theme.textTheme.headlineMedium),
           bottom: TabBar(
             labelStyle: theme.textTheme.bodyLarge,
-            tabs: [
-              const Tab(
-                text: 'Following',
+            tabs: const [
+              Tab(
+                text: 'Explore',
               ),
-              const Tab(text: 'My Gym'),
-              const Tab(text: 'Explore'),
+              Tab(text: 'My Gym'),
+              Tab(text: 'Following'),
             ],
           ),
           actions: [
@@ -48,9 +48,9 @@ class _FeedScreenState extends State<FeedScreen> {
         ),
         body: const TabBarView(
           children: [
-            FollowingScreen(),
-            MyGymScreen(),
             ExploreScreen(),
+            MyGymScreen(),
+            FollowingScreen(),
           ],
         ),
       ),

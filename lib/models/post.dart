@@ -7,6 +7,8 @@ class Post {
   final String postPic;
   final String profilePic;
   final int streak;
+  final int commentCount;
+  final int likeCount;
 
   const Post({
     required this.caption,
@@ -17,6 +19,8 @@ class Post {
     required this.postPic,
     required this.profilePic,
     required this.streak,
+    required this.commentCount,
+    required this.likeCount,
   });
 
   // Converts from JSON
@@ -30,6 +34,8 @@ class Post {
       postPic: data['post_pic'],
       profilePic: data['profile_pic'],
       streak: data['streak'],
+      commentCount: data['comment_count'],
+      likeCount: data['like_count'],
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
@@ -30,23 +31,26 @@ class OtherProfileInfoDisplay extends StatefulWidget {
 
 class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   bool _followed = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
     super.initState();
 
     // Check if the user is already followed
+
     doesFollow();
   }
 
   void doesFollow() async {
+    beginLoading();
     bool res =
         await DbMethods().doesFollowUser(widget.curId, widget.followedId);
-    print(res);
 
     setState(() {
       _followed = res;
     });
+    stopLoading();
   }
 
   void followUser() async {
@@ -65,6 +69,18 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
 
     setState(() {
       _followed = false;
+    });
+  }
+
+  void beginLoading() {
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
+  void stopLoading() {
+    setState(() {
+      _isLoading = false;
     });
   }
 
@@ -163,21 +179,27 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
         width: (width - 100) * 0.5,
         height: 45,
         decoration: BoxDecoration(
-          color: isPrimary
-              ? _followed
-                  ? theme.colorScheme.surface
-                  : theme.colorScheme.primary
-              : theme.colorScheme.surface,
+          color: _isLoading
+              ? theme.colorScheme.surface
+              : isPrimary
+                  ? _followed
+                      ? theme.colorScheme.surface
+                      : theme.colorScheme.primary
+                  : theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(15),
         ),
         child: Center(
-          child: Text(
-            text,
-            style: theme.textTheme.bodyMedium!.copyWith(
-                color: isPrimary ? Colors.white : theme.colorScheme.onSurface,
-                fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
+          child: _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Text(
+                  text,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                      color: isPrimary
+                          ? Colors.white
+                          : theme.colorScheme.onSurface,
+                      fontWeight: FontWeight.bold),
+                  textAlign: TextAlign.center,
+                ),
         ),
       ),
     );

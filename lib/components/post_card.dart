@@ -24,18 +24,27 @@ class _PostCardState extends State<PostCard> {
   int streak = 0;
   String createdAt = '';
   String uid = '';
+  String curUserId = '';
+  int postId = 0;
+  String gymName = 'UCF Rwc';
 
   // Placeholders
-  int likeCount = 16;
-  int commentCount = 3;
+  int likeCount = -1;
+  int commentCount = -1;
   bool personalRecord = true;
 
   void getInfo() {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    curUserId = userProvider.getUser.uid;
+
     username = widget.data.username;
     profilePic = widget.data.profilePic;
     postPic = widget.data.postPic;
     caption = widget.data.caption;
+    postId = widget.data.postId;
     uid = widget.data.uid;
+    commentCount = widget.data.commentCount;
+    likeCount = widget.data.likeCount;
 
     final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
     final String formattedDate = UtilMethods.getFormattedDate(parsedDate);
@@ -55,7 +64,6 @@ class _PostCardState extends State<PostCard> {
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Column(
       children: [
@@ -72,7 +80,7 @@ class _PostCardState extends State<PostCard> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        if (uid != userProvider.getUser.uid) {
+                        if (uid != curUserId) {
                           UtilMethods.navigateTo(
                             OtherProfileScreen(uid: uid),
                             context,
@@ -92,7 +100,7 @@ class _PostCardState extends State<PostCard> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(username, style: theme.textTheme.bodyMedium),
-                              Text(createdAt,
+                              Text(gymName,
                                   style: theme.textTheme.bodySmall!.copyWith(
                                       color: theme.colorScheme.onSurface
                                           .withOpacity(0.7)))
@@ -222,10 +230,15 @@ class _PostCardState extends State<PostCard> {
                                   fontWeight: FontWeight.bold,
                                 )),
                             TextSpan(
-                                text: ' $caption',
+                                text: ' $caption\n',
                                 style: theme.textTheme.bodyMedium!.copyWith(
                                     color: theme.colorScheme.onSurface
                                         .withOpacity(0.8))),
+                            TextSpan(
+                                text: createdAt,
+                                style: theme.textTheme.bodySmall!.copyWith(
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.7))),
                           ],
                         ),
                       ),

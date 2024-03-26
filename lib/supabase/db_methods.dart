@@ -39,7 +39,9 @@ class DbMethods {
         'profile_pic': profilePicUrl,
         'streak': streak,
         'post_pic': postPicUrl,
-        'caption': caption
+        'caption': caption,
+        'comment_count': 0,
+        'like_count': 0,
       });
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
@@ -127,13 +129,12 @@ class DbMethods {
   Future<void> followUser(String followedId, String uid) async {
     try {
       // Insert the follower details into the 'followers' table
-      await _supabase.from('follows').insert([
-        {
-          'follower_id': uid,
-          'followed_id': followedId,
-        }
-      ]);
+      await _supabase.rpc('follow_user', params: {
+        'cur_user_id': uid,
+        'followed_user_id': followedId,
+      });
 
+      // Change following count update logic later -----
       // Get the current following count
       var res = await _supabase.from('users').select().eq('id', uid).single();
 
@@ -170,10 +171,10 @@ class DbMethods {
   Future<void> unfollowUser(String followedId, String uid) async {
     try {
       // Delete the follower details from the 'followers' table
-      await _supabase
-          .from('follows')
-          .delete()
-          .match({'follower_id': uid, 'followed_id': followedId});
+      await _supabase.rpc('unfollow_user', params: {
+        'cur_user_id': uid,
+        'followed_user_id': followedId,
+      });
 
       // Decrement the following count for the follower
       var res = await _supabase
@@ -255,6 +256,8 @@ class DbMethods {
         'comment': comment,
         'post_id': postId,
       });
+
+      await _supabase.rpc('increment_comment_count', params: {'pid': postId});
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {

@@ -60,7 +60,11 @@ class _UploadScreenState extends State<UploadScreen> {
     clearImage();
 
     stopLoading();
-    if (mounted) UtilMethods.navigateTo(const MobileScreenLayout(), context);
+
+    if (mounted) {
+      UtilMethods.showSnackBar('Post uploaded!', context);
+      UtilMethods.navigateTo(const MobileScreenLayout(), context);
+    }
   }
 
   void takePhoto() async {

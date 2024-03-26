@@ -1,6 +1,9 @@
 import 'package:fitness_app/models/comments.dart';
+import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CommentCard extends StatefulWidget {
   final Comment data;
@@ -17,8 +20,12 @@ class _CommentCardState extends State<CommentCard> {
   String comment = '';
   String createdAt = '';
   String uid = '';
+  String curUserId = '';
 
   void getInfo() {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    curUserId = userProvider.getUser.uid;
+
     username = widget.data.username;
     profilePic = widget.data.profilePic;
     comment = widget.data.comment;
@@ -42,9 +49,19 @@ class _CommentCardState extends State<CommentCard> {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(profilePic),
-              radius: 18,
+            GestureDetector(
+              onTap: () {
+                if (uid != curUserId) {
+                  UtilMethods.navigateTo(
+                    OtherProfileScreen(uid: uid),
+                    context,
+                  );
+                }
+              },
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(profilePic),
+                radius: 18,
+              ),
             ),
             Expanded(
               child: Padding(

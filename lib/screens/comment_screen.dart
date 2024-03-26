@@ -4,6 +4,7 @@ import 'package:fitness_app/models/comments.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
 
   bool _isLoading = false;
 
-  void getComments() async {
+  Future<void> getComments() async {
     beginLoading();
     // Get the posts from the database
     List<Comment> newComments = await DbMethods()
@@ -61,8 +62,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
 
     stopLoading();
 
-    getComments();
-    setState(() {});
+    if (mounted) {
+      UtilMethods.showSnackBar('Comment added!', context);
+      Navigator.of(context).pop();
+    }
   }
 
   void getInfo() {
