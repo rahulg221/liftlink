@@ -42,6 +42,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   void doesFollow() async {
     bool res =
         await DbMethods().doesFollowUser(widget.curId, widget.followedId);
+    print(res);
 
     setState(() {
       _followed = res;

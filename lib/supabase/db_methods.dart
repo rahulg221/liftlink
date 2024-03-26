@@ -109,13 +109,10 @@ class DbMethods {
   Future<bool> doesFollowUser(String uid, String followedId) async {
     try {
       // Check if the current user follows the user
-      final res = await _supabase
-          .from('follows')
-          .select()
-          .eq('follower_id', uid)
-          .eq('followed_id', followedId);
+      final res = await _supabase.rpc('does_follow_user',
+          params: {'uid': uid, 'other_id': followedId});
 
-      return res.isNotEmpty;
+      return res;
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {

@@ -1,5 +1,6 @@
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
+import 'package:fitness_app/screens/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -21,6 +22,7 @@ class _PostCardState extends State<PostCard> {
   String caption = '';
   int streak = 0;
   String createdAt = '';
+  String uid = '';
 
   // Placeholders
   int likeCount = 16;
@@ -49,6 +51,7 @@ class _PostCardState extends State<PostCard> {
     profilePic = widget.data.profilePic;
     postPic = widget.data.postPic;
     caption = widget.data.caption;
+    uid = widget.data.uid;
 
     final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
     final String formattedDate = getFormattedDate(parsedDate);
@@ -82,9 +85,17 @@ class _PostCardState extends State<PostCard> {
                 ),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      radius: 17,
-                      backgroundImage: NetworkImage(profilePic),
+                    GestureDetector(
+                      onTap: () {
+                        UtilMethods.navigateTo(
+                          OtherProfileScreen(uid: uid),
+                          context,
+                        );
+                      },
+                      child: CircleAvatar(
+                        radius: 17,
+                        backgroundImage: NetworkImage(profilePic),
+                      ),
                     ),
                     Expanded(
                       child: Padding(
@@ -123,7 +134,7 @@ class _PostCardState extends State<PostCard> {
                 ),
               ),
               GestureDetector(
-                onDoubleTap: () async {},
+                onDoubleTap: () {},
                 child: SizedBox(
                   height: height * 0.5,
                   width: width - 32,
