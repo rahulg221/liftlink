@@ -1,6 +1,5 @@
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
@@ -197,7 +196,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                       color: isPrimary
                           ? Colors.white
                           : theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 ),
         ),
@@ -207,13 +206,9 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
 }
 
 Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
-  return Stack(
-    alignment: Alignment.center,
-    children: [
-      CircleAvatar(
-        radius: 64,
-        backgroundImage: NetworkImage(photoUrl),
-      ),
-    ],
+  return CircleAvatar(
+    radius: 55,
+    backgroundImage: NetworkImage(photoUrl),
+    backgroundColor: theme.scaffoldBackgroundColor,
   );
 }

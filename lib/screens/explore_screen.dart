@@ -62,6 +62,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
+                const SizedBox(height: 8),
                 Expanded(
                   child: ListView.builder(
                     itemCount: _posts.length,

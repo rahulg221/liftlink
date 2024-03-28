@@ -78,7 +78,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
-          title: Text(username, style: theme.textTheme.headlineMedium),
+          title: Text(username, style: theme.textTheme.headlineSmall),
         ),
         body: Align(
           alignment: Alignment.center,

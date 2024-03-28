@@ -122,7 +122,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
             text,
             style: theme.textTheme.bodyMedium!.copyWith(
                 color: isPrimary ? Colors.white : theme.colorScheme.onSurface,
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.w600),
             textAlign: TextAlign.center,
           ),
         ),
@@ -136,8 +136,9 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
     alignment: Alignment.center,
     children: [
       CircleAvatar(
-        radius: 64,
+        radius: 55,
         backgroundImage: NetworkImage(photoUrl),
+        backgroundColor: theme.scaffoldBackgroundColor,
       ),
       Positioned(
         bottom: -5, // Position at the bottom of the profile picture
@@ -164,8 +165,8 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
             IconButton(
               icon: const Icon(
                 FontAwesomeIcons.plus,
-                color: Colors.black,
-                size: 15,
+                color: Colors.white,
+                size: 17,
               ),
               onPressed: () {},
               padding: EdgeInsets.zero,

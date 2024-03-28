@@ -116,10 +116,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Comments', style: theme.textTheme.headlineSmall),
+        title: Text('Comments', style: theme.textTheme.bodyMedium),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.close, size: 22),
             onPressed: () {
               Navigator.of(context).pop();
             },

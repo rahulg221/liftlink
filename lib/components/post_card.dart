@@ -67,187 +67,136 @@ class _PostCardState extends State<PostCard> {
 
     return Column(
       children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 5),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
           child: Column(
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(
-                  vertical: 5,
-                  horizontal: 16,
-                ),
-                child: Row(
+                child: Column(
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        if (uid != curUserId) {
-                          UtilMethods.navigateTo(
-                            OtherProfileScreen(uid: uid),
-                            context,
-                          );
-                        }
-                      },
-                      child: CircleAvatar(
-                        radius: 17,
-                        backgroundImage: NetworkImage(profilePic),
-                      ),
-                    ),
-                    Expanded(
-                      child: Padding(
-                          padding: const EdgeInsets.only(left: 8),
+                    Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (uid != curUserId) {
+                              UtilMethods.navigateTo(
+                                OtherProfileScreen(uid: uid),
+                                context,
+                              );
+                            }
+                          },
+                          child: CircleAvatar(
+                            radius: 21,
+                            backgroundImage: NetworkImage(profilePic),
+                            backgroundColor: theme.scaffoldBackgroundColor,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
                           child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(username, style: theme.textTheme.bodyMedium),
-                              Text(gymName,
+                              Text(username, style: theme.textTheme.bodyLarge),
+                              Text(createdAt,
                                   style: theme.textTheme.bodySmall!.copyWith(
                                       color: theme.colorScheme.onSurface
                                           .withOpacity(0.7)))
                             ],
-                          )),
-                    ),
-                    personalRecord
-                        ? ElevatedButton.icon(
-                            onPressed: () {},
-                            icon: FaIcon(FontAwesomeIcons.medal,
-                                color: theme.colorScheme.primary, size: 18),
-                            label: Text('PR',
-                                style: theme.textTheme.bodyLarge!.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: theme.colorScheme.primary)),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: theme.colorScheme.surface,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(13),
-                              ),
-                              elevation: 0,
-                            ),
-                          )
-                        : Container(),
-                  ],
-                ),
-              ),
-              GestureDetector(
-                onDoubleTap: () {},
-                child: SizedBox(
-                  height: height * 0.5,
-                  width: width - 32,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(14),
-                    child: Image.network(postPic, fit: BoxFit.cover),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 5,
-                  bottom: 5,
-                  left: 16,
-                  right: 16,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: FaIcon(FontAwesomeIcons.solidHeart,
-                          color: theme.colorScheme.primary, size: 20),
-                      label: Text('$likeCount',
-                          style: theme.textTheme.bodySmall!.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: theme.colorScheme.primary)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.surface,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13),
+                          ),
                         ),
-                        elevation: 0,
+                        /*
+                        personalRecord
+                            ? ElevatedButton.icon(
+                                onPressed: () {},
+                                icon: FaIcon(FontAwesomeIcons.medal,
+                                    color: theme.colorScheme.secondary,
+                                    size: 18),
+                                label: Text('PR',
+                                    style: theme.textTheme.bodyLarge!.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: theme.colorScheme.secondary)),
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: theme.colorScheme.secondary
+                                      .withOpacity(0.4),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(13),
+                                  ),
+                                  elevation: 10,
+                                ),
+                              )
+                            : Container(),*/
+                      ],
+                    ),
+                    const SizedBox(height: 12),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '$caption',
+                        style: theme.textTheme.bodyMedium,
                       ),
                     ),
-                    const SizedBox(width: 5),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        UtilMethods.showPartialScreen(
-                            CommentsScreen(data: widget.data), context, 0.75);
-                      },
-                      icon: FaIcon(FontAwesomeIcons.solidComment,
-                          color: theme.colorScheme.primary, size: 20),
-                      label: Text('$commentCount',
-                          style: theme.textTheme.bodySmall!.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: theme.colorScheme.primary)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.surface,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13),
+                    const SizedBox(height: 12),
+                    GestureDetector(
+                      onDoubleTap: () {},
+                      child: SizedBox(
+                        height: height * 0.4,
+                        width: width - 32,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(14),
+                          child: Image.network(postPic, fit: BoxFit.cover),
                         ),
-                        elevation: 0,
                       ),
                     ),
-                    const Expanded(child: SizedBox()),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        UtilMethods.showSnackBar(
-                            '$username has a consistency score of $streak!',
-                            context);
-                      },
-                      icon: FaIcon(FontAwesomeIcons.boltLightning,
-                          color: theme.colorScheme.primary, size: 20),
-                      label: Text('$streak',
-                          style: theme.textTheme.bodySmall!.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: theme.colorScheme.primary)),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.colorScheme.surface,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(13),
-                        ),
-                        elevation: 0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: RichText(
-                        text: TextSpan(
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            TextSpan(
-                                text: username,
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                  color: theme.colorScheme.onSurface
-                                      .withOpacity(0.8),
-                                  fontWeight: FontWeight.bold,
-                                )),
-                            TextSpan(
-                                text: ' $caption\n',
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                    color: theme.colorScheme.onSurface
-                                        .withOpacity(0.8))),
-                            TextSpan(
-                                text: createdAt,
-                                style: theme.textTheme.bodySmall!.copyWith(
-                                    color: theme.colorScheme.onSurface
-                                        .withOpacity(0.7))),
+                            FaIcon(FontAwesomeIcons.heart,
+                                color: theme.colorScheme.primary, size: 24),
+                            const SizedBox(width: 8),
+                            Text(
+                              '$likeCount likes',
+                              style: theme.textTheme.bodyMedium,
+                            ),
                           ],
                         ),
-                      ),
+                        const SizedBox(width: 16),
+                        GestureDetector(
+                          onTap: () {
+                            UtilMethods.showPartialScreen(
+                                CommentsScreen(data: widget.data),
+                                context,
+                                0.75);
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              FaIcon(FontAwesomeIcons.commentDots,
+                                  color: theme.colorScheme.primary, size: 24),
+                              const SizedBox(width: 8),
+                              Text(
+                                '$commentCount comments',
+                                style: theme.textTheme.bodyMedium,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
+              //const SizedBox(height: 5),
             ],
           ),
+        ),
+        Divider(
+          color: theme.colorScheme.surface,
+          thickness: 1,
         ),
       ],
     );

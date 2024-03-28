@@ -15,11 +15,11 @@ class ColorPalette {
   static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
   static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   // Primary colors
-  static Color darkPrimaryColor = Color.fromARGB(255, 242, 68, 65);
-  static Color lightPrimaryColor = Color.fromARGB(255, 255, 60, 57);
+  static Color darkPrimaryColor = Colors.redAccent;
+  static Color lightPrimaryColor = Colors.red;
   // Secondary colors
-  static Color darkSecondaryColor = Color.fromARGB(255, 242, 68, 65);
-  static Color lightSecondaryColor = Color.fromARGB(255, 255, 60, 57);
+  static Color darkSecondaryColor = Color.fromARGB(255, 118, 210, 253);
+  static Color lightSecondaryColor = Color.fromARGB(255, 96, 200, 235);
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
   static Color lightBackgroundHeaderColor = Colors.black;
@@ -27,8 +27,8 @@ class ColorPalette {
   static Color darkOnBackgroundColor = Colors.white;
   static Color lightOnBackgroundColor = Colors.black;
   // On surface
-  static Color darkOnSurfaceColor = Colors.white.withOpacity(0.9);
-  static Color lightOnSurfaceColor = Colors.black.withOpacity(0.9);
+  static Color darkOnSurfaceColor = Colors.white.withOpacity(0.85);
+  static Color lightOnSurfaceColor = Colors.black.withOpacity(0.85);
   // On primary
   static Color darkOnPrimaryColor = Colors.black;
   static Color lightOnPrimaryColor = Colors.black;
@@ -63,6 +63,21 @@ class ThemeConfig {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ColorPalette.lightSecondaryColor,
       foregroundColor: ColorPalette.lightOnSecondaryColor,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor:
+          MaterialStateProperty.all(ColorPalette.lightOnBackgroundColor),
+      trackColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return ColorPalette.lightPrimaryColor;
+        }
+        return ColorPalette.lightOnSurfaceColor.withOpacity(0.2);
+      }),
+      trackOutlineColor: MaterialStateProperty.resolveWith(
+        (final Set<MaterialState> states) {
+          return ColorPalette.lightBackgroundColor;
+        },
+      ),
     ),
     appBarTheme: AppBarTheme(
       color: ColorPalette.lightAppBarColor,
@@ -130,6 +145,20 @@ class ThemeConfig {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: ColorPalette.darkSecondaryColor,
       foregroundColor: ColorPalette.darkOnSecondaryColor,
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: MaterialStateProperty.all(ColorPalette.darkOnBackgroundColor),
+      trackColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return ColorPalette.darkPrimaryColor;
+        }
+        return ColorPalette.darkOnSurfaceColor.withOpacity(0.2);
+      }),
+      trackOutlineColor: MaterialStateProperty.resolveWith(
+        (final Set<MaterialState> states) {
+          return ColorPalette.darkBackgroundColor;
+        },
+      ),
     ),
     appBarTheme: AppBarTheme(
       color: ColorPalette.darkAppBarColor,

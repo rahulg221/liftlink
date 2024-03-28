@@ -70,6 +70,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
           ? const Center(child: CircularProgressIndicator())
           : Column(
               children: [
+                const SizedBox(height: 8),
                 Expanded(
                   child: ListView.builder(
                     itemCount: _posts.length,
