@@ -28,15 +28,15 @@ class UtilMethods {
     final int differenceInMinutes = now.difference(parsedDate).inMinutes;
 
     if (differenceInMinutes < 1) {
-      return 'Just now';
+      return 'just now';
     } else if (differenceInMinutes < 60) {
-      return '$differenceInMinutes mins ago';
+      return '${differenceInMinutes}m ago';
     } else if (differenceInMinutes < 1440) {
       final int hours = differenceInMinutes ~/ 60;
-      return '$hours hrs ago';
+      return '${hours}h ago';
     } else {
       final int days = differenceInMinutes ~/ 1440;
-      return '$days days ago';
+      return '${days}d ago';
     }
   }
 
@@ -58,8 +58,11 @@ class UtilMethods {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return FractionallySizedBox(
-          heightFactor: heightRatio, // Percentage of screen height
-          child: screenName,
+          heightFactor: heightRatio, 
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20), 
+             child: screenName, 
+            ),
         );
       },
     );

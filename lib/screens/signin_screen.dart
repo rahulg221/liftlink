@@ -3,6 +3,7 @@ import 'package:fitness_app/screens/forgot_password_screen.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/screens/signup_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/primary_button.dart';
 import 'package:fitness_app/components/signinoptions.dart';
@@ -102,7 +103,8 @@ class _SignInScreenState extends State<SignInScreen> {
         automaticallyImplyLeading: false,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
+        padding: EdgeInsets.only(
+            left: isWeb ? 320 : 32, right: isWeb ? 320 : 32, bottom: 8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

@@ -65,7 +65,7 @@ class DbMethods {
       if (kDebugMode) {
         print(e.toString());
       }
-
+      
       throw Exception('An unexpected error occurred: $e');
     }
   }

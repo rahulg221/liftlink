@@ -45,3 +45,18 @@ flutter:
     - family: Exo2
       fonts:
         - asset: assets/fonts/Exo2-VariableFont_wght.ttf
+    - family: Acme
+      fonts:
+        - asset: assets/fonts/Acme-Regular.ttf
+    - family: Madimi
+      fonts:
+        - asset: assets/fonts/MadimiOne-Regular.ttf
+    - family: Lilita
+      fonts:
+        - asset: assets/fonts/LilitaOne-Regular.ttf
+    - family: Fredoka
+      fonts:
+        - asset: assets/fonts/Fredoka-VariableFont_wdth,wght.ttf
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-VariableFont_wght.ttf

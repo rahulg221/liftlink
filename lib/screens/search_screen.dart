@@ -3,6 +3,7 @@ import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/other_profiles_screen.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -74,29 +75,43 @@ class _SearchScreenState extends State<SearchScreen> {
 
     return Scaffold(
       appBar: AppBar(
+        leading: CupertinoButton(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: Icon(
+            CupertinoIcons.back,
+            color: theme.colorScheme.onBackground,
+          ),
+          onPressed: () {
+            UtilMethods.navigateTo(const MobileScreenLayout(), context);
+          },
+        ),
         actions: [
-          SizedBox(
-            width: width - 100,
-            height: 40,
-            child: TextField(
-              controller: _searchController,
-              style: theme.textTheme.bodySmall,
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                hintText: 'Search for users...',
-                filled: true,
-                fillColor: Theme.of(context).colorScheme.surface,
-                hintStyle: theme.textTheme.bodySmall,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20.0),
-                  borderSide: BorderSide.none,
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: SizedBox(
+              width: width - 100,
+              height: 45,
+              child: TextField(
+                controller: _searchController,
+                style: theme.textTheme.bodySmall,
+                decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Search for users...',
+                  filled: true,
+                  fillColor: Theme.of(context).colorScheme.surface,
+                  hintStyle: theme.textTheme.bodySmall,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(25.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                      vertical: 0.0, horizontal: 15.0),
                 ),
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 0.0, horizontal: 15.0),
               ),
             ),
           ),
           IconButton(
+            padding: const EdgeInsets.only(top: 8.0),
             icon: const Icon(Icons.clear),
             onPressed: () {
               _searchController.clear();

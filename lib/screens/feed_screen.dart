@@ -5,6 +5,7 @@ import 'package:fitness_app/screens/search_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:fitness_app/screens/settings_screen.dart';
 
 class FeedScreen extends StatefulWidget {
   const FeedScreen({Key? key}) : super(key: key);
@@ -19,26 +20,37 @@ class _FeedScreenState extends State<FeedScreen> {
     final theme = Theme.of(context);
 
     return DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
+        length: 2,
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: AppBar(
           centerTitle: true,
-          title: Text('Home', style: theme.textTheme.headlineSmall),
-          bottom: TabBar(
-            labelStyle: theme.textTheme.bodyLarge,
+          leading: IconButton(
+            icon: Icon(
+              FontAwesomeIcons.gear,
+              size: theme.iconTheme.size,
+              color: theme.iconTheme.color,
+            ),
+            onPressed: () {
+              UtilMethods.navigateTo(const SettingsScreen(), context);
+            },
+          ),
+          title: TabBar(
+            labelStyle: theme.textTheme.bodyMedium!.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
             tabs: const [
-              Tab(
-                text: 'Explore',
-              ),
-              Tab(text: 'My Gym'),
               Tab(text: 'Following'),
+              Tab(text: 'My Gym'),
             ],
           ),
           actions: [
             IconButton(
-              icon: Icon(FontAwesomeIcons.magnifyingGlass,
-                  size: theme.iconTheme.size, color: theme.iconTheme.color),
+              icon: Icon(
+                FontAwesomeIcons.magnifyingGlass,
+                size: theme.iconTheme.size,
+                color: theme.iconTheme.color,
+              ),
               onPressed: () {
                 UtilMethods.navigateTo(const SearchScreen(), context);
               },
@@ -48,9 +60,8 @@ class _FeedScreenState extends State<FeedScreen> {
         ),
         body: const TabBarView(
           children: [
-            ExploreScreen(),
-            MyGymScreen(),
             FollowingScreen(),
+            MyGymScreen(),
           ],
         ),
       ),

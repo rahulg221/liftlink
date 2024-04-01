@@ -87,14 +87,11 @@ class _CommentCardState extends State<CommentCard> {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 4),
-                      child: Text(createdAt,
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodySmall!
-                              .copyWith(fontSize: 13)),
-                    ),
+                    Text(createdAt,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall!
+                            .copyWith(fontSize: 13)),
                   ],
                 ),
               ),

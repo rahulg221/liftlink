@@ -12,8 +12,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class CreatePostScreen extends StatefulWidget {
-  Uint8List postPic;
-  CreatePostScreen({super.key, required this.postPic});
+  final Uint8List postPic;
+  const CreatePostScreen({super.key, required this.postPic});
 
   @override
   State<CreatePostScreen> createState() => _CreatePostScreenState();
@@ -23,6 +23,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
   final TextEditingController _captionController = TextEditingController();
   bool isSwitched = false;
   bool _isLoading = false;
+
+  Uint8List? postPic;
 
   String username = '';
   String profilePic = '';
@@ -38,6 +40,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     profilePic = userProvider.getUser.profilePic;
     uid = userProvider.getUser.uid;
     streak = userProvider.getUser.streak;
+    postPic = widget.postPic;
   }
 
   Future<void> uploadPost() async {
@@ -52,7 +55,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
 
     // Upload the post
-    await DbMethods().uploadPost(widget.postPic!, username, uid, profilePic,
+    await DbMethods().uploadPost(widget.postPic, username, uid, profilePic,
         streak, _captionController.text);
 
     // Clear the caption field
@@ -73,7 +76,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
 
     setState(() {
-      widget.postPic = image!;
+      postPic = image!;
     });
   }
 

@@ -185,7 +185,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                       ? theme.colorScheme.surface
                       : theme.colorScheme.primary
                   : theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(11),
         ),
         child: Center(
           child: _isLoading

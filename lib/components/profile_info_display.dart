@@ -37,7 +37,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
           const SizedBox(height: 12),
           Text('@${widget.username}',
               style: theme.textTheme.headlineSmall!
-                  .copyWith(fontWeight: FontWeight.bold)),
+                  ),
           const SizedBox(height: 12),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +115,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
         decoration: BoxDecoration(
           color:
               isPrimary ? theme.colorScheme.primary : theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(11),
         ),
         child: Center(
           child: Text(

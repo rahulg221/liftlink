@@ -2,6 +2,7 @@ import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/comment_screen.dart';
 import 'package:fitness_app/screens/other_profiles_screen.dart';
+import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -68,7 +69,8 @@ class _PostCardState extends State<PostCard> {
     return Column(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: isWeb ? 160 : 16.0, vertical: isWeb ? 120 : 12.0),
           child: Column(
             children: [
               Container(
@@ -86,25 +88,26 @@ class _PostCardState extends State<PostCard> {
                             }
                           },
                           child: CircleAvatar(
-                            radius: 21,
+                            radius: 19,
                             backgroundImage: NetworkImage(profilePic),
                             backgroundColor: theme.scaffoldBackgroundColor,
                           ),
                         ),
                         const SizedBox(width: 12),
                         Expanded(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
                             children: [
-                              Text(username, style: theme.textTheme.bodyLarge),
-                              Text(createdAt,
+                              Text(username, style: theme.textTheme.bodySmall),
+                              Text(' • ',
                                   style: theme.textTheme.bodySmall!.copyWith(
-                                      color: theme.colorScheme.onSurface
-                                          .withOpacity(0.7)))
+                                      color: theme.colorScheme.primary, fontSize: 30)),
+                              Text(createdAt,
+                                  style: theme.textTheme.bodySmall),
                             ],
                           ),
                         ),
+                        const FaIcon(FontAwesomeIcons.ellipsisVertical,
+                            size: 16),
                         /*
                         personalRecord
                             ? ElevatedButton.icon(
@@ -128,7 +131,7 @@ class _PostCardState extends State<PostCard> {
                             : Container(),*/
                       ],
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
@@ -136,7 +139,7 @@ class _PostCardState extends State<PostCard> {
                         style: theme.textTheme.bodyMedium,
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     GestureDetector(
                       onDoubleTap: () {},
                       child: SizedBox(
@@ -148,7 +151,7 @@ class _PostCardState extends State<PostCard> {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 12),
+                    const SizedBox(height: 8),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -156,7 +159,7 @@ class _PostCardState extends State<PostCard> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             FaIcon(FontAwesomeIcons.heart,
-                                color: theme.colorScheme.primary, size: 24),
+                                color: theme.colorScheme.primary, size: 21),
                             const SizedBox(width: 8),
                             Text(
                               '$likeCount likes',
@@ -168,7 +171,7 @@ class _PostCardState extends State<PostCard> {
                         GestureDetector(
                           onTap: () {
                             UtilMethods.showPartialScreen(
-                                CommentsScreen(data: widget.data),
+                                CommentsScreen(data: widget.data, commentCount: commentCount),
                                 context,
                                 0.75);
                           },
@@ -176,7 +179,7 @@ class _PostCardState extends State<PostCard> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               FaIcon(FontAwesomeIcons.commentDots,
-                                  color: theme.colorScheme.primary, size: 24),
+                                  color: theme.colorScheme.primary, size: 21),
                               const SizedBox(width: 8),
                               Text(
                                 '$commentCount comments',
@@ -190,13 +193,8 @@ class _PostCardState extends State<PostCard> {
                   ],
                 ),
               ),
-              //const SizedBox(height: 5),
             ],
           ),
-        ),
-        Divider(
-          color: theme.colorScheme.surface,
-          thickness: 1,
         ),
       ],
     );

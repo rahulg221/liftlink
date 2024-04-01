@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-const customFont = 'Poppins';
+const customFont = 'Fredoka';
 
-const double iconSize = 22.0;
+const double iconSize = 20.0;
+
+bool isWeb = kIsWeb;
 
 const String dummyImage =
     'https://i.pinimg.com/originals/8e/6c/41/8e6c415ce319ca467b93c529bc1f3724.jpg';

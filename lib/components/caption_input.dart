@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CaptionInput extends StatefulWidget {
-  TextEditingController textEditingController = TextEditingController();
+  final TextEditingController textEditingController;
 
-  CaptionInput({
+  const CaptionInput({
     Key? key,
     required this.textEditingController,
   }) : super(key: key);
@@ -17,7 +17,6 @@ class _CaptionInputState extends State<CaptionInput> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
 
     return SizedBox(
       width: width * .4,

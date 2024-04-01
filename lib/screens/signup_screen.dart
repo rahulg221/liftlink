@@ -133,7 +133,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Padding(
-        padding: const EdgeInsets.only(left: 32, right: 32, bottom: 8),
+        padding: EdgeInsets.only(
+            left: isWeb ? 320 : 32, right: isWeb ? 320 : 32, bottom: 8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

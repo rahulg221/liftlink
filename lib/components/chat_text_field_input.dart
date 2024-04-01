@@ -67,7 +67,7 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
                     fillColor: Theme.of(context).colorScheme.surface,
                     hintStyle: theme.textTheme.bodySmall,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20.0),
+                      borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide.none,
                     ),
                     contentPadding: const EdgeInsets.symmetric(
@@ -79,7 +79,6 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
           ),
           widget.textEditingController.text.isNotEmpty
               ? Container(
-                  width: 45,
                   decoration: BoxDecoration(
                     color: theme.colorScheme.primary,
                     shape: BoxShape.circle,
