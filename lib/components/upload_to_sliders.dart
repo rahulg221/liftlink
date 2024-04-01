@@ -114,7 +114,7 @@ class _UploadSlidersState extends State<UploadSliders> {
             Icon(FontAwesomeIcons.userGroup,
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
-            Text('Friends only',
+            Text('Followers only',
                 style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
@@ -142,7 +142,7 @@ class _UploadSlidersState extends State<UploadSliders> {
             Icon(FontAwesomeIcons.cloudArrowDown,
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
-            Text('Save post',
+            Text('Save to profile',
                 style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),

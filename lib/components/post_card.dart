@@ -88,7 +88,7 @@ class _PostCardState extends State<PostCard> {
                             }
                           },
                           child: CircleAvatar(
-                            radius: 19,
+                            radius: 18,
                             backgroundImage: NetworkImage(profilePic),
                             backgroundColor: theme.scaffoldBackgroundColor,
                           ),

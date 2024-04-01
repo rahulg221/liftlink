@@ -148,7 +148,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               children: [
                                 SizedBox(
                                   height: height *
-                                      0.252, // Find a way to make this same height as caption input
+                                      0.265, // Find a way to make this same height as caption input
                                   width: width * 0.4,
                                   child: ClipRRect(
                                     borderRadius: BorderRadius.circular(14),
@@ -181,7 +181,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     onTap: takePhoto,
                     child: Container(
                       width: (width - 32) * 0.46,
-                      height: 50,
+                      height: 45,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.surface,
                         borderRadius: BorderRadius.circular(10),
@@ -201,7 +201,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                     onTap: uploadPost,
                     child: Container(
                       width: (width - 32) * 0.46,
-                      height: 50,
+                      height: 45,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.primary,
                         borderRadius: BorderRadius.circular(10),
