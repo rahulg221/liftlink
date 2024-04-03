@@ -18,7 +18,7 @@ class PrimaryButton extends StatelessWidget {
 
     return SizedBox(
       width: 225,
-      height: 50,
+      height: 45,
       child: ElevatedButton(
         onPressed: isLoading ? null : onTap,
         style: ElevatedButton.styleFrom(

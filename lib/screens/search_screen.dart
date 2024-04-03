@@ -119,11 +119,11 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Expanded(
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Expanded(
                   child: ListView.builder(
                     itemCount: _searchResults.length,
                     itemBuilder: (context, index) {
@@ -145,8 +145,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     },
                   ),
                 ),
-        ],
-      ),
+              ],
+            ),
     );
   }
 }

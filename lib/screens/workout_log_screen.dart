@@ -21,7 +21,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Log', style: theme.textTheme.headlineSmall),
+        title: Text('Messages', style: theme.textTheme.headlineSmall),
         actions: [
           IconButton(
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
@@ -33,8 +33,7 @@ class _WorkoutLogScreenState extends State<WorkoutLogScreen> {
         ],
         automaticallyImplyLeading: false,
       ),
-      body: const Center(child: Text('Workout log screen')),
-      floatingActionButton: const LogButton(),
+      body: const Center(child: Text('Messaging screen')),
     );
   }
 }

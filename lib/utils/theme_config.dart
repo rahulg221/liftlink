@@ -5,19 +5,19 @@ import 'dart:ui';
 class ColorPalette {
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;
-  static Color lightBackgroundColor = const Color.fromARGB(255, 245, 245, 245);
+  static Color lightBackgroundColor = Color.fromARGB(255, 250, 250, 250);
   // App bar colors
-  static Color darkAppBarColor = Colors.black;
-  static Color lightAppBarColor = const Color.fromARGB(255, 245, 245, 245);
+  static Color darkAppBarColor = darkBackgroundColor;
+  static Color lightAppBarColor = lightBackgroundColor;
   // Nav bar colors
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
-  static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
-  static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
+  static Color darkSurfaceColor = Color.fromARGB(255, 24, 24, 24);
+  static Color lightSurfaceColor = Color.fromARGB(255, 240, 240, 240);
   // Primary colors
   static Color darkPrimaryColor = Color(0xFFFF6B6B);
-  static Color lightPrimaryColor = Colors.lightBlue;
+  static Color lightPrimaryColor = Color(0xFFFF6B6B);
   // Secondary colors
   static Color darkSecondaryColor = Color.fromARGB(255, 118, 210, 253);
   static Color lightSecondaryColor = Color.fromARGB(255, 96, 200, 235);
@@ -92,7 +92,7 @@ class ThemeConfig {
     ),
     textTheme: TextTheme(
       headlineLarge: TextStyle(
-        fontSize: 33,
+        fontSize: 30,
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
@@ -188,7 +188,7 @@ class ThemeConfig {
     ),
     textTheme: TextTheme(
       headlineLarge: TextStyle(
-        fontSize: 33,
+        fontSize: 30,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
@@ -212,7 +212,7 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 17,
+        fontSize: 18,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
@@ -220,7 +220,7 @@ class ThemeConfig {
         ],
       ),
       bodyMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 17,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
@@ -228,7 +228,7 @@ class ThemeConfig {
         ],
       ),
       bodySmall: TextStyle(
-        fontSize: 15,
+        fontSize: 16,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[

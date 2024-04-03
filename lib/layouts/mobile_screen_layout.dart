@@ -56,9 +56,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         children: [
           FeedScreen(),
           FriendsScreen(),
-          UploadScreen(),
           WorkoutLogScreen(),
-          ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(

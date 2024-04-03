@@ -25,7 +25,7 @@ class BottomNavBar extends StatelessWidget {
       onTap: (index) {
         pageController.jumpToPage(index);
       },
-      items: [
+      items: const [
         BottomNavigationBarItem(
           icon: Icon(FontAwesomeIcons.house, size: iconSize),
           label: null,
@@ -35,15 +35,7 @@ class BottomNavBar extends StatelessWidget {
           label: null,
         ),
         BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.plus, size: iconSize),
-          label: null,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.dumbbell, size: iconSize),
-          label: null,
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.solidUser, size: iconSize),
+          icon: Icon(FontAwesomeIcons.solidMessage, size: iconSize),
           label: null,
         ),
       ],

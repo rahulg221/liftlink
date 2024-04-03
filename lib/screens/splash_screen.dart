@@ -4,7 +4,6 @@ import 'package:fitness_app/screens/signin_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:fitness_app/supabase/auth_methods.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -27,7 +26,7 @@ class _SplashPageState extends State<SplashScreen> {
     if (!mounted) {
       return;
     }
-    
+
     final session = supabase.auth.currentSession;
 
     if (session != null) {

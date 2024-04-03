@@ -20,6 +20,7 @@ class _MyGymScreenState extends State<MyGymScreen> {
             padding: EdgeInsets.only(bottom: 6.0),
             child: Center(child: Text('my Gym screen'))),
       ),
+      //floatingActionButton: const LogButton(),
     );
   }
 }

@@ -45,6 +45,8 @@ class _CommentCardState extends State<CommentCard> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Container(
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
         child: Row(
@@ -60,42 +62,53 @@ class _CommentCardState extends State<CommentCard> {
               },
               child: CircleAvatar(
                 backgroundImage: NetworkImage(profilePic),
-                radius: 18,
+                radius: 13,
               ),
             ),
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+                padding: const EdgeInsets.only(left: 16, right: 5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    RichText(
-                      text: TextSpan(
+                    Expanded(
+                      // Use Expanded to ensure the column takes up all available space
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          TextSpan(
-                            text: '$username',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall!
-                                .copyWith(fontWeight: FontWeight.bold),
+                          Row(
+                            children: [
+                              Text('@$username',
+                                  style: theme.textTheme.bodySmall),
+                              Text(' • ',
+                                  style: theme.textTheme.bodySmall!.copyWith(
+                                      color: theme.colorScheme.primary,
+                                      fontSize: 25)),
+                              Text(createdAt, style: theme.textTheme.bodySmall),
+                            ],
                           ),
-                          TextSpan(
-                            text: ' $comment',
-                            style: Theme.of(context).textTheme.bodySmall,
+                          Text(
+                            comment,
+                            style: theme.textTheme.bodySmall,
+                            softWrap: true,
+                            overflow: TextOverflow
+                                .visible, // Visible overflow can be removed if wrapping is working
                           ),
                         ],
                       ),
                     ),
-                    Text(createdAt,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall!
-                            .copyWith(fontSize: 13)),
+                    const SizedBox(width: 3),
+                    Text(
+                      'Reply',
+                      style: theme.textTheme.bodySmall!.copyWith(
+                        color: theme.colorScheme.primary,
+                      ),
+                    ),
                   ],
                 ),
               ),
-            ),
+            )
           ],
         ));
   }

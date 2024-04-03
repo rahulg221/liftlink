@@ -97,12 +97,12 @@ class _PostCardState extends State<PostCard> {
                         Expanded(
                           child: Row(
                             children: [
-                              Text(username, style: theme.textTheme.bodySmall),
+                              Text(username, style: theme.textTheme.bodyMedium),
                               Text(' • ',
                                   style: theme.textTheme.bodySmall!.copyWith(
-                                      color: theme.colorScheme.primary, fontSize: 30)),
-                              Text(createdAt,
-                                  style: theme.textTheme.bodySmall),
+                                      color: theme.colorScheme.primary,
+                                      fontSize: 30)),
+                              Text(createdAt, style: theme.textTheme.bodySmall),
                             ],
                           ),
                         ),
@@ -131,14 +131,13 @@ class _PostCardState extends State<PostCard> {
                             : Container(),*/
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        '$caption',
-                        style: theme.textTheme.bodyMedium,
-                      ),
-                    ),
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          '$caption',
+                          style: theme.textTheme.bodyMedium,
+                        )),
                     const SizedBox(height: 8),
                     GestureDetector(
                       onDoubleTap: () {},
@@ -171,7 +170,9 @@ class _PostCardState extends State<PostCard> {
                         GestureDetector(
                           onTap: () {
                             UtilMethods.showPartialScreen(
-                                CommentsScreen(data: widget.data, commentCount: commentCount),
+                                CommentsScreen(
+                                    data: widget.data,
+                                    commentCount: commentCount),
                                 context,
                                 0.75);
                           },

@@ -1,6 +1,9 @@
 import 'package:fitness_app/components/other_profile_info_display.dart';
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/utils/util_methods.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -77,10 +80,18 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              CupertinoIcons.back,
+              color: theme.colorScheme.onBackground,
+            ),
+            onPressed: () {
+              UtilMethods.navigateTo(const MobileScreenLayout(), context);
+            },
+          ),
           centerTitle: true,
           title: Text(username, style: theme.textTheme.headlineSmall),
-          
         ),
         body: Align(
           alignment: Alignment.center,

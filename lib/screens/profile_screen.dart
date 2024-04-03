@@ -1,7 +1,9 @@
+import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/components/profile_info_display.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -57,6 +59,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text('Profile', style: theme.textTheme.headlineSmall),
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              CupertinoIcons.back,
+              color: theme.colorScheme.onBackground,
+            ),
+            onPressed: () {
+              UtilMethods.navigateTo(const MobileScreenLayout(), context);
+            },
+          ),
           actions: [
             IconButton(
               icon: Icon(FontAwesomeIcons.gear,

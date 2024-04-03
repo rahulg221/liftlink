@@ -117,7 +117,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Create post', style: theme.textTheme.headlineSmall),
+          title: Text('Post a flic', style: theme.textTheme.headlineSmall),
           leading: CupertinoButton(
             padding: EdgeInsets.zero,
             child: Icon(

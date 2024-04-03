@@ -12,7 +12,7 @@ class SignInOptions extends StatelessWidget {
       children: [
         SizedBox(
           width: 225,
-          height: 45,
+          height: 40,
           child: ElevatedButton.icon(
             onPressed: () {
               // Handle sign in with Google
@@ -37,7 +37,7 @@ class SignInOptions extends StatelessWidget {
         const SizedBox(height: 16),
         SizedBox(
           width: 225,
-          height: 45,
+          height: 40,
           child: ElevatedButton.icon(
             onPressed: () {
               // Handle sign in with Apple

@@ -1,3 +1,4 @@
+import 'package:fitness_app/components/log_button.dart';
 import 'package:fitness_app/screens/search_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Friends', style: theme.textTheme.headlineSmall),
+        title: Text('Workout Sessions', style: theme.textTheme.headlineSmall),
         actions: [
           IconButton(
             icon: Icon(FontAwesomeIcons.magnifyingGlass,
