@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-const customFont = 'Fredoka';
+const customFont = 'Nunito';
 
-const double iconSize = 20.0;
+const double iconSize = 24.0;
 
 bool isWeb = kIsWeb;
 

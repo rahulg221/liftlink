@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'dart:ui';
 
 class ColorPalette {
+  // Custom colors
+  static Color coral = Color(0xFFFF6B6B);
+  static Color lightBlue = Color.fromARGB(255, 43, 185, 251);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;
   static Color lightBackgroundColor = Color.fromARGB(255, 250, 250, 250);
@@ -16,11 +19,11 @@ class ColorPalette {
   static Color darkSurfaceColor = Color.fromARGB(255, 24, 24, 24);
   static Color lightSurfaceColor = Color.fromARGB(255, 240, 240, 240);
   // Primary colors
-  static Color darkPrimaryColor = Color(0xFFFF6B6B);
-  static Color lightPrimaryColor = Color(0xFFFF6B6B);
+  static Color darkPrimaryColor = coral;
+  static Color lightPrimaryColor = lightBlue;
   // Secondary colors
-  static Color darkSecondaryColor = Color.fromARGB(255, 118, 210, 253);
-  static Color lightSecondaryColor = Color.fromARGB(255, 96, 200, 235);
+  static Color darkSecondaryColor = lightBlue;
+  static Color lightSecondaryColor = lightBlue;
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
   static Color lightBackgroundHeaderColor = Colors.black;
@@ -31,8 +34,8 @@ class ColorPalette {
   static Color darkOnSurfaceColor = Colors.white.withOpacity(0.85);
   static Color lightOnSurfaceColor = Colors.black.withOpacity(0.85);
   // On primary
-  static Color darkOnPrimaryColor = Colors.black;
-  static Color lightOnPrimaryColor = Colors.black;
+  static Color darkOnPrimaryColor = Colors.white;
+  static Color lightOnPrimaryColor = Colors.white;
   // On secondary
   static Color darkOnSecondaryColor = Colors.white.withOpacity(0.9);
   static Color lightOnSecondaryColor = Colors.white.withOpacity(0.9);
@@ -96,7 +99,7 @@ class ThemeConfig {
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
-          FontVariation('wght', 500),
+          FontVariation('wght', 400),
         ],
       ),
       headlineMedium: TextStyle(
@@ -104,7 +107,7 @@ class ThemeConfig {
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
-          FontVariation('wght', 500),
+          FontVariation('wght', 400),
         ],
       ),
       headlineSmall: TextStyle(
@@ -112,18 +115,10 @@ class ThemeConfig {
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
-          FontVariation('wght', 500),
-        ],
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 17,
-        color: ColorPalette.lightOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: <FontVariation>[
           FontVariation('wght', 400),
         ],
       ),
-      bodyMedium: TextStyle(
+      bodyLarge: TextStyle(
         fontSize: 16,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
@@ -131,8 +126,16 @@ class ThemeConfig {
           FontVariation('wght', 400),
         ],
       ),
-      bodySmall: TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 15,
+        color: ColorPalette.lightOnBackgroundColor,
+        fontFamily: customFont,
+        fontVariations: <FontVariation>[
+          FontVariation('wght', 400),
+        ],
+      ),
+      bodySmall: TextStyle(
+        fontSize: 14,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[
@@ -212,14 +215,6 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 18,
-        color: ColorPalette.darkOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: <FontVariation>[
-          FontVariation('wght', 400),
-        ],
-      ),
-      bodyMedium: TextStyle(
         fontSize: 17,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
@@ -227,8 +222,16 @@ class ThemeConfig {
           FontVariation('wght', 400),
         ],
       ),
-      bodySmall: TextStyle(
+      bodyMedium: TextStyle(
         fontSize: 16,
+        color: ColorPalette.darkOnBackgroundColor,
+        fontFamily: customFont,
+        fontVariations: <FontVariation>[
+          FontVariation('wght', 400),
+        ],
+      ),
+      bodySmall: TextStyle(
+        fontSize: 15,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: <FontVariation>[

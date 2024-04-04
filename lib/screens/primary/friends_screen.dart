@@ -1,23 +1,21 @@
+import 'package:fitness_app/components/create_session_button.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/explore_screen.dart';
-import 'package:fitness_app/screens/following_screen.dart';
-import 'package:fitness_app/screens/my_gym_screen.dart';
-import 'package:fitness_app/screens/profile_screen.dart';
-import 'package:fitness_app/screens/search_screen.dart';
+import 'package:fitness_app/screens/primary/sessions/friends_sessions.dart';
+import 'package:fitness_app/screens/secondary/profile_screen.dart';
+import 'package:fitness_app/screens/secondary/search_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:fitness_app/screens/settings_screen.dart';
 import 'package:provider/provider.dart';
 
-class FeedScreen extends StatefulWidget {
-  const FeedScreen({Key? key}) : super(key: key);
+class FriendsScreen extends StatefulWidget {
+  const FriendsScreen({Key? key}) : super(key: key);
 
   @override
-  State<FeedScreen> createState() => _FeedScreenState();
+  State<FriendsScreen> createState() => _FriendsScreenState();
 }
 
-class _FeedScreenState extends State<FeedScreen> {
+class _FriendsScreenState extends State<FriendsScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -45,23 +43,15 @@ class _FeedScreenState extends State<FeedScreen> {
               ),
             ],
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('flic', style: theme.textTheme.headlineLarge),
-              Text('fit',
-                  style: theme.textTheme.headlineLarge!
-                      .copyWith(color: theme.colorScheme.primary)),
-            ],
-          ),
+          title: Text('Workout Sessions', style: theme.textTheme.headlineSmall),
           bottom: TabBar(
             labelStyle: theme.textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
             ),
             tabs: const [
-              Tab(text: 'Following'),
+              Tab(text: 'Gym Bros'),
+              Tab(text: 'Friends'),
               Tab(text: 'My Gym'),
-              Tab(text: 'Explore'),
             ],
           ),
           actions: [
@@ -79,8 +69,13 @@ class _FeedScreenState extends State<FeedScreen> {
           automaticallyImplyLeading: false,
         ),
         body: const TabBarView(
-          children: [FollowingScreen(), MyGymScreen(), ExploreScreen()],
+          children: [
+            FriendsSessionsScreen(),
+            FriendsSessionsScreen(),
+            FriendsSessionsScreen(),
+          ],
         ),
+        floatingActionButton: const RequestButton(),
       ),
     );
   }

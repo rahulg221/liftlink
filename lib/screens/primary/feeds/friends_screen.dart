@@ -1,4 +1,3 @@
-import 'package:fitness_app/components/log_button.dart';
 import 'package:fitness_app/components/post_card.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
@@ -33,10 +32,8 @@ class _FollowingScreenState extends State<FollowingScreen> {
         await DbMethods().getFollowingPosts(postLimit, fetchedPostCount, uid);
 
     // Add all new posts to current list of posts
-    setState(() {
-      _posts.addAll(newPosts);
-      fetchedPostCount = _posts.length;
-    });
+    _posts.addAll(newPosts);
+    fetchedPostCount = _posts.length;
 
     stopLoading();
   }
@@ -82,7 +79,6 @@ class _FollowingScreenState extends State<FollowingScreen> {
                 ),
               ],
             ),
-      floatingActionButton: const LogButton(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:fitness_app/models/comments.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/other_profiles_screen.dart';
+import 'package:fitness_app/screens/secondary/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,7 +48,7 @@ class _CommentCardState extends State<CommentCard> {
     final theme = Theme.of(context);
 
     return Container(
-        padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 16),
+        padding: const EdgeInsets.only(bottom: 30, left: 16, right: 16),
         child: Row(
           children: [
             GestureDetector(
@@ -62,7 +62,7 @@ class _CommentCardState extends State<CommentCard> {
               },
               child: CircleAvatar(
                 backgroundImage: NetworkImage(profilePic),
-                radius: 13,
+                radius: 16,
               ),
             ),
             Expanded(
@@ -72,19 +72,18 @@ class _CommentCardState extends State<CommentCard> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Expanded(
-                      // Use Expanded to ensure the column takes up all available space
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Row(
                             children: [
-                              Text('@$username',
+                              Text('$username',
                                   style: theme.textTheme.bodySmall),
-                              Text(' • ',
+                              Text('  •  ',
                                   style: theme.textTheme.bodySmall!.copyWith(
-                                      color: theme.colorScheme.primary,
-                                      fontSize: 25)),
+                                    color: theme.colorScheme.primary,
+                                  )),
                               Text(createdAt, style: theme.textTheme.bodySmall),
                             ],
                           ),

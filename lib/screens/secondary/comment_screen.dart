@@ -11,7 +11,9 @@ import 'package:provider/provider.dart';
 class CommentsScreen extends StatefulWidget {
   final Post data;
   final int commentCount;
-  const CommentsScreen({Key? key, required this.data, required this.commentCount}) : super(key: key);
+  const CommentsScreen(
+      {Key? key, required this.data, required this.commentCount})
+      : super(key: key);
 
   @override
   State<CommentsScreen> createState() => _CommentsScreenState();
@@ -118,8 +120,9 @@ class _CommentsScreenState extends State<CommentsScreen> {
       appBar: AppBar(
         backgroundColor: theme.colorScheme.surface,
         centerTitle: true,
-        title: Text('${widget.commentCount} comments', style: theme.textTheme.bodySmall),
-        actions: <Widget>[
+        title: Text('${widget.commentCount} comments',
+            style: theme.textTheme.bodyLarge),
+        actions: [
           IconButton(
             icon: const Icon(Icons.close, size: 22),
             onPressed: () {
@@ -130,28 +133,29 @@ class _CommentsScreenState extends State<CommentsScreen> {
         automaticallyImplyLeading: false,
       ),
       body: _isLoading
-    ? Container(color: theme.colorScheme.surface, child: Center(child: CircularProgressIndicator()))
-    : Container(
-        color: theme.colorScheme.surface, 
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: _comments.length,
-                itemBuilder: (context, index) {
-                  return CommentCard(data: _comments[index]);
-                },
+          ? Container(
+              color: theme.colorScheme.surface,
+              child: const Center(child: CircularProgressIndicator()))
+          : Container(
+              color: theme.colorScheme.surface,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: _comments.length,
+                      itemBuilder: (context, index) {
+                        return CommentCard(data: _comments[index]);
+                      },
+                    ),
+                  ),
+                  ChatTextFieldInput(
+                    textEditingController: _commentController,
+                    hintText: 'Add a comment...',
+                    onSend: uploadComment,
+                  ),
+                ],
               ),
             ),
-            ChatTextFieldInput(
-              textEditingController: _commentController,
-              hintText: 'Add a comment...',
-              onSend: uploadComment,
-            ),
-          ],
-        ),
-      ),
-
     );
   }
 }

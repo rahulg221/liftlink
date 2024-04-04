@@ -1,9 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/feed_screen.dart';
-import 'package:fitness_app/screens/friends_screen.dart';
-import 'package:fitness_app/screens/profile_screen.dart';
-import 'package:fitness_app/screens/upload_screen.dart';
-import 'package:fitness_app/screens/workout_log_screen.dart';
+import 'package:fitness_app/screens/primary/feed_screen.dart';
+import 'package:fitness_app/screens/primary/friends_screen.dart';
+import 'package:fitness_app/screens/primary/messages.dart';
 import 'package:fitness_app/components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,17 +51,16 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: [
+        children: const [
           FeedScreen(),
           FriendsScreen(),
-          WorkoutLogScreen(),
+          MessagesScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(
         page: _page,
         pageController: pageController,
       ),
-      //floatingActionButton: const PostButton(),
     );
   }
 }

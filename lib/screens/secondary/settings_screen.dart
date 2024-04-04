@@ -1,6 +1,6 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
-import 'package:fitness_app/screens/signin_screen.dart';
+import 'package:fitness_app/screens/onboarding/signin_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';

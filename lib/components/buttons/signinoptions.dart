@@ -20,17 +20,18 @@ class SignInOptions extends StatelessWidget {
             icon: FaIcon(FontAwesomeIcons.google,
                 color: theme.colorScheme.onBackground),
             label: Text('Sign in with Google',
-                style: theme.textTheme.bodySmall!
-                    .copyWith(fontWeight: FontWeight.w600)),
+                style: theme.textTheme.bodySmall!.copyWith(
+                    fontWeight: FontWeight.w600,
+                    color: theme.colorScheme.onBackground)),
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(13),
                 side: BorderSide(
-                    color: theme.colorScheme.onBackground.withOpacity(0.1),
-                    width: 2),
+                    color: theme.colorScheme.onBackground.withOpacity(0.3),
+                    width: 1.5),
               ),
-              elevation: 4,
+              elevation: 0,
             ),
           ),
         ),
@@ -52,10 +53,10 @@ class SignInOptions extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(13),
                 side: BorderSide(
-                    color: theme.colorScheme.onBackground.withOpacity(0.1),
-                    width: 2),
+                    color: theme.colorScheme.onBackground.withOpacity(0.3),
+                    width: 1.5),
               ),
-              elevation: 4,
+              elevation: 0,
             ),
           ),
         ),

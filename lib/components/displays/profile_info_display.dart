@@ -30,26 +30,32 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
     final width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 15.0, left: 32, right: 32),
+      padding: const EdgeInsets.symmetric(horizontal: 32),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _profilePicDisplay(widget.photoUrl, theme),
-          const SizedBox(height: 12),
-          Text('@${widget.username}',
-              style: theme.textTheme.headlineSmall!
-                  ),
-          const SizedBox(height: 12),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _infoDisplay(theme, 'followers', '${widget.followerCount}'),
-              const SizedBox(width: 8),
-              _infoDisplay(theme, 'following', '${widget.followingCount}'),
+              _profilePicDisplay(widget.photoUrl, theme),
+              const SizedBox(width: 25),
+              _infoDisplay(theme, 'flics', '0'),
+              _infoDisplay(theme, 'friends', '${widget.followerCount}'),
+              _infoDisplay(theme, 'goals', '0'),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 8),
+          Text(
+            widget.username,
+            style: theme.textTheme.bodyLarge!.copyWith(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Text(widget.bio, style: theme.textTheme.bodyMedium),
+          const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               _button(
                 theme,
@@ -66,9 +72,6 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
               ),
             ],
           ),
-          const SizedBox(height: 12),
-          Text(widget.bio, style: theme.textTheme.bodyMedium),
-          const SizedBox(height: 12),
         ],
       ),
     );
@@ -79,13 +82,9 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
     String text,
     String count,
   ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Row(
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(count,
@@ -94,8 +93,8 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                   color: theme.colorScheme.primary)),
           const SizedBox(width: 5),
           Text(text,
-              style: theme.textTheme.bodyMedium!
-                  .copyWith(color: theme.colorScheme.primary)),
+              style: theme.textTheme.bodyMedium!.copyWith(
+                  color: theme.colorScheme.onBackground.withOpacity(0.7))),
         ],
       ),
     );
@@ -110,18 +109,20 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
     return GestureDetector(
       onTap: () {},
       child: Container(
-        width: (width - 100) * 0.5,
+        width: (width - 80) * 0.5,
         height: 45,
         decoration: BoxDecoration(
           color:
               isPrimary ? theme.colorScheme.primary : theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(11),
+          borderRadius: BorderRadius.circular(9),
         ),
         child: Center(
           child: Text(
             text,
-            style: theme.textTheme.bodyMedium!.copyWith(
-                color: isPrimary ? Colors.white : theme.colorScheme.onSurface,
+            style: theme.textTheme.bodySmall!.copyWith(
+                color: isPrimary
+                    ? theme.colorScheme.onPrimary
+                    : theme.colorScheme.onSurface,
                 fontWeight: FontWeight.w600),
             textAlign: TextAlign.center,
           ),
@@ -136,27 +137,27 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
     alignment: Alignment.center,
     children: [
       CircleAvatar(
-        radius: 55,
+        radius: 45,
         backgroundImage: NetworkImage(photoUrl),
         backgroundColor: theme.scaffoldBackgroundColor,
       ),
       Positioned(
-        bottom: -5, // Position at the bottom of the profile picture
-        right: -5, // Position to the right of the profile picture
+        bottom: -10,
+        right: -10,
         child: Stack(
           alignment: Alignment.center,
           children: [
             Container(
-              width: 34,
-              height: 34,
+              width: 26,
+              height: 26,
               decoration: BoxDecoration(
                 color: theme.scaffoldBackgroundColor,
                 shape: BoxShape.circle,
               ),
             ),
             Container(
-              width: 25,
-              height: 25,
+              width: 20,
+              height: 20,
               decoration: BoxDecoration(
                 color: theme.colorScheme.secondary,
                 shape: BoxShape.circle,
@@ -166,11 +167,9 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
               icon: const Icon(
                 FontAwesomeIcons.plus,
                 color: Colors.white,
-                size: 17,
+                size: 13,
               ),
               onPressed: () {},
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(),
             ),
           ],
         ),

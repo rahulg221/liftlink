@@ -1,7 +1,7 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
-import 'package:fitness_app/screens/forgot_password_screen.dart';
-import 'package:fitness_app/screens/settings_screen.dart';
-import 'package:fitness_app/screens/signup_screen.dart';
+import 'package:fitness_app/screens/secondary/forgot_password_screen.dart';
+import 'package:fitness_app/screens/secondary/settings_screen.dart';
+import 'package:fitness_app/screens/onboarding/signup_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
