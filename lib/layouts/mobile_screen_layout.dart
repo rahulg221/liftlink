@@ -1,8 +1,9 @@
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/primary/feed_screen.dart';
-import 'package:fitness_app/screens/primary/friends_screen.dart';
-import 'package:fitness_app/screens/primary/messages.dart';
-import 'package:fitness_app/components/bottom_nav_bar.dart';
+import 'package:fitness_app/screens/primary/feeds/feed_screen.dart';
+import 'package:fitness_app/screens/primary/workouts/friends_screen.dart';
+import 'package:fitness_app/screens/primary/messages/messages.dart';
+import 'package:fitness_app/reusable_components/bottom_nav_bar.dart';
+import 'package:fitness_app/screens/primary/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -55,6 +56,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
           FeedScreen(),
           FriendsScreen(),
           MessagesScreen(),
+          ProfileScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(

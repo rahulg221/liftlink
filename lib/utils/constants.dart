@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 const customFont = 'Nunito';
 
-const double iconSize = 24.0;
+const double iconSize = 21.0;
 
 bool isWeb = kIsWeb;
 

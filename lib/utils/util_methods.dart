@@ -58,11 +58,11 @@ class UtilMethods {
       isScrollControlled: true,
       builder: (BuildContext context) {
         return FractionallySizedBox(
-          heightFactor: heightRatio, 
+          heightFactor: heightRatio,
           child: ClipRRect(
-            borderRadius: BorderRadius.circular(20), 
-             child: screenName, 
-            ),
+            borderRadius: BorderRadius.circular(20),
+            child: screenName,
+          ),
         );
       },
     );
