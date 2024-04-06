@@ -1,4 +1,4 @@
-import 'package:fitness_app/reusable_components/displays/other_profile_info_display.dart';
+import 'package:fitness_app/screens/secondary/other_profile/other_profile_info_display.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
@@ -102,7 +102,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
-                      const SizedBox(height: 30),
                       OtherProfileInfoDisplay(
                         username: username,
                         photoUrl: photoUrl,
@@ -113,7 +112,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                         followedId: followedId,
                         curId: curId,
                       ),
-                      const SizedBox(height: 30),
                     ],
                   ),
                 ),

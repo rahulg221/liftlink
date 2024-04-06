@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
+import 'package:fitness_app/screens/secondary/create_post/create_post_workout_type.dart';
 import 'package:fitness_app/screens/secondary/create_post/create_post_sliders.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
@@ -161,13 +162,15 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                               fit: BoxFit.cover),
                                         ),
                                       ),
-                                      const SizedBox(width: 8),
+                                      const SizedBox(width: 15),
                                       CaptionInput(
                                         textEditingController:
                                             _captionController,
                                       ),
                                     ],
                                   ),
+                                  const SizedBox(height: 32),
+                                  const UploadBar(),
                                   const SizedBox(height: 16),
                                   UploadSliders(),
                                 ],
@@ -178,54 +181,50 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      color: theme.scaffoldBackgroundColor,
-                      height: 75,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: takePhoto,
-                            child: Container(
-                              width: (width - 32) * 0.46,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.surface,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Retake',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                      color: theme.colorScheme.onSurface,
-                                      fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.center,
-                                ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: takePhoto,
+                          child: Container(
+                            width: (width - 32) * 0.46,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.surface,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Retake',
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                    color: theme.colorScheme.onSurface,
+                                    fontWeight: FontWeight.w600),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: uploadPost,
-                            child: Container(
-                              width: (width - 32) * 0.46,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.primary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'Post',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.center,
-                                ),
+                        ),
+                        GestureDetector(
+                          onTap: uploadPost,
+                          child: Container(
+                            width: (width - 32) * 0.46,
+                            height: 45,
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.primary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'Post',
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

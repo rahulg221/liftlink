@@ -37,7 +37,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               color: theme.colorScheme.onBackground,
             ),
             onPressed: () {
-              UtilMethods.navigateTo(const MobileScreenLayout(), context);
+              Navigator.of(context).pop();
             },
           ),
           centerTitle: true,

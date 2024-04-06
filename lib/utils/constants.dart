@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-const customFont = 'Nunito';
+const customFont = 'Lexed';
 
 const double iconSize = 21.0;
 

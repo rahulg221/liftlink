@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:fitness_app/reusable_components/selectors/session_workout_type.dart';
+import 'package:fitness_app/screens/primary/workouts/workout_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -66,7 +66,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
         automaticallyImplyLeading: false,
         backgroundColor: theme.colorScheme.surface,
         centerTitle: true,
-        title: Text('New workout', style: theme.textTheme.bodyLarge),
+        title: Text('New Workout', style: theme.textTheme.bodyLarge),
         actions: [
           IconButton(
             icon: const Icon(Icons.close, size: 22),
@@ -174,7 +174,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 ),
                               );
                             },
-                            icon: Icon(FontAwesomeIcons.calendarPlus,
+                            icon: Icon(FontAwesomeIcons.clock,
                                 size: 23, color: theme.colorScheme.primary))
                         : Center(
                             child: Text(workoutTime,

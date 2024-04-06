@@ -30,49 +30,65 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
     final width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _profilePicDisplay(widget.photoUrl, theme),
-              const SizedBox(width: 25),
-              _infoDisplay(theme, 'flics', '0'),
-              _infoDisplay(theme, 'friends', '${widget.followerCount}'),
-              _infoDisplay(theme, 'goals', '0'),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            widget.username,
-            style: theme.textTheme.bodyLarge!.copyWith(
-              fontWeight: FontWeight.bold,
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(25),
+        ),
+        elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
+        shadowColor: Colors.grey.withOpacity(0.5),
+        child: Container(
+          decoration: BoxDecoration(
+              color: theme.colorScheme.surface,
+              borderRadius: BorderRadius.circular(25)),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    _profilePicDisplay(widget.photoUrl, theme),
+                    const SizedBox(width: 25),
+                    _infoDisplay(theme, 'flics', '0'),
+                    _infoDisplay(theme, 'friends', '${widget.followerCount}'),
+                    _infoDisplay(theme, 'goals', '0'),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  widget.username,
+                  style: theme.textTheme.bodyLarge!.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(widget.bio, style: theme.textTheme.bodyMedium),
+                const SizedBox(height: 8),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    /*
+                    _button(
+                      theme,
+                      'Edit profile',
+                      width,
+                      false,
+                    ),
+                    const SizedBox(width: 8),
+                    _button(
+                      theme,
+                      'Share profile',
+                      width,
+                      false,
+                    ),*/
+                  ],
+                ),
+              ],
             ),
           ),
-          Text(widget.bio, style: theme.textTheme.bodyMedium),
-          const SizedBox(height: 8),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              _button(
-                theme,
-                'Edit profile',
-                width,
-                false,
-              ),
-              const SizedBox(width: 8),
-              _button(
-                theme,
-                'Share profile',
-                width,
-                false,
-              ),
-            ],
-          ),
-        ],
+        ),
       ),
     );
   }
@@ -112,10 +128,14 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
         width: (width - 80) * 0.5,
         height: 45,
         decoration: BoxDecoration(
-          color:
-              isPrimary ? theme.colorScheme.primary : theme.colorScheme.surface,
-          borderRadius: BorderRadius.circular(9),
-        ),
+            color: isPrimary
+                ? theme.colorScheme.primary
+                : theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(
+              color: theme.colorScheme.onBackground.withOpacity(0.3),
+              width: 1.5,
+            )),
         child: Center(
           child: Text(
             text,

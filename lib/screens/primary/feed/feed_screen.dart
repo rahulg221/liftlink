@@ -1,8 +1,9 @@
-import 'package:fitness_app/screens/primary/feeds/photo_button.dart';
-import 'package:fitness_app/screens/primary/feeds/explore_screen.dart';
-import 'package:fitness_app/screens/primary/feeds/following_screen.dart';
-import 'package:fitness_app/screens/primary/feeds/my_gym_screen.dart';
+import 'package:fitness_app/screens/primary/feed/photo_button.dart';
+import 'package:fitness_app/screens/primary/feed/explore_screen.dart';
+import 'package:fitness_app/screens/primary/feed/following_screen.dart';
+import 'package:fitness_app/screens/primary/feed/my_gym_screen.dart';
 import 'package:fitness_app/screens/secondary/search/search_screen.dart';
+import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,7 +26,15 @@ class _FeedScreenState extends State<FeedScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
-          title: TabBar(
+          title: Text('Feed', style: theme.textTheme.headlineSmall),
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.gear,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
+            onPressed: () {
+              UtilMethods.navigateTo(const SettingsScreen(), context);
+            },
+          ),
+          bottom: TabBar(
             labelStyle: theme.textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,
             ),

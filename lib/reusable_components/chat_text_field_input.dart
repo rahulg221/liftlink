@@ -64,10 +64,7 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
                   decoration: InputDecoration(
                     hintText: widget.hintText,
                     filled: true,
-                    fillColor: Theme.of(context)
-                        .colorScheme
-                        .onSurface
-                        .withOpacity(0.05),
+                    fillColor: theme.colorScheme.onSurface.withOpacity(0.07),
                     hintStyle: theme.textTheme.bodySmall,
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),

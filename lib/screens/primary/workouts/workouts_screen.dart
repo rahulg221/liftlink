@@ -1,6 +1,7 @@
 import 'package:fitness_app/screens/primary/workouts/create_workout_button.dart';
 import 'package:fitness_app/screens/primary/workouts/friends_workouts.dart';
 import 'package:fitness_app/screens/secondary/search/search_screen.dart';
+import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -24,6 +25,13 @@ class _FriendsScreenState extends State<FriendsScreen> {
         appBar: AppBar(
           centerTitle: true,
           title: Text('Workouts', style: theme.textTheme.headlineSmall),
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.gear,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
+            onPressed: () {
+              UtilMethods.navigateTo(const SettingsScreen(), context);
+            },
+          ),
           bottom: TabBar(
             labelStyle: theme.textTheme.bodyMedium!.copyWith(
               fontWeight: FontWeight.bold,

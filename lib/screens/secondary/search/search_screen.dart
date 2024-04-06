@@ -98,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: const Icon(Icons.search),
                   hintText: 'Search for users...',
                   filled: true,
-                  fillColor: Theme.of(context).colorScheme.surface,
+                  fillColor: theme.colorScheme.onSurface.withOpacity(0.07),
                   hintStyle: theme.textTheme.bodySmall,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),

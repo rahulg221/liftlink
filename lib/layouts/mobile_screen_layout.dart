@@ -1,7 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/primary/feeds/feed_screen.dart';
-import 'package:fitness_app/screens/primary/workouts/friends_screen.dart';
-import 'package:fitness_app/screens/primary/messages/messages.dart';
+import 'package:fitness_app/screens/primary/feed/feed_screen.dart';
+import 'package:fitness_app/screens/primary/workouts/workouts_screen.dart';
+import 'package:fitness_app/screens/primary/messages/messages_screen.dart';
 import 'package:fitness_app/reusable_components/bottom_nav_bar.dart';
 import 'package:fitness_app/screens/primary/profile/profile_screen.dart';
 import 'package:flutter/material.dart';

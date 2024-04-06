@@ -1,4 +1,4 @@
-import 'package:fitness_app/screens/primary/feeds/post_card.dart';
+import 'package:fitness_app/screens/primary/feed/post_card.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:flutter/material.dart';

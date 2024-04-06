@@ -1,4 +1,4 @@
-import 'package:fitness_app/screens/secondary/create_workout/workout_card.dart';
+import 'package:fitness_app/screens/primary/workouts/workout_card.dart';
 import 'package:flutter/material.dart';
 
 class FriendsSessionsScreen extends StatefulWidget {
@@ -21,7 +21,8 @@ class _FriendsSessionsState extends State<FriendsSessionsScreen> {
       child: Center(
         child: Column(
           children: [
-            SessionCard(),
+            WorkoutCard(),
+            WorkoutCard(),
           ],
         ),
       ),
