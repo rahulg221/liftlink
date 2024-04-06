@@ -5,6 +5,7 @@ import 'dart:ui';
 class ColorPalette {
   // Custom colors
   static Color coral = Color(0xFFFF6B6B);
+  static Color lightCoral = Color.fromARGB(255, 255, 173, 173);
   static Color lightBlue = Color.fromARGB(255, 90, 186, 238);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;

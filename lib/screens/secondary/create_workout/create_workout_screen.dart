@@ -114,7 +114,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         });
                       },
                       activeTrackColor: theme.colorScheme.primary,
-                      activeColor: theme.colorScheme.onBackground,
+                      activeColor: theme.colorScheme.onPrimary,
+                      inactiveThumbColor: theme.colorScheme.onPrimary,
                     ),
                   ),
                 ],
@@ -139,7 +140,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         });
                       },
                       activeTrackColor: theme.colorScheme.primary,
-                      activeColor: theme.colorScheme.onBackground,
+                      activeColor: theme.colorScheme.onPrimary,
+                      inactiveThumbColor: theme.colorScheme.onPrimary,
                     ),
                   ),
                 ],

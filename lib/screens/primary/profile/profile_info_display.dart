@@ -26,66 +26,65 @@ class ProfileInfoDisplay extends StatefulWidget {
 class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
-        elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
-        shadowColor: Colors.grey.withOpacity(0.5),
-        child: Container(
-          decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(25)),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _profilePicDisplay(widget.photoUrl, theme),
-                    const SizedBox(width: 25),
-                    _infoDisplay(theme, 'flics', '0'),
-                    _infoDisplay(theme, 'friends', '${widget.followerCount}'),
-                    _infoDisplay(theme, 'goals', '0'),
-                  ],
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25),
+      ),
+      elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
+      shadowColor: Colors.grey.withOpacity(0.5),
+      child: Container(
+        decoration: BoxDecoration(
+            color: theme.colorScheme.surface,
+            borderRadius: BorderRadius.circular(25)),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _profilePicDisplay(widget.photoUrl, theme),
+                  const SizedBox(width: 25),
+                  _infoDisplay(theme, 'flics', '0'),
+                  _infoDisplay(theme, 'friends', '${widget.followerCount}'),
+                  _infoDisplay(theme, 'goals', '0'),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.username,
+                style: theme.textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  widget.username,
-                  style: theme.textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
+              ),
+              Text(widget.bio, style: theme.textTheme.bodyMedium),
+              const SizedBox(height: 12),
+              _userTags(theme, 'Intermediate', 'Bodybuilder', 'Crunch'),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _button(
+                    theme,
+                    'Edit profile',
+                    width,
+                    false,
                   ),
-                ),
-                Text(widget.bio, style: theme.textTheme.bodyMedium),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    /*
-                    _button(
-                      theme,
-                      'Edit profile',
-                      width,
-                      false,
-                    ),
-                    const SizedBox(width: 8),
-                    _button(
-                      theme,
-                      'Share profile',
-                      width,
-                      false,
-                    ),*/
-                  ],
-                ),
-              ],
-            ),
+                  const SizedBox(width: 8),
+                  _button(
+                    theme,
+                    'Share profile',
+                    width,
+                    false,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -110,6 +109,59 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
           Text(text,
               style: theme.textTheme.bodyMedium!.copyWith(
                   color: theme.colorScheme.onBackground.withOpacity(0.7))),
+        ],
+      ),
+    );
+  }
+
+  Widget _userTags(
+      ThemeData theme, String expLevel, String lifterType, String gymName) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Container(
+            decoration: BoxDecoration(
+                color: theme.colorScheme.onBackground.withOpacity(0.07),
+                borderRadius: BorderRadius.circular(9)),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+              child: Text(expLevel,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  )),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            decoration: BoxDecoration(
+                color: theme.colorScheme.onBackground.withOpacity(0.07),
+                borderRadius: BorderRadius.circular(9)),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+              child: Text(lifterType,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  )),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            decoration: BoxDecoration(
+                color: theme.colorScheme.onBackground.withOpacity(0.07),
+                borderRadius: BorderRadius.circular(9)),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+              child: Text(gymName,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  )),
+            ),
+          ),
         ],
       ),
     );
@@ -164,16 +216,16 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
           alignment: Alignment.center,
           children: [
             Container(
-              width: 26,
-              height: 26,
+              width: 35,
+              height: 35,
               decoration: BoxDecoration(
-                color: theme.scaffoldBackgroundColor,
+                color: theme.colorScheme.surface,
                 shape: BoxShape.circle,
               ),
             ),
             Container(
-              width: 20,
-              height: 20,
+              width: 25,
+              height: 25,
               decoration: BoxDecoration(
                 color: theme.colorScheme.secondary,
                 shape: BoxShape.circle,
@@ -183,7 +235,7 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
               icon: const Icon(
                 FontAwesomeIcons.plus,
                 color: Colors.white,
-                size: 13,
+                size: 15,
               ),
               onPressed: () {},
             ),

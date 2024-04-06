@@ -43,7 +43,11 @@ class _WorkoutTypeState extends State<WorkoutType> {
                   child: Center(
                     child: Text(
                       'Chest & Back',
-                      style: theme.textTheme.bodyMedium,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: workoutType == 'Chest & Back'
+                            ? theme.colorScheme.onPrimary
+                            : theme.colorScheme.onSurface,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -69,7 +73,11 @@ class _WorkoutTypeState extends State<WorkoutType> {
                   child: Center(
                     child: Text(
                       'Shoulder & Arms',
-                      style: theme.textTheme.bodyMedium,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: workoutType == 'Shoulder & Arms'
+                            ? theme.colorScheme.onPrimary
+                            : theme.colorScheme.onSurface,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -101,7 +109,11 @@ class _WorkoutTypeState extends State<WorkoutType> {
                   child: Center(
                     child: Text(
                       'Legs',
-                      style: theme.textTheme.bodyMedium,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: workoutType == 'Legs'
+                            ? theme.colorScheme.onPrimary
+                            : theme.colorScheme.onSurface,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -127,7 +139,11 @@ class _WorkoutTypeState extends State<WorkoutType> {
                   child: Center(
                     child: Text(
                       'Core',
-                      style: theme.textTheme.bodyMedium,
+                      style: theme.textTheme.bodyMedium!.copyWith(
+                        color: workoutType == 'Core'
+                            ? theme.colorScheme.onPrimary
+                            : theme.colorScheme.onSurface,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),

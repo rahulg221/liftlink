@@ -1,3 +1,4 @@
+import 'package:fitness_app/screens/secondary/other_profile/other_profile_goal_display.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profile_info_display.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
@@ -5,6 +6,7 @@ import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class OtherProfileScreen extends StatefulWidget {
@@ -93,8 +95,8 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
           centerTitle: true,
           title: Text('@$username', style: theme.textTheme.headlineSmall),
         ),
-        body: Align(
-          alignment: Alignment.topCenter,
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
@@ -112,6 +114,39 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                         followedId: followedId,
                         curId: curId,
                       ),
+                      const SizedBox(height: 12),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Goals',
+                                  style: theme.textTheme.headlineSmall),
+                              Container(
+                                width: 35,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primary,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      FontAwesomeIcons.pen,
+                                      size: 15,
+                                    ),
+                                    onPressed: () {},
+                                    color: theme.colorScheme.onPrimary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      OtherProfileGoalDisplay(),
                     ],
                   ),
                 ),

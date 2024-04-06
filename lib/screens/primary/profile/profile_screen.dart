@@ -1,4 +1,5 @@
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/primary/profile/profile_goal_display.dart';
 import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/screens/primary/profile/profile_info_display.dart';
@@ -93,20 +94,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
           alignment: Alignment.topCenter,
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
-              : SingleChildScrollView(
-                  controller: _scrollController,
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: [
-                      ProfileInfoDisplay(
-                        username: username,
-                        photoUrl: photoUrl,
-                        followerCount: followerCount,
-                        followingCount: followingCount,
-                        activeStreak: activeStreak,
-                        bio: bio,
-                      ),
-                    ],
+              : Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SingleChildScrollView(
+                    controller: _scrollController,
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      children: [
+                        ProfileInfoDisplay(
+                          username: username,
+                          photoUrl: photoUrl,
+                          followerCount: followerCount,
+                          followingCount: followingCount,
+                          activeStreak: activeStreak,
+                          bio: bio,
+                        ),
+                        const SizedBox(height: 12),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Goals',
+                                    style: theme.textTheme.headlineSmall),
+                                Container(
+                                  width: 35,
+                                  decoration: BoxDecoration(
+                                    color: theme.colorScheme.primary,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Center(
+                                    child: IconButton(
+                                      icon: const Icon(
+                                        FontAwesomeIcons.pen,
+                                        size: 15,
+                                      ),
+                                      onPressed: () {},
+                                      color: theme.colorScheme.onPrimary,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        ProfileGoalDisplay(),
+                      ],
+                    ),
                   ),
                 ),
         ));
