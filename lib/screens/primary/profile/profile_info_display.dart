@@ -27,7 +27,6 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
-    final width = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -128,14 +127,11 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
         width: (width - 80) * 0.5,
         height: 45,
         decoration: BoxDecoration(
-            color: isPrimary
-                ? theme.colorScheme.primary
-                : theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: theme.colorScheme.onBackground.withOpacity(0.3),
-              width: 1.5,
-            )),
+          color: isPrimary
+              ? theme.colorScheme.primary
+              : theme.colorScheme.onBackground.withOpacity(0.07),
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Center(
           child: Text(
             text,

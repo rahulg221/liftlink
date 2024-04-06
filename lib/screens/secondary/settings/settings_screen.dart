@@ -1,4 +1,3 @@
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/theme_provider.dart';
 import 'package:fitness_app/screens/onboarding/sign_in/signin_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';

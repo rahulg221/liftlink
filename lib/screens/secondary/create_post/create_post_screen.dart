@@ -190,9 +190,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               width: (width - 32) * 0.46,
                               height: 45,
                               decoration: BoxDecoration(
-                                color: theme.colorScheme.surface,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                                  color: theme.colorScheme.background,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: theme.colorScheme.onBackground
+                                          .withOpacity(0.3),
+                                      width: 1.5)),
                               child: Center(
                                 child: Text(
                                   'Retake',
@@ -210,9 +213,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                               width: (width - 32) * 0.46,
                               height: 45,
                               decoration: BoxDecoration(
-                                color: theme.colorScheme.primary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
+                                  color: theme.colorScheme.primary,
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: theme.colorScheme.primary,
+                                      width: 1.5)),
                               child: Center(
                                 child: Text(
                                   'Post',

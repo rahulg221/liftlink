@@ -91,62 +91,55 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
 
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(25),
         ),
-        elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
-        shadowColor: Colors.grey.withOpacity(0.5),
-        child: Container(
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _profilePicDisplay(widget.photoUrl, theme),
-                    const SizedBox(width: 25),
-                    _infoDisplay(theme, 'flics', '0'),
-                    _infoDisplay(theme, 'friends', '${widget.followerCount}'),
-                    _infoDisplay(theme, 'goals', '0'),
-                  ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _profilePicDisplay(widget.photoUrl, theme),
+                  const SizedBox(width: 25),
+                  _infoDisplay(theme, 'flics', '0'),
+                  _infoDisplay(theme, 'friends', '${widget.followerCount}'),
+                  _infoDisplay(theme, 'goals', '0'),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Text(
+                widget.username,
+                style: theme.textTheme.bodyLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  widget.username,
-                  style: theme.textTheme.bodyLarge!.copyWith(
-                    fontWeight: FontWeight.bold,
+              ),
+              Text(widget.bio, style: theme.textTheme.bodyMedium),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _button(
+                    theme,
+                    _followed ? 'Remove friend' : 'Add friend',
+                    width,
+                    true,
                   ),
-                ),
-                Text(widget.bio, style: theme.textTheme.bodyMedium),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    _button(
-                      theme,
-                      _followed ? 'Remove friend' : 'Add friend',
-                      width,
-                      true,
-                    ),
-                    const SizedBox(width: 8),
-                    _button(
-                      theme,
-                      'Message',
-                      width,
-                      false,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  const SizedBox(width: 8),
+                  _button(
+                    theme,
+                    'Message',
+                    width,
+                    false,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),
@@ -194,22 +187,15 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
         width: (width - 80) * 0.5,
         height: 45,
         decoration: BoxDecoration(
-            color: _isLoading
-                ? theme.colorScheme.surface
-                : isPrimary
-                    ? _followed
-                        ? theme.colorScheme.surface
-                        : theme.colorScheme.primary
-                    : theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(
-              color: isPrimary
+          color: _isLoading
+              ? theme.colorScheme.surface
+              : isPrimary
                   ? _followed
-                      ? theme.colorScheme.onBackground.withOpacity(0.3)
+                      ? theme.colorScheme.onBackground.withOpacity(0.07)
                       : theme.colorScheme.primary
-                  : theme.colorScheme.onBackground.withOpacity(0.3),
-              width: 1.5,
-            )),
+                  : theme.colorScheme.onBackground.withOpacity(0.07),
+          borderRadius: BorderRadius.circular(10),
+        ),
         child: Center(
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
@@ -217,9 +203,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                   text,
                   style: theme.textTheme.bodySmall!.copyWith(
                       color: isPrimary
-                          ? _followed
-                              ? theme.colorScheme.onBackground
-                              : theme.colorScheme.onPrimary
+                          ? theme.colorScheme.onPrimary
                           : theme.colorScheme.onSurface,
                       fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,

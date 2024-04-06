@@ -1,5 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -78,9 +80,17 @@ class _WorkoutCardState extends State<WorkoutCard> {
               children: [
                 Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage: NetworkImage(profilePic),
-                      radius: 22,
+                    GestureDetector(
+                      onTap: () {
+                        UtilMethods.navigateTo(
+                          OtherProfileScreen(uid: uid),
+                          context,
+                        );
+                      },
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(profilePic),
+                        radius: 22,
+                      ),
                     ),
                     const SizedBox(width: 12),
                     Column(
@@ -160,12 +170,9 @@ class _WorkoutCardState extends State<WorkoutCard> {
                               width: width * 0.35,
                               height: height * 0.04,
                               decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: theme.colorScheme.primary,
-                                    width: 1.5,
-                                  )),
+                                color: theme.colorScheme.primary,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               child: Center(
                                   child: Text('Join',
                                       style: theme.textTheme.bodySmall!
@@ -181,13 +188,10 @@ class _WorkoutCardState extends State<WorkoutCard> {
                               width: width * 0.35,
                               height: height * 0.04,
                               decoration: BoxDecoration(
-                                  color: theme.colorScheme.surface,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                    color: theme.colorScheme.onBackground
-                                        .withOpacity(0.3),
-                                    width: 1.5,
-                                  )),
+                                color: theme.colorScheme.onBackground
+                                    .withOpacity(0.07),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
                               child: Center(
                                   child: Text('Message',
                                       style: theme.textTheme.bodySmall!

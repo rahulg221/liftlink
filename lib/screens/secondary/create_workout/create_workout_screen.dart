@@ -1,5 +1,5 @@
 import 'dart:typed_data';
-import 'package:fitness_app/screens/primary/workouts/workout_type.dart';
+import 'package:fitness_app/screens/secondary/create_workout/workout_type.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -88,10 +88,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                       color: theme.colorScheme.onSurface.withOpacity(0.7))),
               const SizedBox(height: 6),
               const WorkoutType(),
-              Divider(
-                color: theme.colorScheme.surface,
-                thickness: 1,
-              ),
               Text("Who can join",
                   style: theme.textTheme.bodySmall!.copyWith(
                       color: theme.colorScheme.onSurface.withOpacity(0.7))),
@@ -153,8 +149,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                     width: (width - 40) * 0.5,
                     height: 45,
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.onBackground.withOpacity(0.07),
+                      color: theme.colorScheme.surface,
                       borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                          color:
+                              theme.colorScheme.onBackground.withOpacity(0.3),
+                          width: 1.5),
                     ),
                     child: workoutTime == ''
                         ? IconButton(
@@ -175,7 +175,8 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               );
                             },
                             icon: Icon(FontAwesomeIcons.clock,
-                                size: 23, color: theme.colorScheme.primary))
+                                size: 23,
+                                color: theme.colorScheme.onBackground))
                         : Center(
                             child: Text(workoutTime,
                                 style: theme.textTheme.bodyMedium!
