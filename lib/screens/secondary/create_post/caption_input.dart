@@ -17,21 +17,24 @@ class _CaptionInputState extends State<CaptionInput> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      width: width * .4,
+      width: width * .45,
+      height: height * 0.3,
       child: TextField(
+        expands: true,
         controller: widget.textEditingController,
         keyboardType: TextInputType.multiline,
         style: theme.textTheme.bodySmall!,
-        maxLines: 10,
+        maxLines: null,
         decoration: InputDecoration(
           hintText: 'Share progress...',
           hintStyle: theme.textTheme.bodySmall!
               .copyWith(color: theme.colorScheme.onSurface.withOpacity(0.6)),
-          contentPadding:
-              const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 20),
-          fillColor: theme.scaffoldBackgroundColor,
+          contentPadding: EdgeInsets.only(
+              left: 10, right: 10, top: 10, bottom: height * .75),
+          fillColor: theme.colorScheme.surface,
           filled: true,
           border: OutlineInputBorder(
             borderSide:

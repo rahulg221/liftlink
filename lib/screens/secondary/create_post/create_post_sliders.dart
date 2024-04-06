@@ -44,7 +44,7 @@ class _UploadSlidersState extends State<UploadSliders> {
                   });
                 },
                 activeTrackColor: theme.colorScheme.primary,
-                activeColor: theme.colorScheme.onBackground,
+                activeColor: theme.colorScheme.onPrimary,
               ),
             ),
           ],
@@ -72,7 +72,7 @@ class _UploadSlidersState extends State<UploadSliders> {
                   });
                 },
                 activeTrackColor: theme.colorScheme.primary,
-                activeColor: theme.colorScheme.onBackground,
+                activeColor: theme.colorScheme.onPrimary,
               ),
             ),
           ],
@@ -100,7 +100,7 @@ class _UploadSlidersState extends State<UploadSliders> {
                   });
                 },
                 activeTrackColor: theme.colorScheme.primary,
-                activeColor: theme.colorScheme.onBackground,
+                activeColor: theme.colorScheme.onPrimary,
               ),
             ),
           ],
@@ -128,7 +128,7 @@ class _UploadSlidersState extends State<UploadSliders> {
                   });
                 },
                 activeTrackColor: theme.colorScheme.primary,
-                activeColor: theme.colorScheme.onBackground,
+                activeColor: theme.colorScheme.onPrimary,
               ),
             ),
           ],
@@ -156,7 +156,7 @@ class _UploadSlidersState extends State<UploadSliders> {
                   });
                 },
                 activeTrackColor: theme.colorScheme.primary,
-                activeColor: theme.colorScheme.onBackground,
+                activeColor: theme.colorScheme.onPrimary,
               ),
             ),
           ],

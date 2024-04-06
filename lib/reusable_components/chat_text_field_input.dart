@@ -85,7 +85,7 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
                   ),
                   child: IconButton(
                     icon: Icon(FontAwesomeIcons.arrowUp,
-                        color: theme.iconTheme.color, size: 18),
+                        color: theme.colorScheme.onPrimary, size: 18),
                     onPressed: widget.onSend,
                   ),
                 )

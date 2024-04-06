@@ -86,8 +86,11 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
               Text("My Workout",
                   style: theme.textTheme.bodySmall!.copyWith(
                       color: theme.colorScheme.onSurface.withOpacity(0.7))),
-              const SizedBox(height: 6),
+              const SizedBox(height: 12),
               const WorkoutType(),
+              const Expanded(
+                child: SizedBox(),
+              ),
               Text("Who can join",
                   style: theme.textTheme.bodySmall!.copyWith(
                       color: theme.colorScheme.onSurface.withOpacity(0.7))),
@@ -141,60 +144,61 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
+              const Expanded(
+                child: SizedBox(),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(
-                    width: (width - 40) * 0.5,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.surface,
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(
-                          color:
-                              theme.colorScheme.onBackground.withOpacity(0.3),
-                          width: 1.5),
+                  GestureDetector(
+                    onTap: () {
+                      _showDialog(
+                        CupertinoDatePicker(
+                          mode: CupertinoDatePickerMode.dateAndTime,
+                          initialDateTime: dateTime,
+                          onDateTimeChanged: (DateTime newDateTime) {
+                            setState(() {
+                              dateTime = newDateTime;
+                              workoutTime =
+                                  DateFormat('hh:mm a').format(dateTime);
+                            });
+                          },
+                        ),
+                      );
+                    },
+                    child: Container(
+                      width: (width - 32) * 0.35,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.onBackground.withOpacity(0.07),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          FontAwesomeIcons.clock,
+                          color: theme.colorScheme.onBackground,
+                        ),
+                      ),
                     ),
-                    child: workoutTime == ''
-                        ? IconButton(
-                            onPressed: () {
-                              _showDialog(
-                                CupertinoDatePicker(
-                                  initialDateTime: dateTime,
-                                  use24hFormat: true,
-                                  // This is called when the user changes the dateTime.
-                                  onDateTimeChanged: (DateTime newDateTime) {
-                                    setState(() {
-                                      dateTime = newDateTime;
-                                      workoutTime = DateFormat('EEEE h:mm a')
-                                          .format(newDateTime.toLocal());
-                                    });
-                                  },
-                                ),
-                              );
-                            },
-                            icon: Icon(FontAwesomeIcons.clock,
-                                size: 23,
-                                color: theme.colorScheme.onBackground))
-                        : Center(
-                            child: Text(workoutTime,
-                                style: theme.textTheme.bodyMedium!
-                                    .copyWith(fontWeight: FontWeight.w600))),
                   ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: (width - 40) * 0.5,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(12),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: (width - 32) * 0.63,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Create',
+                          style: theme.textTheme.bodyMedium!.copyWith(
+                              color: Colors.white, fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
-                    child: Center(
-                        child: Text('Create',
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: theme.colorScheme.onPrimary))),
                   ),
                 ],
               ),

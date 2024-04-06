@@ -7,6 +7,7 @@ import 'package:fitness_app/supabase/db_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -115,45 +116,42 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: theme.colorScheme.surface,
           centerTitle: true,
-          title: Text('Post a flic', style: theme.textTheme.headlineSmall),
-          leading: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              CupertinoIcons.back,
-              color: theme.colorScheme.onBackground,
+          title: Text('Post a flic', style: theme.textTheme.bodyLarge),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.close, size: 22),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
-            onPressed: () {
-              UtilMethods.navigateTo(const MobileScreenLayout(), context);
-            },
-          ),
+          ],
+          automaticallyImplyLeading: false,
         ),
         body: _isLoading
             ? const Center(child: CircularProgressIndicator())
-            : Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: SingleChildScrollView(
-                        child: Column(
-                          children: [
-                            const SizedBox(height: 12),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
-                              child: Column(
+            : Container(
+                color: theme.colorScheme.surface,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: [
+                              const SizedBox(height: 12),
+                              Column(
                                 children: [
                                   Row(
                                     mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
                                       SizedBox(
-                                        height: height *
-                                            0.265, // Find a way to make this same height as caption input
-                                        width: width * 0.4,
+                                        height: height * 0.3,
+                                        width: width * 0.45,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(14),
@@ -172,67 +170,60 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                   UploadSliders(),
                                 ],
                               ),
+                              const SizedBox(height: 12),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Container(
+                        color: theme.colorScheme.surface,
+                        height: 75,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: takePhoto,
+                              child: Container(
+                                width: (width - 32) * 0.35,
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.onBackground
+                                      .withOpacity(0.07),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: Icon(
+                                    FontAwesomeIcons.arrowRotateLeft,
+                                    color: theme.colorScheme.onBackground,
+                                  ),
+                                ),
+                              ),
                             ),
-                            const SizedBox(height: 12),
+                            GestureDetector(
+                              onTap: uploadPost,
+                              child: Container(
+                                width: (width - 32) * 0.63,
+                                height: 45,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primary,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    'Post',
+                                    style: theme.textTheme.bodyMedium!.copyWith(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600),
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                    Container(
-                      color: theme.scaffoldBackgroundColor,
-                      height: 75,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          GestureDetector(
-                            onTap: takePhoto,
-                            child: Container(
-                              width: (width - 32) * 0.46,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                  color: theme.colorScheme.background,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: theme.colorScheme.onBackground
-                                          .withOpacity(0.3),
-                                      width: 1.5)),
-                              child: Center(
-                                child: Text(
-                                  'Retake',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                      color: theme.colorScheme.onSurface,
-                                      fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: uploadPost,
-                            child: Container(
-                              width: (width - 32) * 0.46,
-                              height: 45,
-                              decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: theme.colorScheme.primary,
-                                      width: 1.5)),
-                              child: Center(
-                                child: Text(
-                                  'Post',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ));
   }
