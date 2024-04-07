@@ -9,7 +9,7 @@ class ColorPalette {
   static Color lightBlue = Color.fromARGB(255, 90, 186, 238);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;
-  static Color lightBackgroundColor = Color.fromARGB(255, 240, 240, 240);
+  static Color lightBackgroundColor = Color.fromARGB(255, 255, 250, 240);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
   static Color lightAppBarColor = lightBackgroundColor;
@@ -18,7 +18,7 @@ class ColorPalette {
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
   static Color darkSurfaceColor = Color.fromARGB(255, 19, 19, 19);
-  static Color lightSurfaceColor = Color.fromARGB(255, 247, 247, 247);
+  static Color lightSurfaceColor = Color.fromARGB(255, 255, 253, 247);
   // Primary colors
   static Color darkPrimaryColor = coral;
   static Color lightPrimaryColor = coral;
@@ -120,7 +120,7 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -128,7 +128,7 @@ class ThemeConfig {
         ],
       ),
       bodyMedium: TextStyle(
-        fontSize: 15,
+        fontSize: 16,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -216,7 +216,7 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 17,
+        fontSize: 18,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -232,7 +232,7 @@ class ThemeConfig {
         ],
       ),
       bodySmall: TextStyle(
-        fontSize: 15,
+        fontSize: 14,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[

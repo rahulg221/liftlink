@@ -1,4 +1,4 @@
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -45,7 +45,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   void doesFollow() async {
     beginLoading();
     bool res =
-        await DbMethods().doesFollowUser(widget.curId, widget.followedId);
+        await UserMethods().doesFollowUser(widget.curId, widget.followedId);
 
     setState(() {
       _followed = res;
@@ -55,7 +55,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
 
   void followUser() async {
     // Follow the user
-    await DbMethods().followUser(widget.followedId, widget.curId);
+    await UserMethods().followUser(widget.followedId, widget.curId);
 
     setState(() {
       _followed = true;
@@ -65,7 +65,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   // Not implemented
   void unfollowUser() async {
     // Unfollow the user
-    await DbMethods().unfollowUser(widget.followedId, widget.curId);
+    await UserMethods().unfollowUser(widget.followedId, widget.curId);
 
     setState(() {
       _followed = false;
@@ -86,60 +86,74 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
+    final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
 
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
+    return Card(
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _profilePicDisplay(widget.photoUrl, theme),
-                const SizedBox(width: 25),
-                _infoDisplay(theme, 'flics', '0'),
-                _infoDisplay(theme, 'friends', '${widget.followerCount}'),
-                _infoDisplay(theme, 'goals', '0'),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(
-              widget.username,
-              style: theme.textTheme.bodyLarge!.copyWith(
-                fontWeight: FontWeight.bold,
+      elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
+      shadowColor: Colors.grey.withOpacity(0.5),
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
+          borderRadius: BorderRadius.circular(25),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  _profilePicDisplay(widget.photoUrl, theme),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '@${widget.username}',
+                        style: theme.textTheme.headlineSmall,
+                      ),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: width * 0.5,
+                        child: Text(widget.bio,
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7)),
+                            softWrap: true),
+                      ),
+                    ],
+                  ),
+                ],
               ),
-            ),
-            Text(widget.bio, style: theme.textTheme.bodyMedium),
-            const SizedBox(height: 12),
-            _userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _button(
-                  theme,
-                  _followed ? 'Remove friend' : 'Add friend',
-                  width,
-                  true,
-                ),
-                const SizedBox(width: 8),
-                _button(
-                  theme,
-                  'Message',
-                  width,
-                  false,
-                ),
-              ],
-            ),
-          ],
+              const SizedBox(height: 12),
+              _userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
+              const SizedBox(height: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _button(
+                    theme,
+                    _followed ? 'Remove friend' : 'Add friend',
+                    width,
+                    _followed ? false : true,
+                  ),
+                  const SizedBox(width: 8),
+                  _button(
+                    theme,
+                    'Message',
+                    width,
+                    false,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

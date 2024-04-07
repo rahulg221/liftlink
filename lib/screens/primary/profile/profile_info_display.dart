@@ -46,25 +46,32 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _profilePicDisplay(widget.photoUrl, theme),
-                  const SizedBox(width: 25),
-                  _infoDisplay(theme, 'flics', '0'),
-                  _infoDisplay(theme, 'friends', '${widget.followerCount}'),
-                  _infoDisplay(theme, 'goals', '0'),
+                  const SizedBox(width: 16),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '@${widget.username}',
+                        style: theme.textTheme.headlineSmall,
+                      ),
+                      const SizedBox(height: 8),
+                      SizedBox(
+                        width: width * 0.5,
+                        child: Text(widget.bio,
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7)),
+                            softWrap: true),
+                      ),
+                    ],
+                  ),
                 ],
               ),
-              const SizedBox(height: 8),
-              Text(
-                widget.username,
-                style: theme.textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(widget.bio, style: theme.textTheme.bodyMedium),
               const SizedBox(height: 12),
-              _userTags(theme, 'Intermediate', 'Bodybuilder', 'Crunch'),
+              _userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
               const SizedBox(height: 12),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,29 +94,6 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _infoDisplay(
-    ThemeData theme,
-    String text,
-    String count,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text(count,
-              style: theme.textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: theme.colorScheme.primary)),
-          const SizedBox(width: 5),
-          Text(text,
-              style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.onBackground.withOpacity(0.7))),
-        ],
       ),
     );
   }
@@ -205,7 +189,7 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
     alignment: Alignment.center,
     children: [
       CircleAvatar(
-        radius: 45,
+        radius: 40,
         backgroundImage: NetworkImage(photoUrl),
         backgroundColor: theme.scaffoldBackgroundColor,
       ),
@@ -233,9 +217,9 @@ Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
             ),
             IconButton(
               icon: const Icon(
-                FontAwesomeIcons.plus,
+                FontAwesomeIcons.pen,
                 color: Colors.white,
-                size: 15,
+                size: 12,
               ),
               onPressed: () {},
             ),

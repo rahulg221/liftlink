@@ -60,12 +60,14 @@ class _ChatTextFieldInputState extends State<ChatTextFieldInput> {
               Expanded(
                 child: TextField(
                   controller: widget.textEditingController,
-                  style: theme.textTheme.bodySmall,
+                  style: theme.textTheme.bodySmall!
+                      .copyWith(color: theme.colorScheme.onSurface),
                   decoration: InputDecoration(
                     hintText: widget.hintText,
                     filled: true,
                     fillColor: theme.colorScheme.onSurface.withOpacity(0.07),
-                    hintStyle: theme.textTheme.bodySmall,
+                    hintStyle: theme.textTheme.bodySmall!
+                        .copyWith(color: theme.colorScheme.onSurface),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(25.0),
                       borderSide: BorderSide.none,

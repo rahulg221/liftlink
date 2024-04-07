@@ -98,9 +98,9 @@ class _WorkoutCardState extends State<WorkoutCard> {
                       children: [
                         Text(username, style: theme.textTheme.headlineSmall),
                         Text('$workoutLevel $workoutStyle',
-                            style: theme.textTheme.bodySmall!.copyWith(
-                                color: theme.colorScheme.onBackground
-                                    .withOpacity(0.5))),
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7))),
                       ],
                     ),
                   ],
@@ -168,7 +168,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
                           onTap: () {},
                           child: Container(
                               width: width * 0.35,
-                              height: height * 0.04,
+                              height: height * 0.045,
                               decoration: BoxDecoration(
                                 color: theme.colorScheme.primary,
                                 borderRadius: BorderRadius.circular(10),
@@ -186,7 +186,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
                           onTap: () {},
                           child: Container(
                               width: width * 0.35,
-                              height: height * 0.04,
+                              height: height * 0.045,
                               decoration: BoxDecoration(
                                 color: theme.colorScheme.onBackground
                                     .withOpacity(0.07),

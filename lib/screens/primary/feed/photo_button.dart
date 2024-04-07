@@ -22,9 +22,7 @@ class PhotoButton extends StatelessWidget {
           Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
 
           if (context.mounted) {
-            UtilMethods.showPartialScreen(
-                CreatePostScreen(postPic: image!), context, 0.75);
-            //UtilMethods.navigateTo(CreatePostScreen(postPic: image!), context);
+            UtilMethods.navigateTo(CreatePostScreen(postPic: image!), context);
           }
         },
         child: Icon(FontAwesomeIcons.cameraRetro,

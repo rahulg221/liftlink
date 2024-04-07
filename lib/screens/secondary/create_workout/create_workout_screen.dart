@@ -176,10 +176,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Center(
-                        child: Icon(
-                          FontAwesomeIcons.clock,
-                          color: theme.colorScheme.onBackground,
-                        ),
+                        child: workoutTime == ''
+                            ? Icon(
+                                FontAwesomeIcons.clock,
+                                color: theme.colorScheme.onBackground,
+                              )
+                            : Text(workoutTime),
                       ),
                     ),
                   ),

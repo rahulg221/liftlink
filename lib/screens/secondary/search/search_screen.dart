@@ -1,7 +1,7 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class _SearchScreenState extends State<SearchScreen> {
     beginLoading();
 
     // Search for users
-    await DbMethods().searchUsers(query).then((results) {
+    await UserMethods().searchUsers(query).then((results) {
       setState(() {
         _searchResults = results;
       });

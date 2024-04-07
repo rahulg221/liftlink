@@ -1,5 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_goal_display.dart';
+import 'package:fitness_app/screens/primary/profile/profile_stats_display.dart';
+import 'package:fitness_app/screens/secondary/search/search_screen.dart';
 import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/screens/primary/profile/profile_info_display.dart';
@@ -70,8 +72,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          centerTitle: true,
           title: Text('Profile', style: theme.textTheme.headlineSmall),
+          centerTitle: true,
           leading: IconButton(
             icon: Icon(FontAwesomeIcons.gear,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
@@ -81,10 +83,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
           actions: [
             IconButton(
-              icon: Icon(FontAwesomeIcons.pen,
-                  size: 18, color: theme.iconTheme.color),
+              icon: Icon(FontAwesomeIcons.magnifyingGlass,
+                  size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
-                UtilMethods.navigateTo(const SettingsScreen(), context);
+                UtilMethods.navigateTo(const SearchScreen(), context);
               },
             ),
           ],
@@ -109,39 +111,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           activeStreak: activeStreak,
                           bio: bio,
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 8),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('Goals',
-                                    style: theme.textTheme.headlineSmall),
-                                Container(
-                                  width: 35,
-                                  decoration: BoxDecoration(
-                                    color: theme.colorScheme.primary,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Center(
-                                    child: IconButton(
-                                      icon: const Icon(
-                                        FontAwesomeIcons.pen,
-                                        size: 15,
-                                      ),
-                                      onPressed: () {},
-                                      color: theme.colorScheme.onPrimary,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
+                            child: Text('Stats',
+                                style: theme.textTheme.headlineSmall),
                           ),
                         ),
-                        const SizedBox(height: 12),
+                        const SizedBox(height: 8),
+                        ProfileStatsDisplay(),
+                        const SizedBox(height: 8),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Current Goals',
+                                  style: theme.textTheme.headlineSmall),
+                              Container(
+                                width: 35,
+                                decoration: BoxDecoration(
+                                  color: theme.colorScheme.primary,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Center(
+                                  child: IconButton(
+                                    icon: const Icon(
+                                      FontAwesomeIcons.plus,
+                                      size: 15,
+                                    ),
+                                    onPressed: () {},
+                                    color: theme.colorScheme.onPrimary,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 8),
                         ProfileGoalDisplay(),
                       ],
                     ),

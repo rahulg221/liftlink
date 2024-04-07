@@ -3,7 +3,7 @@ import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
 import 'package:fitness_app/screens/secondary/create_post/create_post_sliders.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +55,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
 
     // Upload the post
-    await DbMethods().uploadPost(widget.postPic, username, uid, profilePic,
+    await PostMethods().uploadPost(widget.postPic, username, uid, profilePic,
         streak, _captionController.text);
 
     // Clear the caption field
@@ -118,16 +118,17 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         appBar: AppBar(
           backgroundColor: theme.colorScheme.surface,
           centerTitle: true,
-          title: Text('Post a flic', style: theme.textTheme.bodyLarge),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.close, size: 22),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
+          title: Text('Post a pic', style: theme.textTheme.bodyLarge),
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              CupertinoIcons.back,
+              color: theme.colorScheme.onBackground,
             ),
-          ],
-          automaticallyImplyLeading: false,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
         ),
         body: _isLoading
             ? const Center(child: CircularProgressIndicator())
@@ -151,7 +152,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     children: [
                                       SizedBox(
                                         height: height * 0.3,
-                                        width: width * 0.45,
+                                        width: width * 0.44,
                                         child: ClipRRect(
                                           borderRadius:
                                               BorderRadius.circular(14),

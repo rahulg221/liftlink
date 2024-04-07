@@ -18,7 +18,7 @@ class RequestButton extends StatelessWidget {
         backgroundColor: theme.colorScheme.primary,
         onPressed: () async {
           UtilMethods.showPartialScreen(
-              const CreateSessionScreen(), context, 0.45);
+              const CreateSessionScreen(), context, 0.6);
         },
         child: Icon(FontAwesomeIcons.plus, color: theme.colorScheme.onPrimary),
       ),

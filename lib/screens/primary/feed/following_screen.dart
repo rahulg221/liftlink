@@ -1,7 +1,8 @@
 import 'package:fitness_app/screens/primary/feed/post_card.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/supabase/db_methods.dart';
+
+import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +30,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
 
     // Get the posts from the database
     List<Post> newPosts =
-        await DbMethods().getFollowingPosts(postLimit, fetchedPostCount, uid);
+        await PostMethods().getFollowingPosts(postLimit, fetchedPostCount, uid);
 
     // Add all new posts to current list of posts
     _posts.addAll(newPosts);

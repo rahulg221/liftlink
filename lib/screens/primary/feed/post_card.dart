@@ -134,7 +134,7 @@ class _PostCardState extends State<PostCard> {
                         GestureDetector(
                           onDoubleTap: () {},
                           child: SizedBox(
-                            height: height * 0.4,
+                            height: height * 0.5,
                             width: width - 32,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(13),

@@ -20,20 +20,22 @@ class _CaptionInputState extends State<CaptionInput> {
     final height = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      width: width * .45,
+      width: width * .44,
       height: height * 0.3,
       child: TextField(
+        textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.top,
         expands: true,
         controller: widget.textEditingController,
         keyboardType: TextInputType.multiline,
-        style: theme.textTheme.bodySmall!,
+        style: theme.textTheme.bodySmall!
+            .copyWith(color: theme.colorScheme.onSurface),
         maxLines: null,
         decoration: InputDecoration(
           hintText: 'Share progress...',
           hintStyle: theme.textTheme.bodySmall!
-              .copyWith(color: theme.colorScheme.onSurface.withOpacity(0.6)),
-          contentPadding: EdgeInsets.only(
-              left: 10, right: 10, top: 10, bottom: height * .75),
+              .copyWith(color: theme.colorScheme.onSurface),
+          contentPadding: const EdgeInsets.all(16.0),
           fillColor: theme.colorScheme.surface,
           filled: true,
           border: OutlineInputBorder(

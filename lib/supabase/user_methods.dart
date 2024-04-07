@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'package:fitness_app/models/comments.dart';
-import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/models/user.dart' as model;
-import 'package:fitness_app/supabase/storage_methods.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
-/*
-class DbMethods {
+
+class UserMethods {
   final _supabase = Supabase.instance.client;
 
   Future<model.User> getUserDetails(String uid) async {
@@ -17,71 +14,6 @@ class DbMethods {
 
       return model.User.fromJson(data);
     } on PostgrestException catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
-    }
-  }
-
-  Future<void> uploadPost(Uint8List postPic, String username, String uid,
-      String profilePicUrl, int streak, String caption) async {
-    try {
-      // Upload the post picture to the storage bucket
-      final postPicUrl = await StorageMethods().uploadPostPic(postPic, uid);
-
-      // Insert the post details into the 'posts' table
-      await _supabase.rpc('upload_post', params: {
-        'username': username,
-        'uid': uid,
-        'profile_pic': profilePicUrl,
-        'streak': streak,
-        'post_pic': postPicUrl,
-        'caption': caption,
-        'comment_count': 0,
-        'like_count': 0,
-      });
-    } on PostgrestException catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
-    }
-  }
-
-  Future<List<Post>> getExplorePosts(int count, int startIndex) async {
-    try {
-      List<Map<String, dynamic>> posts = await _supabase.rpc(
-          'get_explore_posts',
-          params: {'post_count': count, 'start_index': startIndex});
-
-      return posts.map((post) => Post.fromJson(post)).toList();
-    } on PostgrestException catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
-    }
-  }
-
-  Future<List<Post>> getFollowingPosts(
-      int count, int startIndex, String uid) async {
-    try {
-      List<Map<String, dynamic>> posts = await _supabase
-          .rpc('get_following_posts', params: {
-        'post_count': count,
-        'start_index': startIndex,
-        'current_user_id': uid
-      });
-
-      return posts.map((post) => Post.fromJson(post)).toList();
-    } catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {
         print(e.toString());
@@ -222,69 +154,4 @@ class DbMethods {
       throw Exception('An unexpected error occurred: $e');
     }
   }
-
-  Future<List<Comment>> getComments(
-      int count, int startIndex, int postId) async {
-    try {
-      List<Map<String, dynamic>> comments = await _supabase.rpc('get_comments',
-          params: {
-            'comment_count': count,
-            'start_index': startIndex,
-            'pid': postId
-          });
-
-      return comments.map((comment) => Comment.fromJson(comment)).toList();
-    } on PostgrestException catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
-    }
-  }
-
-  Future<void> uploadComment(String username, String uid, String comment,
-      String profilePicUrl, int postId) async {
-    try {
-      // Insert the post details into the 'posts' table
-      await _supabase.rpc('upload_comment', params: {
-        'username': username,
-        'uid': uid,
-        'profile_pic': profilePicUrl,
-        'comment': comment,
-        'post_id': postId,
-      });
-
-      await _supabase.rpc('increment_comment_count', params: {'pid': postId});
-    } on PostgrestException catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
-    }
-  }
-
-  Future<void> createGroup(String username, String uid, String profilePicUrl,
-      String workoutType, DateTime workoutDateTime) async {
-    try {
-      await _supabase.rpc('create_group', params: {
-        'username': username,
-        'uid': uid,
-        'profile_pic': profilePicUrl,
-        'workout_type': workoutType,
-        'workout_date_time': workoutDateTime,
-      });
-    } on PostgrestException catch (e) {
-      // Print errors to console when in debug mode
-      if (kDebugMode) {
-        print(e.toString());
-      }
-
-      throw Exception('An unexpected error occurred: $e');
-    }
-  }
 }
-*/

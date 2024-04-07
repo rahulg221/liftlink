@@ -3,7 +3,7 @@ import 'package:fitness_app/screens/secondary/comments/comment_card.dart';
 import 'package:fitness_app/models/comments.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/supabase/comment_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +36,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
   Future<void> getComments() async {
     beginLoading();
     // Get the posts from the database
-    List<Comment> newComments = await DbMethods()
+    List<Comment> newComments = await CommentMethods()
         .getComments(commentLimit, fetchedCommentCount, postId);
 
     setState(() {
@@ -57,7 +57,7 @@ class _CommentsScreenState extends State<CommentsScreen> {
     }
 
     // Upload the post
-    await DbMethods().uploadComment(
+    await CommentMethods().uploadComment(
         username, uid, _commentController.text, profilePic, postId);
 
     // Clear the comment field

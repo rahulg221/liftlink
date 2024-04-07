@@ -1,6 +1,6 @@
 import 'package:fitness_app/screens/primary/feed/post_card.dart';
 import 'package:fitness_app/models/post.dart';
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
     beginLoading();
     // Get the posts from the database
     List<Post> newPosts =
-        await DbMethods().getExplorePosts(postLimit, fetchedPostCount);
+        await PostMethods().getExplorePosts(postLimit, fetchedPostCount);
 
     _posts.addAll(newPosts);
     fetchedPostCount = _posts.length;

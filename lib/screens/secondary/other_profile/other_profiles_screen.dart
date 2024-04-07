@@ -2,11 +2,11 @@ import 'package:fitness_app/screens/secondary/other_profile/other_profile_goal_d
 import 'package:fitness_app/screens/secondary/other_profile/other_profile_info_display.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/supabase/db_methods.dart';
+import 'package:fitness_app/screens/secondary/other_profile/other_profile_stats_display.dart';
+import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class OtherProfileScreen extends StatefulWidget {
@@ -35,7 +35,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     beginLoading();
     // Get the user details
-    final user = await DbMethods().getUserDetails(widget.uid);
+    final user = await UserMethods().getUserDetails(widget.uid);
     final curUser = userProvider.getUser;
 
     // Set the user data
@@ -92,8 +92,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
               UtilMethods.navigateTo(const MobileScreenLayout(), context);
             },
           ),
-          centerTitle: true,
-          title: Text('@$username', style: theme.textTheme.headlineSmall),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -114,38 +112,27 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                         followedId: followedId,
                         curId: curId,
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Goals',
-                                  style: theme.textTheme.headlineSmall),
-                              Container(
-                                width: 35,
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      FontAwesomeIcons.pen,
-                                      size: 15,
-                                    ),
-                                    onPressed: () {},
-                                    color: theme.colorScheme.onPrimary,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
+                          child: Text('Stats',
+                              style: theme.textTheme.headlineSmall),
                         ),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 8),
+                      OtherProfileStatsDisplay(),
+                      const SizedBox(height: 8),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text('Current Goals',
+                              style: theme.textTheme.headlineSmall),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
                       OtherProfileGoalDisplay(),
                     ],
                   ),

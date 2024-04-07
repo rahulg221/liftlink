@@ -239,7 +239,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               isLoading: _isLoading,
               text: 'Sign up',
             ),
-            const SizedBox(height: 75),
+            const Expanded(child: SizedBox()),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
