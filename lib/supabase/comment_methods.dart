@@ -1,12 +1,9 @@
 import 'dart:async';
 import 'package:fitness_app/models/comments.dart';
-import 'package:fitness_app/models/post.dart';
-import 'package:fitness_app/models/user.dart' as model;
-import 'package:fitness_app/supabase/storage_methods.dart';
 import 'package:flutter/foundation.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class DbMethods {
+class CommentMethods {
   final _supabase = Supabase.instance.client;
 
   Future<List<Comment>> getComments(
