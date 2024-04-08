@@ -5,8 +5,9 @@ import 'dart:ui';
 class ColorPalette {
   // Custom colors
   static Color coral = const Color(0xFFFF6B6B);
-  static Color lightCoral = const Color.fromARGB(255, 255, 173, 173);
+  static Color lightCoral = Color.fromARGB(255, 255, 86, 86);
   static Color lightBlue = const Color.fromARGB(255, 90, 186, 238);
+  static Color teal = const Color.fromARGB(255, 48, 233, 190);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;
   static Color lightBackgroundColor = const Color.fromARGB(255, 255, 253, 247);
@@ -23,8 +24,8 @@ class ColorPalette {
   static Color darkPrimaryColor = coral;
   static Color lightPrimaryColor = coral;
   // Secondary colors
-  static Color darkSecondaryColor = darkPrimaryColor;
-  static Color lightSecondaryColor = lightPrimaryColor;
+  static Color darkSecondaryColor = teal;
+  static Color lightSecondaryColor = teal;
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
   static Color lightBackgroundHeaderColor = Colors.black;

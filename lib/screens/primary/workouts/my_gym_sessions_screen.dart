@@ -1,6 +1,6 @@
 import 'package:fitness_app/models/session.dart' as model;
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/primary/workouts/workout_card.dart';
+import 'package:fitness_app/screens/primary/workouts/session_card.dart';
 import 'package:fitness_app/supabase/session_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

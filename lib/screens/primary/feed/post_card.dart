@@ -49,7 +49,8 @@ class _PostCardState extends State<PostCard> {
     likeCount = widget.data.likeCount;
 
     final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
-    final String formattedDate = UtilMethods.getFormattedDate(parsedDate);
+    final String formattedDate =
+        UtilMethods.getFormattedDate(parsedDate, false);
 
     createdAt = formattedDate;
     streak = widget.data.streak;
@@ -107,34 +108,11 @@ class _PostCardState extends State<PostCard> {
                         ],
                       ),
                       const Spacer(),
-                      /*
-                      Container(
-                        decoration: BoxDecoration(
-                          color: theme.scaffoldBackgroundColor,
-                          borderRadius: BorderRadius.circular(9),
-                          border: Border.all(
-                              color: isDark
-                                  ? theme.colorScheme.onBackground
-                                      .withOpacity(0.3)
-                                  : Colors.transparent,
-                              width: 1.5),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 6.0, horizontal: 12.0),
-                          child: Row(
-                            children: [
-                              Icon(FontAwesomeIcons.arrowUp,
-                                  color: theme.colorScheme.primary, size: 18),
-                              const SizedBox(width: 8),
-                              Text('5 lbs',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                    color: theme.colorScheme.primary,
-                                  )),
-                            ],
-                          ),
-                        ),
-                      ),*/
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(FontAwesomeIcons.ellipsis, size: 22),
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -183,11 +161,14 @@ class _PostCardState extends State<PostCard> {
                       Row(
                         children: [
                           FaIcon(FontAwesomeIcons.heart,
-                              color: theme.colorScheme.primary, size: 21),
+                              color: theme.colorScheme.primary, size: 26),
                           const SizedBox(width: 8),
                           Text(
-                            '$likeCount likes',
-                            style: theme.textTheme.bodyMedium,
+                            '$likeCount',
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                              color: theme.colorScheme.onBackground
+                                  .withOpacity(0.9),
+                            ),
                           ),
                         ],
                       ),
@@ -203,12 +184,18 @@ class _PostCardState extends State<PostCard> {
                         },
                         child: Row(
                           children: [
-                            FaIcon(FontAwesomeIcons.commentDots,
-                                color: theme.colorScheme.primary, size: 21),
+                            FaIcon(
+                              FontAwesomeIcons.commentDots,
+                              color: theme.colorScheme.primary,
+                              size: 26,
+                            ),
                             const SizedBox(width: 8),
                             Text(
-                              '$commentCount comments',
-                              style: theme.textTheme.bodyMedium,
+                              '$commentCount',
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                color: theme.colorScheme.onBackground
+                                    .withOpacity(0.9),
+                              ),
                             ),
                           ],
                         ),

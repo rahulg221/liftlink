@@ -153,6 +153,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               Transform.scale(
                                 scale: 1.2,
                                 child: Radio(
+                                  activeColor: theme.colorScheme.secondary,
                                   value: 'Push',
                                   groupValue: workoutType,
                                   onChanged: (value) {
@@ -188,6 +189,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               Transform.scale(
                                 scale: 1.2,
                                 child: Radio(
+                                  activeColor: theme.colorScheme.secondary,
                                   value: 'Pull',
                                   groupValue: workoutType,
                                   onChanged: (value) {
@@ -223,6 +225,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                               Transform.scale(
                                 scale: 1.2,
                                 child: Radio(
+                                  activeColor: theme.colorScheme.secondary,
                                   value: 'Legs',
                                   groupValue: workoutType,
                                   onChanged: (value) {
@@ -318,9 +321,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 friendsCanSee = value;
                               });
                             },
-                            activeTrackColor: theme.colorScheme.primary,
-                            activeColor: theme.colorScheme.onPrimary,
-                            inactiveThumbColor: theme.colorScheme.onPrimary,
+                            activeTrackColor: theme.colorScheme.secondary,
+                            activeColor: theme.colorScheme.onSecondary,
+                            inactiveThumbColor: theme.colorScheme.onSecondary,
                           ),
                         ),
                       ],
@@ -345,9 +348,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 myGymCanSee = value;
                               });
                             },
-                            activeTrackColor: theme.colorScheme.primary,
-                            activeColor: theme.colorScheme.onPrimary,
-                            inactiveThumbColor: theme.colorScheme.onPrimary,
+                            activeTrackColor: theme.colorScheme.secondary,
+                            activeColor: theme.colorScheme.onSecondary,
+                            inactiveThumbColor: theme.colorScheme.onSecondary,
                           ),
                         ),
                       ],

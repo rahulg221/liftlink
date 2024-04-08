@@ -87,8 +87,9 @@ class _SessionCardState extends State<SessionCard> {
                       );
                     },
                     child: CircleAvatar(
-                      backgroundImage: NetworkImage(profilePic),
                       radius: 35,
+                      backgroundImage: NetworkImage(profilePic),
+                      backgroundColor: theme.scaffoldBackgroundColor,
                     ),
                   ),
                   const SizedBox(width: 16),

@@ -45,7 +45,7 @@ class _CaptionInputState extends State<CaptionInput> {
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
-                color: theme.colorScheme.onSurface.withOpacity(0.5),
+                color: theme.colorScheme.onSurface.withOpacity(0.3),
                 width: 1.5),
             borderRadius: BorderRadius.circular(14),
           ),

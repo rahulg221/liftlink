@@ -86,7 +86,7 @@ Widget _circle(String goalName, double starting, double current, double goal,
                 backgroundColor:
                     theme.colorScheme.onBackground.withOpacity(0.07),
                 valueColor:
-                    AlwaysStoppedAnimation<Color>(theme.colorScheme.primary),
+                    AlwaysStoppedAnimation<Color>(theme.colorScheme.secondary),
               ),
             ),
           ],

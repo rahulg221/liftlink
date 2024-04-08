@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,6 +26,9 @@ class ProfileInfoDisplay extends StatefulWidget {
 }
 
 class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
+  int curPts = 300;
+  int totalPts = 1000;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -120,6 +125,57 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                   ),
                 ],
               ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '$curPts/$totalPts pts',
+                      style: theme.textTheme.bodySmall!.copyWith(
+                        color: theme.colorScheme.onBackground.withOpacity(0.7),
+                        fontVariations: const <FontVariation>[
+                          FontVariation('wght', 350),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    LinearProgressIndicator(
+                      minHeight: 12,
+                      value: (curPts / totalPts),
+                      semanticsLabel: 'Progress indicator',
+                      color: theme.colorScheme.secondary,
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'lvl. 9',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                            color:
+                                theme.colorScheme.onBackground.withOpacity(0.7),
+                            fontVariations: const <FontVariation>[
+                              FontVariation('wght', 350),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          'lvl. 10',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                            color:
+                                theme.colorScheme.onBackground.withOpacity(0.7),
+                            fontVariations: const <FontVariation>[
+                              FontVariation('wght', 350),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
@@ -154,7 +210,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                 width: 25,
                 height: 25,
                 decoration: BoxDecoration(
-                  color: theme.colorScheme.secondary,
+                  color: theme.colorScheme.primary,
                   shape: BoxShape.circle,
                 ),
               ),

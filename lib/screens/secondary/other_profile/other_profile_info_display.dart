@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -33,6 +35,9 @@ class OtherProfileInfoDisplay extends StatefulWidget {
 class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   bool _followed = false;
   bool _isLoading = false;
+
+  int curPts = 900;
+  int totalPts = 1000;
 
   @override
   void initState() {
@@ -195,6 +200,57 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                     ),
                   ),
                 ],
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '$curPts/$totalPts pts',
+                      style: theme.textTheme.bodySmall!.copyWith(
+                        color: theme.colorScheme.onBackground.withOpacity(0.7),
+                        fontVariations: const <FontVariation>[
+                          FontVariation('wght', 350),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    LinearProgressIndicator(
+                      minHeight: 12,
+                      value: (curPts / totalPts),
+                      semanticsLabel: 'Progress indicator',
+                      color: theme.colorScheme.secondary,
+                    ),
+                    const SizedBox(height: 6),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'lvl. 9',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                            color:
+                                theme.colorScheme.onBackground.withOpacity(0.7),
+                            fontVariations: const <FontVariation>[
+                              FontVariation('wght', 350),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          'lvl. 10',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                            color:
+                                theme.colorScheme.onBackground.withOpacity(0.7),
+                            fontVariations: const <FontVariation>[
+                              FontVariation('wght', 350),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

@@ -23,20 +23,22 @@ class UtilMethods {
     );
   }
 
-  static String getFormattedDate(DateTime parsedDate) {
+  static String getFormattedDate(DateTime parsedDate, bool isShort) {
     final DateTime now = DateTime.now();
     final int differenceInMinutes = now.difference(parsedDate).inMinutes;
 
     if (differenceInMinutes < 1) {
       return 'just now';
     } else if (differenceInMinutes < 60) {
-      return '${differenceInMinutes}m ago';
+      return isShort
+          ? '${differenceInMinutes}m'
+          : '${differenceInMinutes}m ago';
     } else if (differenceInMinutes < 1440) {
       final int hours = differenceInMinutes ~/ 60;
-      return '${hours}h ago';
+      return isShort ? '${hours}h' : '${hours}h ago';
     } else {
       final int days = differenceInMinutes ~/ 1440;
-      return '${days}d ago';
+      return isShort ? '${days}d' : '${days}d ago';
     }
   }
 

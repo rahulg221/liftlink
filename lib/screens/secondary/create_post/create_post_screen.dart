@@ -1,13 +1,14 @@
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
-import 'package:fitness_app/screens/secondary/create_post/create_post_sliders.dart';
+import 'package:fitness_app/screens/secondary/create_post/create_post_switches.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -161,8 +162,56 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 16),
-                                UploadSliders(),
+                                const SizedBox(height: 14),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(FontAwesomeIcons.solidEye),
+                                    const SizedBox(width: 12),
+                                    Text('Privacy',
+                                        style: theme.textTheme.bodyLarge!
+                                            .copyWith(
+                                                color: theme
+                                                    .colorScheme.onSurface
+                                                    .withOpacity(0.7))),
+                                    const Spacer(),
+                                    IconButton(
+                                        icon: const Icon(
+                                            FontAwesomeIcons.caretUp),
+                                        onPressed: () {}),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Divider(
+                                  color: theme.colorScheme.surface,
+                                  thickness: 1.5,
+                                ),
+                                const SizedBox(height: 8),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(FontAwesomeIcons.pen),
+                                    const SizedBox(width: 12),
+                                    Text('Update goals',
+                                        style: theme.textTheme.bodyLarge!
+                                            .copyWith(
+                                                color: theme
+                                                    .colorScheme.onSurface
+                                                    .withOpacity(0.7))),
+                                    const Spacer(),
+                                    IconButton(
+                                        icon: const Icon(
+                                            FontAwesomeIcons.caretUp),
+                                        onPressed: () {}),
+                                  ],
+                                ),
+                                const SizedBox(height: 8),
+                                Divider(
+                                  color: theme.colorScheme.surface,
+                                  thickness: 1.5,
+                                ),
+                                const SizedBox(height: 8),
+                                UploadSwitches(),
                               ],
                             ),
                             const SizedBox(height: 12),

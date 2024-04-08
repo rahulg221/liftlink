@@ -33,7 +33,7 @@ class _CommentCardState extends State<CommentCard> {
     uid = widget.data.uid;
 
     final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
-    final String formattedDate = UtilMethods.getFormattedDate(parsedDate);
+    final String formattedDate = UtilMethods.getFormattedDate(parsedDate, true);
 
     createdAt = formattedDate;
   }
@@ -98,7 +98,7 @@ class _CommentCardState extends State<CommentCard> {
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7),
                               fontVariations: const <FontVariation>[
-                                FontVariation('wght', 300)
+                                FontVariation('wght', 250)
                               ]),
                         ),
                         const SizedBox(width: 16),
