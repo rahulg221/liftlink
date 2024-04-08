@@ -4,7 +4,6 @@ import 'package:fitness_app/models/comments.dart';
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/comment_methods.dart';
-import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,15 +59,25 @@ class _CommentsScreenState extends State<CommentsScreen> {
     await CommentMethods().uploadComment(
         username, uid, _commentController.text, profilePic, postId);
 
+    // Create a temporary comment variable to add to the list
+    Comment newComment = Comment(
+        profilePic: profilePic,
+        username: username,
+        comment: _commentController.text,
+        uid: uid,
+        createdAt: DateTime.now().toString(),
+        postId: postId);
+
+    // Add the new comment to the list of comments
+    setState(() {
+      _comments.insert(
+          0, newComment); // Insert new comment at the beginning of the list
+    });
+
     // Clear the comment field
     _commentController.clear();
 
     stopLoading();
-
-    if (mounted) {
-      UtilMethods.showSnackBar('Comment added!', context);
-      Navigator.of(context).pop();
-    }
   }
 
   void getInfo() {

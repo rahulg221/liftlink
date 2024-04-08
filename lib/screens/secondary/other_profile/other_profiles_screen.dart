@@ -1,10 +1,8 @@
 import 'package:fitness_app/screens/secondary/other_profile/other_profile_goal_display.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profile_info_display.dart';
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profile_stats_display.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
-import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -89,7 +87,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
               color: theme.colorScheme.onBackground,
             ),
             onPressed: () {
-              UtilMethods.navigateTo(const MobileScreenLayout(), context);
+              Navigator.of(context).pop();
             },
           ),
           centerTitle: true,
