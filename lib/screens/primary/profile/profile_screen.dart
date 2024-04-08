@@ -111,7 +111,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           activeStreak: activeStreak,
                           bio: bio,
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         Align(
                           alignment: Alignment.centerLeft,
                           child: Padding(
@@ -121,7 +121,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 style: theme.textTheme.headlineSmall),
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         ProfileStatsDisplay(),
                         const SizedBox(height: 8),
                         Padding(

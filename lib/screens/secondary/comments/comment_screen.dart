@@ -116,12 +116,13 @@ class _CommentsScreenState extends State<CommentsScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: theme.colorScheme.surface,
         centerTitle: true,
         title: Text('${widget.commentCount} comments',
-            style: theme.textTheme.bodyLarge),
+            style: theme.textTheme.bodyMedium),
         actions: [
           IconButton(
             icon: const Icon(Icons.close, size: 22),
@@ -133,28 +134,23 @@ class _CommentsScreenState extends State<CommentsScreen> {
         automaticallyImplyLeading: false,
       ),
       body: _isLoading
-          ? Container(
-              color: theme.colorScheme.surface,
-              child: const Center(child: CircularProgressIndicator()))
-          : Container(
-              color: theme.colorScheme.surface,
-              child: Column(
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: _comments.length,
-                      itemBuilder: (context, index) {
-                        return CommentCard(data: _comments[index]);
-                      },
-                    ),
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _comments.length,
+                    itemBuilder: (context, index) {
+                      return CommentCard(data: _comments[index]);
+                    },
                   ),
-                  ChatTextFieldInput(
-                    textEditingController: _commentController,
-                    hintText: 'Add a comment...',
-                    onSend: uploadComment,
-                  ),
-                ],
-              ),
+                ),
+                ChatTextFieldInput(
+                  textEditingController: _commentController,
+                  hintText: 'Add a comment...',
+                  onSend: uploadComment,
+                ),
+              ],
             ),
     );
   }

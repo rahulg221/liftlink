@@ -1,6 +1,7 @@
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
@@ -54,22 +55,21 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   }
 
   void followUser() async {
-    // Follow the user
-    await UserMethods().followUser(widget.followedId, widget.curId);
-
     setState(() {
       _followed = true;
     });
+
+    // Follow the user
+    await UserMethods().followUser(widget.followedId, widget.curId);
   }
 
   // Not implemented
   void unfollowUser() async {
-    // Unfollow the user
-    await UserMethods().unfollowUser(widget.followedId, widget.curId);
-
     setState(() {
       _followed = false;
     });
+    // Unfollow the user
+    await UserMethods().unfollowUser(widget.followedId, widget.curId);
   }
 
   void beginLoading() {
@@ -88,17 +88,23 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
-      elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
+      elevation: isDark ? 0 : 6,
       shadowColor: Colors.grey.withOpacity(0.5),
       child: Container(
         decoration: BoxDecoration(
-          color: theme.colorScheme.surface,
+          color: theme.scaffoldBackgroundColor,
           borderRadius: BorderRadius.circular(25),
+          border: Border.all(
+              color: isDark
+                  ? theme.colorScheme.onBackground.withOpacity(0.3)
+                  : Colors.transparent,
+              width: 1.5),
         ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -131,24 +137,62 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              _userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
-              const SizedBox(height: 12),
+              //_userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _button(
-                    theme,
-                    _followed ? 'Remove friend' : 'Add friend',
-                    width,
-                    _followed ? false : true,
+                  GestureDetector(
+                    onTap: () {
+                      if (!_followed) {
+                        followUser();
+                      } else if (_followed) {
+                        unfollowUser();
+                      }
+                    },
+                    child: Container(
+                      width: (width - 80) * 0.66,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: _isLoading
+                            ? theme.colorScheme.surface
+                            : _followed
+                                ? theme.colorScheme.onBackground
+                                    .withOpacity(0.07)
+                                : theme.colorScheme.primary,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: _isLoading
+                            ? const Center(child: CircularProgressIndicator())
+                            : Text(
+                                _followed ? 'Remove friend' : 'Add friend',
+                                style: theme.textTheme.bodySmall!.copyWith(
+                                    color: _followed
+                                        ? theme.colorScheme.onSurface
+                                        : theme.colorScheme.onPrimary,
+                                    fontWeight: FontWeight.w600),
+                                textAlign: TextAlign.center,
+                              ),
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 8),
-                  _button(
-                    theme,
-                    'Message',
-                    width,
-                    false,
+                  Container(
+                    width: (width - 80) * 0.33,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.onBackground.withOpacity(0.07),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: _isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : IconButton(
+                              onPressed: () {},
+                              icon: const Icon(FontAwesomeIcons.message),
+                              color: theme.colorScheme.onSurface),
+                    ),
                   ),
                 ],
               ),
@@ -159,133 +203,64 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
     );
   }
 
-  Widget _infoDisplay(
-    ThemeData theme,
-    String text,
-    String count,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+  Widget _userTags(
+      ThemeData theme, String expLevel, String lifterType, String gymName) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Text(count,
-              style: theme.textTheme.bodyLarge!.copyWith(
-                  fontWeight: FontWeight.w600,
-                  color: theme.colorScheme.primary)),
-          const SizedBox(width: 5),
-          Text(text,
-              style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.onBackground.withOpacity(0.7))),
+          Container(
+            decoration: BoxDecoration(
+                color: theme.colorScheme.onBackground.withOpacity(0.07),
+                borderRadius: BorderRadius.circular(9)),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+              child: Text(expLevel,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  )),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            decoration: BoxDecoration(
+                color: theme.colorScheme.onBackground.withOpacity(0.07),
+                borderRadius: BorderRadius.circular(9)),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+              child: Text(lifterType,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  )),
+            ),
+          ),
+          const SizedBox(width: 8),
+          Container(
+            decoration: BoxDecoration(
+                color: theme.colorScheme.onBackground.withOpacity(0.07),
+                borderRadius: BorderRadius.circular(9)),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
+              child: Text(gymName,
+                  style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.primary,
+                  )),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  Widget _button(
-    ThemeData theme,
-    String text,
-    double width,
-    bool isPrimary,
-  ) {
-    return GestureDetector(
-      onTap: () {
-        if (text == 'Add friend') {
-          followUser();
-        } else if (text == 'Remove friend') {
-          unfollowUser();
-        }
-      },
-      child: Container(
-        width: (width - 80) * 0.5,
-        height: 45,
-        decoration: BoxDecoration(
-          color: _isLoading
-              ? theme.colorScheme.surface
-              : isPrimary
-                  ? _followed
-                      ? theme.colorScheme.onBackground.withOpacity(0.07)
-                      : theme.colorScheme.primary
-                  : theme.colorScheme.onBackground.withOpacity(0.07),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Text(
-                  text,
-                  style: theme.textTheme.bodySmall!.copyWith(
-                      color: isPrimary
-                          ? _followed
-                              ? theme.colorScheme.onSurface
-                              : theme.colorScheme.onPrimary
-                          : theme.colorScheme.onSurface,
-                      fontWeight: FontWeight.w600),
-                  textAlign: TextAlign.center,
-                ),
-        ),
-      ),
+  Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
+    return CircleAvatar(
+      radius: 45,
+      backgroundImage: NetworkImage(photoUrl),
+      backgroundColor: theme.scaffoldBackgroundColor,
     );
   }
-}
-
-Widget _userTags(
-    ThemeData theme, String expLevel, String lifterType, String gymName) {
-  return SingleChildScrollView(
-    scrollDirection: Axis.horizontal,
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              color: theme.colorScheme.onBackground.withOpacity(0.07),
-              borderRadius: BorderRadius.circular(9)),
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-            child: Text(expLevel,
-                style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.primary,
-                )),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Container(
-          decoration: BoxDecoration(
-              color: theme.colorScheme.onBackground.withOpacity(0.07),
-              borderRadius: BorderRadius.circular(9)),
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-            child: Text(lifterType,
-                style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.primary,
-                )),
-          ),
-        ),
-        const SizedBox(width: 8),
-        Container(
-          decoration: BoxDecoration(
-              color: theme.colorScheme.onBackground.withOpacity(0.07),
-              borderRadius: BorderRadius.circular(9)),
-          child: Padding(
-            padding:
-                const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-            child: Text(gymName,
-                style: theme.textTheme.bodyMedium!.copyWith(
-                  color: theme.colorScheme.primary,
-                )),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
-  return CircleAvatar(
-    radius: 45,
-    backgroundImage: NetworkImage(photoUrl),
-    backgroundColor: theme.scaffoldBackgroundColor,
-  );
 }

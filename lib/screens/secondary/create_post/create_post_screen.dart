@@ -7,7 +7,6 @@ import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -116,9 +115,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: theme.colorScheme.surface,
           centerTitle: true,
-          title: Text('Post a pic', style: theme.textTheme.bodyLarge),
+          title: Text('New post', style: theme.textTheme.bodyLarge),
           leading: CupertinoButton(
             padding: EdgeInsets.zero,
             child: Icon(
@@ -132,99 +130,75 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         ),
         body: _isLoading
             ? const Center(child: CircularProgressIndicator())
-            : Container(
-                color: theme.colorScheme.surface,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: [
-                              const SizedBox(height: 12),
-                              Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      SizedBox(
-                                        height: height * 0.3,
-                                        width: width * 0.44,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(14),
-                                          child: Image.memory(widget.postPic,
-                                              fit: BoxFit.cover),
-                                        ),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      CaptionInput(
-                                        textEditingController:
-                                            _captionController,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 16),
-                                  UploadSliders(),
-                                ],
-                              ),
-                              const SizedBox(height: 12),
-                            ],
-                          ),
-                        ),
-                      ),
-                      Container(
-                        color: theme.colorScheme.surface,
-                        height: 75,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: takePhoto,
-                              child: Container(
-                                width: (width - 32) * 0.35,
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.onBackground
-                                      .withOpacity(0.07),
-                                  borderRadius: BorderRadius.circular(10),
+                            const SizedBox(height: 12),
+                            Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    SizedBox(
+                                      height: height * 0.3,
+                                      width: width * 0.44,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(14),
+                                        child: Image.memory(widget.postPic,
+                                            fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    CaptionInput(
+                                      textEditingController: _captionController,
+                                    ),
+                                  ],
                                 ),
-                                child: Center(
-                                  child: Icon(
-                                    FontAwesomeIcons.arrowRotateLeft,
-                                    color: theme.colorScheme.onBackground,
-                                  ),
-                                ),
-                              ),
+                                const SizedBox(height: 16),
+                                UploadSliders(),
+                              ],
                             ),
-                            GestureDetector(
-                              onTap: uploadPost,
-                              child: Container(
-                                width: (width - 32) * 0.63,
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Center(
-                                  child: Text(
-                                    'Post',
-                                    style: theme.textTheme.bodyMedium!.copyWith(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w600),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            const SizedBox(height: 12),
                           ],
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    Container(
+                      color: theme.scaffoldBackgroundColor,
+                      height: 75,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          GestureDetector(
+                            onTap: uploadPost,
+                            child: Container(
+                              width: width - 32,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                color: theme.colorScheme.primary,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Post',
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ));
   }

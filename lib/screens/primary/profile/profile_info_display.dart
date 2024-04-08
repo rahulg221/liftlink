@@ -28,17 +28,24 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(25),
       ),
-      elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
+      elevation: isDark ? 0 : 6,
       shadowColor: Colors.grey.withOpacity(0.5),
       child: Container(
         decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(25)),
+          color: theme.scaffoldBackgroundColor,
+          borderRadius: BorderRadius.circular(25),
+          border: Border.all(
+              color: isDark
+                  ? theme.colorScheme.onBackground.withOpacity(0.3)
+                  : Colors.transparent,
+              width: 1.5),
+        ),
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -70,24 +77,46 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                   ),
                 ],
               ),
-              const SizedBox(height: 12),
-              _userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
-              const SizedBox(height: 12),
+              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _button(
-                    theme,
-                    'Edit profile',
-                    width,
-                    false,
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: (width - 64) * 0.62,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        color: theme.colorScheme.surface,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Edit profile',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                              color: theme.colorScheme.onSurface,
+                              fontWeight: FontWeight.w600),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(width: 8),
-                  _button(
-                    theme,
-                    'Share profile',
-                    width,
-                    false,
+                  Container(
+                    width: (width - 64) * 0.32,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surface,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            FontAwesomeIcons.shareNodes,
+                          ),
+                          color: theme.colorScheme.onSurface),
+                    ),
                   ),
                 ],
               ),
@@ -98,134 +127,49 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
     );
   }
 
-  Widget _userTags(
-      ThemeData theme, String expLevel, String lifterType, String gymName) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                color: theme.colorScheme.onBackground.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(9)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-              child: Text(expLevel,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  )),
-            ),
+  Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        CircleAvatar(
+          radius: 40,
+          backgroundImage: NetworkImage(photoUrl),
+          backgroundColor: theme.scaffoldBackgroundColor,
+        ),
+        Positioned(
+          bottom: -10,
+          right: -10,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Container(
+                width: 35,
+                height: 35,
+                decoration: BoxDecoration(
+                  color: theme.scaffoldBackgroundColor,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              Container(
+                width: 25,
+                height: 25,
+                decoration: BoxDecoration(
+                  color: theme.colorScheme.secondary,
+                  shape: BoxShape.circle,
+                ),
+              ),
+              IconButton(
+                icon: const Icon(
+                  FontAwesomeIcons.pen,
+                  color: Colors.white,
+                  size: 12,
+                ),
+                onPressed: () {},
+              ),
+            ],
           ),
-          const SizedBox(width: 8),
-          Container(
-            decoration: BoxDecoration(
-                color: theme.colorScheme.onBackground.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(9)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-              child: Text(lifterType,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  )),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            decoration: BoxDecoration(
-                color: theme.colorScheme.onBackground.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(9)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-              child: Text(gymName,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  )),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
-
-  Widget _button(
-    ThemeData theme,
-    String text,
-    double width,
-    bool isPrimary,
-  ) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: (width - 80) * 0.5,
-        height: 45,
-        decoration: BoxDecoration(
-          color: isPrimary
-              ? theme.colorScheme.primary
-              : theme.colorScheme.onBackground.withOpacity(0.07),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Center(
-          child: Text(
-            text,
-            style: theme.textTheme.bodySmall!.copyWith(
-                color: isPrimary
-                    ? theme.colorScheme.onPrimary
-                    : theme.colorScheme.onSurface,
-                fontWeight: FontWeight.w600),
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
-  return Stack(
-    alignment: Alignment.center,
-    children: [
-      CircleAvatar(
-        radius: 40,
-        backgroundImage: NetworkImage(photoUrl),
-        backgroundColor: theme.scaffoldBackgroundColor,
-      ),
-      Positioned(
-        bottom: -10,
-        right: -10,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            Container(
-              width: 35,
-              height: 35,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.surface,
-                shape: BoxShape.circle,
-              ),
-            ),
-            Container(
-              width: 25,
-              height: 25,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.secondary,
-                shape: BoxShape.circle,
-              ),
-            ),
-            IconButton(
-              icon: const Icon(
-                FontAwesomeIcons.pen,
-                color: Colors.white,
-                size: 12,
-              ),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
-    ],
-  );
 }

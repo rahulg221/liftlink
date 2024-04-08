@@ -36,7 +36,7 @@ class _CaptionInputState extends State<CaptionInput> {
           hintStyle: theme.textTheme.bodySmall!
               .copyWith(color: theme.colorScheme.onSurface),
           contentPadding: const EdgeInsets.all(16.0),
-          fillColor: theme.colorScheme.surface,
+          fillColor: theme.scaffoldBackgroundColor,
           filled: true,
           border: OutlineInputBorder(
             borderSide:

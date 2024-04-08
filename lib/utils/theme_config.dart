@@ -4,12 +4,12 @@ import 'dart:ui';
 
 class ColorPalette {
   // Custom colors
-  static Color coral = Color(0xFFFF6B6B);
-  static Color lightCoral = Color.fromARGB(255, 255, 173, 173);
-  static Color lightBlue = Color.fromARGB(255, 90, 186, 238);
+  static Color coral = const Color(0xFFFF6B6B);
+  static Color lightCoral = const Color.fromARGB(255, 255, 173, 173);
+  static Color lightBlue = const Color.fromARGB(255, 90, 186, 238);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;
-  static Color lightBackgroundColor = Color.fromARGB(255, 255, 250, 240);
+  static Color lightBackgroundColor = const Color.fromARGB(255, 255, 253, 247);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
   static Color lightAppBarColor = lightBackgroundColor;
@@ -17,14 +17,14 @@ class ColorPalette {
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
-  static Color darkSurfaceColor = Color.fromARGB(255, 19, 19, 19);
-  static Color lightSurfaceColor = Color.fromARGB(255, 255, 253, 247);
+  static Color darkSurfaceColor = const Color.fromARGB(255, 19, 19, 19);
+  static Color lightSurfaceColor = const Color.fromARGB(255, 243, 239, 231);
   // Primary colors
   static Color darkPrimaryColor = coral;
   static Color lightPrimaryColor = coral;
   // Secondary colors
-  static Color darkSecondaryColor = coral;
-  static Color lightSecondaryColor = coral;
+  static Color darkSecondaryColor = darkPrimaryColor;
+  static Color lightSecondaryColor = lightPrimaryColor;
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
   static Color lightBackgroundHeaderColor = Colors.black;
@@ -41,11 +41,11 @@ class ColorPalette {
   static Color darkOnSecondaryColor = Colors.white.withOpacity(0.9);
   static Color lightOnSecondaryColor = Colors.white.withOpacity(0.9);
   // Default icon color
-  static Color darkIconColor = Color.fromARGB(255, 245, 245, 245);
-  static Color lightIconColor = Color.fromARGB(255, 18, 18, 18);
+  static Color darkIconColor = const Color.fromARGB(255, 245, 245, 245);
+  static Color lightIconColor = const Color.fromARGB(255, 18, 18, 18);
   // Snack bar colors
-  static Color darkSnackBar = Color.fromARGB(255, 40, 40, 40);
-  static Color lightSnackBar = Color.fromARGB(255, 174, 174, 174);
+  static Color darkSnackBar = const Color.fromARGB(255, 40, 40, 40);
+  static Color lightSnackBar = const Color.fromARGB(255, 174, 174, 174);
 }
 
 class ThemeConfig {
@@ -208,7 +208,7 @@ class ThemeConfig {
         ],
       ),
       headlineSmall: TextStyle(
-        fontSize: 21,
+        fontSize: 22,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -216,7 +216,7 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 18,
+        fontSize: 20,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -224,7 +224,7 @@ class ThemeConfig {
         ],
       ),
       bodyMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 18,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -232,7 +232,7 @@ class ThemeConfig {
         ],
       ),
       bodySmall: TextStyle(
-        fontSize: 14,
+        fontSize: 16,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[

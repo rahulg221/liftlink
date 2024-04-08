@@ -92,6 +92,8 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
               UtilMethods.navigateTo(const MobileScreenLayout(), context);
             },
           ),
+          centerTitle: true,
+          title: Text(username, style: theme.textTheme.headlineSmall),
         ),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -112,7 +114,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                         followedId: followedId,
                         curId: curId,
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 12),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
@@ -121,9 +123,9 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                               style: theme.textTheme.headlineSmall),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 12),
                       OtherProfileStatsDisplay(),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 12),
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
@@ -132,7 +134,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                               style: theme.textTheme.headlineSmall),
                         ),
                       ),
-                      const SizedBox(height: 8),
+                      const SizedBox(height: 12),
                       OtherProfileGoalDisplay(),
                     ],
                   ),

@@ -67,131 +67,117 @@ class _PostCardState extends State<PostCard> {
 
     return Padding(
       padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
-        elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
-        shadowColor: Colors.grey.withOpacity(0.5),
-        child: Container(
-          decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(25)),
-          child: Column(
+      child: Column(
+        children: [
+          Column(
             children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        Row(
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          if (uid != curUserId) {
+                            UtilMethods.navigateTo(
+                              OtherProfileScreen(uid: uid),
+                              context,
+                            );
+                          }
+                        },
+                        child: CircleAvatar(
+                          radius: 18,
+                          backgroundImage: NetworkImage(profilePic),
+                          backgroundColor: theme.scaffoldBackgroundColor,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Row(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                if (uid != curUserId) {
-                                  UtilMethods.navigateTo(
-                                    OtherProfileScreen(uid: uid),
-                                    context,
-                                  );
-                                }
-                              },
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundImage: NetworkImage(profilePic),
-                                backgroundColor: theme.scaffoldBackgroundColor,
+                            Text(username, style: theme.textTheme.bodyMedium),
+                            Text(
+                              '  •  ',
+                              style: theme.textTheme.bodySmall!.copyWith(
+                                color: theme.colorScheme.primary,
                               ),
                             ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Text(username,
-                                      style: theme.textTheme.bodyMedium),
-                                  Text(
-                                    '  •  ',
-                                    style: theme.textTheme.bodySmall!.copyWith(
-                                      color: theme.colorScheme.primary,
-                                    ),
-                                  ),
-                                  Text(createdAt,
-                                      style: theme.textTheme.bodySmall),
-                                ],
-                              ),
-                            ),
-                            const FaIcon(FontAwesomeIcons.ellipsisVertical,
-                                size: 16),
+                            Text(createdAt, style: theme.textTheme.bodyMedium),
                           ],
                         ),
-                        const SizedBox(height: 12),
-                        Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              '$caption',
-                              style: theme.textTheme.bodyMedium,
-                            )),
-                        const SizedBox(height: 12),
-                        GestureDetector(
-                          onDoubleTap: () {},
-                          child: SizedBox(
-                            height: height * 0.5,
-                            width: width - 32,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(13),
-                              child: Image.network(postPic, fit: BoxFit.cover),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                FaIcon(FontAwesomeIcons.heart,
-                                    color: theme.colorScheme.primary, size: 21),
-                                const SizedBox(width: 8),
-                                Text(
-                                  '$likeCount likes',
-                                  style: theme.textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(width: 12),
-                            GestureDetector(
-                              onTap: () {
-                                UtilMethods.showPartialScreen(
-                                    CommentsScreen(
-                                        data: widget.data,
-                                        commentCount: commentCount),
-                                    context,
-                                    0.75);
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  FaIcon(FontAwesomeIcons.commentDots,
-                                      color: theme.colorScheme.primary,
-                                      size: 21),
-                                  const SizedBox(width: 8),
-                                  Text(
-                                    '$commentCount comments',
-                                    style: theme.textTheme.bodyMedium,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                      ),
+                      const FaIcon(FontAwesomeIcons.ellipsisVertical, size: 16),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        '$caption',
+                        style: theme.textTheme.bodyMedium,
+                      )),
+                  const SizedBox(height: 12),
+                  GestureDetector(
+                    onDoubleTap: () {},
+                    child: SizedBox(
+                      height: height * 0.5,
+                      width: width,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Image.network(postPic, fit: BoxFit.cover),
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          FaIcon(FontAwesomeIcons.heart,
+                              color: theme.colorScheme.primary, size: 21),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$likeCount likes',
+                            style: theme.textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      const SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: () {
+                          UtilMethods.showPartialScreen(
+                              CommentsScreen(
+                                  data: widget.data,
+                                  commentCount: commentCount),
+                              context,
+                              0.75);
+                        },
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            FaIcon(FontAwesomeIcons.commentDots,
+                                color: theme.colorScheme.primary, size: 21),
+                            const SizedBox(width: 8),
+                            Text(
+                              '$commentCount comments',
+                              style: theme.textTheme.bodyMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
-        ),
+          const SizedBox(height: 8),
+          Divider(
+            color: theme.colorScheme.surface,
+            thickness: 1,
+          ),
+        ],
       ),
     );
   }

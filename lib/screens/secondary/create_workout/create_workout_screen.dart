@@ -1,47 +1,85 @@
-import 'dart:typed_data';
-import 'package:fitness_app/screens/secondary/create_workout/workout_type.dart';
+import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/supabase/group_methods.dart';
+import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
-class CreateSessionScreen extends StatefulWidget {
-  const CreateSessionScreen({super.key});
+class CreateGroupScreen extends StatefulWidget {
+  const CreateGroupScreen({super.key});
 
   @override
-  State<CreateSessionScreen> createState() => _CreateSessionScreenState();
+  State<CreateGroupScreen> createState() => _CreateGroupScreenState();
 }
 
-class _CreateSessionScreenState extends State<CreateSessionScreen> {
-  bool isSwitched = false;
+class _CreateGroupScreenState extends State<CreateGroupScreen> {
+  bool _isLoading = false;
 
-  Uint8List? postPic;
-
-  DateTime dateTime = DateTime.now();
+  String profilePicUrl = '';
+  String username = '';
+  String workoutType = 'Chest & Back';
+  String workoutDateTime = '';
+  String uid = '';
+  bool friendsCanSee = false;
+  bool myGymCanSee = false;
 
   String workoutTime = '';
-
-  bool _friends = false;
-  bool _myGym = false;
+  DateTime temp = DateTime.now();
 
   double scale = 1.0;
 
-  void getInfo() {}
+  void getInfo() {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
 
-  void _showDialog(Widget child) {
+    profilePicUrl = userProvider.getUser.profilePic;
+    username = userProvider.getUser.username;
+    uid = userProvider.getUser.uid;
+  }
+
+  Future<void> createGroup() async {
+    beginLoading();
+
+    if (workoutType.isEmpty || workoutDateTime.isEmpty) {
+      // Show an error message if any of the inputs are not used
+      UtilMethods.showSnackBar(
+          'Please select a workout type and time.', context);
+      stopLoading();
+      return;
+    }
+
+    await GroupMethods().createGroup(uid, username, profilePicUrl, workoutType,
+        workoutDateTime, friendsCanSee, myGymCanSee);
+
+    stopLoading();
+
+    if (mounted) {
+      Navigator.of(context).pop();
+      UtilMethods.showSnackBar('Group created successfully', context);
+    }
+  }
+
+  void beginLoading() {
+    setState(() {
+      _isLoading = true;
+    });
+  }
+
+  void stopLoading() {
+    setState(() {
+      _isLoading = false;
+    });
+  }
+
+  void _showDialog(Widget child, ThemeData theme) {
     showCupertinoModalPopup<void>(
       context: context,
       builder: (BuildContext context) => Container(
         height: 216,
         padding: const EdgeInsets.only(top: 6.0),
-        // The Bottom margin is provided to align the popup above the system
-        // navigation bar.
         margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        // Provide a background color for the popup.
-        color: CupertinoColors.systemBackground.resolveFrom(context),
-        // Use a SafeArea widget to avoid system overlaps.
+        color: theme.colorScheme.primary,
         child: SafeArea(
           top: false,
           child: child,
@@ -62,155 +100,49 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: theme.colorScheme.surface,
-        centerTitle: true,
-        title: Text('New Workout', style: theme.textTheme.bodyLarge),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.close, size: 22),
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('New group', style: theme.textTheme.bodyLarge),
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              CupertinoIcons.back,
+              color: theme.colorScheme.onBackground,
+            ),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
-        ],
-      ),
-      body: Container(
-        color: theme.colorScheme.surface,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text("My Workout",
-                  style: theme.textTheme.bodySmall!.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.7))),
-              const SizedBox(height: 12),
-              const WorkoutType(),
-              const Expanded(
-                child: SizedBox(),
-              ),
-              Text("Who can join",
-                  style: theme.textTheme.bodySmall!.copyWith(
-                      color: theme.colorScheme.onSurface.withOpacity(0.7))),
-              Row(
-                children: [
-                  Icon(FontAwesomeIcons.userGroup,
-                      color: theme.colorScheme.onSurface.withOpacity(0.7),
-                      size: 18),
-                  const SizedBox(width: 12),
-                  Text('Friends',
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7))),
-                  const Expanded(child: SizedBox()),
-                  Transform.scale(
-                    scale: scale,
-                    child: Switch(
-                      value: _friends,
-                      onChanged: (value) {
-                        setState(() {
-                          _friends = value;
-                        });
-                      },
-                      activeTrackColor: theme.colorScheme.primary,
-                      activeColor: theme.colorScheme.onPrimary,
-                      inactiveThumbColor: theme.colorScheme.onPrimary,
-                    ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Icon(FontAwesomeIcons.userGroup,
-                      color: theme.colorScheme.onSurface.withOpacity(0.7),
-                      size: 18),
-                  const SizedBox(width: 12),
-                  Text('My Gym',
-                      style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.onSurface.withOpacity(0.7))),
-                  const Expanded(child: SizedBox()),
-                  Transform.scale(
-                    scale: scale,
-                    child: Switch(
-                      value: _myGym,
-                      onChanged: (value) {
-                        setState(() {
-                          _myGym = value;
-                        });
-                      },
-                      activeTrackColor: theme.colorScheme.primary,
-                      activeColor: theme.colorScheme.onPrimary,
-                      inactiveThumbColor: theme.colorScheme.onPrimary,
-                    ),
-                  ),
-                ],
-              ),
-              const Expanded(
-                child: SizedBox(),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      _showDialog(
-                        CupertinoDatePicker(
-                          mode: CupertinoDatePickerMode.dateAndTime,
-                          initialDateTime: dateTime,
-                          onDateTimeChanged: (DateTime newDateTime) {
-                            setState(() {
-                              dateTime = newDateTime;
-                              workoutTime =
-                                  DateFormat('hh:mm a').format(dateTime);
-                            });
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: (width - 32) * 0.35,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.onBackground.withOpacity(0.07),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: workoutTime == ''
-                            ? Icon(
-                                FontAwesomeIcons.clock,
-                                color: theme.colorScheme.onBackground,
-                              )
-                            : Text(workoutTime),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: (width - 32) * 0.63,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        color: theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Create',
-                          style: theme.textTheme.bodyMedium!.copyWith(
-                              color: Colors.white, fontWeight: FontWeight.w600),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-            ],
-          ),
         ),
-      ),
-    );
+        body: _isLoading
+            ? const Center(child: CircularProgressIndicator())
+            : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    const Expanded(child: SizedBox()),
+                    GestureDetector(
+                      onTap: createGroup,
+                      child: Container(
+                        width: width - 32,
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            'Create',
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ));
   }
 }

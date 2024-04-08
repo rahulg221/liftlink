@@ -33,7 +33,7 @@ class _WorkoutTypeState extends State<WorkoutType> {
                 child: Container(
                   width: (width - 40) * 0.5,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   decoration: BoxDecoration(
                     color: workoutType == 'Chest & Back'
                         ? theme.colorScheme.primary
@@ -63,7 +63,7 @@ class _WorkoutTypeState extends State<WorkoutType> {
                 child: Container(
                   width: (width - 40) * 0.5,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   decoration: BoxDecoration(
                     color: workoutType == 'Shoulder & Arms'
                         ? theme.colorScheme.primary
@@ -99,7 +99,7 @@ class _WorkoutTypeState extends State<WorkoutType> {
                 child: Container(
                   width: (width - 40) * 0.5,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   decoration: BoxDecoration(
                     color: workoutType == 'Legs'
                         ? theme.colorScheme.primary
@@ -129,7 +129,7 @@ class _WorkoutTypeState extends State<WorkoutType> {
                 child: Container(
                   width: (width - 40) * 0.5,
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                   decoration: BoxDecoration(
                     color: workoutType == 'Core'
                         ? theme.colorScheme.primary

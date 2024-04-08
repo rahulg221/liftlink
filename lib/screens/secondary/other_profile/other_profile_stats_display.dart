@@ -11,19 +11,20 @@ class _OtherProfileStatsDisplayState extends State<OtherProfileStatsDisplay> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final theme = Theme.of(context);
+    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Column(
       children: [
         Row(
           children: [
-            _statDisplay(theme, 'posts', 3, width),
-            _statDisplay(theme, 'friends', 16, width),
+            _statDisplay(theme, 'posts', 3, width, isDark),
+            _statDisplay(theme, 'friends', 16, width, isDark),
           ],
         ),
         Row(
           children: [
-            _statDisplay(theme, 'goals completed', 4, width),
-            _statDisplay(theme, 'avg. daily steps', 5695, width),
+            _statDisplay(theme, 'level', 12, width, isDark),
+            _statDisplay(theme, 'daily steps', 5695, width, isDark),
           ],
         ),
       ],
@@ -31,8 +32,8 @@ class _OtherProfileStatsDisplayState extends State<OtherProfileStatsDisplay> {
   }
 }
 
-Widget _statDisplay(
-    ThemeData theme, String statName, int statValue, double width) {
+Widget _statDisplay(ThemeData theme, String statName, int statValue,
+    double width, bool isDark) {
   return Card(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(25),
@@ -41,8 +42,13 @@ Widget _statDisplay(
     shadowColor: Colors.grey.withOpacity(0.5),
     child: Container(
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
+        color: theme.scaffoldBackgroundColor,
         borderRadius: BorderRadius.circular(25),
+        border: Border.all(
+            color: isDark
+                ? theme.colorScheme.onBackground.withOpacity(0.3)
+                : Colors.transparent,
+            width: 1.5),
       ),
       width: (width - 48) * 0.5,
       child: Padding(

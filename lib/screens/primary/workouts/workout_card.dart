@@ -19,7 +19,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
   String profilePic = '';
   String uid = '';
   String curUserId = '';
-  String gymName = 'UCF Rwc';
+  String gymName = 'UCF Gym';
   String workoutType = '';
   String workoutLevel = '';
   String workoutTime = '';
@@ -33,7 +33,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
     curUserId = userProvider.getUser.uid;
 
     //username = widget.data.username;
-    username = 'rafman14';
+    username = 'rahulg221';
     //profilePic = widget.data.profilePic;
     profilePic = dummyImage;
     workoutType = 'Chest & Back';
@@ -58,160 +58,163 @@ class _WorkoutCardState extends State<WorkoutCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
+    final isDark = theme.brightness == Brightness.dark;
 
     return Padding(
-      padding: const EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
-        elevation: theme.colorScheme.brightness == Brightness.light ? 6 : 0,
-        shadowColor: Colors.grey.withOpacity(0.5),
-        child: Container(
-          decoration: BoxDecoration(
-              color: theme.colorScheme.surface,
-              borderRadius: BorderRadius.circular(25)),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        UtilMethods.navigateTo(
-                          OtherProfileScreen(uid: uid),
-                          context,
-                        );
-                      },
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(profilePic),
-                        radius: 22,
-                      ),
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      UtilMethods.navigateTo(
+                        OtherProfileScreen(uid: uid),
+                        context,
+                      );
+                    },
+                    child: CircleAvatar(
+                      backgroundImage: NetworkImage(profilePic),
+                      radius: 22,
                     ),
-                    const SizedBox(width: 12),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(username, style: theme.textTheme.headlineSmall),
-                        Text('$workoutLevel $workoutStyle',
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7))),
-                      ],
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  ),
+                  const SizedBox(width: 12),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            color: theme.colorScheme.onBackground
-                                .withOpacity(0.07),
-                            borderRadius: BorderRadius.circular(9)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 6.0, horizontal: 12.0),
-                          child: Text(workoutType,
-                              style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.primary,
-                              )),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: theme.colorScheme.onBackground
-                                .withOpacity(0.07),
-                            borderRadius: BorderRadius.circular(9)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 6.0, horizontal: 12.0),
-                          child: Text(workoutDay,
-                              style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.primary,
-                              )),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: theme.colorScheme.onBackground
-                                .withOpacity(0.07),
-                            borderRadius: BorderRadius.circular(9)),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 6.0, horizontal: 12.0),
-                          child: Text(workoutTime,
-                              style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.primary,
-                              )),
-                        ),
+                      Text(username, style: theme.textTheme.bodyLarge),
+                      Text(
+                        gymName,
+                        style: theme.textTheme.bodySmall!.copyWith(
+                            color:
+                                theme.colorScheme.onSurface.withOpacity(0.7)),
                       ),
                     ],
                   ),
+                ],
+              ),
+              const Spacer(),
+              Text(
+                '$curUserCount/$totalUserCount',
+                style: theme.textTheme.bodyMedium!.copyWith(
+                    color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 16),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: theme.scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(9),
+                    border: Border.all(
+                        color: isDark
+                            ? theme.colorScheme.onBackground.withOpacity(0.3)
+                            : Colors.transparent,
+                        width: 1.5),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 6.0, horizontal: 12.0),
+                    child: Text(workoutType,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.primary,
+                        )),
+                  ),
                 ),
-                const SizedBox(height: 16),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                              width: width * 0.35,
-                              height: height * 0.045,
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.primary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child: Text('Join',
-                                      style: theme.textTheme.bodySmall!
-                                          .copyWith(
-                                              color:
-                                                  theme.colorScheme.onPrimary,
-                                              fontWeight: FontWeight.w600)))),
-                        ),
-                        const SizedBox(width: 6),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Container(
-                              width: width * 0.35,
-                              height: height * 0.045,
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.onBackground
-                                    .withOpacity(0.07),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                  child: Text('Message',
-                                      style: theme.textTheme.bodySmall!
-                                          .copyWith(
-                                              fontWeight: FontWeight.w600)))),
-                        ),
-                      ],
-                    ),
-                    Text(
-                      '$curUserCount/$totalUserCount',
-                      style: theme.textTheme.bodySmall!.copyWith(
-                          color:
-                              theme.colorScheme.onBackground.withOpacity(0.5)),
-                    ),
-                  ],
+                const SizedBox(width: 8),
+                Container(
+                  decoration: BoxDecoration(
+                    color: theme.scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(9),
+                    border: Border.all(
+                        color: isDark
+                            ? theme.colorScheme.onBackground.withOpacity(0.3)
+                            : Colors.transparent,
+                        width: 1.5),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 6.0, horizontal: 12.0),
+                    child: Text(workoutDay,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.primary,
+                        )),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Container(
+                  decoration: BoxDecoration(
+                    color: theme.scaffoldBackgroundColor,
+                    borderRadius: BorderRadius.circular(9),
+                    border: Border.all(
+                        color: isDark
+                            ? theme.colorScheme.onBackground.withOpacity(0.3)
+                            : Colors.transparent,
+                        width: 1.5),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 6.0, horizontal: 12.0),
+                    child: Text(workoutTime,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                          color: theme.colorScheme.primary,
+                        )),
+                  ),
                 ),
               ],
             ),
           ),
-        ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                    width: 150,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                        child: Text('Join',
+                            style: theme.textTheme.bodySmall!.copyWith(
+                                color: theme.colorScheme.onPrimary,
+                                fontWeight: FontWeight.w600)))),
+              ),
+              Row(
+                children: [
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(profilePic),
+                    radius: 22,
+                  ),
+                  const SizedBox(width: 8),
+                  const CircleAvatar(
+                    backgroundImage: NetworkImage(dummyImage),
+                    radius: 22,
+                  ),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Divider(
+            color: theme.colorScheme.surface,
+            thickness: 1,
+          ),
+        ],
       ),
     );
   }

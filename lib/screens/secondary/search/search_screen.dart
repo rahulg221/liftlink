@@ -82,7 +82,7 @@ class _SearchScreenState extends State<SearchScreen> {
             color: theme.colorScheme.onBackground,
           ),
           onPressed: () {
-            UtilMethods.navigateTo(const MobileScreenLayout(), context);
+            Navigator.of(context).pop();
           },
         ),
         actions: [
@@ -98,7 +98,7 @@ class _SearchScreenState extends State<SearchScreen> {
                   prefixIcon: const Icon(Icons.search),
                   hintText: 'Search for users...',
                   filled: true,
-                  fillColor: theme.colorScheme.onSurface.withOpacity(0.07),
+                  fillColor: theme.colorScheme.surface,
                   hintStyle: theme.textTheme.bodySmall,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),

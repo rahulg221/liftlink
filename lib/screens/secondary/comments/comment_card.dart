@@ -50,6 +50,7 @@ class _CommentCardState extends State<CommentCard> {
     return Container(
         padding: const EdgeInsets.only(bottom: 30, left: 16, right: 16),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             GestureDetector(
               onTap: () {
@@ -60,48 +61,49 @@ class _CommentCardState extends State<CommentCard> {
                   );
                 }
               },
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(profilePic),
-                radius: 16,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 6.0),
+                child: CircleAvatar(
+                  backgroundImage: NetworkImage(profilePic),
+                  radius: 16,
+                ),
               ),
             ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(left: 16, right: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            children: [
-                              Text('$username',
-                                  style: theme.textTheme.bodySmall),
-                              Text('  •  ',
-                                  style: theme.textTheme.bodySmall!.copyWith(
-                                    color: theme.colorScheme.primary,
-                                  )),
-                              Text(createdAt, style: theme.textTheme.bodySmall),
-                            ],
-                          ),
-                          Text(
-                            comment,
-                            style: theme.textTheme.bodySmall,
-                            softWrap: true,
-                            overflow: TextOverflow
-                                .visible, // Visible overflow can be removed if wrapping is working
-                          ),
-                        ],
-                      ),
+                    Row(
+                      children: [
+                        Text(username,
+                            style: theme.textTheme.bodySmall!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7))),
+                        Text('  •  ',
+                            style: theme.textTheme.bodySmall!.copyWith(
+                              color: theme.colorScheme.primary,
+                            )),
+                        Text(createdAt,
+                            style: theme.textTheme.bodySmall!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7))),
+                      ],
                     ),
-                    const SizedBox(width: 3),
+                    const SizedBox(height: 6),
+                    Text(
+                      comment,
+                      style: theme.textTheme.bodySmall,
+                      softWrap: true,
+                      overflow: TextOverflow
+                          .visible, // Visible overflow can be removed if wrapping is working
+                    ),
+                    const SizedBox(height: 6),
                     Text(
                       'Reply',
                       style: theme.textTheme.bodySmall!.copyWith(
-                        color: theme.colorScheme.primary,
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
                       ),
                     ),
                   ],
