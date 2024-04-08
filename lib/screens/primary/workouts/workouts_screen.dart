@@ -26,7 +26,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
           centerTitle: true,
           title: Text('Workout Groups', style: theme.textTheme.headlineSmall),
           leading: IconButton(
-            icon: Icon(FontAwesomeIcons.gear,
+            icon: Icon(FontAwesomeIcons.userGroup,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               UtilMethods.navigateTo(const SettingsScreen(), context);

@@ -17,8 +17,6 @@ class _UploadSlidersState extends State<UploadSliders> {
   bool _friendsOnly = false;
   bool _savePost = false;
 
-  double scale = 1;
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -31,11 +29,11 @@ class _UploadSlidersState extends State<UploadSliders> {
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
             Text('Personal Record',
-                style: theme.textTheme.bodyMedium!.copyWith(
+                style: theme.textTheme.bodyLarge!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: scale,
+              scale: 1.2,
               child: Switch(
                 value: _pr,
                 onChanged: (value) {
@@ -50,21 +48,23 @@ class _UploadSlidersState extends State<UploadSliders> {
             ),
           ],
         ),
+        const SizedBox(height: 8),
         Divider(
           color: theme.colorScheme.surface,
-          thickness: 1,
+          thickness: 1.5,
         ),
+        const SizedBox(height: 8),
         Row(
           children: [
             Icon(FontAwesomeIcons.arrowTrendDown,
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
             Text('Weight loss',
-                style: theme.textTheme.bodyMedium!.copyWith(
+                style: theme.textTheme.bodyLarge!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: scale,
+              scale: 1.2,
               child: Switch(
                 value: _weightLoss,
                 onChanged: (value) {
@@ -79,21 +79,23 @@ class _UploadSlidersState extends State<UploadSliders> {
             ),
           ],
         ),
+        const SizedBox(height: 8),
         Divider(
           color: theme.colorScheme.surface,
-          thickness: 1,
+          thickness: 1.5,
         ),
+        const SizedBox(height: 8),
         Row(
           children: [
             Icon(FontAwesomeIcons.arrowTrendUp,
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
             Text('Weight gain',
-                style: theme.textTheme.bodyMedium!.copyWith(
+                style: theme.textTheme.bodyLarge!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: scale,
+              scale: 1.2,
               child: Switch(
                 value: _weightGain,
                 onChanged: (value) {
@@ -108,21 +110,23 @@ class _UploadSlidersState extends State<UploadSliders> {
             ),
           ],
         ),
+        const SizedBox(height: 8),
         Divider(
           color: theme.colorScheme.surface,
-          thickness: 1,
+          thickness: 1.5,
         ),
+        const SizedBox(height: 8),
         Row(
           children: [
             Icon(FontAwesomeIcons.userGroup,
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
             Text('Followers only',
-                style: theme.textTheme.bodyMedium!.copyWith(
+                style: theme.textTheme.bodyLarge!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: scale,
+              scale: 1.2,
               child: Switch(
                 value: _friendsOnly,
                 onChanged: (value) {
@@ -137,21 +141,23 @@ class _UploadSlidersState extends State<UploadSliders> {
             ),
           ],
         ),
+        const SizedBox(height: 8),
         Divider(
           color: theme.colorScheme.surface,
-          thickness: 1,
+          thickness: 1.5,
         ),
+        const SizedBox(height: 8),
         Row(
           children: [
             Icon(FontAwesomeIcons.cloudArrowDown,
                 color: theme.colorScheme.onSurface.withOpacity(0.7), size: 18),
             const SizedBox(width: 12),
             Text('Save to profile',
-                style: theme.textTheme.bodyMedium!.copyWith(
+                style: theme.textTheme.bodyLarge!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: scale,
+              scale: 1.2,
               child: Switch(
                 value: _savePost,
                 onChanged: (value) {
@@ -166,11 +172,12 @@ class _UploadSlidersState extends State<UploadSliders> {
             ),
           ],
         ),
+        const SizedBox(height: 8),
         Divider(
           color: theme.colorScheme.surface,
-          thickness: 1,
+          thickness: 1.5,
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 8),
       ],
     );
   }

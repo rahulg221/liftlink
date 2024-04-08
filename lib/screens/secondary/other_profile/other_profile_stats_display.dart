@@ -24,7 +24,7 @@ class _OtherProfileStatsDisplayState extends State<OtherProfileStatsDisplay> {
         Row(
           children: [
             _statDisplay(theme, 'level', 12, width, isDark),
-            _statDisplay(theme, 'daily steps', 5695, width, isDark),
+            _statDisplay(theme, 'goals', 4, width, isDark),
           ],
         ),
       ],

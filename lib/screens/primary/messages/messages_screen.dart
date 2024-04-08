@@ -23,7 +23,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
         centerTitle: true,
         title: Text('Messages', style: theme.textTheme.headlineSmall),
         leading: IconButton(
-          icon: Icon(FontAwesomeIcons.gear,
+          icon: Icon(FontAwesomeIcons.userGroup,
               size: theme.iconTheme.size, color: theme.iconTheme.color),
           onPressed: () {
             UtilMethods.navigateTo(const SettingsScreen(), context);

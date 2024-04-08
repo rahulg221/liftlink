@@ -28,7 +28,7 @@ class _FeedScreenState extends State<FeedScreen> {
           centerTitle: true,
           title: Text('Feed', style: theme.textTheme.headlineSmall),
           leading: IconButton(
-            icon: Icon(FontAwesomeIcons.gear,
+            icon: Icon(FontAwesomeIcons.userGroup,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               UtilMethods.navigateTo(const SettingsScreen(), context);

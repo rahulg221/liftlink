@@ -28,12 +28,12 @@ class _CaptionInputState extends State<CaptionInput> {
         expands: true,
         controller: widget.textEditingController,
         keyboardType: TextInputType.multiline,
-        style: theme.textTheme.bodySmall!
+        style: theme.textTheme.bodyMedium!
             .copyWith(color: theme.colorScheme.onSurface),
         maxLines: null,
         decoration: InputDecoration(
           hintText: 'Share progress...',
-          hintStyle: theme.textTheme.bodySmall!
+          hintStyle: theme.textTheme.bodyMedium!
               .copyWith(color: theme.colorScheme.onSurface),
           contentPadding: const EdgeInsets.all(16.0),
           fillColor: theme.scaffoldBackgroundColor,

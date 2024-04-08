@@ -212,7 +212,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
           const SizedBox(height: 8),
           Divider(
             color: theme.colorScheme.surface,
-            thickness: 1,
+            thickness: 1.5,
           ),
         ],
       ),

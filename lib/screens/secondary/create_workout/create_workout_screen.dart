@@ -1,8 +1,12 @@
+import 'dart:ui';
+
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/group_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class CreateGroupScreen extends StatefulWidget {
@@ -27,6 +31,9 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
   DateTime temp = DateTime.now();
 
   double scale = 1.0;
+
+  String formattedDate = '';
+  String formattedTime = '';
 
   void getInfo() {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
@@ -79,7 +86,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
         margin: EdgeInsets.only(
           bottom: MediaQuery.of(context).viewInsets.bottom,
         ),
-        color: theme.colorScheme.primary,
+        color: theme.colorScheme.surface,
         child: SafeArea(
           top: false,
           child: child,
@@ -102,7 +109,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('New group', style: theme.textTheme.bodyLarge),
+          title: Text('New group', style: theme.textTheme.headlineSmall),
           leading: CupertinoButton(
             padding: EdgeInsets.zero,
             child: Icon(
@@ -119,7 +126,231 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
             : Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 16),
+                    Text('Choose a workout',
+                        style: theme.textTheme.headlineSmall),
+                    const SizedBox(height: 24),
+                    Container(
+                      height: 85,
+                      width: width - 32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: theme.colorScheme.onSurface.withOpacity(0.3),
+                            width: 1.5),
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Text('Push', style: theme.textTheme.bodyLarge),
+                              const Spacer(),
+                              Transform.scale(
+                                scale: 1.2,
+                                child: Radio(
+                                  value: 'Push',
+                                  groupValue: workoutType,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      workoutType = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Container(
+                      height: 85,
+                      width: width - 32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: theme.colorScheme.onSurface.withOpacity(0.3),
+                            width: 1.5),
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Text('Pull', style: theme.textTheme.bodyLarge),
+                              const Spacer(),
+                              Transform.scale(
+                                scale: 1.2,
+                                child: Radio(
+                                  value: 'Pull',
+                                  groupValue: workoutType,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      workoutType = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16),
+                    Container(
+                      height: 85,
+                      width: width - 32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(
+                            color: theme.colorScheme.onSurface.withOpacity(0.3),
+                            width: 1.5),
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            children: [
+                              Text('Legs', style: theme.textTheme.bodyLarge),
+                              const Spacer(),
+                              Transform.scale(
+                                scale: 1.2,
+                                child: Radio(
+                                  value: 'Legs',
+                                  groupValue: workoutType,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      workoutType = value!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 32),
+                    Text('Choose date and time',
+                        style: theme.textTheme.headlineSmall),
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(FontAwesomeIcons.calendar,
+                            color: theme.colorScheme.onSurface, size: 40),
+                        const SizedBox(width: 16),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              formattedDate,
+                              style: theme.textTheme.bodyLarge!.copyWith(
+                                  fontVariations: const <FontVariation>[
+                                    FontVariation(
+                                      'wght',
+                                      500,
+                                    ),
+                                  ]),
+                            ),
+                            Text(
+                              formattedTime,
+                              style: theme.textTheme.bodyLarge!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const Spacer(),
+                        IconButton(
+                          onPressed: () {
+                            _showDialog(
+                              CupertinoDatePicker(
+                                mode: CupertinoDatePickerMode.dateAndTime,
+                                initialDateTime: temp,
+                                onDateTimeChanged: (DateTime dateTime) {
+                                  setState(() {
+                                    temp = dateTime;
+                                    formattedDate = DateFormat("EEE, MMM d")
+                                        .format(dateTime);
+                                    formattedTime =
+                                        DateFormat("h:mm a").format(dateTime);
+                                    workoutDateTime = dateTime.toString();
+                                  });
+                                },
+                              ),
+                              theme,
+                            );
+                          },
+                          icon: const Icon(FontAwesomeIcons.pen),
+                          color: theme.colorScheme.onSurface,
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 32),
+                    Text('Who can join', style: theme.textTheme.headlineSmall),
+                    const SizedBox(height: 16),
+                    Row(
+                      children: [
+                        Icon(FontAwesomeIcons.userGroup,
+                            color: theme.colorScheme.onSurface.withOpacity(0.7),
+                            size: 18),
+                        const SizedBox(width: 12),
+                        Text('Friends',
+                            style: theme.textTheme.bodyLarge!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7))),
+                        const Spacer(),
+                        Transform.scale(
+                          scale: 1.2,
+                          child: Switch(
+                            value: friendsCanSee,
+                            onChanged: (value) {
+                              setState(() {
+                                friendsCanSee = value;
+                              });
+                            },
+                            activeTrackColor: theme.colorScheme.primary,
+                            activeColor: theme.colorScheme.onPrimary,
+                            inactiveThumbColor: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(FontAwesomeIcons.peopleGroup,
+                            color: theme.colorScheme.onSurface.withOpacity(0.7),
+                            size: 18),
+                        const SizedBox(width: 12),
+                        Text('My Gym',
+                            style: theme.textTheme.bodyLarge!.copyWith(
+                                color: theme.colorScheme.onSurface
+                                    .withOpacity(0.7))),
+                        const Spacer(),
+                        Transform.scale(
+                          scale: 1.2,
+                          child: Switch(
+                            value: myGymCanSee,
+                            onChanged: (value) {
+                              setState(() {
+                                myGymCanSee = value;
+                              });
+                            },
+                            activeTrackColor: theme.colorScheme.primary,
+                            activeColor: theme.colorScheme.onPrimary,
+                            inactiveThumbColor: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                      ],
+                    ),
                     const Expanded(child: SizedBox()),
                     GestureDetector(
                       onTap: createGroup,

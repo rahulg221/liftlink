@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:fitness_app/models/comments.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
@@ -65,7 +66,7 @@ class _CommentCardState extends State<CommentCard> {
                 padding: const EdgeInsets.only(top: 6.0),
                 child: CircleAvatar(
                   backgroundImage: NetworkImage(profilePic),
-                  radius: 16,
+                  radius: 20,
                 ),
               ),
             ),
@@ -75,41 +76,44 @@ class _CommentCardState extends State<CommentCard> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
-                      children: [
-                        Text(username,
-                            style: theme.textTheme.bodySmall!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7))),
-                        Text('  •  ',
-                            style: theme.textTheme.bodySmall!.copyWith(
-                              color: theme.colorScheme.primary,
-                            )),
-                        Text(createdAt,
-                            style: theme.textTheme.bodySmall!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7))),
-                      ],
-                    ),
-                    const SizedBox(height: 6),
+                    Text(username,
+                        style: theme.textTheme.bodySmall!.copyWith(
+                          fontVariations: const <FontVariation>[
+                            FontVariation('wght', 500),
+                          ],
+                        )),
+                    const SizedBox(height: 4),
                     Text(
                       comment,
                       style: theme.textTheme.bodySmall,
                       softWrap: true,
-                      overflow: TextOverflow
-                          .visible, // Visible overflow can be removed if wrapping is working
+                      overflow: TextOverflow.visible,
                     ),
-                    const SizedBox(height: 6),
-                    Text(
-                      'Reply',
-                      style: theme.textTheme.bodySmall!.copyWith(
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
-                      ),
+                    const SizedBox(height: 8),
+                    Row(
+                      children: [
+                        Text(
+                          createdAt,
+                          style: theme.textTheme.bodySmall!.copyWith(
+                              color:
+                                  theme.colorScheme.onSurface.withOpacity(0.7),
+                              fontVariations: const <FontVariation>[
+                                FontVariation('wght', 300)
+                              ]),
+                        ),
+                        const SizedBox(width: 16),
+                        Text(
+                          'Reply',
+                          style: theme.textTheme.bodySmall!.copyWith(
+                            color: theme.colorScheme.onSurface.withOpacity(0.7),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
-            )
+            ),
           ],
         ));
   }

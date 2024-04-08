@@ -41,7 +41,7 @@ class ColorPalette {
   static Color darkOnSecondaryColor = Colors.white.withOpacity(0.9);
   static Color lightOnSecondaryColor = Colors.white.withOpacity(0.9);
   // Default icon color
-  static Color darkIconColor = const Color.fromARGB(255, 245, 245, 245);
+  static Color darkIconColor = darkOnBackgroundColor.withOpacity(0.7);
   static Color lightIconColor = const Color.fromARGB(255, 18, 18, 18);
   // Snack bar colors
   static Color darkSnackBar = const Color.fromARGB(255, 40, 40, 40);
@@ -124,7 +124,7 @@ class ThemeConfig {
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
+          FontVariation('wght', 400),
         ],
       ),
       bodyMedium: TextStyle(
@@ -132,7 +132,7 @@ class ThemeConfig {
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
+          FontVariation('wght', 400),
         ],
       ),
       bodySmall: TextStyle(
@@ -140,7 +140,7 @@ class ThemeConfig {
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
+          FontVariation('wght', 400),
         ],
       ),
     ),
