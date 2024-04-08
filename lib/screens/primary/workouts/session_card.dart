@@ -21,7 +21,7 @@ class _SessionCardState extends State<SessionCard> {
   String profilePic = '';
   String uid = '';
   String curUserId = '';
-  String gymName = '';
+  String gymName = 'Crunch Fitness';
   String workoutType = '';
   String workoutLevel = '';
   String workoutStyle = '';
@@ -36,7 +36,8 @@ class _SessionCardState extends State<SessionCard> {
 
     username = widget.data.username;
     profilePic = widget.data.profilePic;
-    workoutType = widget.data.workoutType;
+    //workoutType = widget.data.workoutType;
+    workoutType = 'Shoulder & Arms';
     uid = widget.data.uid;
 
     workoutDateTime = widget.data.workoutDateTime;
@@ -50,13 +51,23 @@ class _SessionCardState extends State<SessionCard> {
     // Parse the ISO string to a DateTime object
     DateTime parsedDate = DateTime.parse(workoutDateTime);
 
-    // Create a new DateFormat for the desired output
-    DateFormat formatter = DateFormat("EEE, h:mm a");
+    // Get the current date and time
+    DateTime now = DateTime.now();
+    // Create date objects for comparison (ignoring time)
+    DateTime today = DateTime(now.year, now.month, now.day);
+    DateTime tomorrow = DateTime(today.year, today.month, today.day + 1);
 
-    // Format the DateTime object to a string
-    String formattedDate = formatter.format(parsedDate);
-
-    return formattedDate;
+    // Compare and decide what to display
+    if (DateTime(parsedDate.year, parsedDate.month, parsedDate.day) == today) {
+      return "Today, ${DateFormat('h:mm a').format(parsedDate)}";
+    } else if (DateTime(parsedDate.year, parsedDate.month, parsedDate.day) ==
+        tomorrow) {
+      return "Tmr, ${DateFormat('h:mm a').format(parsedDate)}";
+    } else {
+      // Create a new DateFormat for the desired output if not today or tomorrow
+      DateFormat formatter = DateFormat("EEE, h:mm a");
+      return formatter.format(parsedDate);
+    }
   }
 
   @override
@@ -68,6 +79,7 @@ class _SessionCardState extends State<SessionCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
@@ -75,6 +87,7 @@ class _SessionCardState extends State<SessionCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -92,7 +105,7 @@ class _SessionCardState extends State<SessionCard> {
                       backgroundColor: theme.scaffoldBackgroundColor,
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -108,40 +121,46 @@ class _SessionCardState extends State<SessionCard> {
                       ),
                       Text(
                         workoutType,
-                        style: theme.textTheme.bodyMedium!.copyWith(
+                        style: theme.textTheme.bodySmall!.copyWith(
                             color:
                                 theme.colorScheme.onSurface.withOpacity(0.7)),
                       ),
                       Text(
-                        formattedDateTime,
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                            color: theme.colorScheme.onSurface.withOpacity(0.7),
-                            fontVariations: const <FontVariation>[
-                              FontVariation(
-                                'wght',
-                                350,
-                              ),
-                            ]),
+                        gymName,
+                        style: theme.textTheme.bodySmall!.copyWith(
+                            color:
+                                theme.colorScheme.onSurface.withOpacity(0.7)),
                       ),
                     ],
                   ),
                 ],
               ),
               const Spacer(),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                    width: 110,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.primary,
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: Center(
-                        child: Text('Join',
-                            style: theme.textTheme.bodySmall!.copyWith(
-                                color: theme.colorScheme.onPrimary,
-                                fontWeight: FontWeight.w600)))),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(formattedDateTime,
+                      style: theme.textTheme.bodySmall!.copyWith(
+                          color: isDark
+                              ? theme.colorScheme.secondary
+                              : theme.colorScheme.onBackground)),
+                  const SizedBox(height: 10),
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                        width: 110,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: theme.colorScheme.primary,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                            child: Text('Join',
+                                style: theme.textTheme.bodySmall!.copyWith(
+                                    color: theme.colorScheme.onPrimary,
+                                    fontWeight: FontWeight.w600)))),
+                  ),
+                ],
               ),
             ],
           ),

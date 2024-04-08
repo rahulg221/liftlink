@@ -4,10 +4,10 @@ import 'dart:ui';
 
 class ColorPalette {
   // Custom colors
-  static Color coral = const Color(0xFFFF6B6B);
-  static Color lightCoral = Color.fromARGB(255, 255, 86, 86);
+  static Color coral = const Color.fromARGB(255, 255, 94, 94);
+  static Color lightCoral = const Color.fromARGB(255, 255, 86, 86);
   static Color lightBlue = const Color.fromARGB(255, 90, 186, 238);
-  static Color teal = const Color.fromARGB(255, 48, 233, 190);
+  static Color teal = const Color.fromARGB(255, 26, 255, 202);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Colors.black;
   static Color lightBackgroundColor = const Color.fromARGB(255, 255, 253, 247);
@@ -39,8 +39,8 @@ class ColorPalette {
   static Color darkOnPrimaryColor = Colors.white;
   static Color lightOnPrimaryColor = Colors.white;
   // On secondary
-  static Color darkOnSecondaryColor = Colors.white.withOpacity(0.9);
-  static Color lightOnSecondaryColor = Colors.white.withOpacity(0.9);
+  static Color darkOnSecondaryColor = Colors.white;
+  static Color lightOnSecondaryColor = Colors.white;
   // Default icon color
   static Color darkIconColor = darkOnBackgroundColor.withOpacity(0.7);
   static Color lightIconColor = const Color.fromARGB(255, 18, 18, 18);
@@ -105,7 +105,7 @@ class ThemeConfig {
         ],
       ),
       headlineMedium: TextStyle(
-        fontSize: 24,
+        fontSize: 25,
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -113,7 +113,7 @@ class ThemeConfig {
         ],
       ),
       headlineSmall: TextStyle(
-        fontSize: 22,
+        fontSize: 23,
         color: ColorPalette.lightBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -121,7 +121,7 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 18,
+        fontSize: 21,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -129,7 +129,7 @@ class ThemeConfig {
         ],
       ),
       bodyMedium: TextStyle(
-        fontSize: 16,
+        fontSize: 19,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -137,7 +137,7 @@ class ThemeConfig {
         ],
       ),
       bodySmall: TextStyle(
-        fontSize: 14,
+        fontSize: 17,
         color: ColorPalette.lightOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -201,7 +201,7 @@ class ThemeConfig {
         ],
       ),
       headlineMedium: TextStyle(
-        fontSize: 24,
+        fontSize: 25,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -209,7 +209,7 @@ class ThemeConfig {
         ],
       ),
       headlineSmall: TextStyle(
-        fontSize: 22,
+        fontSize: 23,
         color: ColorPalette.darkBackgroundHeaderColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -217,7 +217,7 @@ class ThemeConfig {
         ],
       ),
       bodyLarge: TextStyle(
-        fontSize: 20,
+        fontSize: 21,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -225,7 +225,7 @@ class ThemeConfig {
         ],
       ),
       bodyMedium: TextStyle(
-        fontSize: 18,
+        fontSize: 19,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[
@@ -233,7 +233,7 @@ class ThemeConfig {
         ],
       ),
       bodySmall: TextStyle(
-        fontSize: 16,
+        fontSize: 17,
         color: ColorPalette.darkOnBackgroundColor,
         fontFamily: customFont,
         fontVariations: const <FontVariation>[

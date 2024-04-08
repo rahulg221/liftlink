@@ -67,6 +67,7 @@ class _PostCardState extends State<PostCard> {
     final theme = Theme.of(context);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -108,10 +109,24 @@ class _PostCardState extends State<PostCard> {
                         ],
                       ),
                       const Spacer(),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(FontAwesomeIcons.ellipsis, size: 22),
-                        color: theme.colorScheme.onSurface.withOpacity(0.7),
+                      Row(
+                        children: [
+                          Icon(
+                            FontAwesomeIcons.arrowTrendDown,
+                            color: isDark
+                                ? theme.colorScheme.secondary
+                                : theme.colorScheme.onBackground,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '10 lbs',
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                              color: isDark
+                                  ? theme.colorScheme.secondary
+                                  : theme.colorScheme.onBackground,
+                            ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
@@ -160,8 +175,11 @@ class _PostCardState extends State<PostCard> {
                     children: [
                       Row(
                         children: [
-                          FaIcon(FontAwesomeIcons.heart,
-                              color: theme.colorScheme.primary, size: 26),
+                          FaIcon(
+                            FontAwesomeIcons.heart,
+                            color: theme.colorScheme.primary,
+                            size: 24,
+                          ),
                           const SizedBox(width: 8),
                           Text(
                             '$likeCount',
@@ -187,7 +205,7 @@ class _PostCardState extends State<PostCard> {
                             FaIcon(
                               FontAwesomeIcons.commentDots,
                               color: theme.colorScheme.primary,
-                              size: 26,
+                              size: 24,
                             ),
                             const SizedBox(width: 8),
                             Text(

@@ -169,7 +169,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     const Icon(FontAwesomeIcons.solidEye),
                                     const SizedBox(width: 12),
                                     Text('Privacy',
-                                        style: theme.textTheme.bodyLarge!
+                                        style: theme.textTheme.bodyMedium!
                                             .copyWith(
                                                 color: theme
                                                     .colorScheme.onSurface
@@ -193,7 +193,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     const Icon(FontAwesomeIcons.pen),
                                     const SizedBox(width: 12),
                                     Text('Update goals',
-                                        style: theme.textTheme.bodyLarge!
+                                        style: theme.textTheme.bodyMedium!
                                             .copyWith(
                                                 color: theme
                                                     .colorScheme.onSurface

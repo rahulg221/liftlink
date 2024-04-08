@@ -27,7 +27,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
                 color: theme.colorScheme.onSurface.withOpacity(0.7)),
             const SizedBox(width: 12),
             Text('Display progress',
-                style: theme.textTheme.bodyLarge!.copyWith(
+                style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
@@ -58,7 +58,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
                 color: theme.colorScheme.onSurface.withOpacity(0.7)),
             const SizedBox(width: 12),
             Text('Allow comments',
-                style: theme.textTheme.bodyLarge!.copyWith(
+                style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
@@ -89,7 +89,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
                 color: theme.colorScheme.onSurface.withOpacity(0.7)),
             const SizedBox(width: 12),
             Text('Save to profile',
-                style: theme.textTheme.bodyLarge!.copyWith(
+                style: theme.textTheme.bodyMedium!.copyWith(
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(

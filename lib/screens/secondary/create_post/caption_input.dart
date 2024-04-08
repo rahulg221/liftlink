@@ -33,7 +33,7 @@ class _CaptionInputState extends State<CaptionInput> {
         maxLines: null,
         decoration: InputDecoration(
           hintText: 'Share progress...',
-          hintStyle: theme.textTheme.bodyMedium!
+          hintStyle: theme.textTheme.bodySmall!
               .copyWith(color: theme.colorScheme.onSurface),
           contentPadding: const EdgeInsets.all(16.0),
           fillColor: theme.scaffoldBackgroundColor,
