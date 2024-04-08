@@ -109,7 +109,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text('New group', style: theme.textTheme.headlineSmall),
+          title:
+              Text('New workout session', style: theme.textTheme.headlineSmall),
           leading: CupertinoButton(
             padding: EdgeInsets.zero,
             child: Icon(
@@ -128,7 +129,7 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 12),
                     Text('Choose a workout',
                         style: theme.textTheme.headlineSmall),
                     const SizedBox(height: 24),

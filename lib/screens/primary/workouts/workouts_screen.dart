@@ -24,7 +24,7 @@ class _FriendsScreenState extends State<FriendsScreen> {
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           centerTitle: true,
-          title: Text('Workout Groups', style: theme.textTheme.headlineSmall),
+          title: Text('Workout Sessions', style: theme.textTheme.headlineSmall),
           leading: IconButton(
             icon: Icon(FontAwesomeIcons.userGroup,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),

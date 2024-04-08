@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/utils/constants.dart';
@@ -38,7 +40,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
     profilePic = dummyImage;
     workoutType = 'Chest & Back';
     workoutDay = 'Thursday';
-    workoutTime = '6:00 PM';
+    workoutTime = 'Tues, 6:00 PM';
     workoutLevel = 'Intermediate';
     workoutStyle = 'Bodybuilder';
     curUserCount = 2;
@@ -58,7 +60,6 @@ class _WorkoutCardState extends State<WorkoutCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
@@ -66,11 +67,9 @@ class _WorkoutCardState extends State<WorkoutCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -81,108 +80,49 @@ class _WorkoutCardState extends State<WorkoutCard> {
                     },
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(profilePic),
-                      radius: 22,
+                      radius: 35,
                     ),
                   ),
-                  const SizedBox(width: 12),
+                  const SizedBox(width: 16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(username, style: theme.textTheme.bodyLarge),
                       Text(
-                        gymName,
-                        style: theme.textTheme.bodySmall!.copyWith(
+                        username,
+                        style: theme.textTheme.bodyLarge!
+                            .copyWith(fontVariations: const <FontVariation>[
+                          FontVariation(
+                            'wght',
+                            500,
+                          ),
+                        ]),
+                      ),
+                      Text(
+                        workoutType,
+                        style: theme.textTheme.bodyMedium!.copyWith(
                             color:
                                 theme.colorScheme.onSurface.withOpacity(0.7)),
+                      ),
+                      Text(
+                        workoutTime,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                            color: theme.colorScheme.onSurface.withOpacity(0.7),
+                            fontVariations: const <FontVariation>[
+                              FontVariation(
+                                'wght',
+                                350,
+                              ),
+                            ]),
                       ),
                     ],
                   ),
                 ],
               ),
               const Spacer(),
-              Text(
-                '$curUserCount/$totalUserCount',
-                style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7)),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: theme.scaffoldBackgroundColor,
-                    borderRadius: BorderRadius.circular(9),
-                    border: Border.all(
-                        color: isDark
-                            ? theme.colorScheme.onBackground.withOpacity(0.3)
-                            : Colors.transparent,
-                        width: 1.5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 6.0, horizontal: 12.0),
-                    child: Text(workoutType,
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.primary,
-                        )),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  decoration: BoxDecoration(
-                    color: theme.scaffoldBackgroundColor,
-                    borderRadius: BorderRadius.circular(9),
-                    border: Border.all(
-                        color: isDark
-                            ? theme.colorScheme.onBackground.withOpacity(0.3)
-                            : Colors.transparent,
-                        width: 1.5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 6.0, horizontal: 12.0),
-                    child: Text(workoutDay,
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.primary,
-                        )),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  decoration: BoxDecoration(
-                    color: theme.scaffoldBackgroundColor,
-                    borderRadius: BorderRadius.circular(9),
-                    border: Border.all(
-                        color: isDark
-                            ? theme.colorScheme.onBackground.withOpacity(0.3)
-                            : Colors.transparent,
-                        width: 1.5),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 6.0, horizontal: 12.0),
-                    child: Text(workoutTime,
-                        style: theme.textTheme.bodyMedium!.copyWith(
-                          color: theme.colorScheme.primary,
-                        )),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(height: 16),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
               GestureDetector(
                 onTap: () {},
                 child: Container(
-                    width: 150,
+                    width: 110,
                     height: 40,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.primary,
@@ -194,22 +134,9 @@ class _WorkoutCardState extends State<WorkoutCard> {
                                 color: theme.colorScheme.onPrimary,
                                 fontWeight: FontWeight.w600)))),
               ),
-              Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: NetworkImage(profilePic),
-                    radius: 22,
-                  ),
-                  const SizedBox(width: 8),
-                  const CircleAvatar(
-                    backgroundImage: NetworkImage(dummyImage),
-                    radius: 22,
-                  ),
-                ],
-              ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 16),
           Divider(
             color: theme.colorScheme.surface,
             thickness: 1.5,
