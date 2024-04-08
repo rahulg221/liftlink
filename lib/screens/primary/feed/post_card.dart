@@ -112,14 +112,14 @@ class _PostCardState extends State<PostCard> {
                       Row(
                         children: [
                           Icon(
-                            FontAwesomeIcons.arrowTrendDown,
+                            FontAwesomeIcons.medal,
                             color: isDark
                                 ? theme.colorScheme.secondary
                                 : theme.colorScheme.onBackground,
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            '10 lbs',
+                            'PR',
                             style: theme.textTheme.bodyMedium!.copyWith(
                               color: isDark
                                   ? theme.colorScheme.secondary

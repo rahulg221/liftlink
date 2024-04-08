@@ -148,7 +148,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
                             children: [
-                              Text('Push', style: theme.textTheme.bodyLarge),
+                              Text('Push', style: theme.textTheme.bodyMedium),
                               const Spacer(),
                               Transform.scale(
                                 scale: 1.2,
@@ -184,7 +184,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
                             children: [
-                              Text('Pull', style: theme.textTheme.bodyLarge),
+                              Text('Pull', style: theme.textTheme.bodyMedium),
                               const Spacer(),
                               Transform.scale(
                                 scale: 1.2,
@@ -220,7 +220,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
                             children: [
-                              Text('Legs', style: theme.textTheme.bodyLarge),
+                              Text('Legs', style: theme.textTheme.bodyMedium),
                               const Spacer(),
                               Transform.scale(
                                 scale: 1.2,
@@ -308,7 +308,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             size: 18),
                         const SizedBox(width: 12),
                         Text('Friends',
-                            style: theme.textTheme.bodyLarge!.copyWith(
+                            style: theme.textTheme.bodyMedium!.copyWith(
                                 color: theme.colorScheme.onSurface
                                     .withOpacity(0.7))),
                         const Spacer(),
@@ -335,7 +335,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             size: 18),
                         const SizedBox(width: 12),
                         Text('My Gym',
-                            style: theme.textTheme.bodyLarge!.copyWith(
+                            style: theme.textTheme.bodyMedium!.copyWith(
                                 color: theme.colorScheme.onSurface
                                     .withOpacity(0.7))),
                         const Spacer(),
