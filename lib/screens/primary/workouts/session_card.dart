@@ -36,8 +36,8 @@ class _SessionCardState extends State<SessionCard> {
 
     username = widget.data.username;
     profilePic = widget.data.profilePic;
-    //workoutType = widget.data.workoutType;
-    workoutType = 'Shoulder & Arms';
+    workoutType = widget.data.workoutType;
+
     uid = widget.data.uid;
 
     workoutDateTime = widget.data.workoutDateTime;
