@@ -54,7 +54,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
         onPageChanged: onPageChanged,
         children: const [
           FeedScreen(),
-          FriendsScreen(),
+          SessionsScreen(),
           MessagesScreen(),
           ProfileScreen(),
         ],

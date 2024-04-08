@@ -1,4 +1,4 @@
-import 'package:fitness_app/screens/secondary/create_workout/create_workout_screen.dart';
+import 'package:fitness_app/screens/secondary/create_workout_session/create_workout_session_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -17,7 +17,7 @@ class RequestButton extends StatelessWidget {
         shape: const CircleBorder(),
         backgroundColor: theme.colorScheme.primary,
         onPressed: () async {
-          UtilMethods.navigateTo(const CreateGroupScreen(), context);
+          UtilMethods.navigateTo(const CreateSessionScreen(), context);
         },
         child: Icon(FontAwesomeIcons.plus, color: theme.colorScheme.onPrimary),
       ),

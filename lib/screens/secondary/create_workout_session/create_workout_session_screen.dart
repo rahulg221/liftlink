@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/supabase/group_methods.dart';
+import 'package:fitness_app/supabase/session_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +9,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class CreateGroupScreen extends StatefulWidget {
-  const CreateGroupScreen({super.key});
+class CreateSessionScreen extends StatefulWidget {
+  const CreateSessionScreen({super.key});
 
   @override
-  State<CreateGroupScreen> createState() => _CreateGroupScreenState();
+  State<CreateSessionScreen> createState() => _CreateSessionScreenState();
 }
 
-class _CreateGroupScreenState extends State<CreateGroupScreen> {
+class _CreateSessionScreenState extends State<CreateSessionScreen> {
   bool _isLoading = false;
 
   String profilePicUrl = '';
@@ -54,8 +54,8 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
       return;
     }
 
-    await GroupMethods().createGroup(uid, username, profilePicUrl, workoutType,
-        workoutDateTime, friendsCanSee, myGymCanSee);
+    await SessionMethods().createSession(uid, username, profilePicUrl,
+        workoutType, workoutDateTime, friendsCanSee, myGymCanSee);
 
     stopLoading();
 
@@ -363,13 +363,12 @@ class _CreateGroupScreenState extends State<CreateGroupScreen> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
-                          child: Text(
-                            'Create',
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                          ),
+                          child: Text('Create',
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontVariations: const <FontVariation>[
+                                  FontVariation('wght', 600),
+                                ],
+                              )),
                         ),
                       ),
                     ),

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
@@ -17,8 +19,8 @@ class PrimaryButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return SizedBox(
-      width: 225,
-      height: 45,
+      width: 235,
+      height: 50,
       child: ElevatedButton(
         onPressed: isLoading ? null : onTap,
         style: ElevatedButton.styleFrom(
@@ -33,8 +35,10 @@ class PrimaryButton extends StatelessWidget {
               )
             : Text(text,
                 style: theme.textTheme.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white.withOpacity(0.9))),
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 600),
+                  ],
+                )),
       ),
     );
   }

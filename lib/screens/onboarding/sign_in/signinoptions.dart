@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -11,8 +13,8 @@ class SignInOptions extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          width: 225,
-          height: 40,
+          width: 235,
+          height: 45,
           child: ElevatedButton.icon(
             onPressed: () {
               // Handle sign in with Google
@@ -21,8 +23,10 @@ class SignInOptions extends StatelessWidget {
                 color: theme.colorScheme.onBackground),
             label: Text('Sign in with Google',
                 style: theme.textTheme.bodySmall!.copyWith(
-                    fontWeight: FontWeight.w600,
-                    color: theme.colorScheme.onBackground)),
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 500),
+                  ],
+                )),
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(
@@ -37,8 +41,8 @@ class SignInOptions extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         SizedBox(
-          width: 225,
-          height: 40,
+          width: 235,
+          height: 45,
           child: ElevatedButton.icon(
             onPressed: () {
               // Handle sign in with Apple
@@ -46,8 +50,11 @@ class SignInOptions extends StatelessWidget {
             icon: FaIcon(FontAwesomeIcons.apple,
                 color: theme.colorScheme.onBackground),
             label: Text('Sign in with Apple',
-                style: theme.textTheme.bodySmall!
-                    .copyWith(fontWeight: FontWeight.w600)),
+                style: theme.textTheme.bodySmall!.copyWith(
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 500),
+                  ],
+                )),
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.scaffoldBackgroundColor,
               shape: RoundedRectangleBorder(

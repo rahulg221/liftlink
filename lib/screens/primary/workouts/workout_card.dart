@@ -1,32 +1,32 @@
 import 'dart:ui';
-
+import 'package:fitness_app/models/session.dart' as model;
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
-import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class WorkoutCard extends StatefulWidget {
-  const WorkoutCard({
-    super.key,
-  });
+class SessionCard extends StatefulWidget {
+  final model.Session data;
+
+  const SessionCard({super.key, required this.data});
 
   @override
-  State<WorkoutCard> createState() => _WorkoutCardState();
+  State<SessionCard> createState() => _SessionCardState();
 }
 
-class _WorkoutCardState extends State<WorkoutCard> {
+class _SessionCardState extends State<SessionCard> {
   String username = '';
   String profilePic = '';
   String uid = '';
   String curUserId = '';
-  String gymName = 'UCF Gym';
+  String gymName = '';
   String workoutType = '';
   String workoutLevel = '';
-  String workoutTime = '';
-  String workoutDay = '';
   String workoutStyle = '';
+  String workoutDateTime = '';
+  String formattedDateTime = '';
   int curUserCount = 0;
   int totalUserCount = 0;
 
@@ -34,21 +34,29 @@ class _WorkoutCardState extends State<WorkoutCard> {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     curUserId = userProvider.getUser.uid;
 
-    //username = widget.data.username;
-    username = 'rahulg221';
-    //profilePic = widget.data.profilePic;
-    profilePic = dummyImage;
-    workoutType = 'Chest & Back';
-    workoutDay = 'Thursday';
-    workoutTime = 'Tues, 6:00 PM';
-    workoutLevel = 'Intermediate';
-    workoutStyle = 'Bodybuilder';
-    curUserCount = 2;
-    totalUserCount = 3;
+    username = widget.data.username;
+    profilePic = widget.data.profilePic;
+    workoutType = widget.data.workoutType;
+    uid = widget.data.uid;
 
-    //final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
-    //final String formattedDate = UtilMethods.getFormattedDate(parsedDate);
-    //createdAt = formattedDate;
+    workoutDateTime = widget.data.workoutDateTime;
+    formattedDateTime = formatDateTime(workoutDateTime);
+
+    curUserCount = widget.data.curCapacity;
+    totalUserCount = widget.data.maxCapacity;
+  }
+
+  String formatDateTime(String workoutDateTime) {
+    // Parse the ISO string to a DateTime object
+    DateTime parsedDate = DateTime.parse(workoutDateTime);
+
+    // Create a new DateFormat for the desired output
+    DateFormat formatter = DateFormat("EEE, h:mm a");
+
+    // Format the DateTime object to a string
+    String formattedDate = formatter.format(parsedDate);
+
+    return formattedDate;
   }
 
   @override
@@ -104,7 +112,7 @@ class _WorkoutCardState extends State<WorkoutCard> {
                                 theme.colorScheme.onSurface.withOpacity(0.7)),
                       ),
                       Text(
-                        workoutTime,
+                        formattedDateTime,
                         style: theme.textTheme.bodyMedium!.copyWith(
                             color: theme.colorScheme.onSurface.withOpacity(0.7),
                             fontVariations: const <FontVariation>[

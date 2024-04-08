@@ -5,10 +5,11 @@ class Session {
   final String createdAt;
   final String profilePic;
   final String workoutType;
-  final String workoutTime;
-  final String workoutLevel;
-  final String workoutStyle;
-  final List<String> members;
+  final String workoutDateTime;
+  final String friendOne;
+  final String friendTwo;
+  final int maxCapacity;
+  final int curCapacity;
 
   const Session({
     required this.uid,
@@ -17,10 +18,11 @@ class Session {
     required this.createdAt,
     required this.profilePic,
     required this.workoutType,
-    required this.workoutTime,
-    required this.workoutLevel,
-    required this.workoutStyle,
-    required this.members,
+    required this.workoutDateTime,
+    required this.friendOne,
+    required this.friendTwo,
+    required this.maxCapacity,
+    required this.curCapacity,
   });
 
   // Converts from JSON
@@ -32,10 +34,11 @@ class Session {
       createdAt: data['created_at'],
       profilePic: data['profile_pic'],
       workoutType: data['workout_type'],
-      workoutTime: data['workout_time'],
-      workoutLevel: data['workout_level'],
-      workoutStyle: data['workout_style'],
-      members: List<String>.from(data['members']),
+      workoutDateTime: data['workout_datetime'],
+      friendOne: data['friend_one'],
+      friendTwo: data['friend_two'],
+      maxCapacity: data['max_capacity'],
+      curCapacity: data['cur_capacity'],
     );
   }
 }

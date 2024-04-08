@@ -1,4 +1,5 @@
 import 'dart:typed_data';
+import 'dart:ui';
 import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
 import 'package:fitness_app/screens/secondary/create_post/create_post_sliders.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
@@ -185,13 +186,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                               child: Center(
-                                child: Text(
-                                  'Post',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600),
-                                  textAlign: TextAlign.center,
-                                ),
+                                child: Text('Post',
+                                    style: theme.textTheme.bodyMedium!.copyWith(
+                                      fontVariations: const <FontVariation>[
+                                        FontVariation('wght', 600),
+                                      ],
+                                    )),
                               ),
                             ),
                           ),
