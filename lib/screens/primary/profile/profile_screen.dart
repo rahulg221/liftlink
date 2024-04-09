@@ -1,10 +1,10 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_goal_display.dart';
 import 'package:fitness_app/screens/primary/profile/profile_stats_display.dart';
-import 'package:fitness_app/screens/secondary/search/search_screen.dart';
 import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:fitness_app/screens/primary/profile/profile_info_display.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -74,19 +74,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: Text('Profile', style: theme.textTheme.headlineSmall),
           centerTitle: true,
-          leading: IconButton(
-            icon: Icon(FontAwesomeIcons.gear,
-                size: theme.iconTheme.size, color: theme.iconTheme.color),
+          leading: CupertinoButton(
+            padding: EdgeInsets.zero,
+            child: Icon(
+              CupertinoIcons.back,
+              color: theme.colorScheme.onBackground,
+            ),
             onPressed: () {
-              UtilMethods.navigateTo(const SettingsScreen(), context);
+              Navigator.of(context).pop();
             },
           ),
           actions: [
             IconButton(
-              icon: Icon(FontAwesomeIcons.magnifyingGlass,
+              icon: Icon(FontAwesomeIcons.gear,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
-                UtilMethods.navigateTo(const SearchScreen(), context);
+                UtilMethods.navigateTo(const SettingsScreen(), context);
               },
             ),
           ],

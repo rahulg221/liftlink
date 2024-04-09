@@ -42,8 +42,8 @@ class ColorPalette {
   static Color darkOnSecondaryColor = Colors.white;
   static Color lightOnSecondaryColor = Colors.white;
   // Default icon color
-  static Color darkIconColor = darkOnBackgroundColor.withOpacity(0.7);
-  static Color lightIconColor = const Color.fromARGB(255, 18, 18, 18);
+  static Color darkIconColor = darkOnBackgroundColor;
+  static Color lightIconColor = lightOnBackgroundColor;
   // Snack bar colors
   static Color darkSnackBar = const Color.fromARGB(255, 40, 40, 40);
   static Color lightSnackBar = const Color.fromARGB(255, 174, 174, 174);

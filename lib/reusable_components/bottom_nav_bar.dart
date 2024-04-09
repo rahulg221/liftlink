@@ -38,10 +38,6 @@ class BottomNavBar extends StatelessWidget {
           icon: Icon(FontAwesomeIcons.solidMessage, size: iconSize),
           label: null,
         ),
-        BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.solidUser, size: iconSize),
-          label: null,
-        ),
       ],
     );
   }
