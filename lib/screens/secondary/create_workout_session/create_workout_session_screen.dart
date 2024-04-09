@@ -30,7 +30,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   String workoutTime = '';
   DateTime temp = DateTime.now();
 
-  double scale = 1.0;
+  double scale = 1.1;
 
   String formattedDate = '';
   String formattedTime = '';
@@ -105,6 +105,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
 
     return Scaffold(
         appBar: AppBar(
@@ -127,253 +128,289 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
             : Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 12),
-                    Text('Choose a workout',
-                        style: theme.textTheme.headlineSmall),
-                    const SizedBox(height: 24),
-                    Container(
-                      height: 85,
-                      width: width - 32,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color: theme.colorScheme.onSurface.withOpacity(0.3),
-                            width: 1.5),
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            children: [
-                              Text('Push', style: theme.textTheme.bodyMedium),
-                              const Spacer(),
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Radio(
-                                  activeColor: theme.colorScheme.secondary,
-                                  value: 'Push',
-                                  groupValue: workoutType,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      workoutType = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Container(
-                      height: 85,
-                      width: width - 32,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color: theme.colorScheme.onSurface.withOpacity(0.3),
-                            width: 1.5),
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            children: [
-                              Text('Pull', style: theme.textTheme.bodyMedium),
-                              const Spacer(),
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Radio(
-                                  activeColor: theme.colorScheme.secondary,
-                                  value: 'Pull',
-                                  groupValue: workoutType,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      workoutType = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    Container(
-                      height: 85,
-                      width: width - 32,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color: theme.colorScheme.onSurface.withOpacity(0.3),
-                            width: 1.5),
-                      ),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Row(
-                            children: [
-                              Text('Legs', style: theme.textTheme.bodyMedium),
-                              const Spacer(),
-                              Transform.scale(
-                                scale: 1.2,
-                                child: Radio(
-                                  activeColor: theme.colorScheme.secondary,
-                                  value: 'Legs',
-                                  groupValue: workoutType,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      workoutType = value!;
-                                    });
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 32),
-                    Text('Choose date and time',
-                        style: theme.textTheme.headlineSmall),
-                    const SizedBox(height: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Icon(FontAwesomeIcons.calendar,
-                            color: theme.colorScheme.onSurface, size: 40),
-                        const SizedBox(width: 16),
-                        Column(
+                    Expanded(
+                      child: SingleChildScrollView(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              formattedDate,
-                              style: theme.textTheme.bodyLarge!.copyWith(
-                                  fontVariations: const <FontVariation>[
-                                    FontVariation(
-                                      'wght',
-                                      500,
-                                    ),
-                                  ]),
-                            ),
-                            Text(
-                              formattedTime,
-                              style: theme.textTheme.bodyLarge!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7),
+                            const SizedBox(height: 12),
+                            Text('Choose a workout',
+                                style: theme.textTheme.headlineSmall),
+                            const SizedBox(height: 20),
+                            Container(
+                              height: height * 0.08,
+                              width: width - 32,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.3),
+                                    width: 1.5),
                               ),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Row(
+                                    children: [
+                                      Text('Push',
+                                          style: theme.textTheme.bodyMedium),
+                                      const Spacer(),
+                                      Transform.scale(
+                                        scale: scale,
+                                        child: Radio(
+                                          activeColor:
+                                              theme.colorScheme.secondary,
+                                          value: 'Push',
+                                          groupValue: workoutType,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              workoutType = value!;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              height: height * 0.08,
+                              width: width - 32,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.3),
+                                    width: 1.5),
+                              ),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Row(
+                                    children: [
+                                      Text('Pull',
+                                          style: theme.textTheme.bodyMedium),
+                                      const Spacer(),
+                                      Transform.scale(
+                                        scale: scale,
+                                        child: Radio(
+                                          activeColor:
+                                              theme.colorScheme.secondary,
+                                          value: 'Pull',
+                                          groupValue: workoutType,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              workoutType = value!;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 16),
+                            Container(
+                              height: height * 0.08,
+                              width: width - 32,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                border: Border.all(
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.3),
+                                    width: 1.5),
+                              ),
+                              child: Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Row(
+                                    children: [
+                                      Text('Legs',
+                                          style: theme.textTheme.bodyMedium),
+                                      const Spacer(),
+                                      Transform.scale(
+                                        scale: scale,
+                                        child: Radio(
+                                          activeColor:
+                                              theme.colorScheme.secondary,
+                                          value: 'Legs',
+                                          groupValue: workoutType,
+                                          onChanged: (value) {
+                                            setState(() {
+                                              workoutType = value!;
+                                            });
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: 32),
+                            Text('Choose date and time',
+                                style: theme.textTheme.headlineSmall),
+                            const SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(FontAwesomeIcons.calendar,
+                                    color: theme.colorScheme.onSurface,
+                                    size: 40),
+                                const SizedBox(width: 16),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      formattedDate,
+                                      style: theme.textTheme.bodyLarge!.copyWith(
+                                          fontVariations: const <FontVariation>[
+                                            FontVariation(
+                                              'wght',
+                                              500,
+                                            ),
+                                          ]),
+                                    ),
+                                    Text(
+                                      formattedTime,
+                                      style:
+                                          theme.textTheme.bodyLarge!.copyWith(
+                                        color: theme.colorScheme.onSurface
+                                            .withOpacity(0.7),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                const Spacer(),
+                                IconButton(
+                                  onPressed: () {
+                                    _showDialog(
+                                      CupertinoDatePicker(
+                                        mode:
+                                            CupertinoDatePickerMode.dateAndTime,
+                                        initialDateTime: temp,
+                                        onDateTimeChanged: (DateTime dateTime) {
+                                          setState(() {
+                                            temp = dateTime;
+                                            formattedDate =
+                                                DateFormat("EEE, MMM d")
+                                                    .format(dateTime);
+                                            formattedTime = DateFormat("h:mm a")
+                                                .format(dateTime);
+                                            workoutDateTime =
+                                                dateTime.toString();
+                                          });
+                                        },
+                                      ),
+                                      theme,
+                                    );
+                                  },
+                                  icon: const Icon(FontAwesomeIcons.pen),
+                                  color: theme.colorScheme.onSurface,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 32),
+                            Text('Who can join',
+                                style: theme.textTheme.headlineSmall),
+                            const SizedBox(height: 12),
+                            Row(
+                              children: [
+                                Icon(FontAwesomeIcons.userGroup,
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.7),
+                                    size: 18),
+                                const SizedBox(width: 12),
+                                Text('Friends',
+                                    style: theme.textTheme.bodyMedium!.copyWith(
+                                        color: theme.colorScheme.onSurface
+                                            .withOpacity(0.7))),
+                                const Spacer(),
+                                Transform.scale(
+                                  scale: scale,
+                                  child: Switch(
+                                    value: friendsCanSee,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        friendsCanSee = value;
+                                      });
+                                    },
+                                    activeTrackColor:
+                                        theme.colorScheme.secondary,
+                                    activeColor: theme.colorScheme.onSecondary,
+                                    inactiveThumbColor:
+                                        theme.colorScheme.onSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Icon(FontAwesomeIcons.peopleGroup,
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.7),
+                                    size: 18),
+                                const SizedBox(width: 12),
+                                Text('My Gym',
+                                    style: theme.textTheme.bodyMedium!.copyWith(
+                                        color: theme.colorScheme.onSurface
+                                            .withOpacity(0.7))),
+                                const Spacer(),
+                                Transform.scale(
+                                  scale: scale,
+                                  child: Switch(
+                                    value: myGymCanSee,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        myGymCanSee = value;
+                                      });
+                                    },
+                                    activeTrackColor:
+                                        theme.colorScheme.secondary,
+                                    activeColor: theme.colorScheme.onSecondary,
+                                    inactiveThumbColor:
+                                        theme.colorScheme.onSecondary,
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
-                        const Spacer(),
-                        IconButton(
-                          onPressed: () {
-                            _showDialog(
-                              CupertinoDatePicker(
-                                mode: CupertinoDatePickerMode.dateAndTime,
-                                initialDateTime: temp,
-                                onDateTimeChanged: (DateTime dateTime) {
-                                  setState(() {
-                                    temp = dateTime;
-                                    formattedDate = DateFormat("EEE, MMM d")
-                                        .format(dateTime);
-                                    formattedTime =
-                                        DateFormat("h:mm a").format(dateTime);
-                                    workoutDateTime = dateTime.toString();
-                                  });
-                                },
-                              ),
-                              theme,
-                            );
-                          },
-                          icon: const Icon(FontAwesomeIcons.pen),
-                          color: theme.colorScheme.onSurface,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 32),
-                    Text('Who can join', style: theme.textTheme.headlineSmall),
-                    const SizedBox(height: 16),
-                    Row(
-                      children: [
-                        Icon(FontAwesomeIcons.userGroup,
-                            color: theme.colorScheme.onSurface.withOpacity(0.7),
-                            size: 18),
-                        const SizedBox(width: 12),
-                        Text('Friends',
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7))),
-                        const Spacer(),
-                        Transform.scale(
-                          scale: 1.2,
-                          child: Switch(
-                            value: friendsCanSee,
-                            onChanged: (value) {
-                              setState(() {
-                                friendsCanSee = value;
-                              });
-                            },
-                            activeTrackColor: theme.colorScheme.secondary,
-                            activeColor: theme.colorScheme.onSecondary,
-                            inactiveThumbColor: theme.colorScheme.onSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Icon(FontAwesomeIcons.peopleGroup,
-                            color: theme.colorScheme.onSurface.withOpacity(0.7),
-                            size: 18),
-                        const SizedBox(width: 12),
-                        Text('My Gym',
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7))),
-                        const Spacer(),
-                        Transform.scale(
-                          scale: 1.2,
-                          child: Switch(
-                            value: myGymCanSee,
-                            onChanged: (value) {
-                              setState(() {
-                                myGymCanSee = value;
-                              });
-                            },
-                            activeTrackColor: theme.colorScheme.secondary,
-                            activeColor: theme.colorScheme.onSecondary,
-                            inactiveThumbColor: theme.colorScheme.onSecondary,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Expanded(child: SizedBox()),
-                    GestureDetector(
-                      onTap: createGroup,
-                      child: Container(
-                        width: width - 32,
-                        height: 55,
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.primary,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Center(
-                          child: Text('Create',
-                              style: theme.textTheme.bodyMedium!.copyWith(
-                                fontVariations: const <FontVariation>[
-                                  FontVariation('wght', 600),
-                                ],
-                              )),
-                        ),
                       ),
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          color: theme.scaffoldBackgroundColor,
+                          height: 15,
+                        ),
+                        GestureDetector(
+                          onTap: createGroup,
+                          child: Container(
+                            width: width - 32,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.primary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text('Create',
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                    fontVariations: const <FontVariation>[
+                                      FontVariation('wght', 600),
+                                    ],
+                                  )),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

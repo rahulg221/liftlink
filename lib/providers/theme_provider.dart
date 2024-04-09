@@ -13,13 +13,13 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleTheme() {
-    if (_themeData == ThemeConfig.lightTheme) {
+  void toggleTheme(BuildContext context) {
+    if (_themeData.brightness == Brightness.light) {
       // If current theme is dark, switch to light.
-      _themeData = ThemeConfig.darkTheme;
+      _themeData = ThemeConfig.darkTheme(context);
     } else {
       // If current theme is light, switch to dark.
-      _themeData = ThemeConfig.lightTheme;
+      _themeData = ThemeConfig.lightTheme(context);
     }
     notifyListeners();
   }

@@ -47,7 +47,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
                 Provider.of<ThemeProvider>(context, listen: false)
-                    .toggleTheme();
+                    .toggleTheme(context);
               },
             ),
           ],

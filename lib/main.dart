@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-              create: (_) => ThemeProvider(ThemeConfig.darkTheme)),
+              create: (_) => ThemeProvider(ThemeConfig.darkTheme(context))),
           ChangeNotifierProvider(create: (_) => UserProvider()),
         ],
         child: Consumer<ThemeProvider>(builder: (_, ThemeProvider, __) {

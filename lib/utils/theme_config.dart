@@ -50,196 +50,207 @@ class ColorPalette {
 }
 
 class ThemeConfig {
-  static final ThemeData lightTheme = ThemeData(
-    brightness: Brightness.light,
-    scaffoldBackgroundColor: ColorPalette.lightBackgroundColor,
-    colorScheme: ColorScheme(
-      brightness: Brightness.light,
-      primary: ColorPalette.lightPrimaryColor,
-      onPrimary: ColorPalette.lightOnPrimaryColor,
-      secondary: ColorPalette.lightSecondaryColor,
-      onSecondary: ColorPalette.lightOnSecondaryColor,
-      background: ColorPalette.lightBackgroundColor,
-      onBackground: ColorPalette.lightOnBackgroundColor,
-      surface: ColorPalette.lightSurfaceColor,
-      onSurface: ColorPalette.lightOnSurfaceColor,
-      error: Colors.red,
-      onError: Colors.black,
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: ColorPalette.lightSecondaryColor,
-      foregroundColor: ColorPalette.lightOnSecondaryColor,
-    ),
-    switchTheme: SwitchThemeData(
-      thumbColor:
-          MaterialStateProperty.all(ColorPalette.lightOnBackgroundColor),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return ColorPalette.lightPrimaryColor;
-        }
-        return ColorPalette.lightOnSurfaceColor.withOpacity(0.2);
-      }),
-      trackOutlineColor: MaterialStateProperty.resolveWith(
-        (final Set<MaterialState> states) {
-          return ColorPalette.lightBackgroundColor;
-        },
-      ),
-    ),
-    appBarTheme: AppBarTheme(
-      color: ColorPalette.lightAppBarColor,
-    ),
-    snackBarTheme: SnackBarThemeData(
-      backgroundColor: ColorPalette.lightSnackBar,
-    ),
-    iconTheme: IconThemeData(
-      color: ColorPalette.lightIconColor,
-      size: iconSize,
-    ),
-    textTheme: TextTheme(
-      headlineLarge: TextStyle(
-        fontSize: 30,
-        color: ColorPalette.lightBackgroundHeaderColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
-        ],
-      ),
-      headlineMedium: TextStyle(
-        fontSize: 25,
-        color: ColorPalette.lightBackgroundHeaderColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
-        ],
-      ),
-      headlineSmall: TextStyle(
-        fontSize: 23,
-        color: ColorPalette.lightBackgroundHeaderColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
-        ],
-      ),
-      bodyLarge: TextStyle(
-        fontSize: 21,
-        color: ColorPalette.lightOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 400),
-        ],
-      ),
-      bodyMedium: TextStyle(
-        fontSize: 19,
-        color: ColorPalette.lightOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 400),
-        ],
-      ),
-      bodySmall: TextStyle(
-        fontSize: 17,
-        color: ColorPalette.lightOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 400),
-        ],
-      ),
-    ),
-  );
+  static ThemeData lightTheme(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final scaleFactor = width / 500;
 
-  static final ThemeData darkTheme = ThemeData(
-    brightness: Brightness.dark,
-    scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
-    colorScheme: ColorScheme(
+    return ThemeData(
+      brightness: Brightness.light,
+      scaffoldBackgroundColor: ColorPalette.lightBackgroundColor,
+      colorScheme: ColorScheme(
+        brightness: Brightness.light,
+        primary: ColorPalette.lightPrimaryColor,
+        onPrimary: ColorPalette.lightOnPrimaryColor,
+        secondary: ColorPalette.lightSecondaryColor,
+        onSecondary: ColorPalette.lightOnSecondaryColor,
+        background: ColorPalette.lightBackgroundColor,
+        onBackground: ColorPalette.lightOnBackgroundColor,
+        surface: ColorPalette.lightSurfaceColor,
+        onSurface: ColorPalette.lightOnSurfaceColor,
+        error: Colors.red,
+        onError: Colors.black,
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: ColorPalette.lightSecondaryColor,
+        foregroundColor: ColorPalette.lightOnSecondaryColor,
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor:
+            MaterialStateProperty.all(ColorPalette.lightOnBackgroundColor),
+        trackColor: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return ColorPalette.lightPrimaryColor;
+          }
+          return ColorPalette.lightOnSurfaceColor.withOpacity(0.2);
+        }),
+        trackOutlineColor: MaterialStateProperty.resolveWith(
+          (final Set<MaterialState> states) {
+            return ColorPalette.lightBackgroundColor;
+          },
+        ),
+      ),
+      appBarTheme: AppBarTheme(
+        color: ColorPalette.lightAppBarColor,
+      ),
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: ColorPalette.lightSnackBar,
+      ),
+      iconTheme: IconThemeData(
+        color: ColorPalette.lightIconColor,
+        size: iconSize * scaleFactor,
+      ),
+      textTheme: TextTheme(
+        headlineLarge: TextStyle(
+          fontSize: 30 * scaleFactor,
+          color: ColorPalette.lightBackgroundHeaderColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 600),
+          ],
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 25 * scaleFactor,
+          color: ColorPalette.lightBackgroundHeaderColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 600),
+          ],
+        ),
+        headlineSmall: TextStyle(
+          fontSize: 23 * scaleFactor,
+          color: ColorPalette.lightBackgroundHeaderColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 600),
+          ],
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 21 * scaleFactor,
+          color: ColorPalette.lightOnBackgroundColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 400),
+          ],
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 19 * scaleFactor,
+          color: ColorPalette.lightOnBackgroundColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 400),
+          ],
+        ),
+        bodySmall: TextStyle(
+          fontSize: 17 * scaleFactor,
+          color: ColorPalette.lightOnBackgroundColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 400),
+          ],
+        ),
+      ),
+    );
+  }
+
+  static ThemeData darkTheme(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+    final scaleFactor = width / 500;
+
+    return ThemeData(
       brightness: Brightness.dark,
-      primary: ColorPalette.darkPrimaryColor,
-      onPrimary: ColorPalette.darkOnPrimaryColor,
-      secondary: ColorPalette.darkSecondaryColor,
-      onSecondary: ColorPalette.darkOnSecondaryColor,
-      background: ColorPalette.darkBackgroundColor,
-      onBackground: ColorPalette.darkOnBackgroundColor,
-      surface: ColorPalette.darkSurfaceColor,
-      onSurface: ColorPalette.darkOnSurfaceColor,
-      error: Colors.red,
-      onError: Colors.black,
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: ColorPalette.darkSecondaryColor,
-      foregroundColor: ColorPalette.darkOnSecondaryColor,
-    ),
-    switchTheme: SwitchThemeData(
-      thumbColor: MaterialStateProperty.all(ColorPalette.darkOnBackgroundColor),
-      trackColor: MaterialStateProperty.resolveWith((states) {
-        if (states.contains(MaterialState.selected)) {
-          return ColorPalette.darkPrimaryColor;
-        }
-        return ColorPalette.darkOnSurfaceColor.withOpacity(0.2);
-      }),
-      trackOutlineColor: MaterialStateProperty.resolveWith(
-        (final Set<MaterialState> states) {
-          return ColorPalette.darkBackgroundColor;
-        },
+      scaffoldBackgroundColor: ColorPalette.darkBackgroundColor,
+      colorScheme: ColorScheme(
+        brightness: Brightness.dark,
+        primary: ColorPalette.darkPrimaryColor,
+        onPrimary: ColorPalette.darkOnPrimaryColor,
+        secondary: ColorPalette.darkSecondaryColor,
+        onSecondary: ColorPalette.darkOnSecondaryColor,
+        background: ColorPalette.darkBackgroundColor,
+        onBackground: ColorPalette.darkOnBackgroundColor,
+        surface: ColorPalette.darkSurfaceColor,
+        onSurface: ColorPalette.darkOnSurfaceColor,
+        error: Colors.red,
+        onError: Colors.black,
       ),
-    ),
-    appBarTheme: AppBarTheme(
-      color: ColorPalette.darkAppBarColor,
-    ),
-    snackBarTheme: SnackBarThemeData(
-      backgroundColor: ColorPalette.darkSnackBar,
-    ),
-    iconTheme: IconThemeData(
-      color: ColorPalette.darkIconColor,
-      size: iconSize,
-    ),
-    textTheme: TextTheme(
-      headlineLarge: TextStyle(
-        fontSize: 30,
-        color: ColorPalette.darkBackgroundHeaderColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
-        ],
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: ColorPalette.darkSecondaryColor,
+        foregroundColor: ColorPalette.darkOnSecondaryColor,
       ),
-      headlineMedium: TextStyle(
-        fontSize: 25,
-        color: ColorPalette.darkBackgroundHeaderColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
-        ],
+      switchTheme: SwitchThemeData(
+        thumbColor:
+            MaterialStateProperty.all(ColorPalette.darkOnBackgroundColor),
+        trackColor: MaterialStateProperty.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return ColorPalette.darkPrimaryColor;
+          }
+          return ColorPalette.darkOnSurfaceColor.withOpacity(0.2);
+        }),
+        trackOutlineColor: MaterialStateProperty.resolveWith(
+          (final Set<MaterialState> states) {
+            return ColorPalette.darkBackgroundColor;
+          },
+        ),
       ),
-      headlineSmall: TextStyle(
-        fontSize: 23,
-        color: ColorPalette.darkBackgroundHeaderColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 600),
-        ],
+      appBarTheme: AppBarTheme(
+        color: ColorPalette.darkAppBarColor,
       ),
-      bodyLarge: TextStyle(
-        fontSize: 21,
-        color: ColorPalette.darkOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 400),
-        ],
+      snackBarTheme: SnackBarThemeData(
+        backgroundColor: ColorPalette.darkSnackBar,
       ),
-      bodyMedium: TextStyle(
-        fontSize: 19,
-        color: ColorPalette.darkOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 400),
-        ],
+      iconTheme: IconThemeData(
+        color: ColorPalette.darkIconColor,
+        size: iconSize * scaleFactor,
       ),
-      bodySmall: TextStyle(
-        fontSize: 17,
-        color: ColorPalette.darkOnBackgroundColor,
-        fontFamily: customFont,
-        fontVariations: const <FontVariation>[
-          FontVariation('wght', 400),
-        ],
+      textTheme: TextTheme(
+        headlineLarge: TextStyle(
+          fontSize: 30 * scaleFactor,
+          color: ColorPalette.darkBackgroundHeaderColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 600),
+          ],
+        ),
+        headlineMedium: TextStyle(
+          fontSize: 25 * scaleFactor,
+          color: ColorPalette.darkBackgroundHeaderColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 600),
+          ],
+        ),
+        headlineSmall: TextStyle(
+          fontSize: 23 * scaleFactor,
+          color: ColorPalette.darkBackgroundHeaderColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 600),
+          ],
+        ),
+        bodyLarge: TextStyle(
+          fontSize: 21 * scaleFactor,
+          color: ColorPalette.darkOnBackgroundColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 400),
+          ],
+        ),
+        bodyMedium: TextStyle(
+          fontSize: 19 * scaleFactor,
+          color: ColorPalette.darkOnBackgroundColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 400),
+          ],
+        ),
+        bodySmall: TextStyle(
+          fontSize: 17 * scaleFactor,
+          color: ColorPalette.darkOnBackgroundColor,
+          fontFamily: customFont,
+          fontVariations: const <FontVariation>[
+            FontVariation('wght', 400),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
 }

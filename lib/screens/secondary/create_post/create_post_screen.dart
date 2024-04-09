@@ -177,7 +177,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     const Spacer(),
                                     IconButton(
                                         icon: const Icon(
-                                            FontAwesomeIcons.caretUp),
+                                            FontAwesomeIcons.caretRight),
                                         onPressed: () {}),
                                   ],
                                 ),
@@ -201,7 +201,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     const Spacer(),
                                     IconButton(
                                         icon: const Icon(
-                                            FontAwesomeIcons.caretUp),
+                                            FontAwesomeIcons.caretRight),
                                         onPressed: () {}),
                                   ],
                                 ),
@@ -219,33 +219,32 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ),
                       ),
                     ),
-                    Container(
-                      color: theme.scaffoldBackgroundColor,
-                      height: 75,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          GestureDetector(
-                            onTap: uploadPost,
-                            child: Container(
-                              width: width - 32,
-                              height: 55,
-                              decoration: BoxDecoration(
-                                color: theme.colorScheme.primary,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Center(
-                                child: Text('Post',
-                                    style: theme.textTheme.bodyMedium!.copyWith(
-                                      fontVariations: const <FontVariation>[
-                                        FontVariation('wght', 600),
-                                      ],
-                                    )),
-                              ),
+                    Column(
+                      children: [
+                        Container(
+                          color: theme.scaffoldBackgroundColor,
+                          height: 15,
+                        ),
+                        GestureDetector(
+                          onTap: uploadPost,
+                          child: Container(
+                            width: width - 32,
+                            height: 55,
+                            decoration: BoxDecoration(
+                              color: theme.colorScheme.primary,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text('Post',
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                    fontVariations: const <FontVariation>[
+                                      FontVariation('wght', 600),
+                                    ],
+                                  )),
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),

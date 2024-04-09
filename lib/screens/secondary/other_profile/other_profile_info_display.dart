@@ -121,7 +121,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _profilePicDisplay(widget.photoUrl, theme),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -142,7 +142,6 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                   ),
                 ],
               ),
-              //_userTags(theme, 'Beginner', 'Powerlifter', 'UCF'),
               const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -156,7 +155,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                       }
                     },
                     child: Container(
-                      width: (width - 80) * 0.66,
+                      width: (width - 84) * 0.66,
                       height: 45,
                       decoration: BoxDecoration(
                         color: _isLoading
@@ -182,9 +181,8 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
                   Container(
-                    width: (width - 80) * 0.33,
+                    width: (width - 84) * 0.33,
                     height: 45,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.onBackground.withOpacity(0.07),
@@ -255,59 +253,6 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _userTags(
-      ThemeData theme, String expLevel, String lifterType, String gymName) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                color: theme.colorScheme.onBackground.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(9)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-              child: Text(expLevel,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  )),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            decoration: BoxDecoration(
-                color: theme.colorScheme.onBackground.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(9)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-              child: Text(lifterType,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  )),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Container(
-            decoration: BoxDecoration(
-                color: theme.colorScheme.onBackground.withOpacity(0.07),
-                borderRadius: BorderRadius.circular(9)),
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),
-              child: Text(gymName,
-                  style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  )),
-            ),
-          ),
-        ],
       ),
     );
   }

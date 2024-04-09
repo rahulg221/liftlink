@@ -14,6 +14,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
   bool _displayPR = false;
   bool _allowComments = false;
   bool _savePost = false;
+  double scale = 1.1;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: 1.2,
+              scale: scale,
               child: Switch(
                 value: _displayPR,
                 onChanged: (value) {
@@ -62,7 +63,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: 1.2,
+              scale: scale,
               child: Switch(
                 value: _allowComments,
                 onChanged: (value) {
@@ -93,7 +94,7 @@ class _UploadSwitchesState extends State<UploadSwitches> {
                     color: theme.colorScheme.onSurface.withOpacity(0.7))),
             const Expanded(child: SizedBox()),
             Transform.scale(
-              scale: 1.2,
+              scale: scale,
               child: Switch(
                 value: _savePost,
                 onChanged: (value) {

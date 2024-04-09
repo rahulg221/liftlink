@@ -81,13 +81,13 @@ class _SessionCardState extends State<SessionCard> {
     final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -100,7 +100,7 @@ class _SessionCardState extends State<SessionCard> {
                         );
                       },
                       child: CircleAvatar(
-                        radius: 35,
+                        radius: 23,
                         backgroundImage: NetworkImage(profilePic),
                         backgroundColor: theme.scaffoldBackgroundColor,
                       ),
@@ -119,14 +119,16 @@ class _SessionCardState extends State<SessionCard> {
                             ),
                           ]),
                         ),
+                        //const SizedBox(height: 2),
                         Text(
-                          workoutType,
+                          gymName,
                           style: theme.textTheme.bodySmall!.copyWith(
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7)),
                         ),
+                        //const SizedBox(height: 2),
                         Text(
-                          gymName,
+                          '$workoutType day',
                           style: theme.textTheme.bodySmall!.copyWith(
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7)),
@@ -144,12 +146,12 @@ class _SessionCardState extends State<SessionCard> {
                             color: isDark
                                 ? theme.colorScheme.secondary
                                 : theme.colorScheme.onBackground)),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 6),
                     GestureDetector(
                       onTap: () {},
                       child: Container(
                           width: 110,
-                          height: 40,
+                          height: 36,
                           decoration: BoxDecoration(
                             color: theme.colorScheme.primary,
                             borderRadius: BorderRadius.circular(10),
@@ -164,7 +166,7 @@ class _SessionCardState extends State<SessionCard> {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 8),
             Divider(
               color: theme.colorScheme.surface,
               thickness: 1.5,

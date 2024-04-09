@@ -61,7 +61,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   _profilePicDisplay(widget.photoUrl, theme),
-                  const SizedBox(width: 16),
+                  const SizedBox(width: 12),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -89,7 +89,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                   GestureDetector(
                     onTap: () {},
                     child: Container(
-                      width: (width - 64) * 0.62,
+                      width: (width - 84) * 0.66,
                       height: 45,
                       decoration: BoxDecoration(
                         color: theme.colorScheme.surface,
@@ -106,9 +106,8 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                       ),
                     ),
                   ),
-                  const SizedBox(width: 8),
                   Container(
-                    width: (width - 64) * 0.32,
+                    width: (width - 84) * 0.33,
                     height: 45,
                     decoration: BoxDecoration(
                       color: theme.colorScheme.surface,
