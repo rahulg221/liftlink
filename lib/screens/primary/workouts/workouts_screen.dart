@@ -96,7 +96,6 @@ class _SessionsScreenState extends State<SessionsScreen> {
           searchController: _searchController,
           searchFocusNode: _searchFocusNode,
           isSearching: _isSearching,
-          screenName: const SessionsScreen(),
           updateSearchingState: updateSearchingState,
         ),
         automaticallyImplyLeading: false,

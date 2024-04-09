@@ -1,4 +1,3 @@
-import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_screen.dart';
 import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
@@ -13,7 +12,6 @@ class CustomAppBar extends StatefulWidget {
   bool isSearching = false;
   TextEditingController searchController = TextEditingController();
   FocusNode searchFocusNode = FocusNode();
-  final Widget screenName;
   List<dynamic> searchResults = [];
   bool isLoading = false;
 
@@ -23,7 +21,6 @@ class CustomAppBar extends StatefulWidget {
     required this.isSearching,
     required this.searchController,
     required this.searchFocusNode,
-    required this.screenName,
   }) : super(key: key);
 
   @override

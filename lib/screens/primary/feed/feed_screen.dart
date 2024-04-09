@@ -97,7 +97,6 @@ class _FeedScreenState extends State<FeedScreen> {
           isSearching: _isSearching,
           searchController: _searchController,
           searchFocusNode: _searchFocusNode,
-          screenName: const FeedScreen(),
           updateSearchingState: updateSearchingState,
         ),
         automaticallyImplyLeading: false,
