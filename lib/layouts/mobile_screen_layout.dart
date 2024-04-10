@@ -48,20 +48,14 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Navigator(
-        onGenerateRoute: (settings) {
-          return MaterialPageRoute(
-            builder: (context) => PageView(
-              controller: pageController,
-              onPageChanged: onPageChanged,
-              children: const [
-                FeedScreen(),
-                SessionsScreen(),
-                MessagesScreen(),
-              ],
-            ),
-          );
-        },
+      body: PageView(
+        controller: pageController,
+        onPageChanged: onPageChanged,
+        children: const [
+          FeedScreen(),
+          SessionsScreen(),
+          MessagesScreen(),
+        ],
       ),
       bottomNavigationBar: BottomNavBar(
         page: _page,

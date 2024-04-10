@@ -1,7 +1,6 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/reusable_components/app_bar.dart';
-import 'package:fitness_app/screens/primary/workouts/workouts_screen.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
