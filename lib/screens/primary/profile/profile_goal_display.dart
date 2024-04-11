@@ -1,3 +1,4 @@
+import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:flutter/material.dart';
 
 class ProfileGoalDisplay extends StatefulWidget {
@@ -10,46 +11,30 @@ class _ProfileGoalDisplayState extends State<ProfileGoalDisplay> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
-    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25),
-      ),
-      elevation: isDark ? 0 : 6,
-      shadowColor: Colors.grey.withOpacity(0.5),
-      child: Container(
-        decoration: BoxDecoration(
-          color: theme.scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(25),
-          border: Border.all(
-              color: isDark
-                  ? theme.colorScheme.onBackground.withOpacity(0.3)
-                  : Colors.transparent,
-              width: 1.5),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _circle("Bench Press 5RM", 225, 245, 275, width, theme),
-                  _circle("Bicep Curl 10RM", 15, 25, 35, width, theme),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _circle("Barbell Row 8RPM", 105, 155, 165, width, theme),
-                  _circle("Weight loss", 250, 180, 160, width, theme),
-                ],
-              ),
-            ],
-          ),
+    return CustomContainer(
+      width: width,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _circle("Bench Press 5RM", 225, 245, 275, width, theme),
+                _circle("Bicep Curl 10RM", 15, 25, 35, width, theme),
+              ],
+            ),
+            const SizedBox(height: 24),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _circle("Barbell Row 8RPM", 105, 155, 165, width, theme),
+                _circle("Weight loss", 250, 180, 160, width, theme),
+              ],
+            ),
+          ],
         ),
       ),
     );

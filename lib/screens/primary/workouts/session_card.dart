@@ -4,6 +4,7 @@ import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -78,7 +79,6 @@ class _SessionCardState extends State<SessionCard> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
     return Padding(
       padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
@@ -111,7 +111,7 @@ class _SessionCardState extends State<SessionCard> {
                       children: [
                         Text(
                           username,
-                          style: theme.textTheme.bodyLarge!
+                          style: theme.textTheme.bodyMedium!
                               .copyWith(fontVariations: const <FontVariation>[
                             FontVariation(
                               'wght',
@@ -128,7 +128,7 @@ class _SessionCardState extends State<SessionCard> {
                         ),
                         //const SizedBox(height: 2),
                         Text(
-                          '$workoutType day',
+                          '$workoutType Workout',
                           style: theme.textTheme.bodySmall!.copyWith(
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7)),
@@ -138,6 +138,15 @@ class _SessionCardState extends State<SessionCard> {
                   ],
                 ),
                 const Spacer(),
+                IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    FontAwesomeIcons.anglesRight,
+                    color: theme.colorScheme.onSurface.withOpacity(0.7),
+                    size: 21,
+                  ),
+                ),
+                /*
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -153,17 +162,21 @@ class _SessionCardState extends State<SessionCard> {
                           width: 110,
                           height: 36,
                           decoration: BoxDecoration(
-                            color: theme.colorScheme.primary,
+                            color: theme.scaffoldBackgroundColor,
                             borderRadius: BorderRadius.circular(10),
+                            border: Border.all(
+                                color: theme.colorScheme.onBackground
+                                    .withOpacity(0.3),
+                                width: 1.5),
                           ),
                           child: Center(
                               child: Text('Join',
                                   style: theme.textTheme.bodySmall!.copyWith(
-                                      color: theme.colorScheme.onPrimary,
+                                      color: theme.colorScheme.onBackground,
                                       fontWeight: FontWeight.w600)))),
                     ),
                   ],
-                ),
+                ),*/
               ],
             ),
             const SizedBox(height: 8),

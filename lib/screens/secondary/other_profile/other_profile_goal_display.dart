@@ -1,3 +1,4 @@
+import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:flutter/material.dart';
 
 class OtherProfileGoalDisplay extends StatefulWidget {
@@ -11,47 +12,28 @@ class _OtherProfileGoalDisplayState extends State<OtherProfileGoalDisplay> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
-    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25),
-      ),
-      elevation: isDark ? 0 : 6,
-      shadowColor: Colors.grey.withOpacity(0.5),
-      child: Container(
-        decoration: BoxDecoration(
-          color: theme.scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(25),
-          border: Border.all(
-              color: isDark
-                  ? theme.colorScheme.onBackground.withOpacity(0.3)
-                  : Colors.transparent,
-              width: 1.5),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+    return CustomContainer(
+      width: width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _circle("Bench Press 1RM", 225, 245, 275, width, theme),
-                  _circle("Squat 1RM", 315, 375, 405, width, theme),
-                ],
-              ),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _circle("Deadlift 5RM", 405, 425, 465, width, theme),
-                  _circle("Weight gain", 160, 180, 200, width, theme),
-                ],
-              ),
+              _circle("Bench Press 1RM", 225, 245, 275, width, theme),
+              _circle("Squat 1RM", 315, 375, 405, width, theme),
             ],
           ),
-        ),
+          const SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _circle("Deadlift 5RM", 405, 425, 465, width, theme),
+              _circle("Weight gain", 160, 180, 200, width, theme),
+            ],
+          ),
+        ],
       ),
     );
   }

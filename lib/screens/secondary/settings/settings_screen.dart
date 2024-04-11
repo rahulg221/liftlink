@@ -4,6 +4,7 @@ import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -29,12 +30,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              CupertinoIcons.back,
-              color: theme.colorScheme.onBackground,
-            ),
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.chevronLeft,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               Navigator.of(context).pop();
             },

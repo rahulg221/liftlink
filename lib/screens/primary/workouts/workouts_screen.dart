@@ -1,6 +1,7 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/reusable_components/app_bar.dart';
+import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/screens/primary/workouts/create_workout_button.dart';
 import 'package:fitness_app/screens/primary/workouts/friend_sessions_screen.dart';
 import 'package:fitness_app/screens/primary/workouts/my_gym_sessions_screen.dart';
@@ -86,6 +87,8 @@ class _SessionsScreenState extends State<SessionsScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
+    final height = MediaQuery.of(context).size.height;
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
@@ -129,29 +132,67 @@ class _SessionsScreenState extends State<SessionsScreen> {
                     ),
                   ],
                 )
-          : DefaultTabController(
-              length: 2,
-              child: Column(
-                children: [
-                  TabBar(
-                    labelStyle: theme.textTheme.bodyMedium!.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    tabs: const [
-                      Tab(text: 'Friends'),
-                      Tab(text: 'My Gym'),
+          : Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 12),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text('My Goals',
+                              style: theme.textTheme.headlineSmall),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      CustomContainer(
+                        width: width,
+                        child: SizedBox(
+                            height: height * 0.2, child: const Text('hi')),
+                      ),
+                      const SizedBox(height: 12),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Text('Join a workout',
+                              style: theme.textTheme.headlineSmall),
+                        ),
+                      ),
+                      const SizedBox(height: 12),
                     ],
                   ),
-                  Expanded(
-                    child: TabBarView(
+                ),
+                Expanded(
+                  child: DefaultTabController(
+                    length: 2,
+                    child: Column(
                       children: [
-                        FriendSessionsScreen(),
-                        MyGymSessionsScreen(),
+                        TabBar(
+                          labelStyle: theme.textTheme.bodySmall!.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                          tabs: const [
+                            Tab(text: 'Friends'),
+                            Tab(text: 'My Gym'),
+                          ],
+                        ),
+                        Expanded(
+                          child: TabBarView(
+                            children: [
+                              FriendSessionsScreen(),
+                              MyGymSessionsScreen(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
       floatingActionButton: const RequestButton(),
     );

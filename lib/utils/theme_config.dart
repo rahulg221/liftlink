@@ -4,12 +4,12 @@ import 'dart:ui';
 
 class ColorPalette {
   // Custom colors
-  static Color coral = const Color.fromARGB(255, 255, 94, 94);
-  static Color lightCoral = const Color.fromARGB(255, 255, 86, 86);
+  static Color coral = Color.fromARGB(255, 231, 92, 92);
+  static Color lightCoral = Color.fromARGB(255, 226, 95, 95);
   static Color lightBlue = const Color.fromARGB(255, 90, 186, 238);
   static Color teal = const Color.fromARGB(255, 26, 255, 202);
   // Background colors prev. 18 18 18
-  static Color darkBackgroundColor = Colors.black;
+  static Color darkBackgroundColor = Color.fromARGB(255, 28, 28, 28);
   static Color lightBackgroundColor = const Color.fromARGB(255, 255, 253, 247);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
@@ -18,11 +18,11 @@ class ColorPalette {
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
-  static Color darkSurfaceColor = const Color.fromARGB(255, 19, 19, 19);
+  static Color darkSurfaceColor = Color.fromARGB(255, 32, 32, 32);
   static Color lightSurfaceColor = const Color.fromARGB(255, 243, 239, 231);
   // Primary colors
-  static Color darkPrimaryColor = coral;
-  static Color lightPrimaryColor = coral;
+  static Color darkPrimaryColor = lightCoral;
+  static Color lightPrimaryColor = lightCoral;
   // Secondary colors
   static Color darkSecondaryColor = teal;
   static Color lightSecondaryColor = teal;
@@ -97,7 +97,7 @@ class ThemeConfig {
       ),
       iconTheme: IconThemeData(
         color: ColorPalette.lightIconColor,
-        size: iconSize * scaleFactor,
+        size: iconSize,
       ),
       textTheme: TextTheme(
         headlineLarge: TextStyle(

@@ -112,12 +112,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
           centerTitle: true,
           title:
               Text('New workout session', style: theme.textTheme.headlineSmall),
-          leading: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              CupertinoIcons.back,
-              color: theme.colorScheme.onBackground,
-            ),
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.chevronLeft,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               Navigator.of(context).pop();
             },

@@ -5,6 +5,7 @@ import 'package:fitness_app/screens/secondary/other_profile/other_profile_stats_
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class OtherProfileScreen extends StatefulWidget {
@@ -80,12 +81,9 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          leading: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              CupertinoIcons.back,
-              color: theme.colorScheme.onBackground,
-            ),
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.chevronLeft,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               Navigator.of(context).pop();
             },

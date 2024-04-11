@@ -1,9 +1,6 @@
-import 'dart:ui';
-
+import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
@@ -93,175 +90,107 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
-    final isDark = theme.colorScheme.brightness == Brightness.dark;
 
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25),
-      ),
-      elevation: isDark ? 0 : 6,
-      shadowColor: Colors.grey.withOpacity(0.5),
-      child: Container(
-        decoration: BoxDecoration(
-          color: theme.scaffoldBackgroundColor,
-          borderRadius: BorderRadius.circular(25),
-          border: Border.all(
-              color: isDark
-                  ? theme.colorScheme.onBackground.withOpacity(0.3)
-                  : Colors.transparent,
-              width: 1.5),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
+    return CustomContainer(
+      width: width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              CircleAvatar(
+                radius: 35,
+                backgroundImage: NetworkImage(widget.photoUrl),
+                backgroundColor: theme.scaffoldBackgroundColor,
+              ),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _profilePicDisplay(widget.photoUrl, theme),
-                  const SizedBox(width: 12),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '@${widget.username}',
-                        style: theme.textTheme.headlineSmall,
-                      ),
-                      const SizedBox(height: 8),
-                      SizedBox(
-                        width: width * 0.5,
-                        child: Text(widget.bio,
-                            style: theme.textTheme.bodyMedium!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7)),
-                            softWrap: true),
-                      ),
-                    ],
+                  Text(
+                    '@${widget.username}',
+                    style: theme.textTheme.headlineSmall,
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    width: width * 0.5,
+                    child: Text(widget.bio,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                            color:
+                                theme.colorScheme.onSurface.withOpacity(0.7)),
+                        softWrap: true),
                   ),
                 ],
               ),
-              const SizedBox(height: 16),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (!_followed) {
-                        followUser();
-                      } else if (_followed) {
-                        unfollowUser();
-                      }
-                    },
-                    child: Container(
-                      width: (width - 84) * 0.66,
-                      height: 45,
-                      decoration: BoxDecoration(
-                        color: _isLoading
-                            ? theme.colorScheme.surface
-                            : _followed
-                                ? theme.colorScheme.onBackground
-                                    .withOpacity(0.07)
-                                : theme.colorScheme.primary,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: _isLoading
-                            ? const Center(child: CircularProgressIndicator())
-                            : Text(
-                                _followed ? 'Remove friend' : 'Add friend',
-                                style: theme.textTheme.bodySmall!.copyWith(
-                                    color: _followed
-                                        ? theme.colorScheme.onSurface
-                                        : theme.colorScheme.onPrimary,
-                                    fontWeight: FontWeight.w600),
-                                textAlign: TextAlign.center,
-                              ),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: (width - 84) * 0.33,
+            ],
+          ),
+          const SizedBox(height: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {
+                    if (!_followed) {
+                      followUser();
+                    } else if (_followed) {
+                      unfollowUser();
+                    }
+                  },
+                  child: Container(
                     height: 45,
                     decoration: BoxDecoration(
-                      color: theme.colorScheme.onBackground.withOpacity(0.07),
+                      color: _isLoading
+                          ? theme.colorScheme.onBackground.withOpacity(0.05)
+                          : _followed
+                              ? theme.colorScheme.onBackground.withOpacity(0.05)
+                              : theme.colorScheme.primary,
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Center(
                       child: _isLoading
                           ? const Center(child: CircularProgressIndicator())
-                          : IconButton(
-                              onPressed: () {},
-                              icon: const Icon(FontAwesomeIcons.message),
-                              color: theme.colorScheme.onSurface),
+                          : Text(
+                              _followed ? 'Remove friend' : 'Add friend',
+                              style: theme.textTheme.bodySmall!.copyWith(
+                                  color: _followed
+                                      ? theme.colorScheme.onSurface
+                                      : theme.colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
                     ),
                   ),
-                ],
+                ),
               ),
-              const SizedBox(height: 16),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '$curPts/$totalPts pts',
-                      style: theme.textTheme.bodySmall!.copyWith(
-                        color: theme.colorScheme.onBackground.withOpacity(0.7),
-                        fontVariations: const <FontVariation>[
-                          FontVariation('wght', 350),
-                        ],
+              const SizedBox(width: 6),
+              Expanded(
+                child: GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.onBackground.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Share profile',
+                        style: theme.textTheme.bodySmall!.copyWith(
+                            color: theme.colorScheme.onSurface,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                    const SizedBox(height: 6),
-                    LinearProgressIndicator(
-                      minHeight: 12,
-                      value: (curPts / totalPts),
-                      semanticsLabel: 'Progress indicator',
-                      color: theme.colorScheme.secondary,
-                    ),
-                    const SizedBox(height: 6),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'lvl. 9',
-                          style: theme.textTheme.bodySmall!.copyWith(
-                            color:
-                                theme.colorScheme.onBackground.withOpacity(0.7),
-                            fontVariations: const <FontVariation>[
-                              FontVariation('wght', 350),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'lvl. 10',
-                          style: theme.textTheme.bodySmall!.copyWith(
-                            color:
-                                theme.colorScheme.onBackground.withOpacity(0.7),
-                            fontVariations: const <FontVariation>[
-                              FontVariation('wght', 350),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                  ),
                 ),
               ),
             ],
           ),
-        ),
+        ],
       ),
-    );
-  }
-
-  Widget _profilePicDisplay(String photoUrl, ThemeData theme) {
-    return CircleAvatar(
-      radius: 45,
-      backgroundImage: NetworkImage(photoUrl),
-      backgroundColor: theme.scaffoldBackgroundColor,
     );
   }
 }
