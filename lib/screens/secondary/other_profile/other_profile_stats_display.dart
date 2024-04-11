@@ -46,7 +46,7 @@ Widget _statDisplay(
           ),
           Center(
               child: Text('$statValue',
-                  style: theme.textTheme.headlineLarge!
+                  style: theme.textTheme.headlineMedium!
                       .copyWith(color: theme.colorScheme.primary))),
         ],
       ),

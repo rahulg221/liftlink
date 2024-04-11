@@ -10,7 +10,7 @@ class ColorPalette {
   static Color teal = const Color.fromARGB(255, 26, 255, 202);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Color.fromARGB(255, 24, 24, 24);
-  static Color lightBackgroundColor = Color.fromARGB(255, 255, 255, 255);
+  static Color lightBackgroundColor = Color.fromARGB(255, 255, 254, 232);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
   static Color lightAppBarColor = lightBackgroundColor;
@@ -19,7 +19,7 @@ class ColorPalette {
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
   static Color darkSurfaceColor = Color.fromARGB(255, 28, 28, 28);
-  static Color lightSurfaceColor = Color.fromARGB(255, 255, 255, 255);
+  static Color lightSurfaceColor = Color.fromARGB(255, 255, 254, 237);
   // Primary colors
   static Color darkPrimaryColor = lightCoral;
   static Color lightPrimaryColor = lightCoral;
@@ -52,7 +52,7 @@ class ColorPalette {
 class ThemeConfig {
   static ThemeData lightTheme(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final scaleFactor = width / 500;
+    final scaleFactor = width / 450;
 
     return ThemeData(
       brightness: Brightness.light,
@@ -154,7 +154,7 @@ class ThemeConfig {
 
   static ThemeData darkTheme(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final scaleFactor = width / 500;
+    final scaleFactor = width / 450;
 
     return ThemeData(
       brightness: Brightness.dark,

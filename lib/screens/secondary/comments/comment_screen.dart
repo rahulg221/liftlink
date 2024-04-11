@@ -125,10 +125,10 @@ class _CommentsScreenState extends State<CommentsScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: theme.colorScheme.surface,
+      backgroundColor: theme.scaffoldBackgroundColor,
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        backgroundColor: theme.colorScheme.surface,
+        backgroundColor: theme.scaffoldBackgroundColor,
         centerTitle: true,
         title: Text('${widget.commentCount} comments',
             style: theme.textTheme.bodyMedium),

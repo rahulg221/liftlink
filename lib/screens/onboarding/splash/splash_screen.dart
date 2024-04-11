@@ -27,8 +27,6 @@ class _SplashPageState extends State<SplashScreen> {
       return;
     }
 
-    //AuthMethods().signOut();
-
     final session = supabase.auth.currentSession;
 
     if (session != null) {

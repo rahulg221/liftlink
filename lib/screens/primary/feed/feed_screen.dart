@@ -135,7 +135,7 @@ class _FeedScreenState extends State<FeedScreen> {
               child: Column(
                 children: [
                   TabBar(
-                    labelStyle: theme.textTheme.bodyMedium!.copyWith(
+                    labelStyle: theme.textTheme.bodySmall!.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
                     tabs: const [

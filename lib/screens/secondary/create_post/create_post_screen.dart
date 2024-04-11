@@ -1,12 +1,11 @@
 import 'dart:typed_data';
-import 'dart:ui';
+import 'package:fitness_app/reusable_components/large_button.dart';
 import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
 import 'package:fitness_app/screens/secondary/create_post/create_post_switches.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -159,52 +158,74 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     ),
                                   ],
                                 ),
+                                const SizedBox(height: 24),
+                                SizedBox(
+                                  height: 45,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(FontAwesomeIcons.solidEye),
+                                      const SizedBox(width: 12),
+                                      Text('Privacy',
+                                          style: theme.textTheme.bodyMedium),
+                                      const Spacer(),
+                                      Container(
+                                        width: 35,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: theme.colorScheme.surface,
+                                        ),
+                                        child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            FontAwesomeIcons.angleRight,
+                                            color: theme
+                                                .colorScheme.onBackground
+                                                .withOpacity(0.3),
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                                 const SizedBox(height: 8),
                                 Divider(
                                   color: theme.colorScheme.surface,
                                   thickness: 1.5,
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const Icon(FontAwesomeIcons.solidEye),
-                                    const SizedBox(width: 12),
-                                    Text('Privacy',
-                                        style: theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                color: theme
-                                                    .colorScheme.onSurface
-                                                    .withOpacity(0.7))),
-                                    const Spacer(),
-                                    IconButton(
-                                        icon: const Icon(
-                                            FontAwesomeIcons.caretRight),
-                                        onPressed: () {}),
-                                  ],
-                                ),
                                 const SizedBox(height: 8),
-                                Divider(
-                                  color: theme.colorScheme.surface,
-                                  thickness: 1.5,
-                                ),
-                                const SizedBox(height: 8),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const Icon(FontAwesomeIcons.pen),
-                                    const SizedBox(width: 12),
-                                    Text('Update goals',
-                                        style: theme.textTheme.bodyMedium!
-                                            .copyWith(
-                                                color: theme
-                                                    .colorScheme.onSurface
-                                                    .withOpacity(0.7))),
-                                    const Spacer(),
-                                    IconButton(
-                                        icon: const Icon(
-                                            FontAwesomeIcons.caretRight),
-                                        onPressed: () {}),
-                                  ],
+                                SizedBox(
+                                  height: 45,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(FontAwesomeIcons.pen),
+                                      const SizedBox(width: 12),
+                                      Text('Update goals',
+                                          style: theme.textTheme.bodyMedium),
+                                      const Spacer(),
+                                      Container(
+                                        width: 35,
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          color: theme.colorScheme.surface,
+                                        ),
+                                        child: IconButton(
+                                          onPressed: () {},
+                                          icon: Icon(
+                                            FontAwesomeIcons.angleRight,
+                                            color: theme
+                                                .colorScheme.onBackground
+                                                .withOpacity(0.3),
+                                            size: 16,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 const SizedBox(height: 8),
                                 Divider(
@@ -220,33 +241,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          color: theme.scaffoldBackgroundColor,
-                          height: 15,
-                        ),
-                        GestureDetector(
-                          onTap: uploadPost,
-                          child: Container(
-                            width: width - 32,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text('Post',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                    fontVariations: const <FontVariation>[
-                                      FontVariation('wght', 600),
-                                    ],
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    LargeButton(
+                        isLoading: _isLoading, onTap: uploadPost, text: 'Post'),
                   ],
                 ),
               ));

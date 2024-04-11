@@ -1,6 +1,6 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/feed/feed_screen.dart';
-import 'package:fitness_app/screens/primary/workouts/workouts_screen.dart';
+import 'package:fitness_app/screens/primary/home/home_screen.dart';
 import 'package:fitness_app/screens/primary/messages/messages_screen.dart';
 import 'package:fitness_app/reusable_components/bottom_nav_bar.dart';
 import 'package:flutter/material.dart';

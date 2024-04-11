@@ -22,30 +22,33 @@ class _UploadSwitchesState extends State<UploadSwitches> {
 
     return Column(
       children: [
-        Row(
-          children: [
-            Icon(FontAwesomeIcons.medal,
-                color: theme.colorScheme.onSurface.withOpacity(0.7)),
-            const SizedBox(width: 12),
-            Text('Display progress',
-                style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7))),
-            const Expanded(child: SizedBox()),
-            Transform.scale(
-              scale: scale,
-              child: Switch(
-                value: _displayPR,
-                onChanged: (value) {
-                  setState(() {
-                    _displayPR = value;
-                  });
-                },
-                activeTrackColor: theme.colorScheme.secondary,
-                activeColor: theme.colorScheme.onSecondary,
-                inactiveThumbColor: theme.colorScheme.onSecondary,
+        SizedBox(
+          height: 45,
+          child: Row(
+            children: [
+              Icon(FontAwesomeIcons.medal,
+                  color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              const SizedBox(width: 12),
+              Text('Display progress', style: theme.textTheme.bodyMedium),
+              const Expanded(child: SizedBox()),
+              Transform.scale(
+                scale: scale,
+                child: Switch(
+                  value: _displayPR,
+                  onChanged: (value) {
+                    setState(() {
+                      _displayPR = value;
+                    });
+                  },
+                  activeTrackColor: theme.colorScheme.secondary,
+                  inactiveTrackColor:
+                      theme.colorScheme.onBackground.withOpacity(0.07),
+                  activeColor: theme.colorScheme.onSecondary,
+                  inactiveThumbColor: theme.colorScheme.onSecondary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 8),
         Divider(
@@ -53,30 +56,33 @@ class _UploadSwitchesState extends State<UploadSwitches> {
           thickness: 1.5,
         ),
         const SizedBox(height: 8),
-        Row(
-          children: [
-            Icon(FontAwesomeIcons.solidComment,
-                color: theme.colorScheme.onSurface.withOpacity(0.7)),
-            const SizedBox(width: 12),
-            Text('Allow comments',
-                style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7))),
-            const Expanded(child: SizedBox()),
-            Transform.scale(
-              scale: scale,
-              child: Switch(
-                value: _allowComments,
-                onChanged: (value) {
-                  setState(() {
-                    _allowComments = value;
-                  });
-                },
-                activeTrackColor: theme.colorScheme.secondary,
-                activeColor: theme.colorScheme.onSecondary,
-                inactiveThumbColor: theme.colorScheme.onSecondary,
+        SizedBox(
+          height: 45,
+          child: Row(
+            children: [
+              Icon(FontAwesomeIcons.solidComment,
+                  color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              const SizedBox(width: 12),
+              Text('Allow comments', style: theme.textTheme.bodyMedium),
+              const Expanded(child: SizedBox()),
+              Transform.scale(
+                scale: scale,
+                child: Switch(
+                  value: _allowComments,
+                  onChanged: (value) {
+                    setState(() {
+                      _allowComments = value;
+                    });
+                  },
+                  activeTrackColor: theme.colorScheme.secondary,
+                  inactiveTrackColor:
+                      theme.colorScheme.onBackground.withOpacity(0.07),
+                  activeColor: theme.colorScheme.onSecondary,
+                  inactiveThumbColor: theme.colorScheme.onSecondary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 8),
         Divider(
@@ -84,30 +90,33 @@ class _UploadSwitchesState extends State<UploadSwitches> {
           thickness: 1.5,
         ),
         const SizedBox(height: 8),
-        Row(
-          children: [
-            Icon(FontAwesomeIcons.cloudArrowDown,
-                color: theme.colorScheme.onSurface.withOpacity(0.7)),
-            const SizedBox(width: 12),
-            Text('Save to profile',
-                style: theme.textTheme.bodyMedium!.copyWith(
-                    color: theme.colorScheme.onSurface.withOpacity(0.7))),
-            const Expanded(child: SizedBox()),
-            Transform.scale(
-              scale: scale,
-              child: Switch(
-                value: _savePost,
-                onChanged: (value) {
-                  setState(() {
-                    _savePost = value;
-                  });
-                },
-                activeTrackColor: theme.colorScheme.secondary,
-                activeColor: theme.colorScheme.onSecondary,
-                inactiveThumbColor: theme.colorScheme.onSecondary,
+        SizedBox(
+          height: 45,
+          child: Row(
+            children: [
+              Icon(FontAwesomeIcons.cloudArrowDown,
+                  color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              const SizedBox(width: 12),
+              Text('Save to profile', style: theme.textTheme.bodyMedium),
+              const Expanded(child: SizedBox()),
+              Transform.scale(
+                scale: scale,
+                child: Switch(
+                  value: _savePost,
+                  onChanged: (value) {
+                    setState(() {
+                      _savePost = value;
+                    });
+                  },
+                  activeTrackColor: theme.colorScheme.secondary,
+                  inactiveTrackColor:
+                      theme.colorScheme.onBackground.withOpacity(0.07),
+                  activeColor: theme.colorScheme.onSecondary,
+                  inactiveThumbColor: theme.colorScheme.onSecondary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 8),
         Divider(

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/reusable_components/large_button.dart';
 import 'package:fitness_app/screens/secondary/create_workout_session/notes_input.dart';
 import 'package:fitness_app/supabase/session_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
@@ -28,6 +29,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
   String uid = '';
   bool friendsCanSee = false;
   bool myGymCanSee = false;
+  bool innerCircleCanSee = false;
 
   String workoutTime = '';
   DateTime temp = DateTime.now();
@@ -136,7 +138,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                             const SizedBox(height: 12),
                             Text('Choose a workout',
                                 style: theme.textTheme.headlineSmall),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 12),
                             Container(
                               height: height * 0.08,
                               width: width - 32,
@@ -175,7 +177,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 12),
                             Container(
                               height: height * 0.08,
                               width: width - 32,
@@ -214,7 +216,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 12),
                             Container(
                               height: height * 0.08,
                               width: width - 32,
@@ -253,15 +255,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 24),
                             Text('Write a note',
                                 style: theme.textTheme.headlineSmall),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 12),
                             NotesInput(textEditingController: _notesController),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 24),
                             Text('Choose date and time',
                                 style: theme.textTheme.headlineSmall),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 12),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -274,7 +276,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                   children: [
                                     Text(
                                       formattedDate,
-                                      style: theme.textTheme.bodyLarge!.copyWith(
+                                      style: theme.textTheme.bodyMedium!.copyWith(
                                           fontVariations: const <FontVariation>[
                                             FontVariation(
                                               'wght',
@@ -285,7 +287,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     Text(
                                       formattedTime,
                                       style:
-                                          theme.textTheme.bodyLarge!.copyWith(
+                                          theme.textTheme.bodyMedium!.copyWith(
                                         color: theme.colorScheme.onSurface
                                             .withOpacity(0.7),
                                       ),
@@ -321,10 +323,41 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 32),
+                            const SizedBox(height: 24),
                             Text('Who can join',
                                 style: theme.textTheme.headlineSmall),
-                            const SizedBox(height: 12),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                Icon(FontAwesomeIcons.userGroup,
+                                    color: theme.colorScheme.onSurface
+                                        .withOpacity(0.7),
+                                    size: 18),
+                                const SizedBox(width: 12),
+                                Text('Inner circle',
+                                    style: theme.textTheme.bodyMedium),
+                                const Spacer(),
+                                Transform.scale(
+                                  scale: scale,
+                                  child: Switch(
+                                    value: innerCircleCanSee,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        innerCircleCanSee = value;
+                                      });
+                                    },
+                                    activeTrackColor:
+                                        theme.colorScheme.secondary,
+                                    inactiveTrackColor: theme
+                                        .colorScheme.onBackground
+                                        .withOpacity(0.07),
+                                    activeColor: theme.colorScheme.onSecondary,
+                                    inactiveThumbColor:
+                                        theme.colorScheme.onSecondary,
+                                  ),
+                                ),
+                              ],
+                            ),
                             Row(
                               children: [
                                 Icon(FontAwesomeIcons.userGroup,
@@ -333,9 +366,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     size: 18),
                                 const SizedBox(width: 12),
                                 Text('Friends',
-                                    style: theme.textTheme.bodyMedium!.copyWith(
-                                        color: theme.colorScheme.onSurface
-                                            .withOpacity(0.7))),
+                                    style: theme.textTheme.bodyMedium),
                                 const Spacer(),
                                 Transform.scale(
                                   scale: scale,
@@ -348,6 +379,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     },
                                     activeTrackColor:
                                         theme.colorScheme.secondary,
+                                    inactiveTrackColor: theme
+                                        .colorScheme.onBackground
+                                        .withOpacity(0.07),
                                     activeColor: theme.colorScheme.onSecondary,
                                     inactiveThumbColor:
                                         theme.colorScheme.onSecondary,
@@ -363,9 +397,7 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     size: 18),
                                 const SizedBox(width: 12),
                                 Text('My Gym',
-                                    style: theme.textTheme.bodyMedium!.copyWith(
-                                        color: theme.colorScheme.onSurface
-                                            .withOpacity(0.7))),
+                                    style: theme.textTheme.bodyMedium),
                                 const Spacer(),
                                 Transform.scale(
                                   scale: scale,
@@ -378,6 +410,9 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                     },
                                     activeTrackColor:
                                         theme.colorScheme.secondary,
+                                    inactiveTrackColor: theme
+                                        .colorScheme.onBackground
+                                        .withOpacity(0.07),
                                     activeColor: theme.colorScheme.onSecondary,
                                     inactiveThumbColor:
                                         theme.colorScheme.onSecondary,
@@ -389,33 +424,10 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         ),
                       ),
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          color: theme.scaffoldBackgroundColor,
-                          height: 15,
-                        ),
-                        GestureDetector(
-                          onTap: createGroup,
-                          child: Container(
-                            width: width - 32,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.primary,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Center(
-                              child: Text('Create',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
-                                    fontVariations: const <FontVariation>[
-                                      FontVariation('wght', 600),
-                                    ],
-                                  )),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    LargeButton(
+                        isLoading: _isLoading,
+                        onTap: createGroup,
+                        text: 'Create'),
                   ],
                 ),
               ));

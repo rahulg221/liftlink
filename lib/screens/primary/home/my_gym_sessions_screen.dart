@@ -1,23 +1,23 @@
 import 'package:fitness_app/models/session.dart' as model;
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/screens/primary/workouts/session_card.dart';
+import 'package:fitness_app/screens/primary/home/session_card.dart';
 import 'package:fitness_app/supabase/session_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FriendSessionsScreen extends StatefulWidget {
+class MyGymSessionsScreen extends StatefulWidget {
   @override
-  _FriendSessionsScreenState createState() => _FriendSessionsScreenState();
+  _MyGymSessionsScreenState createState() => _MyGymSessionsScreenState();
 }
 
-class _FriendSessionsScreenState extends State<FriendSessionsScreen> {
+class _MyGymSessionsScreenState extends State<MyGymSessionsScreen> {
   final List<model.Session> _sessions = [];
   int sessionLimit = 10;
   int fetchedSessionCount = 0;
 
   bool _isLoading = false;
 
-  void getFriendSessions() async {
+  void getMyGymSessions() async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     final uid = userProvider.getUser.uid;
 
@@ -26,7 +26,7 @@ class _FriendSessionsScreenState extends State<FriendSessionsScreen> {
     beginLoading();
     // Get the sessions from the database
     List<model.Session> newSessions = await SessionMethods()
-        .getFriendSessions(uid, sessionLimit, fetchedSessionCount);
+        .getMyGymSessions(uid, sessionLimit, fetchedSessionCount);
 
     _sessions.addAll(newSessions);
     fetchedSessionCount = _sessions.length;
@@ -54,7 +54,7 @@ class _FriendSessionsScreenState extends State<FriendSessionsScreen> {
   void initState() {
     super.initState();
 
-    getFriendSessions();
+    getMyGymSessions();
   }
 
   @override

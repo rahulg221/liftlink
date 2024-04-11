@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 const customFont = 'Lexed';
 
-const double iconSize = 21.0;
+const double iconSize = 22.0;
 
 bool isWeb = kIsWeb;
 

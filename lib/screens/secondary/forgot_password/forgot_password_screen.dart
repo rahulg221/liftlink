@@ -1,4 +1,4 @@
-import 'package:fitness_app/reusable_components/primary_button.dart';
+import 'package:fitness_app/reusable_components/medium_button.dart';
 import 'package:fitness_app/reusable_components/text_field_input.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
-  TextEditingController _resetEmailController = TextEditingController();
+  final TextEditingController _resetEmailController = TextEditingController();
   bool _isLoading = false;
 
   void resetPassword() async {}
@@ -63,7 +63,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   textInputType: TextInputType.emailAddress),
               const SizedBox(height: 30),
               Center(
-                  child: PrimaryButton(
+                  child: MediumButton(
                 isLoading: _isLoading,
                 onTap: resetPassword,
                 text: 'Send me a reset link',

@@ -3,8 +3,8 @@ import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/reusable_components/app_bar.dart';
 import 'package:fitness_app/reusable_components/custom_container.dart';
-import 'package:fitness_app/screens/primary/workouts/friend_sessions_screen.dart';
-import 'package:fitness_app/screens/primary/workouts/my_gym_sessions_screen.dart';
+import 'package:fitness_app/screens/primary/home/friend_sessions_screen.dart';
+import 'package:fitness_app/screens/primary/home/my_gym_sessions_screen.dart';
 import 'package:fitness_app/screens/secondary/create_workout_session/create_workout_session_screen.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
@@ -135,7 +135,7 @@ class _SessionsScreenState extends State<SessionsScreen> {
           : Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Column(
                     children: [
                       const SizedBox(height: 12),
@@ -147,10 +147,10 @@ class _SessionsScreenState extends State<SessionsScreen> {
                             Text('My Goals',
                                 style: theme.textTheme.headlineSmall),
                             Text('Edit goals',
-                                style: theme.textTheme.bodyMedium!.copyWith(
+                                style: theme.textTheme.bodySmall!.copyWith(
                                   color: theme.colorScheme.primary,
                                   fontVariations: const <FontVariation>[
-                                    FontVariation('wght', 350),
+                                    FontVariation('wght', 450),
                                   ],
                                 )),
                           ],
@@ -184,10 +184,10 @@ class _SessionsScreenState extends State<SessionsScreen> {
                                     const CreateSessionScreen(), context);
                               },
                               child: Text('Add a workout',
-                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                  style: theme.textTheme.bodySmall!.copyWith(
                                     color: theme.colorScheme.primary,
                                     fontVariations: const <FontVariation>[
-                                      FontVariation('wght', 350),
+                                      FontVariation('wght', 450),
                                     ],
                                   )),
                             ),
@@ -200,14 +200,16 @@ class _SessionsScreenState extends State<SessionsScreen> {
                 ),
                 Expanded(
                   child: DefaultTabController(
-                    length: 2,
+                    length: 3,
                     child: Column(
                       children: [
                         TabBar(
-                          labelStyle: theme.textTheme.bodyMedium!.copyWith(
+                          //isScrollable: true,
+                          labelStyle: theme.textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                           tabs: const [
+                            Tab(text: 'Inner Circle'),
                             Tab(text: 'Friends'),
                             Tab(text: 'My Gym'),
                           ],
@@ -215,6 +217,7 @@ class _SessionsScreenState extends State<SessionsScreen> {
                         Expanded(
                           child: TabBarView(
                             children: [
+                              FriendSessionsScreen(),
                               FriendSessionsScreen(),
                               MyGymSessionsScreen(),
                             ],
@@ -265,13 +268,13 @@ Widget _goal(String name, double startVal, double curVal, double goalVal,
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('$startVal lbs',
+          Text('${startVal.round()} lbs',
               style: theme.textTheme.bodySmall!.copyWith(
                   color: theme.colorScheme.onBackground.withOpacity(0.7),
                   fontVariations: const <FontVariation>[
                     FontVariation('wght', 350)
                   ])),
-          Text('$goalVal lbs',
+          Text('${goalVal.round()} lbs',
               style: theme.textTheme.bodySmall!.copyWith(
                   color: theme.colorScheme.onBackground.withOpacity(0.7),
                   fontVariations: const <FontVariation>[

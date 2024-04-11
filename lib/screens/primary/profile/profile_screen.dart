@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_goal_display.dart';
 import 'package:fitness_app/screens/primary/profile/profile_stats_display.dart';
@@ -74,19 +76,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         appBar: AppBar(
           title: Text('Profile', style: theme.textTheme.headlineSmall),
           centerTitle: true,
-          leading: CupertinoButton(
-            padding: EdgeInsets.zero,
-            child: Icon(
-              CupertinoIcons.back,
-              color: theme.colorScheme.onBackground,
-            ),
+          leading: IconButton(
+            icon: Icon(FontAwesomeIcons.chevronLeft,
+                size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
               Navigator.of(context).pop();
             },
           ),
           actions: [
             IconButton(
-              icon: Icon(FontAwesomeIcons.gear,
+              icon: Icon(FontAwesomeIcons.pen,
                   size: theme.iconTheme.size, color: theme.iconTheme.color),
               onPressed: () {
                 UtilMethods.navigateTo(const SettingsScreen(), context);
@@ -126,35 +125,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const SizedBox(height: 12),
                         ProfileStatsDisplay(),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text('Current Goals',
+                              Text('My Goals',
                                   style: theme.textTheme.headlineSmall),
-                              Container(
-                                width: 35,
-                                decoration: BoxDecoration(
-                                  color: theme.colorScheme.primary,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Center(
-                                  child: IconButton(
-                                    icon: const Icon(
-                                      FontAwesomeIcons.plus,
-                                      size: 15,
-                                    ),
-                                    onPressed: () {},
-                                    color: theme.colorScheme.onPrimary,
-                                  ),
-                                ),
-                              ),
+                              Text('Edit goals',
+                                  style: theme.textTheme.bodySmall!.copyWith(
+                                    color: theme.colorScheme.primary,
+                                    fontVariations: const <FontVariation>[
+                                      FontVariation('wght', 450),
+                                    ],
+                                  )),
                             ],
                           ),
                         ),
-                        const SizedBox(height: 8),
+                        const SizedBox(height: 12),
                         ProfileGoalDisplay(),
                       ],
                     ),

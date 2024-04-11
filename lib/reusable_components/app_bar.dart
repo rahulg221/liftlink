@@ -1,5 +1,6 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_screen.dart';
+import 'package:fitness_app/screens/secondary/friends/friends_list_screen.dart';
 import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,58 +32,59 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Expanded(
-          child: Row(
-            children: [
-              widget.isSearching
-                  ? const SizedBox.shrink()
-                  : IconButton(
-                      icon: Icon(
-                        FontAwesomeIcons.userGroup,
-                        size: theme.iconTheme.size,
-                        color: theme.iconTheme.color,
-                      ),
-                      onPressed: () {
-                        UtilMethods.navigateTo(const SettingsScreen(), context);
-                      },
+        Row(
+          children: [
+            widget.isSearching
+                ? const SizedBox.shrink()
+                : IconButton(
+                    icon: Icon(
+                      FontAwesomeIcons.userGroup,
+                      size: theme.iconTheme.size,
+                      color: theme.iconTheme.color,
                     ),
-              Expanded(
-                child: SizedBox(
-                  height: 35,
-                  child: TextField(
-                    focusNode: widget.searchFocusNode,
-                    onTap: () {
-                      setState(() {
-                        widget.isSearching = true;
-                      });
+                    onPressed: () {
+                      UtilMethods.navigateTo(
+                          const FriendsListScreen(), context);
                     },
-                    controller: widget.searchController,
-                    style: theme.textTheme.bodySmall,
-                    decoration: InputDecoration(
-                      prefixIcon: const Icon(FontAwesomeIcons.magnifyingGlass,
-                          size: 15),
-                      hintText: 'Search for users...',
-                      filled: true,
-                      fillColor: theme.colorScheme.surface,
-                      hintStyle: theme.textTheme.bodySmall,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(11.0),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(
-                        vertical: 0.0,
-                        horizontal: 15.0,
-                      ),
-                    ),
+                  ),
+            const SizedBox(width: 12),
+            SizedBox(
+              width: width * 0.65,
+              height: 35,
+              child: TextField(
+                focusNode: widget.searchFocusNode,
+                onTap: () {
+                  setState(() {
+                    widget.isSearching = true;
+                  });
+                },
+                controller: widget.searchController,
+                style: theme.textTheme.bodySmall,
+                decoration: InputDecoration(
+                  prefixIcon:
+                      const Icon(FontAwesomeIcons.magnifyingGlass, size: 15),
+                  hintText: 'Search for users...',
+                  filled: true,
+                  fillColor: theme.colorScheme.onBackground.withOpacity(0.07),
+                  hintStyle: theme.textTheme.bodySmall,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(11.0),
+                    borderSide: BorderSide.none,
+                  ),
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 0.0,
+                    horizontal: 15.0,
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
         const SizedBox(width: 12),
         widget.isSearching
@@ -106,7 +108,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   UtilMethods.navigateTo(const ProfileScreen(), context);
                 },
                 child: CircleAvatar(
-                  radius: 14,
+                  radius: 17,
                   backgroundImage:
                       NetworkImage(userProvider.getUser.profilePic),
                   backgroundColor: theme.scaffoldBackgroundColor,

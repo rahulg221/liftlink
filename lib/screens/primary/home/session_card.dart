@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:fitness_app/models/session.dart' as model;
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/secondary/create_workout_session/join_session_screen.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
@@ -94,10 +95,12 @@ class _SessionCardState extends State<SessionCard> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        UtilMethods.navigateTo(
-                          OtherProfileScreen(uid: uid),
-                          context,
-                        );
+                        if (uid != curUserId) {
+                          UtilMethods.navigateTo(
+                            OtherProfileScreen(uid: uid),
+                            context,
+                          );
+                        }
                       },
                       child: CircleAvatar(
                         radius: 23,
@@ -119,14 +122,12 @@ class _SessionCardState extends State<SessionCard> {
                             ),
                           ]),
                         ),
-                        //const SizedBox(height: 2),
                         Text(
                           '$workoutType Workout',
                           style: theme.textTheme.bodySmall!.copyWith(
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7)),
                         ),
-                        //const SizedBox(height: 2),
                         Text(
                           formattedDateTime,
                           style: theme.textTheme.bodySmall!.copyWith(
@@ -146,7 +147,12 @@ class _SessionCardState extends State<SessionCard> {
                     color: theme.colorScheme.surface,
                   ),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      UtilMethods.navigateTo(
+                        JoinSession(),
+                        context,
+                      );
+                    },
                     icon: Icon(
                       FontAwesomeIcons.angleRight,
                       color: theme.colorScheme.onBackground.withOpacity(0.3),

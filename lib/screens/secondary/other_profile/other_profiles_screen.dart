@@ -89,10 +89,10 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
             },
           ),
           centerTitle: true,
-          title: Text(username, style: theme.textTheme.headlineSmall),
+          title: Text('@$username', style: theme.textTheme.headlineSmall),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(

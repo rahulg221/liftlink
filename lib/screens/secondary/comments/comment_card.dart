@@ -49,7 +49,7 @@ class _CommentCardState extends State<CommentCard> {
     final theme = Theme.of(context);
 
     return Container(
-        padding: const EdgeInsets.only(bottom: 30, left: 16, right: 16),
+        padding: const EdgeInsets.only(bottom: 8, left: 16, right: 16),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -109,6 +109,11 @@ class _CommentCardState extends State<CommentCard> {
                           ),
                         ),
                       ],
+                    ),
+                    const SizedBox(height: 8),
+                    Divider(
+                      color: theme.colorScheme.surface,
+                      thickness: 1.5,
                     ),
                   ],
                 ),

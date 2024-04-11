@@ -4,7 +4,7 @@ import 'package:fitness_app/screens/onboarding/sign_in/signin_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:fitness_app/utils/util_methods.dart';
-import 'package:fitness_app/reusable_components/primary_button.dart';
+import 'package:fitness_app/reusable_components/medium_button.dart';
 import 'package:fitness_app/reusable_components/text_field_input.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -234,7 +234,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               isPassword: true,
             ),
             const SizedBox(height: 30),
-            PrimaryButton(
+            MediumButton(
               onTap: signUpUser,
               isLoading: _isLoading,
               text: 'Sign up',

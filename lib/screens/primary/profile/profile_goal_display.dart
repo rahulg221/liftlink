@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:flutter/material.dart';
 
@@ -14,31 +16,71 @@ class _ProfileGoalDisplayState extends State<ProfileGoalDisplay> {
 
     return CustomContainer(
       width: width,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _circle("Bench Press 5RM", 225, 245, 275, width, theme),
-                _circle("Bicep Curl 10RM", 15, 25, 35, width, theme),
-              ],
-            ),
-            const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _circle("Barbell Row 8RPM", 105, 155, 165, width, theme),
-                _circle("Weight loss", 250, 180, 160, width, theme),
-              ],
-            ),
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _goal('Bench Press', 225, 245, 275, theme),
+          const SizedBox(height: 8),
+          _goal('Deadlift', 315, 335, 395, theme),
+          const SizedBox(height: 8),
+          _goal('Squat', 225, 265, 295, theme),
+        ],
       ),
     );
   }
+}
+
+Widget _goal(String name, double startVal, double curVal, double goalVal,
+    ThemeData theme) {
+  double percentage = (curVal - startVal) / (goalVal - startVal);
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(name,
+              style: theme.textTheme.bodySmall!.copyWith(
+                color: theme.colorScheme.onBackground,
+              )),
+          Text('${(percentage * 100).round()}%',
+              style: theme.textTheme.bodySmall!.copyWith(
+                color: theme.colorScheme.onBackground.withOpacity(0.7),
+              )),
+        ],
+      ),
+      const SizedBox(height: 6),
+      SizedBox(
+          height: 10,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            child: LinearProgressIndicator(
+              value: percentage,
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(theme.colorScheme.secondary),
+              backgroundColor: theme.colorScheme.onBackground.withOpacity(0.05),
+            ),
+          )),
+      const SizedBox(height: 6),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('${startVal.round()} lbs',
+              style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onBackground.withOpacity(0.7),
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 350)
+                  ])),
+          Text('${startVal.round()} lbs',
+              style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onBackground.withOpacity(0.7),
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 350)
+                  ])),
+        ],
+      ),
+    ],
+  );
 }
 
 Widget _circle(String goalName, double starting, double current, double goal,
