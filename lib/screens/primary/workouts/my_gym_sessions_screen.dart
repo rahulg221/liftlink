@@ -59,18 +59,24 @@ class _MyGymSessionsScreenState extends State<MyGymSessionsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return _isLoading
         ? const Center(child: CircularProgressIndicator())
         : Column(
             children: [
               Expanded(
-                child: ListView.builder(
-                    itemCount: _sessions.length,
-                    itemBuilder: (context, index) {
-                      return SessionCard(
-                        data: _sessions[index],
-                      );
-                    }),
+                child: _sessions.isNotEmpty
+                    ? ListView.builder(
+                        itemCount: _sessions.length,
+                        itemBuilder: (context, index) {
+                          return SessionCard(
+                            data: _sessions[index],
+                          );
+                        })
+                    : Center(
+                        child: Text('No available workouts to join',
+                            style: theme.textTheme.bodySmall)),
               ),
             ],
           );

@@ -81,7 +81,7 @@ class _SessionCardState extends State<SessionCard> {
     final theme = Theme.of(context);
 
     return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 8.0),
+      padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 8.0),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,14 +121,14 @@ class _SessionCardState extends State<SessionCard> {
                         ),
                         //const SizedBox(height: 2),
                         Text(
-                          gymName,
+                          '$workoutType Workout',
                           style: theme.textTheme.bodySmall!.copyWith(
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7)),
                         ),
                         //const SizedBox(height: 2),
                         Text(
-                          '$workoutType Workout',
+                          formattedDateTime,
                           style: theme.textTheme.bodySmall!.copyWith(
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7)),
@@ -138,45 +138,22 @@ class _SessionCardState extends State<SessionCard> {
                   ],
                 ),
                 const Spacer(),
-                IconButton(
-                  onPressed: () {},
-                  icon: Icon(
-                    FontAwesomeIcons.anglesRight,
-                    color: theme.colorScheme.onSurface.withOpacity(0.7),
-                    size: 21,
+                Container(
+                  width: 35,
+                  height: 35,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: theme.colorScheme.surface,
+                  ),
+                  child: IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      FontAwesomeIcons.angleRight,
+                      color: theme.colorScheme.onBackground.withOpacity(0.3),
+                      size: 16,
+                    ),
                   ),
                 ),
-                /*
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text(formattedDateTime,
-                        style: theme.textTheme.bodySmall!.copyWith(
-                            color: isDark
-                                ? theme.colorScheme.secondary
-                                : theme.colorScheme.onBackground)),
-                    const SizedBox(height: 6),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Container(
-                          width: 110,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            color: theme.scaffoldBackgroundColor,
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(
-                                color: theme.colorScheme.onBackground
-                                    .withOpacity(0.3),
-                                width: 1.5),
-                          ),
-                          child: Center(
-                              child: Text('Join',
-                                  style: theme.textTheme.bodySmall!.copyWith(
-                                      color: theme.colorScheme.onBackground,
-                                      fontWeight: FontWeight.w600)))),
-                    ),
-                  ],
-                ),*/
               ],
             ),
             const SizedBox(height: 8),

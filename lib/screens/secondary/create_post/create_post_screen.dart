@@ -159,7 +159,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                                     ),
                                   ],
                                 ),
-                                const SizedBox(height: 14),
+                                const SizedBox(height: 8),
+                                Divider(
+                                  color: theme.colorScheme.surface,
+                                  thickness: 1.5,
+                                ),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [

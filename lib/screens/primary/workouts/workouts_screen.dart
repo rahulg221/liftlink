@@ -1,10 +1,11 @@
+import 'dart:ui';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/reusable_components/app_bar.dart';
 import 'package:fitness_app/reusable_components/custom_container.dart';
-import 'package:fitness_app/screens/primary/workouts/create_workout_button.dart';
 import 'package:fitness_app/screens/primary/workouts/friend_sessions_screen.dart';
 import 'package:fitness_app/screens/primary/workouts/my_gym_sessions_screen.dart';
+import 'package:fitness_app/screens/secondary/create_workout_session/create_workout_session_screen.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
@@ -88,7 +89,6 @@ class _SessionsScreenState extends State<SessionsScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
-    final height = MediaQuery.of(context).size.height;
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
@@ -139,27 +139,59 @@ class _SessionsScreenState extends State<SessionsScreen> {
                   child: Column(
                     children: [
                       const SizedBox(height: 12),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text('My Goals',
-                              style: theme.textTheme.headlineSmall),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('My Goals',
+                                style: theme.textTheme.headlineSmall),
+                            Text('Edit goals',
+                                style: theme.textTheme.bodyMedium!.copyWith(
+                                  color: theme.colorScheme.primary,
+                                  fontVariations: const <FontVariation>[
+                                    FontVariation('wght', 350),
+                                  ],
+                                )),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 12),
                       CustomContainer(
                         width: width,
-                        child: SizedBox(
-                            height: height * 0.2, child: const Text('hi')),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _goal('Bench Press', 225, 245, 275, theme),
+                            const SizedBox(height: 8),
+                            _goal('Deadlift', 315, 335, 395, theme),
+                            const SizedBox(height: 8),
+                            _goal('Squat', 225, 265, 295, theme),
+                          ],
+                        ),
                       ),
                       const SizedBox(height: 12),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text('Join a workout',
-                              style: theme.textTheme.headlineSmall),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Join a workout',
+                                style: theme.textTheme.headlineSmall),
+                            GestureDetector(
+                              onTap: () {
+                                UtilMethods.navigateTo(
+                                    const CreateSessionScreen(), context);
+                              },
+                              child: Text('Add a workout',
+                                  style: theme.textTheme.bodyMedium!.copyWith(
+                                    color: theme.colorScheme.primary,
+                                    fontVariations: const <FontVariation>[
+                                      FontVariation('wght', 350),
+                                    ],
+                                  )),
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -172,7 +204,7 @@ class _SessionsScreenState extends State<SessionsScreen> {
                     child: Column(
                       children: [
                         TabBar(
-                          labelStyle: theme.textTheme.bodySmall!.copyWith(
+                          labelStyle: theme.textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
                           tabs: const [
@@ -194,7 +226,59 @@ class _SessionsScreenState extends State<SessionsScreen> {
                 ),
               ],
             ),
-      floatingActionButton: const RequestButton(),
     );
   }
+}
+
+Widget _goal(String name, double startVal, double curVal, double goalVal,
+    ThemeData theme) {
+  double percentage = (curVal - startVal) / (goalVal - startVal);
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(name,
+              style: theme.textTheme.bodySmall!.copyWith(
+                color: theme.colorScheme.onBackground,
+              )),
+          Text('${(percentage * 100).round()}%',
+              style: theme.textTheme.bodySmall!.copyWith(
+                color: theme.colorScheme.onBackground.withOpacity(0.7),
+              )),
+        ],
+      ),
+      const SizedBox(height: 6),
+      SizedBox(
+          height: 10,
+          child: ClipRRect(
+            borderRadius: const BorderRadius.all(Radius.circular(10)),
+            child: LinearProgressIndicator(
+              value: percentage,
+              valueColor:
+                  AlwaysStoppedAnimation<Color>(theme.colorScheme.secondary),
+              backgroundColor: theme.colorScheme.onBackground.withOpacity(0.05),
+            ),
+          )),
+      const SizedBox(height: 6),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text('$startVal lbs',
+              style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onBackground.withOpacity(0.7),
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 350)
+                  ])),
+          Text('$goalVal lbs',
+              style: theme.textTheme.bodySmall!.copyWith(
+                  color: theme.colorScheme.onBackground.withOpacity(0.7),
+                  fontVariations: const <FontVariation>[
+                    FontVariation('wght', 350)
+                  ])),
+        ],
+      ),
+    ],
+  );
 }

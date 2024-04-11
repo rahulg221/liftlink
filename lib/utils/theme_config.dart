@@ -9,8 +9,8 @@ class ColorPalette {
   static Color lightBlue = const Color.fromARGB(255, 90, 186, 238);
   static Color teal = const Color.fromARGB(255, 26, 255, 202);
   // Background colors prev. 18 18 18
-  static Color darkBackgroundColor = Color.fromARGB(255, 28, 28, 28);
-  static Color lightBackgroundColor = const Color.fromARGB(255, 255, 253, 247);
+  static Color darkBackgroundColor = Color.fromARGB(255, 24, 24, 24);
+  static Color lightBackgroundColor = Color.fromARGB(255, 255, 255, 255);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
   static Color lightAppBarColor = lightBackgroundColor;
@@ -18,8 +18,8 @@ class ColorPalette {
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
-  static Color darkSurfaceColor = Color.fromARGB(255, 32, 32, 32);
-  static Color lightSurfaceColor = const Color.fromARGB(255, 243, 239, 231);
+  static Color darkSurfaceColor = Color.fromARGB(255, 28, 28, 28);
+  static Color lightSurfaceColor = Color.fromARGB(255, 255, 255, 255);
   // Primary colors
   static Color darkPrimaryColor = lightCoral;
   static Color lightPrimaryColor = lightCoral;
@@ -97,7 +97,7 @@ class ThemeConfig {
       ),
       iconTheme: IconThemeData(
         color: ColorPalette.lightIconColor,
-        size: iconSize,
+        size: iconSize * scaleFactor,
       ),
       textTheme: TextTheme(
         headlineLarge: TextStyle(

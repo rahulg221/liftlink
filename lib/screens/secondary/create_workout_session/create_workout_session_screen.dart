@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:fitness_app/providers/user_provider.dart';
+import 'package:fitness_app/screens/secondary/create_workout_session/notes_input.dart';
 import 'package:fitness_app/supabase/session_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,6 +18,7 @@ class CreateSessionScreen extends StatefulWidget {
 }
 
 class _CreateSessionScreenState extends State<CreateSessionScreen> {
+  final TextEditingController _notesController = TextEditingController();
   bool _isLoading = false;
 
   String profilePicUrl = '';
@@ -251,7 +253,12 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                                 ),
                               ),
                             ),
-                            const SizedBox(height: 32),
+                            const SizedBox(height: 20),
+                            Text('Write a note',
+                                style: theme.textTheme.headlineSmall),
+                            const SizedBox(height: 20),
+                            NotesInput(textEditingController: _notesController),
+                            const SizedBox(height: 20),
                             Text('Choose date and time',
                                 style: theme.textTheme.headlineSmall),
                             const SizedBox(height: 20),

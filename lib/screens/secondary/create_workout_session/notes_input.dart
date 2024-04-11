@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-class CaptionInput extends StatefulWidget {
+class NotesInput extends StatefulWidget {
   final TextEditingController textEditingController;
 
-  const CaptionInput({
+  const NotesInput({
     Key? key,
     required this.textEditingController,
   }) : super(key: key);
 
   @override
-  _CaptionInputState createState() => _CaptionInputState();
+  _NotesInputState createState() => _NotesInputState();
 }
 
-class _CaptionInputState extends State<CaptionInput> {
+class _NotesInputState extends State<NotesInput> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -20,8 +20,8 @@ class _CaptionInputState extends State<CaptionInput> {
     final height = MediaQuery.of(context).size.height;
 
     return SizedBox(
-      width: width * .44,
-      height: height * 0.3,
+      width: width - 32,
+      height: height * 0.15,
       child: TextField(
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.top,
@@ -32,7 +32,7 @@ class _CaptionInputState extends State<CaptionInput> {
             .copyWith(color: theme.colorScheme.onSurface),
         maxLines: null,
         decoration: InputDecoration(
-          hintText: 'Share progress...',
+          hintText: 'Give a few details about your workout...',
           hintStyle: theme.textTheme.bodySmall!
               .copyWith(color: theme.colorScheme.onSurface),
           contentPadding: const EdgeInsets.all(16.0),

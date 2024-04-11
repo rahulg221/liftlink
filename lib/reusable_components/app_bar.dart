@@ -39,23 +39,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
           child: Row(
             children: [
               widget.isSearching
-                  ? CupertinoButton(
-                      padding: EdgeInsets.zero,
-                      child: Icon(
-                        CupertinoIcons.back,
-                        color: theme.colorScheme.onBackground,
-                      ),
-                      onPressed: () {
-                        if (widget.isSearching) {
-                          setState(() {
-                            widget.updateSearchingState(false);
-                            widget.isSearching = false;
-                            widget.searchController.clear();
-                            widget.searchFocusNode.unfocus();
-                          });
-                        }
-                      },
-                    )
+                  ? const SizedBox.shrink()
                   : IconButton(
                       icon: Icon(
                         FontAwesomeIcons.userGroup,
@@ -101,16 +85,33 @@ class _CustomAppBarState extends State<CustomAppBar> {
           ),
         ),
         const SizedBox(width: 12),
-        GestureDetector(
-          onTap: () {
-            UtilMethods.navigateTo(const ProfileScreen(), context);
-          },
-          child: CircleAvatar(
-            radius: 14,
-            backgroundImage: NetworkImage(userProvider.getUser.profilePic),
-            backgroundColor: theme.scaffoldBackgroundColor,
-          ),
-        ),
+        widget.isSearching
+            ? GestureDetector(
+                onTap: () {
+                  if (widget.isSearching) {
+                    setState(() {
+                      widget.updateSearchingState(false);
+                      widget.isSearching = false;
+                      widget.searchController.clear();
+                      widget.searchFocusNode.unfocus();
+                    });
+                  }
+                },
+                child: Text('Cancel',
+                    style: theme.textTheme.bodySmall!
+                        .copyWith(color: theme.colorScheme.primary)),
+              )
+            : GestureDetector(
+                onTap: () {
+                  UtilMethods.navigateTo(const ProfileScreen(), context);
+                },
+                child: CircleAvatar(
+                  radius: 14,
+                  backgroundImage:
+                      NetworkImage(userProvider.getUser.profilePic),
+                  backgroundColor: theme.scaffoldBackgroundColor,
+                ),
+              ),
       ],
     );
   }

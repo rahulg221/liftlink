@@ -21,7 +21,7 @@ class _CustomContainerState extends State<CustomContainer> {
     return SizedBox(
       width: widget.width,
       child: Card(
-        elevation: 5,
+        elevation: 10,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),
@@ -29,10 +29,10 @@ class _CustomContainerState extends State<CustomContainer> {
           decoration: BoxDecoration(
             color: theme.colorScheme.surface,
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(
+            /*border: Border.all(
               color: theme.colorScheme.onBackground.withOpacity(0.1),
               width: 1,
-            ),
+            ),*/
           ),
           padding: const EdgeInsets.all(12.0),
           child: widget.child,

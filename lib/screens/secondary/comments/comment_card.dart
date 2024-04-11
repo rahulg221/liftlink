@@ -98,7 +98,7 @@ class _CommentCardState extends State<CommentCard> {
                               color:
                                   theme.colorScheme.onSurface.withOpacity(0.7),
                               fontVariations: const <FontVariation>[
-                                FontVariation('wght', 250)
+                                FontVariation('wght', 300)
                               ]),
                         ),
                         const SizedBox(width: 16),
