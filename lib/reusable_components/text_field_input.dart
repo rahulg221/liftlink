@@ -53,7 +53,7 @@ class TextFieldInput extends StatelessWidget {
             ? const EdgeInsets.only(left: 20, right: 8, top: 20, bottom: 80)
             : const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
         filled: true,
-        fillColor: theme.colorScheme.onBackground.withOpacity(0.07),
+        fillColor: theme.colorScheme.surface,
         prefixIcon: prefixIcon(),
         suffixIcon: isPassword
             ? IconButton(

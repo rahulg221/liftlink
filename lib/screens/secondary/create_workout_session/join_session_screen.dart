@@ -41,7 +41,6 @@ class _JoinSessionState extends State<JoinSession> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 12),
                             Text('Workout Type',
                                 style: theme.textTheme.headlineSmall),
                             const SizedBox(height: 12),
@@ -74,6 +73,12 @@ class _JoinSessionState extends State<JoinSession> {
                               ],
                             ),
                             const SizedBox(height: 24),
+                            Text('Gym Location',
+                                style: theme.textTheme.headlineSmall),
+                            const SizedBox(height: 12),
+                            Text('Crunch Fitness, Orlando, FL',
+                                style: theme.textTheme.bodyMedium),
+                            const SizedBox(height: 24),
                             Text('Current Participants',
                                 style: theme.textTheme.headlineSmall),
                             const SizedBox(height: 12),
@@ -81,7 +86,7 @@ class _JoinSessionState extends State<JoinSession> {
                               children: [
                                 const CircleAvatar(
                                   radius: 20,
-                                  backgroundImage: AssetImage(dummyImage),
+                                  backgroundImage: NetworkImage(dummyImage),
                                 ),
                                 const SizedBox(width: 8),
                                 Text('rafman14',
@@ -93,7 +98,7 @@ class _JoinSessionState extends State<JoinSession> {
                               children: [
                                 const CircleAvatar(
                                   radius: 20,
-                                  backgroundImage: AssetImage(dummyImage),
+                                  backgroundImage: NetworkImage(dummyImage),
                                 ),
                                 const SizedBox(width: 8),
                                 Text('rahulg221',
@@ -105,7 +110,7 @@ class _JoinSessionState extends State<JoinSession> {
                               children: [
                                 const CircleAvatar(
                                   radius: 20,
-                                  backgroundImage: AssetImage(dummyImage),
+                                  backgroundImage: NetworkImage(dummyImage),
                                 ),
                                 const SizedBox(width: 8),
                                 Text('raymanatl',

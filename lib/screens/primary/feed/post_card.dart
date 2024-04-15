@@ -70,101 +70,155 @@ class _PostCardState extends State<PostCard> {
     final width = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 3.0),
-      child: CustomContainer(
-        width: width,
-        child: Column(
-          children: [
-            Column(
-              children: [
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if (uid != curUserId) {
-                              UtilMethods.navigateTo(
-                                OtherProfileScreen(uid: uid),
-                                context,
-                              );
-                            }
-                          },
-                          child: CircleAvatar(
-                            radius: 17,
-                            backgroundImage: NetworkImage(profilePic),
-                            backgroundColor: theme.scaffoldBackgroundColor,
+      padding: const EdgeInsets.only(
+          left: 12.0, right: 12.0, top: 12.0, bottom: 12.0),
+      child: Column(
+        children: [
+          Column(
+            children: [
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          if (uid != curUserId) {
+                            UtilMethods.navigateTo(
+                              OtherProfileScreen(uid: uid),
+                              context,
+                            );
+                          }
+                        },
+                        child: CircleAvatar(
+                          radius: 17,
+                          backgroundImage: NetworkImage(profilePic),
+                          backgroundColor: theme.scaffoldBackgroundColor,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            username,
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                              fontVariations: const <FontVariation>[
+                                FontVariation('wght', 500),
+                              ],
+                            ),
+                          ),
+                          Text(
+                            createdAt,
+                            style: theme.textTheme.bodySmall!.copyWith(
+                              color: theme.colorScheme.onBackground
+                                  .withOpacity(0.7),
+                              fontVariations: const <FontVariation>[
+                                FontVariation('wght', 400),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: theme.colorScheme.surface,
+                        ),
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            FontAwesomeIcons.ellipsisVertical,
+                            color:
+                                theme.colorScheme.onBackground.withOpacity(0.3),
+                            size: 16,
                           ),
                         ),
-                        const SizedBox(width: 12),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 12),
+                  GestureDetector(
+                    onDoubleTap: () {},
+                    child: SizedBox(
+                      height: height * 0.5,
+                      width: width,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(11),
+                        child: Image.network(postPic, fit: BoxFit.cover),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: SizedBox(
+                      width: width - 32,
+                      child: RichText(
+                        text: TextSpan(
+                          style: theme.textTheme.bodyMedium,
                           children: [
-                            Text(username, style: theme.textTheme.bodyMedium),
-                            Text(
-                              createdAt,
-                              style: theme.textTheme.bodySmall!.copyWith(
-                                color: theme.colorScheme.onSurface
-                                    .withOpacity(0.7),
+                            TextSpan(
+                              text: "$username ",
+                              style: theme.textTheme.bodyMedium!.copyWith(
+                                fontVariations: const <FontVariation>[
+                                  FontVariation('wght', 500),
+                                ],
                               ),
+                            ),
+                            TextSpan(
+                              text: caption,
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    GestureDetector(
-                      onDoubleTap: () {},
-                      child: SizedBox(
-                        height: height * 0.5,
-                        width: width,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(11),
-                          child: Image.network(postPic, fit: BoxFit.cover),
-                        ),
+                        softWrap: true,
+                        overflow: TextOverflow.visible,
                       ),
                     ),
-                    const SizedBox(height: 8),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: SizedBox(
-                        width: width - 32,
-                        child: RichText(
-                          text: TextSpan(
-                            style: theme.textTheme.bodyMedium,
-                            children: [
-                              TextSpan(
-                                text: "$username ",
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                  fontVariations: const <FontVariation>[
-                                    FontVariation('wght', 500),
-                                  ],
-                                ),
-                              ),
-                              TextSpan(
-                                text: caption,
-                              ),
-                            ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          FaIcon(
+                            FontAwesomeIcons.fire,
+                            color: theme.colorScheme.primary,
+                            size: 24,
                           ),
-                          softWrap: true,
-                          overflow: TextOverflow.visible,
-                        ),
+                          const SizedBox(width: 8),
+                          Text(
+                            '$likeCount',
+                            style: theme.textTheme.bodyMedium!.copyWith(
+                              color: theme.colorScheme.onBackground
+                                  .withOpacity(0.9),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Row(
+                      const SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: () {
+                          UtilMethods.showPartialScreen(
+                              CommentsScreen(
+                                  data: widget.data,
+                                  commentCount: commentCount),
+                              context,
+                              0.85);
+                        },
+                        child: Row(
                           children: [
                             FaIcon(
-                              FontAwesomeIcons.fire,
+                              FontAwesomeIcons.commentDots,
                               color: theme.colorScheme.primary,
                               size: 24,
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              '$likeCount',
+                              '$commentCount',
                               style: theme.textTheme.bodyMedium!.copyWith(
                                 color: theme.colorScheme.onBackground
                                     .withOpacity(0.9),
@@ -172,42 +226,14 @@ class _PostCardState extends State<PostCard> {
                             ),
                           ],
                         ),
-                        const SizedBox(width: 12),
-                        GestureDetector(
-                          onTap: () {
-                            UtilMethods.showPartialScreen(
-                                CommentsScreen(
-                                    data: widget.data,
-                                    commentCount: commentCount),
-                                context,
-                                0.75);
-                          },
-                          child: Row(
-                            children: [
-                              FaIcon(
-                                FontAwesomeIcons.commentDots,
-                                color: theme.colorScheme.primary,
-                                size: 24,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                '$commentCount',
-                                style: theme.textTheme.bodyMedium!.copyWith(
-                                  color: theme.colorScheme.onBackground
-                                      .withOpacity(0.9),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

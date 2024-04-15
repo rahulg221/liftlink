@@ -82,14 +82,14 @@ class _CommentCardState extends State<CommentCard> {
                             FontVariation('wght', 500),
                           ],
                         )),
-                    const SizedBox(height: 4),
+                    const SizedBox(height: 2),
                     Text(
                       comment,
                       style: theme.textTheme.bodySmall,
                       softWrap: true,
                       overflow: TextOverflow.visible,
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 4),
                     Row(
                       children: [
                         Text(
@@ -110,11 +110,7 @@ class _CommentCardState extends State<CommentCard> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
-                    Divider(
-                      color: theme.colorScheme.surface,
-                      thickness: 1.5,
-                    ),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),

@@ -47,9 +47,9 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
                 fontWeight: FontWeight.bold,
               ),
               tabs: const [
-                Tab(text: 'Inner Circle'),
                 Tab(text: 'Friends'),
                 Tab(text: 'Pending'),
+                Tab(text: 'Requests'),
               ],
             ),
             Expanded(

@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/reusable_components/app_bar.dart';
+import 'package:fitness_app/reusable_components/custom_app_bar.dart';
+import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/screens/primary/feed/photo_button.dart';
 import 'package:fitness_app/screens/primary/feed/explore_screen.dart';
 import 'package:fitness_app/screens/primary/feed/following_screen.dart';
@@ -87,6 +90,7 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final width = MediaQuery.of(context).size.width;
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
@@ -131,7 +135,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   ],
                 )
           : DefaultTabController(
-              length: 3, // Number of tabs
+              length: 3,
               child: Column(
                 children: [
                   TabBar(
@@ -149,14 +153,13 @@ class _FeedScreenState extends State<FeedScreen> {
                       children: [
                         FollowingScreen(),
                         MyGymScreen(),
-                        ExploreScreen()
+                        ExploreScreen(),
                       ],
                     ),
                   ),
                 ],
               ),
             ),
-      floatingActionButton: const PhotoButton(),
     );
   }
 }

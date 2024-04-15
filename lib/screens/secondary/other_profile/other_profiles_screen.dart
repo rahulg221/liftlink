@@ -92,7 +92,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
           title: Text('@$username', style: theme.textTheme.headlineSmall),
         ),
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.only(left: 12.0, right: 12.0),
           child: _isLoading
               ? const Center(child: CircularProgressIndicator())
               : SingleChildScrollView(
@@ -100,6 +100,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                   scrollDirection: Axis.vertical,
                   child: Column(
                     children: [
+                      const SizedBox(height: 48),
                       OtherProfileInfoDisplay(
                         username: username,
                         photoUrl: photoUrl,

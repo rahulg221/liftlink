@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/reusable_components/app_bar.dart';
+import 'package:fitness_app/reusable_components/custom_app_bar.dart';
 import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/screens/primary/home/friend_sessions_screen.dart';
 import 'package:fitness_app/screens/primary/home/my_gym_sessions_screen.dart';
@@ -132,102 +132,111 @@ class _SessionsScreenState extends State<SessionsScreen> {
                     ),
                   ],
                 )
-          : Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: Column(
-                    children: [
-                      const SizedBox(height: 12),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('My Goals',
-                                style: theme.textTheme.headlineSmall),
-                            Text('Edit goals',
-                                style: theme.textTheme.bodySmall!.copyWith(
-                                  color: theme.colorScheme.primary,
-                                  fontVariations: const <FontVariation>[
-                                    FontVariation('wght', 450),
-                                  ],
-                                )),
-                          ],
-                        ),
+          : SingleChildScrollView(
+              child: SizedBox(
+                height: 1000,
+                width: width,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 12),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('My Goals',
+                                    style: theme.textTheme.headlineSmall),
+                                Text('Edit goals',
+                                    style: theme.textTheme.bodySmall!.copyWith(
+                                      color: theme.colorScheme.primary,
+                                      fontVariations: const <FontVariation>[
+                                        FontVariation('wght', 450),
+                                      ],
+                                    )),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          CustomContainer(
+                            width: width,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                _goal('Bench Press', 225, 245, 275, theme),
+                                const SizedBox(height: 8),
+                                _goal('Deadlift', 315, 335, 395, theme),
+                                const SizedBox(height: 8),
+                                _goal('Squat', 225, 265, 295, theme),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 6.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Join a workout',
+                                    style: theme.textTheme.headlineSmall),
+                                GestureDetector(
+                                  onTap: () {
+                                    UtilMethods.navigateTo(
+                                        const CreateSessionScreen(), context);
+                                  },
+                                  child: Text('Add a workout',
+                                      style:
+                                          theme.textTheme.bodySmall!.copyWith(
+                                        color: theme.colorScheme.primary,
+                                        fontVariations: const <FontVariation>[
+                                          FontVariation('wght', 450),
+                                        ],
+                                      )),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                        ],
                       ),
-                      const SizedBox(height: 12),
-                      CustomContainer(
-                        width: width,
+                    ),
+                    Expanded(
+                      child: DefaultTabController(
+                        length: 3,
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _goal('Bench Press', 225, 245, 275, theme),
-                            const SizedBox(height: 8),
-                            _goal('Deadlift', 315, 335, 395, theme),
-                            const SizedBox(height: 8),
-                            _goal('Squat', 225, 265, 295, theme),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 12),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Join a workout',
-                                style: theme.textTheme.headlineSmall),
-                            GestureDetector(
-                              onTap: () {
-                                UtilMethods.navigateTo(
-                                    const CreateSessionScreen(), context);
-                              },
-                              child: Text('Add a workout',
-                                  style: theme.textTheme.bodySmall!.copyWith(
-                                    color: theme.colorScheme.primary,
-                                    fontVariations: const <FontVariation>[
-                                      FontVariation('wght', 450),
-                                    ],
-                                  )),
+                            TabBar(
+                              //isScrollable: true,
+                              labelStyle: theme.textTheme.bodySmall!.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                              tabs: const [
+                                Tab(text: 'Inner Circle'),
+                                Tab(text: 'Friends'),
+                                Tab(text: 'My Gym'),
+                              ],
+                            ),
+                            Expanded(
+                              child: TabBarView(
+                                children: [
+                                  FriendSessionsScreen(),
+                                  FriendSessionsScreen(),
+                                  MyGymSessionsScreen(),
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
-                      const SizedBox(height: 12),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: DefaultTabController(
-                    length: 3,
-                    child: Column(
-                      children: [
-                        TabBar(
-                          //isScrollable: true,
-                          labelStyle: theme.textTheme.bodySmall!.copyWith(
-                            fontWeight: FontWeight.bold,
-                          ),
-                          tabs: const [
-                            Tab(text: 'Inner Circle'),
-                            Tab(text: 'Friends'),
-                            Tab(text: 'My Gym'),
-                          ],
-                        ),
-                        Expanded(
-                          child: TabBarView(
-                            children: [
-                              FriendSessionsScreen(),
-                              FriendSessionsScreen(),
-                              MyGymSessionsScreen(),
-                            ],
-                          ),
-                        ),
-                      ],
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
     );
   }

@@ -74,9 +74,19 @@ class _MyGymSessionsScreenState extends State<MyGymSessionsScreen> {
                             data: _sessions[index],
                           );
                         })
-                    : Center(
-                        child: Text('No available workouts to join',
-                            style: theme.textTheme.bodySmall)),
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 100.0),
+                        child: Column(
+                          children: [
+                            Text('No available workouts to join.',
+                                style: theme.textTheme.bodySmall),
+                            const SizedBox(height: 4),
+                            Text(
+                                'Add a workout and invite people from your gym to join!',
+                                style: theme.textTheme.bodySmall),
+                          ],
+                        ),
+                      ),
               ),
             ],
           );

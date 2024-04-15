@@ -8,7 +8,7 @@ const double iconSize = 22.0;
 bool isWeb = kIsWeb;
 
 const String dummyImage =
-    'https://i.pinimg.com/originals/8e/6c/41/8e6c415ce319ca467b93c529bc1f3724.jpg';
+    'https://th.bing.com/th/id/OIP.YSYxVaBSQvug04Y_kysOgwHaJQ?w=146&h=181&c=7&r=0&o=5&pid=1.7';
 
 const String supabaseUrl = 'https://bmjgtviajuoydiinfonq.supabase.co';
 

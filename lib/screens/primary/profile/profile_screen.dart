@@ -72,83 +72,81 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title: Text('Profile', style: theme.textTheme.headlineSmall),
-          centerTitle: true,
-          leading: IconButton(
-            icon: Icon(FontAwesomeIcons.chevronLeft,
+      resizeToAvoidBottomInset: false,
+      appBar: AppBar(
+        title: Text('Profile', style: theme.textTheme.headlineSmall),
+        centerTitle: true,
+        leading: IconButton(
+          icon: Icon(FontAwesomeIcons.chevronLeft,
+              size: theme.iconTheme.size, color: theme.iconTheme.color),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(FontAwesomeIcons.gear,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              Navigator.of(context).pop();
+              UtilMethods.navigateTo(const SettingsScreen(), context);
             },
           ),
-          actions: [
-            IconButton(
-              icon: Icon(FontAwesomeIcons.pen,
-                  size: theme.iconTheme.size, color: theme.iconTheme.color),
-              onPressed: () {
-                UtilMethods.navigateTo(const SettingsScreen(), context);
-              },
-            ),
-          ],
-          automaticallyImplyLeading: false,
-        ),
-        body: Align(
-          alignment: Alignment.topCenter,
-          child: _isLoading
-              ? const Center(child: CircularProgressIndicator())
-              : Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: SingleChildScrollView(
-                    controller: _scrollController,
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        ProfileInfoDisplay(
-                          username: username,
-                          photoUrl: photoUrl,
-                          followerCount: followerCount,
-                          followingCount: followingCount,
-                          activeStreak: activeStreak,
-                          bio: bio,
-                        ),
-                        const SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Text('Stats',
-                                style: theme.textTheme.headlineSmall),
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        ProfileStatsDisplay(),
-                        const SizedBox(height: 12),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 6.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('My Goals',
-                                  style: theme.textTheme.headlineSmall),
-                              Text('Edit goals',
-                                  style: theme.textTheme.bodySmall!.copyWith(
-                                    color: theme.colorScheme.primary,
-                                    fontVariations: const <FontVariation>[
-                                      FontVariation('wght', 450),
-                                    ],
-                                  )),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 12),
-                        ProfileGoalDisplay(),
-                      ],
+        ],
+        automaticallyImplyLeading: false,
+      ),
+      body: _isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Padding(
+              padding: const EdgeInsets.only(left: 12.0, right: 12.0),
+              child: SingleChildScrollView(
+                controller: _scrollController,
+                scrollDirection: Axis.vertical,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 48),
+                    ProfileInfoDisplay(
+                      username: username,
+                      photoUrl: photoUrl,
+                      followerCount: followerCount,
+                      followingCount: followingCount,
+                      activeStreak: activeStreak,
+                      bio: bio,
                     ),
-                  ),
+                    const SizedBox(height: 12),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child:
+                            Text('Stats', style: theme.textTheme.headlineSmall),
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ProfileStatsDisplay(),
+                    const SizedBox(height: 12),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 6.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text('My Goals',
+                              style: theme.textTheme.headlineSmall),
+                          Text('Edit goals',
+                              style: theme.textTheme.bodySmall!.copyWith(
+                                color: theme.colorScheme.primary,
+                                fontVariations: const <FontVariation>[
+                                  FontVariation('wght', 450),
+                                ],
+                              )),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 12),
+                    ProfileGoalDisplay(),
+                  ],
                 ),
-        ));
+              ),
+            ),
+    );
   }
 }

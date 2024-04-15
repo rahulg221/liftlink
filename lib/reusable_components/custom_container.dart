@@ -20,23 +20,13 @@ class _CustomContainerState extends State<CustomContainer> {
     final theme = Theme.of(context);
     return SizedBox(
       width: widget.width,
-      child: Card(
-        elevation: 5,
-        shape: RoundedRectangleBorder(
+      child: Container(
+        decoration: BoxDecoration(
+          color: theme.colorScheme.surface,
           borderRadius: BorderRadius.circular(15),
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            color: theme.colorScheme.surface,
-            borderRadius: BorderRadius.circular(15),
-            /*border: Border.all(
-              color: theme.colorScheme.onBackground.withOpacity(0.1),
-              width: 1,
-            ),*/
-          ),
-          padding: const EdgeInsets.all(12.0),
-          child: widget.child,
-        ),
+        padding: const EdgeInsets.all(16.0),
+        child: widget.child,
       ),
     );
   }

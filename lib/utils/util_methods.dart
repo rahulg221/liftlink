@@ -44,10 +44,11 @@ class UtilMethods {
 
   // Pick image from gallery or camera
   static Future<Uint8List?> pickImage(ImageSource source) async {
-    final ImagePicker _imagePicker = ImagePicker();
-    final XFile? _file = await _imagePicker.pickImage(source: source);
-    if (_file != null) {
-      return await _file.readAsBytes();
+    final ImagePicker imagePicker = ImagePicker();
+    final XFile? file =
+        await imagePicker.pickImage(source: source, imageQuality: 60);
+    if (file != null) {
+      return await file.readAsBytes();
     }
     return null;
   }

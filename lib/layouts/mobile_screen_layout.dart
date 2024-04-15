@@ -3,6 +3,8 @@ import 'package:fitness_app/screens/primary/feed/feed_screen.dart';
 import 'package:fitness_app/screens/primary/home/home_screen.dart';
 import 'package:fitness_app/screens/primary/messages/messages_screen.dart';
 import 'package:fitness_app/reusable_components/bottom_nav_bar.dart';
+import 'package:fitness_app/screens/secondary/create_post/create_post_screen.dart';
+import 'package:fitness_app/screens/secondary/create_post/take_photo_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -51,10 +53,12 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
       body: PageView(
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: const [
-          SessionsScreen(),
-          FeedScreen(),
-          MessagesScreen(),
+        children: [
+          const SessionsScreen(),
+          const FeedScreen(),
+          TakePhotoScreen(),
+          const MessagesScreen(),
+          const MessagesScreen(),
         ],
       ),
       bottomNavigationBar: BottomNavBar(

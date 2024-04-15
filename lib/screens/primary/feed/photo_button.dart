@@ -16,17 +16,13 @@ class PhotoButton extends StatelessWidget {
       height: 65,
       width: 65,
       child: FloatingActionButton(
-        shape: const CircleBorder(),
-        backgroundColor: theme.colorScheme.primary,
-        onPressed: () async {
-          Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
-
-          if (context.mounted) {
-            UtilMethods.navigateTo(CreatePostScreen(postPic: image!), context);
-          }
-        },
+        shape: CircleBorder(
+          side: BorderSide(color: theme.colorScheme.primary, width: 1.5),
+        ),
+        backgroundColor: theme.colorScheme.surface,
+        onPressed: () async {},
         child: Icon(FontAwesomeIcons.cameraRetro,
-            color: theme.colorScheme.onPrimary),
+            color: theme.colorScheme.primary),
       ),
     );
   }

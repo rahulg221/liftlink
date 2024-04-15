@@ -1,4 +1,3 @@
-import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:flutter/material.dart';
 
@@ -91,75 +90,77 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
 
-    return CustomContainer(
-      width: width,
-      child: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Center(
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  CircleAvatar(
-                    radius: 55,
-                    backgroundImage: NetworkImage(widget.photoUrl),
-                    backgroundColor: theme.scaffoldBackgroundColor,
-                  ),
-                  const SizedBox(height: 12),
-                  Text(
-                    widget.username,
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: width - 48,
-                    child: Center(
-                      child: Text(widget.bio,
-                          style: theme.textTheme.bodySmall!.copyWith(
-                              color:
-                                  theme.colorScheme.onSurface.withOpacity(0.7)),
-                          softWrap: true),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              GestureDetector(
-                onTap: () {
-                  if (!_followed) {
-                    followUser();
-                  } else if (_followed) {
-                    unfollowUser();
-                  }
-                },
-                child: Container(
-                  width: width * 0.4,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: _isLoading
-                        ? theme.colorScheme.onBackground.withOpacity(0.05)
-                        : _followed
-                            ? theme.colorScheme.onBackground.withOpacity(0.05)
-                            : theme.colorScheme.primary,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Center(
+        child: Column(
+          children: [
+            Column(
+              children: [
+                CircleAvatar(
+                  radius: 65,
+                  backgroundImage: NetworkImage(widget.photoUrl),
+                  backgroundColor: theme.scaffoldBackgroundColor,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  widget.username,
+                  style: theme.textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: width - 48,
                   child: Center(
-                    child: _isLoading
-                        ? const Center(child: CircularProgressIndicator())
-                        : Text(
-                            _followed ? 'Remove Friend' : 'Add Friend',
-                            style: theme.textTheme.bodySmall!.copyWith(
-                                color: _followed
-                                    ? theme.colorScheme.onSurface
-                                    : theme.colorScheme.onPrimary,
-                                fontWeight: FontWeight.w600),
-                            textAlign: TextAlign.center,
-                          ),
+                    child: Text(widget.bio,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                            color:
+                                theme.colorScheme.onSurface.withOpacity(0.7)),
+                        softWrap: true),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    if (!_followed) {
+                      followUser();
+                    } else if (_followed) {
+                      unfollowUser();
+                    }
+                  },
+                  child: Container(
+                    width: (width - 24) * 0.46,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: _isLoading
+                          ? theme.colorScheme.surface
+                          : _followed
+                              ? theme.colorScheme.surface
+                              : theme.colorScheme.primary,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: _isLoading
+                          ? const Center(child: CircularProgressIndicator())
+                          : Text(
+                              _followed ? 'Remove friend' : 'Add friend',
+                              style: theme.textTheme.bodySmall!.copyWith(
+                                  color: _followed
+                                      ? theme.colorScheme.onSurface
+                                      : theme.colorScheme.onPrimary,
+                                  fontWeight: FontWeight.w600),
+                              textAlign: TextAlign.center,
+                            ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

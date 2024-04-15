@@ -26,8 +26,9 @@ class _UploadSwitchesState extends State<UploadSwitches> {
           height: 45,
           child: Row(
             children: [
-              Icon(FontAwesomeIcons.medal,
-                  color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              const Icon(
+                FontAwesomeIcons.medal,
+              ),
               const SizedBox(width: 12),
               Text('Display progress', style: theme.textTheme.bodyMedium),
               const Expanded(child: SizedBox()),
@@ -60,8 +61,9 @@ class _UploadSwitchesState extends State<UploadSwitches> {
           height: 45,
           child: Row(
             children: [
-              Icon(FontAwesomeIcons.solidComment,
-                  color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              const Icon(
+                FontAwesomeIcons.solidComment,
+              ),
               const SizedBox(width: 12),
               Text('Allow comments', style: theme.textTheme.bodyMedium),
               const Expanded(child: SizedBox()),
@@ -94,8 +96,9 @@ class _UploadSwitchesState extends State<UploadSwitches> {
           height: 45,
           child: Row(
             children: [
-              Icon(FontAwesomeIcons.cloudArrowDown,
-                  color: theme.colorScheme.onSurface.withOpacity(0.7)),
+              const Icon(
+                FontAwesomeIcons.cloudArrowDown,
+              ),
               const SizedBox(width: 12),
               Text('Save to profile', style: theme.textTheme.bodyMedium),
               const Expanded(child: SizedBox()),

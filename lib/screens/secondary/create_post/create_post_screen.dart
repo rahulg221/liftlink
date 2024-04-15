@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 import 'package:fitness_app/reusable_components/large_button.dart';
+import 'package:fitness_app/screens/primary/feed/feed_screen.dart';
 import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
 import 'package:fitness_app/screens/secondary/create_post/create_post_switches.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
@@ -12,7 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class CreatePostScreen extends StatefulWidget {
-  final Uint8List postPic;
+  final Uint8List? postPic;
   const CreatePostScreen({super.key, required this.postPic});
 
   @override
@@ -55,8 +56,8 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
 
     // Upload the post
-    await PostMethods().uploadPost(widget.postPic, username, uid, profilePic,
-        streak, _captionController.text);
+    await PostMethods().uploadPost(
+        postPic!, username, uid, profilePic, streak, _captionController.text);
 
     // Clear the caption field
     _captionController.clear();
@@ -72,12 +73,12 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     }
   }
 
-  void takePhoto() async {
-    Uint8List? image = await UtilMethods.pickImage(ImageSource.camera);
-
-    setState(() {
-      postPic = image!;
-    });
+  void clearImage() {
+    if (mounted) {
+      setState(() {
+        postPic = null;
+      });
+    }
   }
 
   void beginLoading() {
@@ -94,12 +95,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
         _isLoading = false;
       });
     }
-  }
-
-  void clearImage() {
-    setState(() {
-      //widget.postPic = null;
-    });
   }
 
   @override
@@ -122,7 +117,7 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             icon: Icon(FontAwesomeIcons.chevronLeft,
                 size: theme.iconTheme.size, color: theme.iconTheme.color),
             onPressed: () {
-              Navigator.of(context).pop();
+              UtilMethods.navigateTo(const MobileScreenLayout(), context);
             },
           ),
         ),
@@ -136,22 +131,24 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            const SizedBox(height: 12),
                             Column(
                               children: [
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    SizedBox(
-                                      height: height * 0.3,
-                                      width: width * 0.44,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(14),
-                                        child: Image.memory(widget.postPic,
-                                            fit: BoxFit.cover),
-                                      ),
-                                    ),
+                                    postPic == null
+                                        ? const SizedBox()
+                                        : SizedBox(
+                                            height: height * 0.3,
+                                            width: width * 0.44,
+                                            child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(14),
+                                              child: Image.memory(postPic!,
+                                                  fit: BoxFit.cover),
+                                            ),
+                                          ),
                                     const SizedBox(width: 8),
                                     CaptionInput(
                                       textEditingController: _captionController,

@@ -31,7 +31,15 @@ class BottomNavBar extends StatelessWidget {
           label: null,
         ),
         BottomNavigationBarItem(
-          icon: Icon(FontAwesomeIcons.rss, size: iconSize),
+          icon: Icon(FontAwesomeIcons.userGroup, size: iconSize),
+          label: null,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.plus, size: iconSize),
+          label: null,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(FontAwesomeIcons.solidBell, size: iconSize),
           label: null,
         ),
         BottomNavigationBarItem(

@@ -16,7 +16,7 @@ class FollowingScreen extends StatefulWidget {
 class _FollowingScreenState extends State<FollowingScreen> {
   String currentFeed = 'Explore';
   final List<Post> _posts = [];
-  int postLimit = 10;
+  int postLimit = 3;
   int fetchedPostCount = 0;
 
   bool _isLoading = false;

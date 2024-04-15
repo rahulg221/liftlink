@@ -135,7 +135,6 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const SizedBox(height: 12),
                             Text('Choose a workout',
                                 style: theme.textTheme.headlineSmall),
                             const SizedBox(height: 12),

@@ -5,12 +5,17 @@ import 'dart:ui';
 class ColorPalette {
   // Custom colors
   static Color coral = Color.fromARGB(255, 231, 92, 92);
-  static Color lightCoral = Color.fromARGB(255, 226, 95, 95);
-  static Color lightBlue = const Color.fromARGB(255, 90, 186, 238);
-  static Color teal = const Color.fromARGB(255, 26, 255, 202);
+  static Color lightCoral = Color.fromARGB(255, 237, 110, 110);
+  static Color blue = Color.fromARGB(255, 30, 162, 223);
+  static Color lightBlue = Color.fromARGB(255, 58, 192, 255);
+  static Color lightTeal = Color.fromARGB(255, 86, 233, 177);
+  static Color teal = Color.fromARGB(255, 86, 233, 177);
+
+  static Color purple = Color.fromARGB(255, 223, 81, 245);
+  static Color yellow = Color.fromARGB(255, 247, 255, 26);
   // Background colors prev. 18 18 18
   static Color darkBackgroundColor = Color.fromARGB(255, 24, 24, 24);
-  static Color lightBackgroundColor = Color.fromARGB(255, 255, 254, 232);
+  static Color lightBackgroundColor = Color.fromARGB(255, 255, 255, 252);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
   static Color lightAppBarColor = lightBackgroundColor;
@@ -19,12 +24,12 @@ class ColorPalette {
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
   // Surface colors
   static Color darkSurfaceColor = Color.fromARGB(255, 28, 28, 28);
-  static Color lightSurfaceColor = Color.fromARGB(255, 255, 254, 237);
+  static Color lightSurfaceColor = Color.fromARGB(255, 247, 247, 244);
   // Primary colors
   static Color darkPrimaryColor = lightCoral;
-  static Color lightPrimaryColor = lightCoral;
+  static Color lightPrimaryColor = coral;
   // Secondary colors
-  static Color darkSecondaryColor = teal;
+  static Color darkSecondaryColor = lightTeal;
   static Color lightSecondaryColor = teal;
   // On background headers
   static Color darkBackgroundHeaderColor = Colors.white;
@@ -52,7 +57,7 @@ class ColorPalette {
 class ThemeConfig {
   static ThemeData lightTheme(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final scaleFactor = width / 450;
+    final scaleFactor = width / 475;
 
     return ThemeData(
       brightness: Brightness.light,
@@ -154,7 +159,7 @@ class ThemeConfig {
 
   static ThemeData darkTheme(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    final scaleFactor = width / 450;
+    final scaleFactor = width / 475;
 
     return ThemeData(
       brightness: Brightness.dark,

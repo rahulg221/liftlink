@@ -2,6 +2,7 @@ import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_screen.dart';
 import 'package:fitness_app/screens/secondary/friends/friends_list_screen.dart';
 import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
+import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,52 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
+  /*
+  void _onSearchChanged() {
+    if (widget.searchController.text.isNotEmpty) {
+      setState(() {
+        widget.isSearching = true;
+      });
+
+      _performSearch(widget.searchController.text);
+    } else {
+      setState(() {
+        widget.searchResults.clear();
+      });
+    }
+  }
+
+  Future<void> _performSearch(String query) async {
+    beginLoading();
+
+    // Search for users
+    await UserMethods().searchUsers(query).then((results) {
+      setState(() {
+        widget.searchResults = results;
+      });
+    });
+
+    stopLoading();
+  }
+
+  void updateSearchingState(bool isSearching) {
+    setState(() {
+      widget.isSearching = isSearching;
+    });
+  }
+
+  beginLoading() {
+    setState(() {
+      widget.isLoading = true;
+    });
+  }
+
+  stopLoading() {
+    setState(() {
+      widget.isLoading = false;
+    });
+  }*/
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -36,7 +83,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Row(
           children: [
@@ -53,9 +99,8 @@ class _CustomAppBarState extends State<CustomAppBar> {
                           const FriendsListScreen(), context);
                     },
                   ),
-            const SizedBox(width: 12),
             SizedBox(
-              width: width * 0.65,
+              width: widget.isSearching ? (width * 0.75) : (width * 0.66),
               height: 35,
               child: TextField(
                 focusNode: widget.searchFocusNode,
@@ -71,7 +116,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                       const Icon(FontAwesomeIcons.magnifyingGlass, size: 15),
                   hintText: 'Search for users...',
                   filled: true,
-                  fillColor: theme.colorScheme.onBackground.withOpacity(0.07),
+                  fillColor: theme.colorScheme.surface,
                   hintStyle: theme.textTheme.bodySmall,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(11.0),
@@ -108,7 +153,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   UtilMethods.navigateTo(const ProfileScreen(), context);
                 },
                 child: CircleAvatar(
-                  radius: 17,
+                  radius: 18,
                   backgroundImage:
                       NetworkImage(userProvider.getUser.profilePic),
                   backgroundColor: theme.scaffoldBackgroundColor,

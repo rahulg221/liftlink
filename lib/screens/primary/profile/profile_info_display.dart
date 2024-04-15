@@ -36,57 +36,58 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
     final theme = Theme.of(context);
     final width = MediaQuery.of(context).size.width;
 
-    return CustomContainer(
-      width: width,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: Column(
-            children: [
-              Column(
-                children: [
-                  _profilePicDisplay(widget.photoUrl, theme),
-                  const SizedBox(height: 12),
-                  Text(
-                    widget.username,
-                    style: theme.textTheme.headlineSmall,
-                  ),
-                  const SizedBox(height: 8),
-                  SizedBox(
-                    width: width - 48,
-                    child: Center(
-                      child: Text(widget.bio,
-                          style: theme.textTheme.bodySmall!.copyWith(
-                              color:
-                                  theme.colorScheme.onSurface.withOpacity(0.7)),
-                          softWrap: true),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 16),
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  width: width * 0.4,
-                  height: 45,
-                  decoration: BoxDecoration(
-                    color: theme.colorScheme.primary,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+    return Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Center(
+        child: Column(
+          children: [
+            Column(
+              children: [
+                _profilePicDisplay(widget.photoUrl, theme),
+                Text(
+                  widget.username,
+                  style: theme.textTheme.headlineMedium,
+                ),
+                const SizedBox(height: 8),
+                SizedBox(
+                  width: width - 48,
                   child: Center(
-                    child: Text(
-                      'Invite Friends',
-                      style: theme.textTheme.bodySmall!.copyWith(
-                          color: theme.colorScheme.onPrimary,
-                          fontWeight: FontWeight.w600),
-                      textAlign: TextAlign.center,
+                    child: Text(widget.bio,
+                        style: theme.textTheme.bodyMedium!.copyWith(
+                            color:
+                                theme.colorScheme.onSurface.withOpacity(0.7)),
+                        softWrap: true),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {},
+                  child: Container(
+                    width: (width - 24) * 0.46,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.primary,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Invite friends',
+                        style: theme.textTheme.bodySmall!.copyWith(
+                            color: theme.colorScheme.onPrimary,
+                            fontWeight: FontWeight.w600),
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
+          ],
         ),
       ),
     );
@@ -108,13 +109,13 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
         alignment: Alignment.center,
         children: [
           CircleAvatar(
-            radius: 55,
-            backgroundImage: NetworkImage(dummyImage),
+            radius: 65,
+            backgroundImage: const NetworkImage(dummyImage),
             backgroundColor: theme.scaffoldBackgroundColor,
           ),
           Positioned(
-            bottom: -10,
-            right: -10,
+            bottom: -5,
+            right: -5,
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -122,23 +123,23 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
                   width: 35,
                   height: 35,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.surface,
                     shape: BoxShape.circle,
+                    color: theme.scaffoldBackgroundColor,
                   ),
                 ),
                 Container(
-                  width: 25,
-                  height: 25,
+                  width: 18,
+                  height: 18,
                   decoration: BoxDecoration(
-                    color: theme.colorScheme.primary,
                     shape: BoxShape.circle,
+                    color: theme.colorScheme.onPrimary,
                   ),
                 ),
                 IconButton(
                   icon: Icon(
-                    FontAwesomeIcons.plus,
-                    color: theme.colorScheme.onPrimary,
-                    size: 16,
+                    FontAwesomeIcons.circlePlus,
+                    color: theme.colorScheme.primary,
+                    size: 25,
                   ),
                   onPressed: () {},
                 ),
