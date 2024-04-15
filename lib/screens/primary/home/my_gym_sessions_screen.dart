@@ -81,8 +81,7 @@ class _MyGymSessionsScreenState extends State<MyGymSessionsScreen> {
                             Text('No available workouts to join.',
                                 style: theme.textTheme.bodySmall),
                             const SizedBox(height: 4),
-                            Text(
-                                'Add a workout and invite people from your gym to join!',
+                            Text('Add a workout and invite gym members join!',
                                 style: theme.textTheme.bodySmall),
                           ],
                         ),
