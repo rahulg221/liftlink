@@ -146,7 +146,7 @@ class _FeedScreenState extends State<FeedScreen> {
                   const Expanded(
                     child: TabBarView(
                       children: [
-                        FollowingScreen(),
+                        FriendsScreen(),
                         MyGymScreen(),
                         ExploreScreen(),
                       ],

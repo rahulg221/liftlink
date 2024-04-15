@@ -27,7 +27,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
   String bio = '';
 
   bool _isLoading = true;
-  String followedId = '';
+  String userId2 = '';
   String curId = '';
 
   void getInfo() async {
@@ -39,7 +39,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
 
     // Set the user data
     curId = curUser.uid;
-    followedId = user.uid;
+    userId2 = user.uid;
     username = user.username;
     photoUrl = user.profilePic;
     bio = user.bio;
@@ -102,7 +102,7 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                         username: username,
                         photoUrl: photoUrl,
                         bio: bio,
-                        followedId: followedId,
+                        userId2: userId2,
                         curId: curId,
                       ),
                       const SizedBox(height: 12),

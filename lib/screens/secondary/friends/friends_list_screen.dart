@@ -1,5 +1,5 @@
 import 'package:fitness_app/screens/primary/home/friend_sessions_screen.dart';
-import 'package:fitness_app/screens/primary/home/my_gym_sessions_screen.dart';
+import 'package:fitness_app/screens/secondary/friends/friends_requests_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -57,7 +57,7 @@ class _FriendsListScreenState extends State<FriendsListScreen> {
                 children: [
                   FriendSessionsScreen(),
                   FriendSessionsScreen(),
-                  MyGymSessionsScreen(),
+                  FriendRequestsScreen(),
                 ],
               ),
             ),

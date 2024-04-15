@@ -6,14 +6,14 @@ import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class FollowingScreen extends StatefulWidget {
-  const FollowingScreen({Key? key}) : super(key: key);
+class FriendsScreen extends StatefulWidget {
+  const FriendsScreen({Key? key}) : super(key: key);
 
   @override
-  State<FollowingScreen> createState() => _FollowingScreenState();
+  State<FriendsScreen> createState() => _FollowingScreenState();
 }
 
-class _FollowingScreenState extends State<FollowingScreen> {
+class _FollowingScreenState extends State<FriendsScreen> {
   String currentFeed = 'Explore';
   final List<Post> _posts = [];
   int postLimit = 3;

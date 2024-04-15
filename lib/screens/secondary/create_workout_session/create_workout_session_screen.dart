@@ -58,8 +58,15 @@ class _CreateSessionScreenState extends State<CreateSessionScreen> {
       return;
     }
 
-    await SessionMethods().createSession(uid, username, profilePicUrl,
-        workoutType, workoutDateTime, friendsCanSee, myGymCanSee);
+    await SessionMethods().createSession(
+        uid,
+        username,
+        _notesController.text,
+        profilePicUrl,
+        workoutType,
+        workoutDateTime,
+        friendsCanSee,
+        myGymCanSee);
 
     stopLoading();
 

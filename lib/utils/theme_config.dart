@@ -13,8 +13,8 @@ class ColorPalette {
 
   static Color purple = Color.fromARGB(255, 223, 81, 245);
   static Color yellow = Color.fromARGB(255, 247, 255, 26);
-  // Background colors prev. 18 18 18
-  static Color darkBackgroundColor = Color.fromARGB(255, 24, 24, 24);
+  // Background colors prev. 24 24 24
+  static Color darkBackgroundColor = Color.fromARGB(255, 0, 0, 0);
   static Color lightBackgroundColor = Color.fromARGB(255, 255, 255, 252);
   // App bar colors
   static Color darkAppBarColor = darkBackgroundColor;
@@ -22,9 +22,9 @@ class ColorPalette {
   // Nav bar colors
   static Color darkNavBarColor = darkPrimaryColor.withOpacity(0.2);
   static Color lightNavBarColor = lightPrimaryColor.withOpacity(0.2);
-  // Surface colors
-  static Color darkSurfaceColor = Color.fromARGB(255, 28, 28, 28);
-  static Color lightSurfaceColor = Color.fromARGB(255, 247, 247, 244);
+  // Surface colors prev. 28 28 28
+  static Color darkSurfaceColor = Colors.white.withOpacity(0.07);
+  static Color lightSurfaceColor = Colors.black.withOpacity(0.07);
   // Primary colors
   static Color darkPrimaryColor = lightCoral;
   static Color lightPrimaryColor = coral;

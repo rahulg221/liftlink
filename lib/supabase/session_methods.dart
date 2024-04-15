@@ -9,6 +9,7 @@ class SessionMethods {
   Future<void> createSession(
       String uid,
       String username,
+      String notes,
       String profilePicUrl,
       String workoutType,
       String workoutDateTime,
@@ -18,8 +19,10 @@ class SessionMethods {
       await _supabase.rpc('create_session', params: {
         'user_id': uid,
         'username': username,
+        'workout_notes': notes, // Hardcoded for now
         'workout_type': workoutType,
         'workout_date_time': workoutDateTime,
+        'workout_location': 'Crunch Fitness, Orlando', // Hardcoded for now
         'friends_can_join': friendsCanSee,
         'my_gym_can_join': myGymCanSee,
         'profile_pic_url': profilePicUrl,

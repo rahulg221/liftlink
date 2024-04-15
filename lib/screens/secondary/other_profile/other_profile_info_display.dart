@@ -5,7 +5,7 @@ class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
   final String photoUrl;
   final String bio;
-  final String followedId;
+  final String userId2;
   final String curId;
 
   const OtherProfileInfoDisplay({
@@ -13,7 +13,7 @@ class OtherProfileInfoDisplay extends StatefulWidget {
     required this.username,
     required this.photoUrl,
     required this.bio,
-    required this.followedId,
+    required this.userId2,
     required this.curId,
   }) : super(key: key);
 
@@ -23,7 +23,7 @@ class OtherProfileInfoDisplay extends StatefulWidget {
 }
 
 class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
-  bool _followed = false;
+  String status = '';
   bool _isLoading = false;
 
   int curPts = 900;
@@ -35,36 +35,39 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
 
     // Check if the user is already followed
 
-    doesFollow();
+    getFriendshipStatus();
   }
 
-  void doesFollow() async {
+  void getFriendshipStatus() async {
     beginLoading();
-    bool res =
-        await UserMethods().doesFollowUser(widget.curId, widget.followedId);
+
+    String res =
+        await UserMethods().getFriendshipStatus(widget.curId, widget.userId2);
 
     setState(() {
-      _followed = res;
+      status = res;
     });
+
     stopLoading();
   }
 
-  void followUser() async {
+  void addFriend() async {
     setState(() {
-      _followed = true;
+      status = 'pending';
     });
 
-    // Follow the user
-    await UserMethods().followUser(widget.followedId, widget.curId);
+    // Add user as friend
+    await UserMethods().addFriend(widget.curId, widget.userId2);
   }
 
   // Not implemented
-  void unfollowUser() async {
+  void removeFriend() async {
     setState(() {
-      _followed = false;
+      status = 'none';
     });
-    // Unfollow the user
-    await UserMethods().unfollowUser(widget.followedId, widget.curId);
+
+    // Remove user as friend
+    await UserMethods().removeFriend(widget.curId, widget.userId2);
   }
 
   void beginLoading() {
@@ -120,10 +123,10 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    if (!_followed) {
-                      followUser();
-                    } else if (_followed) {
-                      unfollowUser();
+                    if (status == 'none' || status == 'denied') {
+                      addFriend();
+                    } else if (status == 'accepted') {
+                      removeFriend();
                     }
                   },
                   child: Container(
@@ -132,7 +135,7 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                     decoration: BoxDecoration(
                       color: _isLoading
                           ? theme.colorScheme.surface
-                          : _followed
+                          : (status == 'accepted' || status == 'pending')
                               ? theme.colorScheme.surface
                               : theme.colorScheme.primary,
                       borderRadius: BorderRadius.circular(10),
@@ -141,9 +144,16 @@ class _OtherProfileInfoDisplayState extends State<OtherProfileInfoDisplay> {
                       child: _isLoading
                           ? const Center(child: CircularProgressIndicator())
                           : Text(
-                              _followed ? 'Remove friend' : 'Add friend',
+                              status == 'none'
+                                  ? 'Add friend'
+                                  : status == 'accepted'
+                                      ? 'Remove friend'
+                                      : status == 'pending'
+                                          ? 'Pending'
+                                          : 'Add friend',
                               style: theme.textTheme.bodySmall!.copyWith(
-                                  color: _followed
+                                  color: (status == 'accepted' ||
+                                          status == 'pending')
                                       ? theme.colorScheme.onSurface
                                       : theme.colorScheme.onPrimary,
                                   fontWeight: FontWeight.w600),
