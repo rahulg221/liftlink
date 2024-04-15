@@ -14,15 +14,15 @@ class PostMethods {
       final postPicUrl = await StorageMethods().uploadPostPic(postPic, uid);
 
       // Insert the post details into the 'posts' table
-      await _supabase.rpc('upload_post', params: {
+      await _supabase.rpc('create_post', params: {
+        'user_id': uid,
         'username': username,
-        'uid': uid,
-        'profile_pic': profilePicUrl,
-        'streak': streak,
-        'post_pic': postPicUrl,
         'caption': caption,
-        'comment_count': 0,
-        'like_count': 0,
+        'post_pic_url': postPicUrl,
+        'profile_pic_url': profilePicUrl,
+        'workout_location': '',
+        'friends_can_see': true,
+        'my_gym_can_see': true,
       });
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
@@ -51,14 +51,14 @@ class PostMethods {
     }
   }
 
-  Future<List<Post>> getFollowingPosts(
+  Future<List<Post>> getFriendsPosts(
       int count, int startIndex, String uid) async {
     try {
-      List<Map<String, dynamic>> posts = await _supabase
-          .rpc('get_following_posts', params: {
+      List<Map<String, dynamic>> posts =
+          await _supabase.rpc('get_friends_posts', params: {
+        'user_id': uid,
         'post_count': count,
         'start_index': startIndex,
-        'current_user_id': uid
       });
 
       return posts.map((post) => Post.fromJson(post)).toList();

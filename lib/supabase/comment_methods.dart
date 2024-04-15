@@ -13,7 +13,7 @@ class CommentMethods {
           params: {
             'comment_count': count,
             'start_index': startIndex,
-            'pid': postId
+            'post_id': postId
           });
 
       return comments.map((comment) => Comment.fromJson(comment)).toList();
@@ -27,19 +27,17 @@ class CommentMethods {
     }
   }
 
-  Future<void> uploadComment(String username, String uid, String comment,
+  Future<void> uploadComment(String username, String uid, String content,
       String profilePicUrl, int postId) async {
     try {
-      // Insert the post details into the 'posts' table
-      await _supabase.rpc('upload_comment', params: {
-        'username': username,
-        'uid': uid,
-        'profile_pic': profilePicUrl,
-        'comment': comment,
+      // Insert the comment details into the 'comments' table
+      await _supabase.rpc('create_comment', params: {
+        'user_id': uid,
         'post_id': postId,
+        'username': username,
+        'content': content,
+        'profile_pic_url': profilePicUrl,
       });
-
-      await _supabase.rpc('increment_comment_count', params: {'pid': postId});
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
       if (kDebugMode) {

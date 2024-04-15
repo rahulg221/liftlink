@@ -1,10 +1,7 @@
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/screens/primary/profile/profile_screen.dart';
 import 'package:fitness_app/screens/secondary/friends/friends_list_screen.dart';
-import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
-import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -30,52 +27,6 @@ class CustomAppBar extends StatefulWidget {
 }
 
 class _CustomAppBarState extends State<CustomAppBar> {
-  /*
-  void _onSearchChanged() {
-    if (widget.searchController.text.isNotEmpty) {
-      setState(() {
-        widget.isSearching = true;
-      });
-
-      _performSearch(widget.searchController.text);
-    } else {
-      setState(() {
-        widget.searchResults.clear();
-      });
-    }
-  }
-
-  Future<void> _performSearch(String query) async {
-    beginLoading();
-
-    // Search for users
-    await UserMethods().searchUsers(query).then((results) {
-      setState(() {
-        widget.searchResults = results;
-      });
-    });
-
-    stopLoading();
-  }
-
-  void updateSearchingState(bool isSearching) {
-    setState(() {
-      widget.isSearching = isSearching;
-    });
-  }
-
-  beginLoading() {
-    setState(() {
-      widget.isLoading = true;
-    });
-  }
-
-  stopLoading() {
-    setState(() {
-      widget.isLoading = false;
-    });
-  }*/
-
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);

@@ -30,7 +30,7 @@ class _FollowingScreenState extends State<FollowingScreen> {
 
     // Get the posts from the database
     List<Post> newPosts =
-        await PostMethods().getFollowingPosts(postLimit, fetchedPostCount, uid);
+        await PostMethods().getFriendsPosts(postLimit, fetchedPostCount, uid);
 
     // Add all new posts to current list of posts
     _posts.addAll(newPosts);

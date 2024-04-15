@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:fitness_app/models/post.dart';
 import 'package:fitness_app/providers/user_provider.dart';
-import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/screens/secondary/comments/comment_screen.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/utils/util_methods.dart';
@@ -41,11 +39,11 @@ class _PostCardState extends State<PostCard> {
     curUserId = userProvider.getUser.uid;
 
     username = widget.data.username;
-    profilePic = widget.data.profilePic;
-    postPic = widget.data.postPic;
+    profilePic = widget.data.profilePicUrl;
+    postPic = widget.data.postPicUrl;
     caption = widget.data.caption;
     postId = widget.data.postId;
-    uid = widget.data.uid;
+    uid = widget.data.userId;
     commentCount = widget.data.commentCount;
     likeCount = widget.data.likeCount;
 
@@ -54,7 +52,6 @@ class _PostCardState extends State<PostCard> {
         UtilMethods.getFormattedDate(parsedDate, false);
 
     createdAt = formattedDate;
-    streak = widget.data.streak;
   }
 
   @override

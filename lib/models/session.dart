@@ -1,44 +1,54 @@
 class Session {
-  final String uid;
   final int sessionId;
   final String username;
-  final String createdAt;
-  final String profilePic;
+  final String userId1; // Creator of the session
+  final String? userId2;
+  final String? userId3;
+  final String? userId4;
+  final String profilePicUrl;
   final String workoutType;
   final String workoutDateTime;
-  final String friendOne;
-  final String friendTwo;
-  final int maxCapacity;
-  final int curCapacity;
+  final String workoutLocation;
+  final bool friendsCanJoin;
+  final bool myGymCanJoin;
+  final DateTime createdAt;
+  final DateTime updatedAt;
 
-  const Session({
-    required this.uid,
+  Session({
     required this.sessionId,
     required this.username,
-    required this.createdAt,
-    required this.profilePic,
+    required this.userId1,
+    this.userId2,
+    this.userId3,
+    this.userId4,
+    required this.profilePicUrl,
     required this.workoutType,
     required this.workoutDateTime,
-    required this.friendOne,
-    required this.friendTwo,
-    required this.maxCapacity,
-    required this.curCapacity,
+    required this.workoutLocation,
+    required this.friendsCanJoin,
+    required this.myGymCanJoin,
+    required this.createdAt,
+    required this.updatedAt,
   });
 
-  // Converts from JSON
-  factory Session.fromJson(Map<String, dynamic> data) {
+  // Converts a Map object from a JSON response to a Session instance
+  factory Session.fromJson(Map<String, dynamic> json) {
     return Session(
-      uid: data['uid'],
-      sessionId: data['id'],
-      username: data['username'],
-      createdAt: data['created_at'],
-      profilePic: data['profile_pic'],
-      workoutType: data['workout_type'],
-      workoutDateTime: data['workout_datetime'],
-      friendOne: data['friend_one'],
-      friendTwo: data['friend_two'],
-      maxCapacity: data['max_capacity'],
-      curCapacity: data['cur_capacity'],
+      sessionId: json['session_id'],
+      username: json['username'],
+      userId1: json['user_id1'],
+      userId2: json['user_id2'],
+      userId3: json['user_id3'],
+      userId4: json['user_id4'],
+      profilePicUrl: json['profile_pic_url'],
+      workoutType: json['workout_type'],
+      workoutDateTime: json['workout_date_time'],
+      workoutLocation: json['workout_location'],
+      friendsCanJoin:
+          json['friends_can_join'] == 'true', // or convert 1/0 if stored as int
+      myGymCanJoin: json['my_gym_can_join'] == 'true', // same as above
+      createdAt: DateTime.parse(json['created_at']),
+      updatedAt: DateTime.parse(json['updated_at']),
     );
   }
 }

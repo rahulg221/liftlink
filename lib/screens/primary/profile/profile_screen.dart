@@ -23,9 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   String username = '';
   String photoUrl = '';
-  int followerCount = 0;
-  int followingCount = 0;
-  int activeStreak = 0;
+  int friendCount = 0;
   String bio = '';
 
   bool _isLoading = false;
@@ -37,9 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     // Set the user data
     username = userProvider.getUser.username;
     photoUrl = userProvider.getUser.profilePic;
-    followerCount = userProvider.getUser.followerCount;
-    followingCount = userProvider.getUser.followingCount;
-    activeStreak = userProvider.getUser.streak;
+    friendCount = userProvider.getUser.friendCount;
     bio = userProvider.getUser.bio;
   }
 
@@ -107,9 +103,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ProfileInfoDisplay(
                       username: username,
                       photoUrl: photoUrl,
-                      followerCount: followerCount,
-                      followingCount: followingCount,
-                      activeStreak: activeStreak,
                       bio: bio,
                     ),
                     const SizedBox(height: 12),

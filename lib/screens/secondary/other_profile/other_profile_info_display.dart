@@ -4,9 +4,6 @@ import 'package:flutter/material.dart';
 class OtherProfileInfoDisplay extends StatefulWidget {
   final String username;
   final String photoUrl;
-  final int followerCount;
-  final int followingCount;
-  final int activeStreak;
   final String bio;
   final String followedId;
   final String curId;
@@ -15,9 +12,6 @@ class OtherProfileInfoDisplay extends StatefulWidget {
     Key? key,
     required this.username,
     required this.photoUrl,
-    required this.followerCount,
-    required this.followingCount,
-    required this.activeStreak,
     required this.bio,
     required this.followedId,
     required this.curId,

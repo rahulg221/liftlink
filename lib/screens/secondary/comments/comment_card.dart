@@ -29,8 +29,8 @@ class _CommentCardState extends State<CommentCard> {
 
     username = widget.data.username;
     profilePic = widget.data.profilePic;
-    comment = widget.data.comment;
-    uid = widget.data.uid;
+    comment = widget.data.content;
+    uid = widget.data.userId;
 
     final DateTime parsedDate = DateTime.parse(widget.data.createdAt);
     final String formattedDate = UtilMethods.getFormattedDate(parsedDate, true);

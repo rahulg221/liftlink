@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:fitness_app/reusable_components/custom_container.dart';
 import 'package:fitness_app/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,18 +5,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class ProfileInfoDisplay extends StatefulWidget {
   final String username;
   final String photoUrl;
-  final int followerCount;
-  final int followingCount;
-  final int activeStreak;
   final String bio;
 
   const ProfileInfoDisplay({
     Key? key,
     required this.username,
     required this.photoUrl,
-    required this.followerCount,
-    required this.followingCount,
-    required this.activeStreak,
     required this.bio,
   }) : super(key: key);
 
@@ -110,7 +101,7 @@ class _ProfileInfoDisplayState extends State<ProfileInfoDisplay> {
         children: [
           CircleAvatar(
             radius: 65,
-            backgroundImage: const NetworkImage(dummyImage),
+            backgroundImage: NetworkImage(photoUrl),
             backgroundColor: theme.scaffoldBackgroundColor,
           ),
           Positioned(

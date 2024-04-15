@@ -39,18 +39,18 @@ class AuthMethods {
           await StorageMethods().uploadProfilePic(profilePic, res.user!.id);
 
       // Proceed to insert user details into the 'users' table
-      await _supabase.from('users').upsert([
-        {
-          'id': res.user!.id,
-          'username': username,
-          'email': email,
-          'bio': bio,
-          'followingcount': 0,
-          'followercount': 0,
-          'streak': 0,
-          'profile_pic': profilePicUrl,
-        }
-      ]);
+      await _supabase.rpc('create_user', params: {
+        'id': res.user!.id,
+        'email': email,
+        'username': username,
+        'fullname': '',
+        'age': 19,
+        'bio': bio,
+        'profile_pic_url': profilePicUrl,
+        'gym_location': '',
+        'workout_split': '',
+        'workout_style': '',
+      });
 
       return 'success';
     } on AuthException catch (e) {

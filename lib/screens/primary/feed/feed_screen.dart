@@ -1,13 +1,9 @@
-import 'dart:ui';
-
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/providers/user_provider.dart';
 import 'package:fitness_app/reusable_components/custom_app_bar.dart';
-import 'package:fitness_app/reusable_components/custom_container.dart';
-import 'package:fitness_app/screens/primary/feed/photo_button.dart';
-import 'package:fitness_app/screens/primary/feed/explore_screen.dart';
-import 'package:fitness_app/screens/primary/feed/following_screen.dart';
-import 'package:fitness_app/screens/primary/feed/my_gym_screen.dart';
+import 'package:fitness_app/screens/primary/feed/explore_feed_screen.dart';
+import 'package:fitness_app/screens/primary/feed/friends_feed_screen.dart';
+import 'package:fitness_app/screens/primary/feed/my_gym_feed_screen.dart';
 import 'package:fitness_app/screens/secondary/other_profile/other_profiles_screen.dart';
 import 'package:fitness_app/supabase/user_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
@@ -90,7 +86,6 @@ class _FeedScreenState extends State<FeedScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final width = MediaQuery.of(context).size.width;
     final userProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(

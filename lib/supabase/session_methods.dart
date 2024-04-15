@@ -16,13 +16,13 @@ class SessionMethods {
       bool myGymCanSee) async {
     try {
       await _supabase.rpc('create_session', params: {
-        'uid': uid,
+        'user_id': uid,
         'username': username,
-        'profile_pic': profilePicUrl,
         'workout_type': workoutType,
-        'workout_datetime': workoutDateTime,
-        'friends_can_see': friendsCanSee,
-        'my_gym_can_see': myGymCanSee,
+        'workout_date_time': workoutDateTime,
+        'friends_can_join': friendsCanSee,
+        'my_gym_can_join': myGymCanSee,
+        'profile_pic_url': profilePicUrl,
       });
     } on PostgrestException catch (e) {
       // Print errors to console when in debug mode
@@ -39,7 +39,7 @@ class SessionMethods {
     try {
       List<Map<String, dynamic>> sessions = await _supabase
           .rpc('get_friend_sessions', params: {
-        'current_user_id': uid,
+        'user_id': uid,
         'session_count': count,
         'start_index': startIndex
       });
@@ -62,7 +62,7 @@ class SessionMethods {
     try {
       List<Map<String, dynamic>> sessions = await _supabase
           .rpc('get_my_gym_sessions', params: {
-        'current_user_id': uid,
+        'user_id': uid,
         'session_count': count,
         'start_index': startIndex
       });

@@ -37,15 +37,12 @@ class _SessionCardState extends State<SessionCard> {
     curUserId = userProvider.getUser.uid;
 
     username = widget.data.username;
-    profilePic = widget.data.profilePic;
+    profilePic = widget.data.profilePicUrl;
     workoutType = widget.data.workoutType;
-    uid = widget.data.uid;
+    uid = widget.data.userId1;
 
     workoutDateTime = widget.data.workoutDateTime;
     formattedDateTime = formatDateTime(workoutDateTime);
-
-    curUserCount = widget.data.curCapacity;
-    totalUserCount = widget.data.maxCapacity;
   }
 
   String formatDateTime(String workoutDateTime) {

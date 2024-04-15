@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 import 'package:fitness_app/reusable_components/large_button.dart';
-import 'package:fitness_app/screens/primary/feed/feed_screen.dart';
 import 'package:fitness_app/screens/secondary/create_post/caption_input.dart';
 import 'package:fitness_app/screens/secondary/create_post/create_post_switches.dart';
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
@@ -9,7 +8,6 @@ import 'package:fitness_app/supabase/post_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
 class CreatePostScreen extends StatefulWidget {
@@ -40,7 +38,6 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     username = userProvider.getUser.username;
     profilePic = userProvider.getUser.profilePic;
     uid = userProvider.getUser.uid;
-    streak = userProvider.getUser.streak;
     postPic = widget.postPic;
   }
 

@@ -63,8 +63,8 @@ class _CommentsScreenState extends State<CommentsScreen> {
     Comment newComment = Comment(
         profilePic: profilePic,
         username: username,
-        comment: _commentController.text,
-        uid: uid,
+        content: _commentController.text,
+        userId: uid,
         createdAt: DateTime.now().toString(),
         postId: postId);
 

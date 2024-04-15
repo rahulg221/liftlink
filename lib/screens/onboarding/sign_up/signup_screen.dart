@@ -146,58 +146,66 @@ class _SignUpScreenState extends State<SignUpScreen> {
               textAlign: TextAlign.left,
             ),
             const SizedBox(height: 30),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                profilePic == null
-                    ? const CircleAvatar(
-                        radius: 64,
-                        backgroundImage: NetworkImage(dummyImage),
-                      )
-                    : CircleAvatar(
-                        radius: 64,
-                        backgroundImage: MemoryImage(profilePic!),
-                      ),
-                Positioned(
-                  bottom: -5, // Position at the bottom of the profile picture
-                  right: -5, // Position to the right of the profile picture
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: 34,
-                        height: 34,
-                        decoration: BoxDecoration(
-                          color: theme.scaffoldBackgroundColor,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      Container(
-                        width: 25,
-                        height: 25,
-                        decoration: BoxDecoration(
-                          color: theme.colorScheme.primary,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          FontAwesomeIcons.plus,
-                          color: Colors.black,
-                          size: 15,
-                        ),
-                        onPressed: () {
-                          selectProfilePic();
-                        },
-                        padding: EdgeInsets
-                            .zero, // Removes default padding around the icon button
-                        constraints:
-                            const BoxConstraints(), // Removes default size constraints
-                      ),
-                    ],
-                  ),
+            Container(
+              width: 122,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: theme.brightness == Brightness.dark
+                      ? Colors.black.withOpacity(0.3)
+                      : Colors.white.withOpacity(0.3),
+                  width: 3.5,
                 ),
-              ],
+              ),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  profilePic == null
+                      ? CircleAvatar(
+                          radius: 65,
+                          backgroundImage: const NetworkImage(dummyImage),
+                          backgroundColor: theme.scaffoldBackgroundColor,
+                        )
+                      : CircleAvatar(
+                          radius: 65,
+                          backgroundImage: MemoryImage(profilePic!),
+                          backgroundColor: theme.scaffoldBackgroundColor,
+                        ),
+                  Positioned(
+                    bottom: -5,
+                    right: -5,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 35,
+                          height: 35,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: theme.scaffoldBackgroundColor,
+                          ),
+                        ),
+                        Container(
+                          width: 18,
+                          height: 18,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: theme.colorScheme.onPrimary,
+                          ),
+                        ),
+                        IconButton(
+                          icon: Icon(
+                            FontAwesomeIcons.circlePlus,
+                            color: theme.colorScheme.primary,
+                            size: 25,
+                          ),
+                          onPressed: selectProfilePic,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
             const SizedBox(height: 40),
             TextFieldInput(

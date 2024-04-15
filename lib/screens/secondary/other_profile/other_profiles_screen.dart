@@ -42,9 +42,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
     followedId = user.uid;
     username = user.username;
     photoUrl = user.profilePic;
-    followerCount = user.followerCount;
-    followingCount = user.followingCount;
-    activeStreak = user.streak;
     bio = user.bio;
 
     stopLoading();
@@ -104,9 +101,6 @@ class _OtherProfileScreenState extends State<OtherProfileScreen> {
                       OtherProfileInfoDisplay(
                         username: username,
                         photoUrl: photoUrl,
-                        followerCount: followerCount,
-                        followingCount: followingCount,
-                        activeStreak: activeStreak,
                         bio: bio,
                         followedId: followedId,
                         curId: curId,

@@ -1,6 +1,5 @@
 import 'package:fitness_app/layouts/mobile_screen_layout.dart';
 import 'package:fitness_app/screens/secondary/forgot_password/forgot_password_screen.dart';
-import 'package:fitness_app/screens/secondary/settings/settings_screen.dart';
 import 'package:fitness_app/screens/onboarding/sign_up/signup_screen.dart';
 import 'package:fitness_app/supabase/auth_methods.dart';
 import 'package:fitness_app/utils/util_methods.dart';
@@ -8,7 +7,6 @@ import 'package:fitness_app/reusable_components/medium_button.dart';
 import 'package:fitness_app/screens/onboarding/sign_in/signinoptions.dart';
 import 'package:fitness_app/reusable_components/text_field_input.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -90,15 +88,6 @@ class _SignInScreenState extends State<SignInScreen> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(FontAwesomeIcons.gear,
-                size: theme.iconTheme.size, color: theme.iconTheme.color),
-            onPressed: () {
-              UtilMethods.navigateTo(const SettingsScreen(), context);
-            },
-          ),
-        ],
         automaticallyImplyLeading: false,
       ),
       body: Padding(
