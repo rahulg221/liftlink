@@ -1,5 +1,5 @@
 # Lift Link
-Fitness social mobile app for avid gym-goers. 
+Fitness social platform and workout coordinator for avid gym-goers.
 
 # Features
 Full Social Media Functions -> Users can create posts, comments, likes, friendships, etc. [SQL]
